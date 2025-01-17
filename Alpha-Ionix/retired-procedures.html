@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retired Procedures</title>
+    <link rel="stylesheet" href="styles/09_retired-procedures.css">
+    <link rel="stylesheet" href="styles/04_modals.css">
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <nav>
+            <ul>
+                <li><a href="procedures.html">Procedures</a></li>
+                <li><a href="retired-procedures.html">Retired Procedures</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <section id="retired-procedures">
+            <h2>Retired Procedures</h2>
+
+            <table id="retired-procedures-table">
+                <thead>
+                    <tr>
+                        <th>Procedure ID</th>
+                        <th>Description</th>
+                        <th>Document Link</th>
+                        <th>Last Revised</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Retired procedures will be inserted here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const table = document.getElementById('retired-procedures-table').querySelector('tbody');
+    
+    // Retrieve the retired procedures from localStorage
+    const retiredProcedures = JSON.parse(localStorage.getItem('retiredProcedures')) || [];
+
+    // Populate the table with retired procedures
+    retiredProcedures.forEach(procedure => {
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td>${procedure.procedureId}</td>
+            <td>${procedure.procedureDesc}</td>
+            <td><a href="${procedure.fileURL}" download="${procedure.fileName}" target="_blank">${procedure.fileName}</a></td>
+            <td>${procedure.revisionDate}</td>
+            <td>
+                <button class="unretire-btn">Unretire</button>
+                <button class="delete-btn">Delete</button>
+            </td>
+        `;
+
+        // "Unretire" Button Functionality
+        newRow.querySelector('.unretire-btn').addEventListener('click', function() {
+            // Move procedure from retired list to procedures list
+            let procedures = JSON.parse(localStorage.getItem('procedures')) || [];
+            const unretiredProcedure = {
+                procedureId: procedure.procedureId,
+                procedureDesc: procedure.procedureDesc,
+                fileURL: procedure.fileURL,
+                fileName: procedure.fileName,
+                revisionDate: procedure.revisionDate
+            };
+
+            // Add back to procedures list
+            procedures.push(unretiredProcedure);
+            localStorage.setItem('procedures', JSON.stringify(procedures));
+
+            // Remove from retired procedures list
+            let updatedRetiredProcedures = retiredProcedures.filter(p => p.procedureId !== procedure.procedureId);
+            localStorage.setItem('retiredProcedures', JSON.stringify(updatedRetiredProcedures));
+
+            // Remove the row from the retired table
+            newRow.remove();
+        });
+
+        // "Delete" Button Functionality
+        newRow.querySelector('.delete-btn').addEventListener('click', function() {
+            // Remove the procedure from retired procedures list permanently
+            let updatedRetiredProcedures = retiredProcedures.filter(p => p.procedureId !== procedure.procedureId);
+            localStorage.setItem('retiredProcedures', JSON.stringify(updatedRetiredProcedures));
+
+            // Remove the row from the retired table
+            newRow.remove();
+        });
+    });
+});
+    </script>
+</body>
+</html>

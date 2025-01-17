@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Batches</title>
+    <link rel="stylesheet" href="styles/13_create-batches.css"> <!-- Link to your CSS -->
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <nav>
+            <ul>
+                <li><a href="batches.html">Batches</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <h2>Create Batches</h2>
+
+        <!-- Batch Information Container -->
+        <section id="batch-info-container">
+            <h3>Batch Information</h3>
+            <div class="input-group">
+                <label for="batch-analysis">Analysis:</label>
+                <select id="batch-analysis">
+                    <option value="">Select Analysis</option>
+                    <!-- Populated dynamically -->
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="date-created">Date Created:</label>
+                <input type="date" id="date-created">
+            </div>
+        </section>
+
+        <!-- Sample Selection Container -->
+        <section id="sample-selection-container">
+            <h3>Sample Selection</h3>
+
+            <!-- Placeholder for dynamically displaying the Batch ID -->
+            <div id="batch-id-display" style="margin-bottom: 1em; font-weight: bold; color: rgb(156, 190, 233);"></div>
+
+            <button id="select-samples-button">Select Samples</button>
+
+            <table id="sample-selection-table">
+                <thead>
+                    <tr>
+                        <th>Sample ID</th>
+                        <th>Facility Name</th>
+                        <th>Sample Description</th>
+                        <th>Date Collected</th>
+                        <th>Date Received</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamically populated -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Create Batch Button -->
+        <button id="create-batch-button">Create Batch</button>
+    </main>
+
+    <!-- Modal for Selecting Samples -->
+    <div id="sample-modal" class="modal">
+        <div class="modal-content">
+            <h3>Select Samples</h3>
+            <table id="modal-sample-table">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Sample ID</th>
+                        <th>Facility Name</th>
+                        <th>Sample Description</th>
+                        <th>Date Collected</th>
+                        <th>Date Received</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamically populated -->
+                </tbody>
+            </table>
+            <button id="confirm-samples-button">Confirm Selection</button>
+            <button id="close-modal-button">Close</button>
+        </div>
+        <div id="generated-batch-id" style="margin-top: 1em; font-weight: bold; color: green;"></div>
+    </div>
+
+    <script>
+        document.getElementById("create-batch-button").addEventListener("click", function () {
+    // Generate Batch ID
+    const batchId = `BAT${Date.now()}`;
+
+    // Get selected analysis and created date
+    const analysis = document.getElementById("batch-analysis").value;
+    const createdDate = document.getElementById("date-created").value;
+
+    // Get number of samples selected
+    const sampleRows = document.querySelectorAll("#sample-selection-table tbody tr");
+    const numberOfSamples = sampleRows.length;
+
+    // Set default status
+    const status = "Pending";
+
+    // Validate inputs
+    if (!analysis || !createdDate || numberOfSamples === 0) {
+        alert("Please complete all fields and select samples before creating a batch.");
+        return;
+    }
+
+    // Display the Batch ID dynamically in the sample selection container
+    const batchIdDisplay = document.getElementById("batch-id-display");
+    batchIdDisplay.textContent = `Batch ID: ${batchId}`;
+
+    // Update samples with the batchId
+    const updatedSamples = [];
+    sampleRows.forEach((row) => {
+        const sampleId = row.cells[0].textContent;
+        const sample = JSON.parse(localStorage.getItem("sampleDataArray")).find(s => s.id === sampleId);
+
+        if (sample) {
+            sample.batchId = batchId; // Add batchId to the sample
+            updatedSamples.push(sample);
+        }
+    });
+
+    // Store the updated sample data back to localStorage
+    const sampleDataArray = JSON.parse(localStorage.getItem("sampleDataArray")) || [];
+    updatedSamples.forEach(sample => {
+        const existingIndex = sampleDataArray.findIndex(s => s.id === sample.id);
+        if (existingIndex >= 0) {
+            sampleDataArray[existingIndex] = sample;
+        } else {
+            sampleDataArray.push(sample);
+        }
+    });
+    localStorage.setItem("sampleDataArray", JSON.stringify(sampleDataArray));
+
+    // Save batch details to localStorage
+    const batches = JSON.parse(localStorage.getItem("batches")) || [];
+    batches.push({
+        batchId,
+        analysis,
+        createdDate,
+        numberOfSamples,
+        status,
+    });
+    localStorage.setItem("batches", JSON.stringify(batches));
+
+    // Update the batches table dynamically
+    updateBatchesTable();
+});  
+    </script>
+    
+    <script src="scripts/create-batches.js"></script>
+</body>
+</html>
+
+

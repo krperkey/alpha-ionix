@@ -1,0 +1,144 @@
+/* General background and text styling */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #333; /* Dark background */
+    color: #FFB700; /* Yellow text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo link */
+header a#logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFB700;
+}
+
+/* Main container styling */
+main {
+    padding: 20px;
+    max-width: 100%; /* Allow content to take the full width */
+    margin: 0 auto;
+}
+
+/* Section heading */
+h2 {
+    text-align: left;
+    font-size: 2rem;
+    color: #FFD700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #FFB700;
+    padding-bottom: 10px;
+}
+
+/* Button styling for Create New */
+button {
+    padding: 5px;
+    background-color: #FFB700;
+    color: black;
+    border: none;
+    cursor: pointer;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+}
+
+/* Table container */
+#equipment-table,
+#inactive-equipment-table {
+    width: 100%; /* Make the table span the full width */
+    border-collapse: collapse;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    border: 2px solid #FFB700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
+}
+
+/* Table header styling */
+#equipment-table th,
+#inactive-equipment-table th {
+    background-color: #777;
+    color: white;
+    padding: 10px;
+    border: 1px solid #FFB700;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Table row styling */
+#equipment-table tr:nth-child(odd),
+#inactive-equipment-table tr:nth-child(odd) {
+    background-color: #444; /* Slightly lighter background for odd rows */
+}
+
+#equipment-table tr:nth-child(even),
+#inactive-equipment-table tr:nth-child(even) {
+    background-color: #333; /* Dark background for even rows */
+}
+
+/* Table cell styling */
+#equipment-table td,
+#inactive-equipment-table td {
+    padding: 10px;
+    border: 1px solid #FFB700;
+    text-align: center;
+}
+
+/* Table links */
+#equipment-table a,
+#inactive-equipment-table a {
+    color: rgb(131, 166, 231);
+    text-decoration: none;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#equipment-table a:hover,
+#inactive-equipment-table a:hover {
+    color: #FFA700; /* Lighter yellow on hover */
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    main {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    #equipment-table th,
+    #inactive-equipment-table th,
+    #equipment-table td,
+    #inactive-equipment-table td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #equipment-table,
+    #inactive-equipment-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}

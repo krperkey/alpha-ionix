@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Sample Type</title>
+    <link rel="stylesheet" href="styles/23_create-sample-type.css"> <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <nav>
+            <ul>
+                <li><a href="sample-types.html">Sample Types</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <h2>Create New Sample Type</h2>
+
+        <!-- Overview Container -->
+        <section id="overview-container">
+            <h3>Overview</h3>
+            <div class="input-group">
+                <label for="sample-type">Sample Type:</label>
+                <input type="text" id="sample-type" placeholder="Enter the sample type">
+            </div>
+            <div class="input-group">
+                <label for="sample-type-abbreviation">Sample Type Abbreviation:</label>
+                <input type="text" id="sample-type-abbreviation" placeholder="Enter the sample type abbreviation">
+            </div>
+            <div class="input-group">
+                <label for="sample-type-name">Sample Type Name:</label>
+                <input type="text" id="sample-type-name" placeholder="Enter the sample type name">
+            </div>
+            <div class="input-group">
+                <label for="sample-type-name-abbreviation">Sample Type Name Abbreviation:</label>
+                <input type="text" id="sample-type-name-abbreviation" placeholder="Enter the sample type name abbreviation">
+            </div>
+            <div class="input-group">
+                <label for="sample-description">Description:</label>
+                <input type="text" id="sample-description" placeholder="Enter a brief description">
+            </div>
+        </section>
+
+        <!-- Submit Button -->
+        <button id="submit-button">Create Sample Type</button>
+    </main>
+
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function () {
+            const sampleType = document.getElementById('sample-type').value;
+            const sampleTypeAbbreviation = document.getElementById('sample-type-abbreviation').value;
+            const sampleTypeName = document.getElementById('sample-type-name').value;
+            const sampleTypeNameAbbreviation = document.getElementById('sample-type-name-abbreviation').value;
+            const sampleDescription = document.getElementById('sample-description').value;
+
+            if (!sampleType || !sampleTypeAbbreviation || !sampleTypeName || !sampleTypeNameAbbreviation || !sampleDescription) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            const sampleTypes = JSON.parse(localStorage.getItem('sampleTypes')) || [];
+            sampleTypes.push({ 
+                type: sampleType, 
+                typeAbbreviation: sampleTypeAbbreviation, 
+                typeName: sampleTypeName, 
+                typeNameAbbreviation: sampleTypeNameAbbreviation, 
+                description: sampleDescription 
+            });
+            localStorage.setItem('sampleTypes', JSON.stringify(sampleTypes));
+
+            alert('Sample Type added successfully!');
+            document.getElementById('sample-type').value = '';
+            document.getElementById('sample-type-abbreviation').value = '';
+            document.getElementById('sample-type-name').value = '';
+            document.getElementById('sample--type-name-abbreviation').value = '';
+            document.getElementById('sample-description').value = '';
+        });
+    </script>
+</body>
+</html>
+
+

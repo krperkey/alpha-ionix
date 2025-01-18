@@ -1,0 +1,125 @@
+/* General background and text styling */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #333; /* Dark background */
+    color: #FFD700; /* Yellow text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header a#logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+/* Main container styling */
+main {
+    padding: 20px;
+    max-width: 100%; /* Allow content to take the full width */
+    margin: 0 auto;
+}
+
+/* Section heading */
+h2 {
+    text-align: left;
+    font-size: 2rem;
+    color: #ffd700;
+    margin-top: 1px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 10px;
+}
+
+/* Table container */
+#sample-table {
+    width: 100%; /* Make the table span the full width */
+    border-collapse: collapse;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    border: 2px solid #FFD700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
+}
+
+/* Table header styling */
+#sample-table th {
+    background-color: #777;
+    color: #FFD700;
+    padding: 5px;
+    border: 1px solid #FFD700;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.0rem;
+    font-weight: bold;
+    white-space: wrap;
+}
+
+/* Table row styling */
+#sample-table tr:nth-child(odd) {
+    background-color: #444; /* Slightly lighter background for odd rows */
+}
+
+#sample-table tr:nth-child(even) {
+    background-color: #333; /* Dark background for even rows */
+}
+
+/* Table cell styling */
+#sample-table td {
+    font-size: 0.8rem;
+    padding: 5px;
+    border: 1px solid #FFD700;
+    text-align: center;
+}
+
+/* Table links (Sample ID links) */
+#sample-table a {
+    color: rgb(131, 166, 231);;
+    text-decoration: none;
+    font-weight: bold;
+    white-space: wrap;
+}
+
+#sample-table a:hover {
+    color: #FFB800; /* Lighter yellow on hover */
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    main {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    #sample-table th,
+    #sample-table td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #sample-table {
+        display: block;
+        overflow-x: auto;
+        white-space: wrap;
+    }
+}
+

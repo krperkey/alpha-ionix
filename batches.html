@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batches</title>
+    <link rel="stylesheet" href="styles/06_samples.css"> <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <nav>
+            <ul>
+                <li><a href="create-batches.html">Create New Batch</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <section id="samples">
+            <h2>Batches</h2>
+
+            <!-- Table to display batches -->
+            <table id="sample-table">
+                <thead>
+                    <tr>
+                        <th>Batch ID</th>
+                        <th>Analysis</th>
+                        <th>Date Created</th>
+                        <th>Number of Samples</th>
+                        <th>Status</th>
+                        <th>Action</th> <!-- Added for Delete button -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be added dynamically -->
+                </tbody>
+            </table>
+        </section>
+
+        <script>
+            window.onload = function () {
+                const tableBody = document.querySelector("#sample-table tbody");
+
+                // Retrieve batch details from localStorage
+                const batches = JSON.parse(localStorage.getItem("batches")) || [];
+
+                // Clear existing rows in the table
+                tableBody.innerHTML = "";
+
+                // Populate table with batch details
+                batches.forEach((batch, index) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td><a href="batch-details.html?batchId=${batch.batchId}">${batch.batchId}</a></td>
+                        <td>${batch.analysis}</td>
+                        <td>${batch.createdDate}</td>
+                        <td>${batch.numberOfSamples}</td>
+                        <td>${batch.status}</td>
+                        <td><button class="delete-btn">Delete</button></td> <!-- Added Delete button -->
+                    `;
+                    
+                    // Add the delete button functionality
+                    const deleteButton = row.querySelector(".delete-btn");
+                    deleteButton.addEventListener("click", function() {
+                        deleteBatch(index);  // Call delete function
+                    });
+
+                    tableBody.appendChild(row);
+                });
+            };
+
+            // Function to delete a batch
+            function deleteBatch(index) {
+                // Retrieve the batch details from localStorage
+                let batches = JSON.parse(localStorage.getItem("batches")) || [];
+
+                if (batches && batches.length > 0) {
+                    // Remove the batch at the specified index
+                    batches.splice(index, 1);
+
+                    // Save the updated batch list back to localStorage
+                    localStorage.setItem("batches", JSON.stringify(batches));
+
+                    // Reload the page to reflect the changes
+                    window.location.reload();
+                }
+            }
+        </script>
+
+</body>
+</html>

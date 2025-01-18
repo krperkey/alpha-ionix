@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workorder Details</title>
+    <link rel="stylesheet" href="styles/19_workorder-details.css">
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <!-- Navigation Toolbar -->
+        <nav>
+            <ul>
+                <!-- Login Dropdown -->
+                <li><a href="#" id="login-btn">Login</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="sample-login.html">Sample Login</a></li>
+                    </ul>
+                </li>
+
+                <!-- Analysis Dropdown -->
+                <li><a href="#" id="login-btn">Analysis</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="batches.html">Batches</a></li>
+                        <li><a href="samples.html">Samples</a></li>
+                        <li><a href="workorders.html">Workorders</a></li>
+                    </ul>
+                </li>
+
+                <!-- Attributes Dropdown -->
+                <li><a href="#" id="login-btn">Sample Attributes</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="hold-time.html">Hold Times</a></li>
+                        <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="test-code-table.html">Test Codes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Clients Dropdown -->
+                <li><a href="#" id="clients-btn">Clients</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="client-by-name.html">Client by Name</a></li>
+                        <li><a href="client-by-site.html">Client by Site</a></li>
+                        <li><a href="client-profile.html">Client Profiles</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Users Dropdown -->
+                <li><a href="#" id="settings-btn">Settings</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="account-settings.html">Account Settings</a></li>
+                        <li><a href="app-settings.html">Application Settings</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="user-role-management.html">Roles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <div class="header-container">
+        <h2>Workorder Details</h2>
+        <div class="dropdown">
+            <button class="dropdown-button">Actions</button>
+            <div class="dropdown-content">
+                <a href="#" id="run-report">Run Report</a>
+            </div>
+        </div>
+    </div>    
+
+    <div id="workorder-info"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Sample ID</th>
+                <th>Collect Date</th>
+                <th>Analysis</th>
+                <th>Hold Time</th>
+                <th>Due Date</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="sample-table-body">
+            <!-- Rows populated dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        window.onload = function () {
+            renderWorkorderDetails();
+
+            // Handle "Run Report" action
+            document.getElementById('run-report').addEventListener('click', function (event) {
+                event.preventDefault();
+                generateReport();
+            });
+        };
+
+        function renderWorkorderDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const workorderID = urlParams.get('id');
+
+            const workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
+            const sampleStatusMap = JSON.parse(localStorage.getItem('sampleStatusMap')) || {};
+
+            const workorder = workordersArray.find(w => w.id === workorderID);
+
+            if (workorder) {
+                // Populate workorder information
+                document.getElementById('workorder-info').innerHTML = `
+                    <p><strong>Workorder ID:</strong> <span id="workorder-id">${workorder.id}</span></p>
+                    <p><strong>Client Profile:</strong> <span id="client-profile">${workorder.clientProfile}</span></p>
+                    <p><strong>Facility Name:</strong> <span id="facility-id">${workorder.facilityId}</span></p>
+                    <p><strong>Description:</strong> <span id="workorder-description">${workorder.description}</span></p>
+                    <p><strong>Workorder Status:</strong> <span id="workorder-status">In Progress</span></p>
+                `;
+
+                const tableBody = document.getElementById('sample-table-body');
+                tableBody.innerHTML = ''; // Clear previous rows
+
+                // Populate samples table
+                workorder.samples.forEach(sample => {
+                    const sampleStatus = sampleStatusMap[sample.id] || 'In Progress';
+
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><a href="sample-details.html?id=${sample.id}">${sample.id}</a></td>
+                        <td>${sample.collectDate || 'N/A'}</td>
+                        <td>${sample.analysis || 'N/A'}</td>
+                        <td>${sample.holdTime || 'N/A'}</td>
+                        <td>${sample.dueDate || 'N/A'}</td>
+                        <td>${sample.sampleDescription || 'N/A'}</td>
+                        <td>${sampleStatus}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+
+                updateWorkorderStatus();
+            } else {
+                document.getElementById('workorder-info').innerHTML = `<p>No Workorder found with ID: ${workorderID}</p>`;
+            }
+        }
+
+        function updateWorkorderStatus() {
+            const statusCells = document.querySelectorAll('#sample-table-body tr td:last-child');
+            const statuses = Array.from(statusCells).map(cell => cell.textContent.trim());
+
+            const workorderStatusElement = document.getElementById('workorder-status');
+            let workorderStatus = 'In Progress';
+
+            if (statuses.length > 0 && statuses.every(status => status === 'Complete')) {
+                workorderStatus = 'Complete';
+            }
+
+            workorderStatusElement.textContent = workorderStatus;
+
+            const workorderID = new URLSearchParams(window.location.search).get('id');
+            const workorderStatusMap = JSON.parse(localStorage.getItem('workorderStatusMap')) || {};
+            workorderStatusMap[workorderID] = workorderStatus;
+            localStorage.setItem('workorderStatusMap', JSON.stringify(workorderStatusMap));
+        }
+        </script>
+
+    <script src="scripts/generate-report.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+</body>
+</html>
+
+

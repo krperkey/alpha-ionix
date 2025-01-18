@@ -1,0 +1,231 @@
+/* General styling */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #333;
+    color: #FFD700;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header a#logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+main {
+    padding: 20px;
+    max-width: 1850px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: left;
+    font-size: 2rem;
+    color: #FFD700;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 10px;
+}
+
+/* Section styling */
+#sample-login-section,
+#workorder-login-section,
+#receiving-info-section {
+    width: auto;
+    font-size: 0.8rem;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 2px solid #FFD700; /* Yellow borders */
+    border-radius: 10px;
+    background-color: #333; /* Dark background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #FFD700; /* Yellow text */
+}
+
+/* Style for the container section */
+section#sample-properties-section {
+    max-width: 100%;
+    font-size: 0.8rem;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+    background-color: #333;
+    display: grid; /* Enable grid layout */
+    gap: 5px; /* Add spacing between grid items */
+    overflow: auto;
+}
+
+/* Title inside each section */
+#sample-login-section h3,
+#workorder-login-section h3,
+#receiving-info-section h3 {
+    padding: 10px; /* Add some spacing inside the border */
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px; /* Optional: round the corners */
+    background-color: #333;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white; /* Dark Gray */
+}
+
+/* Ensure header stays as it is */
+section#sample-properties-section h3 {
+    grid-column: 1 / -1; /* Make the header span the full width of the section */
+    padding: 10px;
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: #333;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Style for the table */
+section#sample-properties-section table {
+    width: 100%; /* Make the table span the full width of the container */
+    max-width: 80%;
+    border-collapse: collapse; /* Remove gaps between table borders */
+    margin-bottom: 20px;
+    table-layout: auto;
+}
+
+#sample-cell {
+    /* Apply styles only to the "# of Samples" cell */
+    background-color: #333; /* Light gray background for headers */
+    color: #FFD700;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #FFD700; /* Border around header cells */
+    white-space: nowrap;
+}
+
+/* Table header styles */
+section#sample-properties-section th {
+    background-color: #777; /* Light gray background for headers */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #FFD700; /* Border around header cells */
+    white-space: nowrap;
+}
+
+/* Table cell styles */
+section#sample-properties-section td {
+    text-align: center;
+    padding: 4px;
+    border: 1px solid #FFD700; /* Border around input cells */
+    white-space: nowrap;
+}
+
+/* Style for the first column */
+section#sample-properties-section td:first-child,
+section#sample-properties-section th:first-child {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Style for individual input groups */
+section#sample-properties-section .input-group {
+    display: flex;
+    flex-direction: column; /* Stack label and input vertically */
+    align-items: start; /* Align content to the start of the column */
+}
+
+#sample-properties-section #table-body input {
+    margin: 2px;
+    width: auto; /* Reduce the width to half */
+}
+
+/* Input group styling */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: #FFD700; /* Yellow text for labels */
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+    width: 99%;
+    background-color: white; /* Dark input fields */
+    color: black; /* Yellow text */
+    border: 1px solid yellow; /* Yellow border */
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: #FFB800; /* Lighter yellow on focus */
+}
+
+.input-group.full-width {
+    grid-column: span 3; /* Spans all columns for wider inputs */
+}
+
+/* Button styling */
+button {
+    align-self: center;
+    margin-top: 5px;
+    background-color: #FFD700; /* Yellow background */
+    color: black; /* Black text */
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border: 1px solid yellow; /* Yellow border */
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+}
+
+button:hover {
+    background-color: #FFB800; /* Lighter yellow on hover */
+    border-color: #FFD700; /* Yellow border on hover */
+}
+
+/* Parent container to hold the two sections side-by-side */
+#sample-form {
+    display: flex;
+    justify-content: space-between; /* Add space between sections */
+    flex-wrap: wrap; /* Ensure sections stack on smaller screens */
+}
+
+/* Ensure sections have equal width and alignment */
+#workorder-login-section,
+#receiving-info-section {
+    flex: 1 1 48%; /* Allow flexibility and equal width, with some gap */
+    box-sizing: border-box; /* Include padding and border in width */
+    margin-right: 10px; /* Add spacing between the sections */
+}
+
+/* Remove margin on the last section */
+#receiving-info-section {
+    margin-right: 0;
+}
+
+

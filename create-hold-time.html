@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Hold Time</title>
+    <link rel="stylesheet" href="styles/27_create-hold-time.css">
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <nav>
+            <ul>
+                <li><a href="hold-time.html">Hold Time</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <h2>Create New Hold Time</h2>
+
+        <section id="overview-container">
+            <h3>Overview</h3>
+            <div class="input-group">
+                <label for="test-name">Test Name:</label>
+                <input type="text" id="test-name" placeholder="Enter the test name">
+            </div>
+            <div class="input-group">
+                <label for="matrix">Matrix:</label>
+                <input type="text" id="matrix" placeholder="Enter the matrix">
+            </div>
+            <div class="input-group">
+                <label for="hold-time">Hold Time (Hours):</label>
+                <input type="number" id="hold-time" placeholder="Enter the hold time in hours">
+            </div>
+            <div class="input-group">
+                <label for="description">Description:</label>
+                <input type="text" id="description" placeholder="Enter a brief description">
+            </div>
+        </section>
+
+        <button id="submit-button">Create Hold Time</button>
+    </main>
+
+    <script>
+        document.getElementById('submit-button').addEventListener('click', function () {
+            const testName = document.getElementById('test-name').value;
+            const matrix = document.getElementById('matrix').value;
+            const holdTime = document.getElementById('hold-time').value;
+            const description = document.getElementById('description').value;
+
+            if (!testName || !matrix || !holdTime || !description) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            const holdTimes = JSON.parse(localStorage.getItem('holdTimes')) || [];
+            holdTimes.push({ 
+                testName, 
+                matrix, 
+                holdTime, 
+                description 
+            });
+            localStorage.setItem('holdTimes', JSON.stringify(holdTimes));
+
+            alert('Hold Time added successfully!');
+            document.getElementById('test-name').value = '';
+            document.getElementById('matrix').value = '';
+            document.getElementById('hold-time').value = '';
+            document.getElementById('description').value = '';
+        });
+    </script>
+</body>
+</html>

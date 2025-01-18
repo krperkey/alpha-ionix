@@ -1,0 +1,134 @@
+/* General styling */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #333;
+    color: #FFD700;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header a#logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+main {
+    padding: 20px;
+    max-width: 1850px;
+    margin: 0 auto;
+}
+
+h3 {
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #333;
+    color: #FFD700;
+    margin: 5% auto;
+    padding: 20px;
+    border: 2px solid #FFD700;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+#analyte-list-container {
+    max-height: 550px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #FFD700;
+    border-radius: 8px;
+    background-color: #444;
+}
+
+#analyte-list-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#analyte-list-table th, #analyte-list-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #FFD700;
+}
+
+#analyte-list-table th {
+    background-color: #555;
+    color: white;
+}
+
+#analyte-list-table td {
+    background-color: #333;
+    color: #FFD700;
+}
+
+button {
+    padding: 10px;
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #FFB800;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button.analyte-list-btn {
+    padding: 2px 8px;
+    margin: 1px;
+    font-size: 0.85rem;
+    background-color: #FFD700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.analyte-list-btn:hover {
+    background-color: #FFB800;
+}

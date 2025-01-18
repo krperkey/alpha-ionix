@@ -1,0 +1,297 @@
+/* General Styling */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #333;
+    color: #FFD700;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header a#logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+main {
+    padding: 20px;
+    max-width: 1850px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: left;
+    font-size: 2rem;
+    color: #FFD700;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 10px;
+}
+
+/* Batch Info Styling */
+#batch-info-container {
+    position: relative;
+    background-color: #333;
+    color: #FFD700;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+}
+
+#batch-info-container h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* Batch Details Section */
+#batch-results-container {
+    background-color: #333;
+    color: #FFD700;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+}
+
+#batch-results-container h3 {
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: space-between; /* Push the button to the right */
+    align-items: center; /* Vertically align the button with the text */
+    font-size: 1.6rem;
+    color: white;
+    margin-top: 1px;
+    margin-bottom: 4px;
+}
+
+#batch-results-container p {
+    margin-bottom: 10px;
+}
+
+#batch-results-container span {
+    font-weight: bold;
+}
+
+/* Style for the labels (e.g., "Batch ID:") */
+#batch-info-container p strong {
+    color: #ffb700; /* A lighter gold for labels */
+    font-weight: bold; /* Ensure labels are bold */
+}
+
+/* Style for the dynamically generated information */
+#batch-info-container p span {
+    color: white; /* Retain the existing gold for information */
+    font-weight: bold; /* Ensure it is not bold (optional) */
+}
+
+/* Table Styling */
+#samples-results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#samples-results-table th,
+#samples-results-table td {
+    border: 1px solid #FFD700;
+    padding: 5px;
+    text-align: center;
+}
+
+/* Set a fixed width for the first column (expansion triangle) */
+#samples-results-table td:first-child,
+#samples-results-table th:first-child {
+    width: 40px; /* Adjust this value as needed */
+    text-align: center; /* Center the triangle */
+    padding: 5px; /* Reduce padding for compactness */
+}
+
+#samples-results-table th {
+    background-color: #777;
+    color: white;
+}
+
+.sample-row {
+    background-color: #333;
+    color: #FFD700;
+}
+
+/* Bold styling for Sample ID in main rows */
+.sample-row td:nth-child(2) {
+    color: rgb(131, 166, 231);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#samples-results-table td a {
+    color: rgb(131, 166, 231);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#samples-resultstable td a:hover {
+    color: #FFB800;
+    text-decoration: underline;
+}
+
+/* Ensure borders for sub-row header cells */
+.sub-row-header {
+    background-color: #FFB800;
+    color: black;
+    font-weight: bold;
+    border-collapse: collapse; /* Ensure proper border collapsing */
+}
+
+.sub-row-header td {
+    border: 1px solid #333 !important; /* Force dark gray border */
+    padding: 5px; /* Optional: Adjust padding for better appearance */
+    margin: 0;
+}
+
+.analyte-row {
+    background-color: #333; /* Light gray for sub-rows */
+}
+
+/* Style for the analyte column in sub-rows */
+.analyte-row td:nth-child(2) {
+    color: #FFD700; /* Gold color */
+    font-size: 0.9rem;
+    font-weight: bold; /* Optional: make it stand out */
+}
+
+/* Inputs in Table */
+#samples-results-table td input {
+    width: 90%;
+    padding: 4px;
+    border: 1px solid #FFD700;
+    border-radius: 4px;
+}
+
+#samples-results-table td input:focus {
+    outline: none;
+    border-color: #FFB800;
+}
+
+/* Sub-row input fields styling */
+.analyte-row td input {
+    background-color: #333; /* Black background */
+    color: white; /* White text */
+    border: 1px solid #FFD700; /* Optional: Gold border for consistency */
+    padding: 5px; /* Adjust padding for readability */
+    border-radius: 4px; /* Rounded corners for aesthetics */
+}
+
+/* Focus styling for sub-row inputs */
+.analyte-row td input:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #FFB800; /* Highlight border on focus with a lighter gold */
+}
+
+/* Buttons */
+button {
+    background-color: #FFD700;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #FFB800;
+}
+
+/* Style for the expansion triangle button */
+.expand-btn {
+    font-size: 12px; /* Reduce the size of the triangle */
+    padding: 2px 4px; /* Adjust padding for compactness */
+    width: 20px; /* Optional: set a fixed width */
+    height: 20px; /* Optional: set a fixed height */
+    line-height: 10px; /* Align triangle vertically */
+    text-align: center; /* Center the triangle horizontally */
+    background-color: transparent; /* Remove background if not needed */
+    border: none; /* Remove border for a cleaner look */
+    cursor: pointer; /* Ensure it's clickable */
+    color: white;
+    margin: 0;
+}
+
+.expand-btn:focus {
+    outline: none; /* Remove focus outline for a cleaner appearance */
+}
+
+#complete-review-button {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    margin-left: auto; /* Ensures the button stays on the right side */
+    background-color: green;
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#complete-review-button:hover {
+    background-color: #FFB800; /* Optional hover effect */
+}
+
+
+/* Specific style for #batch-id */
+#batch-info-container p #batch-id {
+    color: rgb(131, 166, 231); /* Unique color for batch ID */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold specific to batch ID */
+}
+
+#batch-info-container p #batch-id a:hover {
+    color: #FFB800; /* Hover color for link */
+    text-decoration: underline; /* Underline on hover */
+}
+
+#submit-results-button,
+#save-results-button {
+    margin-top: 1px;
+    margin-bottom: 4px;
+    margin-left: auto; /* Ensures the button stays on the right side */
+    background-color: #FFD700;
+    color: black;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#submit-results-button:hover,
+#save-results-button:hover {
+    background-color: #FFB800; /* Optional hover effect */
+}

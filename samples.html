@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samples</title>
+    <link rel="stylesheet" href="styles/06_samples.css">
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <!-- Navigation Toolbar -->
+        <nav>
+            <ul>
+                <!-- Login Dropdown -->
+                <li><a href="#" id="login-btn">Login</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="sample-login.html">Sample Login</a></li>
+                    </ul>
+                </li>
+
+                <!-- Analysis Dropdown -->
+                <li><a href="#" id="login-btn">Analysis</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="batches.html">Batches</a></li>
+                        <li><a href="samples.html">Samples</a></li>
+                        <li><a href="workorders.html">Workorders</a></li>
+                    </ul>
+                </li>
+
+                <!-- Attributes Dropdown -->
+                <li><a href="#" id="login-btn">Sample Attributes</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="hold-time.html">Hold Times</a></li>
+                        <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="test-code-table.html">Test Codes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Clients Dropdown -->
+                <li><a href="#" id="clients-btn">Clients</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="client-by-name.html">Client by Name</a></li>
+                        <li><a href="client-by-site.html">Client by Site</a></li>
+                        <li><a href="client-profile.html">Client Profiles</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Users Dropdown -->
+                <li><a href="#" id="settings-btn">Settings</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="account-settings.html">Account Settings</a></li>
+                        <li><a href="app-settings.html">Application Settings</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="user-role-management.html">Roles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <section id="samples">
+            <h2>Samples</h2>
+
+            <!-- Table to display samples -->
+            <table id="sample-table">
+                <thead>
+                    <tr>
+                        <th>Sample ID</th>
+                        <th>Workorder ID</th>
+                        <th>Client Profile</th>
+                        <th>Facility Name</th>
+                        <th>Workorder Description</th>
+                        <th>Collector Name</th>
+                        <th>Received By</th>
+                        <th>Date Received</th>
+                        <th>Collect Date</th>
+                        <th>Analysis</th>
+                        <th>Hold Time</th>
+                        <th>Due Date</th>
+                        <th>Sample Description</th>
+                        <th>Analytes</th>
+                        <th>Status</th>
+                        <th>Actions</th> <!-- New column for delete button -->
+                        <!-- Add other columns as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be added dynamically -->
+                </tbody>
+            </table>
+        </section>
+   
+        <script>
+            // JavaScript to retrieve sample IDs and workorder IDs from localStorage and populate the table
+            window.onload = function () {
+                const sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
+                const workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
+                const sampleStatusMap = JSON.parse(localStorage.getItem('sampleStatusMap')) || {};
+                const tableBody = document.querySelector("#sample-table tbody");
+        
+                if (sampleDataArray.length > 0) {
+                    sampleDataArray.forEach((sampleData) => {
+                        // Find the corresponding workorder for this sample
+                        const workorder = workordersArray.find(wo => wo.samples.some(s => s.id === sampleData.id));
+                        const workorderID = workorder ? workorder.id : "N/A"; // Default to "N/A" if no workorder is found
+                        const status = sampleStatusMap[sampleData.id] || "In Progress"; // Retrieve status or default to "Unknown"
+        
+                        // Create a new table row
+                        const row = document.createElement("tr");
+        
+                        row.innerHTML = `
+                            <td><a href="sample-details.html?id=${sampleData.id}">${sampleData.id}</a></td>
+                            <td>${workorderID}</td> <!-- Add Workorder ID to the second column -->
+                            <td>${sampleData.clientProfile || "N/A"}</td>
+                            <td>${sampleData.facilityId || "N/A"}</td>
+                            <td>${sampleData.workorderDescription || "N/A"}</td>
+                            <td>${sampleData.collectorName || "N/A"}</td>
+                            <td>${sampleData.receivedBy || "N/A"}</td>
+                            <td>${sampleData.dateReceived || "N/A"}</td>
+                            <td>${sampleData.collectDate || "N/A"}</td>
+                            <td>${sampleData.analysis || "N/A"}</td>
+                            <td>${sampleData.holdTime || "N/A"}</td>
+                            <td>${sampleData.dueDate || "N/A"}</td>
+                            <td>${sampleData.sampleDescription || "N/A"}</td>
+                            <td>${sampleData.analytes && sampleData.analytes.length > 0 
+                                ? sampleData.analytes.join(", ") 
+                                : "N/A"}</td>
+                            <td>${status}</td> <!-- Add Status value -->
+                            <td><button class="delete-btn" data-sample-id="${sampleData.id}">Delete</button></td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+        
+                    console.log("Sample table populated successfully:", sampleDataArray);
+                } else {
+                    console.log("No sample data found in localStorage.");
+                }
+        
+                // Add event listener to handle delete buttons
+                document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', deleteSample);
+                });
+            };
+        
+            function deleteSample(event) {
+                const sampleID = event.target.dataset.sampleId; // Get the sample ID from the button's data attribute
+                let sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
+        
+                // Filter out the sample to be deleted
+                sampleDataArray = sampleDataArray.filter(sample => sample.id !== sampleID);
+        
+                // Update localStorage
+                localStorage.setItem('sampleDataArray', JSON.stringify(sampleDataArray));
+        
+                // Refresh the table
+                refreshTable();
+            }
+        
+            function refreshTable() {
+                const tableBody = document.querySelector("#sample-table tbody");
+                tableBody.innerHTML = ''; // Clear the current table content
+                window.onload(); // Repopulate the table
+            }
+        </script>
+        
+
+</body>
+</html>

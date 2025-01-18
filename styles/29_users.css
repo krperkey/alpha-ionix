@@ -1,0 +1,231 @@
+/* General styling for the User Management page */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #FFD700;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header a#logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+header nav ul li a {
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+    margin: 0 auto;
+    background-color: #333;
+    color: black;
+    max-width: auto;
+}
+
+h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0; /* Add some spacing below the header */
+}
+
+.header-container h2 {
+    text-align: left;
+    margin: 20px; /* Remove default margin */
+    margin-left: 20px;
+    margin-bottom: 2px;
+    font-size: 2rem;
+    color: #ffd700; /* Adjust color if needed */
+    text-transform: uppercase;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 10px;
+}
+
+#create-user-button {
+    background-color: #FFD700;
+    color: black;
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin-right: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#create-user-button:hover {
+    background-color: #FFB800;
+}
+
+/* Styling for user management table */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #333;
+    color: #FFD700;
+}
+
+.user-table th,
+.user-table td {
+    border: 1px solid #FFD700;
+    padding: 10px;
+    text-align: center;
+}
+
+.user-table th {
+    background-color: #555;
+    font-weight: bold;
+    color: white;
+}
+
+.user-table tbody tr:nth-child(odd) {
+    background-color: #444;
+}
+
+.user-table tbody tr:nth-child(even) {
+    background-color: #333;
+}
+
+.user-table button {
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-table button:hover {
+    background-color: #FFB800;
+}
+
+/* Modal styling for adding a new user */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #FFD700;
+    width: 80%;
+    max-width: 1000px;
+    border-radius: 10px;
+    text-align: left;
+    color: #FFD700;
+}
+
+.modal-content h3 {
+    color: white;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.modal-content label {
+    font-weight: bold;
+    color: #FFD700;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.modal-content button {
+    background-color: #FFD700;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.modal-content button:hover {
+    background-color: #FFB800;
+}
+
+/* Show modal when active */
+.modal.show {
+    display: block;
+}
+
+.modal-content select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    display: block;
+    appearance: none; /* For consistent dropdown arrow styling */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23FFD700' d='M2 5L0 0h4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+}
+
+.modal-content select:focus {
+    outline: none;
+    border-color: #FFB800;
+}
+

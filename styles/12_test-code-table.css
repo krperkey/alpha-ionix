@@ -1,0 +1,294 @@
+/* General background and text styling */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #333; /* Dark background */
+    color: #FFD700; /* Yellow text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header a#logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+/* Main container styling */
+main {
+    padding: 20px;
+    max-width: auto;
+    margin: 0 auto;
+}
+
+/* Title styling */
+h2 {
+    text-align: left;
+    font-size: 2rem;
+    color: #FFD700;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 10px;
+}
+
+/* Test Code Table styling */
+#test-code-container {
+    width: auto;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #FFD700;
+    background-color: #333; /* Dark background */
+    color: #FFD700; /* Yellow text */
+    border-radius: 10px;
+}
+
+#test-code-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+    background-color: #333;
+    color: #FFD700;
+    table-layout: auto;
+}
+
+#test-code-table th,
+#test-code-table td {
+    padding: 10px;
+    border: 1px solid #FFD700;
+    text-align: center;
+}
+
+#test-code-table th {
+    background-color: #777;
+    color: white;
+}
+
+#test-code-table input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #FFD700;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+}
+
+#test-code-table button {
+    background-color: #FFB800;
+    color: black;
+    padding: 5px 10px;
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#test-code-table button:hover {
+    background-color: #FFD700;
+}
+
+/* Add and remove analyte row button */
+#add-analyte-row {
+    background-color: #FFD700;
+    color: black;
+    padding: 10px 20px;
+    border: 1px solid #FFD700;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#add-analyte-row:hover {
+    background-color: #FFB800;
+}
+
+/* Remove row button styling */
+.remove-row {
+    background-color: #FF0000;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-row:hover {
+    background-color: #CC0000;
+}
+
+/* Button styling */
+button {
+    align-self: center;
+    margin-top: 0;
+    background-color: #FFD700;
+    color: black;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: 1px solid yellow;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #FFB800;
+    border-color: #FFD700;
+}
+
+/* General background and text styling */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+    overflow-y: auto; /* Allow scrolling */
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #FFD700;
+    width: 95%; /* Set to almost the full viewport width */
+    max-width: 1600px; /* Wider max-width to accommodate large tables */
+    border-radius: 10px;
+    box-sizing: border-box;
+    text-align: left;
+    color: #FFD700;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+.modal-content h3 {
+    color: white;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.modal-content input {
+    width: 98%;
+    padding: 8px;
+    border: 1px solid #FFD700;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.modal-content label {
+    font-weight: bold;
+    color: #FFD700;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.modal-content button {
+    background-color: #FFD700;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.modal-content button:hover {
+    background-color: #FFB800;
+}
+
+.modal-content h4 {
+    font-size: 1.3rem;
+    color: white;
+    margin-top: 20px;
+}
+
+.modal-content .analyte-row {
+    margin-bottom: 20px;
+}
+
+/* Cancel button styling */
+#cancel-edit {
+    background-color: #FFD700;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#cancel-edit:hover {
+    background-color: #FFB800;
+}
+
+/* Modal table styling */
+#analyte-edit-table {
+    width: 100%; /* Ensure the table spans the entire modal */
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #444;
+    color: #FFD700;
+}
+
+#analyte-edit-table th,
+#analyte-edit-table td {
+    padding: 10px;
+    border: 1px solid #FFD700;
+    text-align: center;
+}
+
+#analyte-edit-table th {
+    background-color: #555;
+    color: white;
+}
+
+#analyte-edit-table td input {
+    width: 90%;
+    padding: 6px;
+    border: 1px solid #FFD700;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    margin: 0;
+}
+
+/* Resize and style the Remove button */
+#analyte-edit-table .remove-analyte-btn {
+    background-color: #FFD700;
+    color: black;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0;
+}
+
+#analyte-edit-table .remove-analyte-btn:hover {
+    background-color: #FFB800;
+}
+
+
+

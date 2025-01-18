@@ -1,0 +1,107 @@
+/* General background and text styling */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: left;
+    font-size: 2rem;
+    color: #FFD700;
+    margin-top: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 10px;
+}
+
+/* User Info Section (hidden by default) */
+#procedures-info {
+    color: yellow;
+    padding: 10px;
+}
+
+/* Style for the table */
+#procedures-table {
+    width: 100%; /* Full width of the container */
+    border-collapse: collapse; /* Ensures single borders instead of double */
+    background-color: #333; /* Dark background for the table */
+    color: white; /* Yellow text for readability */
+    margin: 20px 0; /* Add some spacing around the table */
+    border: 2px solid #FFD700; /* Outer border for the table */
+    table-layout: auto; /* Adjust column widths based on content */
+}
+
+/* Table header styling */
+#procedures-table th {
+    background-color: #777; /* Lighter gray background for the header */
+    color: white; /* White text */
+    padding: 10px;
+    border: 1px solid #FFD700; /* Yellow border for header cells */
+    text-align: center; /* Center align the text */
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Table row styling */
+#procedures-table tr:nth-child(odd) {
+    background-color: #444; /* Slightly lighter background for odd rows */
+}
+
+#procedures-table tr:nth-child(even) {
+    background-color: #333; /* Dark background for even rows */
+}
+
+/* Table cell styling */
+#procedures-table td {
+    padding: 10px;
+    border: 1px solid #FFD700; /* Yellow border for cells */
+    text-align: center; /* Align text to the left */
+    white-space: nowrap; /* Prevent text from breaking into new lines */
+}
+
+/* Table links (if applicable) */
+#procedures-table a {
+    color: rgb(131, 166, 231);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#procedures-table a:hover {
+    color: #FFB800; /* Lighter yellow on hover */
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    #procedures-table {
+        display: block; /* Make the table scrollable */
+        overflow-x: auto;
+        white-space: nowrap; /* Prevent wrapping of table content */
+    }
+
+    #procedures-table th,
+    #procedures-table td {
+        font-size: 0.9rem; /* Smaller font size for mobile devices */
+        padding: 8px;
+    }
+}
+
+button {
+    background-color: #FFD700;
+    color: black;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border: 1px solid yellow;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #FFB800;
+    border-color: #FFD700;
+}

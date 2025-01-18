@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedures</title>
+    <link rel="stylesheet" href="styles/08_procedures.css">
+    <link rel="stylesheet" href="styles/04_modals.css">
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <nav>
+            <ul>
+                <li><a href="previous-proc-revisions.html">Previous Revisions</a></li>
+                <li><a href="retired-procedures.html">Retired</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <section id="procedures">
+            <h2>Procedures</h2>
+
+            <!-- Table to display users -->
+            <table id="procedures-table">
+                <thead>
+                    <tr>
+                        <th>Procedure ID</th>
+                        <th>Description</th>
+                        <th>Document Link</th>
+                        <th>Last Revised</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Placeholder for user data -->
+                    <tr>
+                        <td>ENV####</td>
+                        <td>Describe what the document is here.</td>
+                        <td>A link to the document is found here.</td>
+                        <td>The date of last revision is found here.</td>
+                        <td><button>Revise</button><button>Retire</button></td>
+                    </tr>
+                    <!-- More user rows can be dynamically added -->
+                </tbody>
+            </table>
+
+            <!-- Add New User Button -->
+            <button id="add-procedure-btn">Add New Procedure</button>
+        </section>
+    </main>
+
+    <!-- Add New User Modal -->
+<div id="add-procedure-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-btn" id="close-modal-btn">&times;</span>
+        <h2>Add New Procedure</h2>
+        <form id="add-procedure-form" enctype="multipart/form-data">
+            <label for="procedure-id">Procedure ID:</label>
+            <input type="text" id="procedure-id" name="procedure-id" required>
+
+            <label for="procedure-desc">Description:</label>
+            <input type="text" id="procedure-desc" name="procedure-desc" required>
+
+            <label for="procedure-link">Document Link:</label>
+            <input type="file" id="procedure-link" name="procedure-link" accept=".pdf" required>
+
+            <label for="rev-date">Last Revised:</label>
+            <input type="date" id="rev-date" name="rev-date" required>
+
+            <button type="submit">Add Procedure</button>
+        </form>
+    </div>
+</div>
+
+    <script src="scripts/procedures.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="styles/03_Settings-Users.css">
+    <link rel="stylesheet" href="styles/04_modals.css">
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="manage-users.html">Manage Users</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <section id="manage-users">
+            <h2>Manage Users</h2>
+
+            <!-- Table to display users -->
+            <table id="users-table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Placeholder for user data -->
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john.doe@example.com</td>
+                        <td>Admin</td>
+                        <td><button>Edit</button><button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>jane.smith@example.com</td>
+                        <td>User</td>
+                        <td><button>Edit</button><button>Delete</button></td>
+                    </tr>
+                    <!-- More user rows can be dynamically added -->
+                </tbody>
+            </table>
+
+            <!-- Add New User Button -->
+            <button id="add-user-btn">Add New User</button>
+        </section>
+    </main>
+
+    <!-- Add New User Modal -->
+<div id="add-user-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-btn" id="close-modal-btn">&times;</span>
+        <h2>Add New User</h2>
+        <form id="add-user-form">
+            <label for="user-id">User ID:</label>
+            <input type="text" id="user-id" name="user-id" required>
+
+            <label for="user-name">Name:</label>
+            <input type="text" id="user-name" name="user-name" required>
+
+            <label for="user-email">Email:</label>
+            <input type="email" id="user-email" name="user-email" required>
+
+            <label for="user-role">Role:</label>
+            <select id="user-role" name="user-role" required>
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+
+            <button type="submit">Add User</button>
+        </form>
+    </div>
+</div>
+
+    <script src="scripts/manage-users.js"></script>
+</body>
+</html>

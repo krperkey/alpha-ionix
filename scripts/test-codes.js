@@ -143,6 +143,81 @@ window.onload = function () {
     populateQCDropdown(); // Populate the QC dropdown
 };
 
+// Save Test Code and Analytes
+document.getElementById("create-test-code").addEventListener("click", function () {
+    const analysisName = document.getElementById("analysis-name")?.value.trim();
+    const testCodeId = document.getElementById("test-code-id")?.value.trim();
+
+    // Validate inputs
+    if (!analysisName) {
+        alert("Please enter an Analysis Name.");
+        return;
+    }
+    if (!testCodeId) {
+        alert("Please enter a Test Code ID.");
+        return;
+    }
+
+    // Create test code data
+    const combinedAnalysisId = `${analysisName} (${testCodeId})`;
+    const testCode = {
+        analysisId: combinedAnalysisId,
+        analysisName,
+        testCodeId,
+        analytes: [],
+        preservationRequirements: document.getElementById("preservation-requirements")?.value || "N/A",
+    };
+
+    // Collect analytes
+    const analyteRows = document.querySelectorAll("#analyte-table tbody tr");
+    analyteRows.forEach((row) => {
+        const analyteName = row.querySelector('input[name="analyte-name[]"]').value.trim();
+        const units = row.querySelector('input[name="units[]"]').value.trim();
+        const mdl = row.querySelector('input[name="mdl[]"]').value.trim();
+        const loq = row.querySelector('input[name="loq[]"]').value.trim();
+        const initialVolume = row.querySelector('input[name="initial-volume[]"]').value.trim();
+        const finalVolume = row.querySelector('input[name="final-volume[]"]').value.trim();
+        const holdTime = row.querySelector('input[name="hold-time[]"]').value.trim();
+        const decimalPlaces = row.querySelector('input[name="decimal-places[]"]').value.trim();
+
+        if (analyteName) {
+            testCode.analytes.push({
+                analyteName,
+                units,
+                mdl,
+                loq,
+                initialVolume,
+                finalVolume,
+                holdTime,
+                decimalPlaces,
+            });
+        }
+    });
+
+    if (testCode.analytes.length === 0) {
+        alert("Please add at least one analyte before saving.");
+        return;
+    }
+
+    // Save Test Code to Local Storage
+    const testCodes = JSON.parse(localStorage.getItem("testCodes")) || [];
+    testCodes.push(testCode);
+    localStorage.setItem("testCodes", JSON.stringify(testCodes));
+
+    alert(`Test Code "${combinedAnalysisId}" created successfully!`);
+    location.reload(); // Reload to refresh the table
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 

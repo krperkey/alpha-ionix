@@ -174,9 +174,9 @@
     </div>
 
     <script>
-        window.onload = function () {
+        window.onload = async function () {
     // Retrieve roles from localStorage or set default roles
-    const roles = JSON.parse(localStorage.getItem("roles")) || [
+    const roles = JSON.parse = await localforage.getItem("roles") || [
         { name: "General User", description: "Default access level.", permissions: ["read"] },
         { name: "Administrator", description: "Full system access.", permissions: ["read", "write", "delete", "admin"] },
     ];
@@ -193,7 +193,7 @@
     let editingIndex = null;
 
     // Populate roles into the table
-    function populateRoles() {
+    async function populateRoles() {
         roleList.innerHTML = ""; // Clear the table body
         roles.forEach((role, index) => {
             const row = document.createElement("tr");
@@ -211,12 +211,12 @@
     }
 
     // Save roles to localStorage
-    function saveToLocalStorage() {
-        localStorage.setItem("roles", JSON.stringify(roles));
+    async function saveToLocalStorage() {
+        await localforage.setItem("roles", JSON.stringify(roles));
     }
 
     // Open the modal for editing
-    function openModal(role, index) {
+    async function openModal(role, index) {
         editingIndex = index;
         roleNameInput.value = role.name;
         roleDescriptionInput.value = role.description;
@@ -230,7 +230,7 @@
     }
 
     // Close the modal
-    function closeModal() {
+    async function closeModal() {
         modal.style.display = "none";
         editingIndex = null;
         roleNameInput.value = "";
@@ -239,7 +239,7 @@
     }
 
     // Save changes to the role
-    function saveChanges() {
+    async function saveChanges() {
         const updatedName = roleNameInput.value.trim();
         const updatedDescription = roleDescriptionInput.value.trim();
         const updatedPermissions = Array.from(rolePermissionsInput.selectedOptions).map((option) => option.value);
@@ -255,7 +255,7 @@
     }
 
     // Handle creating a new role
-    document.querySelector("#create-role-button").addEventListener("click", function () {
+    document.querySelector("#create-role-button").addEventListener("click", async function () {
         const name = document.querySelector("#role-name").value.trim();
         const description = document.querySelector("#role-description").value.trim();
         const permissions = Array.from(document.querySelector("#role-permissions").selectedOptions).map((option) => option.value);
@@ -274,7 +274,7 @@
     });
 
     // Handle editing and deleting roles
-    roleList.addEventListener("click", function (e) {
+    roleList.addEventListener("click", async function (e) {
         if (e.target.classList.contains("edit-role")) {
             const index = e.target.dataset.index;
             openModal(roles[index], index);
@@ -296,5 +296,9 @@
     populateRoles();
 };
     </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+
 </body>
 </html>

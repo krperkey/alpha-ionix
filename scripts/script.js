@@ -1,8 +1,11 @@
-function generateChartAndTable() {
-    const sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
-    const sampleStatusMap = JSON.parse(localStorage.getItem('sampleStatusMap')) || {};
+import { loadData } from './data-handler.js';
+
+async function generateChartAndTable() {
+    const sampleDataArray = await loadData('sampleDataArray') || [];
+    const sampleStatusMap = await loadData('sampleStatusMap') || {};
 
     const analysisCount = {};
+
     sampleDataArray.forEach(sample => {
         const status = sampleStatusMap[sample.id];
         const samType = sample.sampleType || "Unknown";
@@ -14,7 +17,6 @@ function generateChartAndTable() {
 
     const labels = Object.keys(analysisCount);
     const data = Object.values(analysisCount);
-
     const colors = ['#83A6E7', '#8B0000', '#FF8C00', '#006400', '#00008B', '#ffb900'];
 
     // Generate the chart
@@ -36,31 +38,31 @@ function generateChartAndTable() {
             scales: {
                 x: {
                     ticks: {
-                        color: '#ffd700', // X-axis labels
+                        color: '#ffd700',
                         font: {
                             size: 12,
                             weight: 'bold'
                         }
                     },
                     grid: {
-                        color: '#ffffff', // Grid lines
-                        borderColor: '#ffffff', // Border surrounding the chart
-                        borderWidth: 1 // Thickness of the border
+                        color: '#ffffff',
+                        borderColor: '#ffffff',
+                        borderWidth: 1
                     }
                 },
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        color: '#ffd700', // Y-axis labels
+                        color: '#ffd700',
                         font: {
                             size: 12,
                             weight: 'bold'
                         }
                     },
                     grid: {
-                        color: '#ffffff', // Grid lines
-                        borderColor: '#ffffff', // Border surrounding the chart
-                        borderWidth: 1 // Thickness of the border
+                        color: '#ffffff',
+                        borderColor: '#ffffff',
+                        borderWidth: 1
                     }
                 }
             },
@@ -69,12 +71,12 @@ function generateChartAndTable() {
                     display: false
                 }
             }
-        }                      
+        }
     });
 
     // Populate the table
     const tableBody = document.querySelector("#department-backlog-table tbody");
-    tableBody.innerHTML = ""; // Clear existing rows
+    tableBody.innerHTML = "";
 
     labels.forEach((label, index) => {
         const row = document.createElement("tr");
@@ -90,6 +92,7 @@ function generateChartAndTable() {
 window.onload = function () {
     generateChartAndTable();
 };
+
 
 
 

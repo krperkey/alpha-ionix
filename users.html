@@ -169,7 +169,7 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const userTableBody = document.querySelector(".user-table tbody");
     const addUserForm = document.querySelector("#add-user-form");
     const addUserModal = document.querySelector("#add-user-modal");
@@ -180,21 +180,21 @@ document.addEventListener("DOMContentLoaded", function () {
     let editUserIndex = null; // Track user being edited
 
     // Load users from local storage or initialize with mock data
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let users = JSON.parse = await localforage.getItem("users") || [];
 
     // Save users to local storage
-    function saveUsersToLocalStorage() {
-        localStorage.setItem("users", JSON.stringify(users));
+    async function saveUsersToLocalStorage() {
+        await localforage.setItem("users", JSON.stringify(users));
     }
 
     // Save initials to localStorage
-    function saveInitialsToLocalStorage() {
+    async function saveInitialsToLocalStorage() {
         const userInitials = users.map(user => user.initials).filter(initials => initials);
-        localStorage.setItem("analystInitials", JSON.stringify(userInitials));
+        await localforage.setItem("analystInitials", JSON.stringify(userInitials));
     }
 
     // Function to render users in the table
-    function renderUsers() {
+    async function renderUsers() {
         userTableBody.innerHTML = ""; // Clear the table body
 
         if (users.length === 0) {
@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
     renderUsers();
 
     // Event listener to show the modal for adding a new user
-    createUserButton.addEventListener("click", function () {
+    createUserButton.addEventListener("click", async function () {
         editUserIndex = null; // Reset edit index
         addUserForm.reset(); // Clear form
         populateUserRoleDropdown(); // Populate roles in the dropdown
@@ -243,12 +243,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Event listener to close the modal
-    closeModalButton.addEventListener("click", function () {
+    closeModalButton.addEventListener("click", async function () {
         addUserModal.classList.remove("show");
     });
 
     // Event listener to add or edit a user
-    addUserForm.addEventListener("submit", function (e) {
+    addUserForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
         const firstName = document.querySelector("#first-name").value.trim();
@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Event listener for table actions
-    userTableBody.addEventListener("click", function (e) {
+    userTableBody.addEventListener("click", async function (e) {
         const index = e.target.dataset.index;
 
         if (e.target.classList.contains("edit-user")) {
@@ -348,13 +348,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Function to generate a random 4-digit user number
-    function generateUserNumber() {
+    async function generateUserNumber() {
         return String(Math.floor(1000 + Math.random() * 9000)); // Random 4-digit number as a string
     }
 
     // Populate roles into the dropdown
-    function populateUserRoleDropdown() {
-        const roles = JSON.parse(localStorage.getItem("roles")) || [];
+    async function populateUserRoleDropdown() {
+        const roles = JSON.parse = await localforage.getItem("roles") || [];
         userRoleDropdown.innerHTML = '<option value="" disabled selected>Select a role</option>'; // Reset dropdown
         roles.forEach(role => {
             const option = document.createElement("option");
@@ -366,6 +366,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
 
 </body>
 </html>

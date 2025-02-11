@@ -1,18 +1,27 @@
+// Import localForage for persistent storage
+import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
+
+// Attach event listeners to search elements
 document.getElementById('search-button').addEventListener('click', performSearch);
 document.getElementById('search-bar').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') performSearch();
 });
 
-function performSearch() {
+// Perform search across batches, samples, and workorders
+async function performSearch() {
     const searchQuery = document.getElementById('search-bar').value.trim();
+
     if (!searchQuery) {
         alert('Please enter a search query.');
         return;
     }
 
-    const batches = JSON.parse(localStorage.getItem('batches')) || [];
-    const samples = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
-    const workorders = JSON.parse(localStorage.getItem('workordersArray')) || [];
+    // Fetch stored data asynchronously
+    const [batches, samples, workorders] = await Promise.all([
+        localforage.getItem('batches') || [],
+        localforage.getItem('sampleDataArray') || [],
+        localforage.getItem('workordersArray') || []
+    ]);
 
     // Search for matches and redirect with the highlight parameter
     const batch = batches.find(b => b.batchId === searchQuery);
@@ -35,3 +44,4 @@ function performSearch() {
 
     alert('No results found for your search query.');
 }
+

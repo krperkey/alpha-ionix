@@ -122,17 +122,17 @@
 </main>
 
     <script>
-        window.onload = function () {
+        window.onload = async function () {
             renderWorkorderDetails();
 
             // Handle "Run Report" action
-            document.getElementById('run-report').addEventListener('click', function (event) {
+            document.getElementById('run-report').addEventListener('click', async function (event) {
                 event.preventDefault();
                 generateReport();
             });
         };
 
-        function renderWorkorderDetails() {
+        async function renderWorkorderDetails() {
             const urlParams = new URLSearchParams(window.location.search);
             const workorderID = urlParams.get('id');
 
@@ -177,7 +177,7 @@
             }
         }
 
-        function updateWorkorderStatus() {
+        async function updateWorkorderStatus() {
             const statusCells = document.querySelectorAll('#sample-table-body tr td:last-child');
             const statuses = Array.from(statusCells).map(cell => cell.textContent.trim());
 

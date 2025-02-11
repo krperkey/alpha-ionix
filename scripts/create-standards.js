@@ -1,10 +1,12 @@
+import { loadData, saveData } from './data-handler.js';
+
 // Generate a unique ID for each standard
 function generateUniqueId() {
     return `STD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 }
 
-// Save a new standard to localStorage
-function saveStandard() {
+// Save a new standard to localForage
+async function saveStandard() {
     const name = document.getElementById('standard-name').value.trim();
     const volume = document.getElementById('volume').value.trim();
     const units = document.getElementById('units').value.trim();
@@ -54,12 +56,12 @@ function saveStandard() {
         analytes
     };
 
-    const standards = JSON.parse(localStorage.getItem('standards')) || [];
+    const standards = await loadData('standards') || [];
     standards.push(newStandard);
-    localStorage.setItem('standards', JSON.stringify(standards));
+    await saveData('standards', standards);
 
     // Notify the table to refresh by sending a custom event
-    localStorage.setItem('refreshStandardsTable', 'true');
+    await saveData('refreshStandardsTable', 'true');
     window.location.href = 'standards.html'; // Redirect to the standards table page
 }
 
@@ -90,3 +92,4 @@ window.onload = function () {
     document.getElementById('save-standard-btn').addEventListener('click', saveStandard);
     document.getElementById('add-analyte-btn').addEventListener('click', addAnalyteRow);
 };
+

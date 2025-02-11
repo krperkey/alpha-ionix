@@ -106,9 +106,9 @@
     </table>
         
     <script>
-        window.onload = function () {
-    const workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
-    const workorderStatusMap = JSON.parse(localStorage.getItem('workorderStatusMap')) || {}; // Retrieve saved statuses
+        window.onload = async function () {
+    const workordersArray = JSON.parse = await localforage.getItem('workordersArray') || [];
+    const workorderStatusMap = JSON.parse = await localforage.getItem('workorderStatusMap') || {}; // Retrieve saved statuses
     const tableBody = document.getElementById('workorder-table-body');
 
     workordersArray.forEach((workorder, index) => {
@@ -130,30 +130,30 @@
 
     // Add event listener for delete buttons
     document.querySelectorAll('.delete-button').forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', async function () {
             const index = this.dataset.index; // Get the index of the workorder to delete
             deleteWorkorder(index);
         });
     });
 };
 
-function deleteWorkorder(index) {
-    let workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
+async function deleteWorkorder(index) {
+    let workordersArray = JSON.parse = await localforage.getItem('workordersArray') || [];
 
     // Remove the workorder at the specified index
     if (index >= 0 && index < workordersArray.length) {
         workordersArray.splice(index, 1); // Remove the workorder from the array
-        localStorage.setItem('workordersArray', JSON.stringify(workordersArray)); // Update localStorage
+        await localforage.setItem('workordersArray', JSON.stringify(workordersArray)); // Update localStorage
         refreshTable(); // Refresh the table to reflect changes
     } else {
         alert('Invalid workorder index.');
     }
 }
 
-function refreshTable() {
+async function refreshTable() {
     const tableBody = document.getElementById('workorder-table-body');
     tableBody.innerHTML = ''; // Clear existing rows
-    const workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
+    const workordersArray = JSON.parse = await localforage.getItem('workordersArray') || [];
 
     workordersArray.forEach((workorder, index) => {
         const row = document.createElement('tr');
@@ -172,7 +172,7 @@ function refreshTable() {
 
     // Reassign event listeners for delete buttons
     document.querySelectorAll('.delete-button').forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', async function () {
             const index = this.dataset.index; // Get the index of the workorder to delete
             deleteWorkorder(index);
         });
@@ -180,5 +180,8 @@ function refreshTable() {
 }
 
     </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
 </body>
 </html>

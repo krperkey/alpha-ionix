@@ -1,8 +1,11 @@
-// Load existing standards from localStorage and display in the table
-function loadStandards() {
-    const standards = JSON.parse(localStorage.getItem('standards')) || [];
+// Import localForage for persistent storage
+import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
+
+// Load existing standards from localForage and display them in the table
+async function loadStandards() {
+    const standards = await localforage.getItem('standards') || [];
     const tableBody = document.querySelector('#standards-table tbody');
-    tableBody.innerHTML = '';
+    tableBody.innerHTML = ''; // Clear existing content
 
     standards.forEach((standard, index) => {
         const row = document.createElement('tr');
@@ -11,35 +14,37 @@ function loadStandards() {
             <td>${standard.name}</td>
             <td>${standard.createdDate}</td>
             <td>${standard.expirationDate}</td>
-            <td>
-                <button class="delete-btn" data-index="${index}">Delete</button>
-            </td>
+            <td><button class="delete-btn" data-index="${index}">Delete</button></td>
         `;
         tableBody.appendChild(row);
     });
 
-    // Add event listeners for delete buttons
-    document.querySelectorAll('.delete-btn').forEach(button => button.addEventListener('click', deleteStandard));
+    attachDeleteEventListeners();
 }
 
-// Delete a standard from localStorage and remove the row
-function deleteStandard(event) {
+// Attach event listeners for delete buttons
+function attachDeleteEventListeners() {
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.removeEventListener('click', deleteStandard); // Prevent duplicate listeners
+        button.addEventListener('click', deleteStandard);
+    });
+}
+
+// Delete a standard from localForage and update the table
+async function deleteStandard(event) {
     const index = parseInt(event.target.dataset.index, 10);
-    let standards = JSON.parse(localStorage.getItem('standards')) || [];
+    let standards = await localforage.getItem('standards') || [];
 
     if (confirm('Are you sure you want to delete this standard?')) {
-        // Remove the standard from the array and update localStorage
-        standards.splice(index, 1);
-        localStorage.setItem('standards', JSON.stringify(standards));
+        standards.splice(index, 1); // Remove the standard from the array
+        await localforage.setItem('standards', standards); // Save updated list
 
-        // Remove the row from the table
-        const row = event.target.closest('tr');
-        row.parentNode.removeChild(row);
+        loadStandards(); // Refresh the table
     }
 }
 
-// Initialize the page
+// Initialize the page on load
 window.onload = function () {
     loadStandards();
-    handleTableRefresh();
 };
+

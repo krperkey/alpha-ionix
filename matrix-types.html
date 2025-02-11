@@ -132,8 +132,8 @@
     </div>
 
     <script>
-        window.onload = function () {
-            const matrixTypes = JSON.parse(localStorage.getItem('matrixTypes')) || [];
+        window.onload = async function () {
+            const matrixTypes = JSON.parse = await localforage.getItem('matrixTypes') || [];
 
             const tableBody = document.querySelector("#matrix-types-table tbody");
 
@@ -159,16 +159,16 @@
                 });
 
                 document.querySelectorAll('.remove-btn').forEach(button => {
-                    button.addEventListener('click', function () {
+                    button.addEventListener('click', async function () {
                         const index = this.dataset.index;
                         matrixTypes.splice(index, 1);
-                        localStorage.setItem('matrixTypes', JSON.stringify(matrixTypes));
+                        await localforage.setItem('matrixTypes', JSON.stringify(matrixTypes));
                         location.reload();
                     });
                 });
 
                 document.querySelectorAll('.edit-btn').forEach(button => {
-                    button.addEventListener('click', function () {
+                    button.addEventListener('click', async function () {
                         const index = this.dataset.index;
                         const matrixType = matrixTypes[index];
 
@@ -180,7 +180,7 @@
 
                         document.getElementById('edit-modal').style.display = 'block';
 
-                        document.getElementById('save-edit').addEventListener('click', function () {
+                        document.getElementById('save-edit').addEventListener('click', async function () {
                             matrixType.type = document.getElementById('edit-matrix-type').value;
                             matrixType.typeCode = document.getElementById('edit-matrix-type-code').value;
                             matrixType.name = document.getElementById('edit-matrix-name').value;
@@ -188,7 +188,7 @@
                             matrixType.description = document.getElementById('edit-description').value;
 
                             matrixTypes[index] = matrixType;
-                            localStorage.setItem('matrixTypes', JSON.stringify(matrixTypes));
+                            await localforage.setItem('matrixTypes', JSON.stringify(matrixTypes));
                             location.reload();
                         });
 
@@ -204,6 +204,8 @@
         window.location.href = 'create-matrix-type.html';
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>
 

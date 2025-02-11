@@ -127,8 +127,8 @@
 
     <script>
         // Load container types from localStorage and populate the table
-window.onload = function () {
-    const containers = JSON.parse(localStorage.getItem('containers')) || [];
+window.onload = async function () {
+    const containers = JSON.parse = await localforage.getItem('containers') || [];
 
     const tableBody = document.querySelector("#container-types-table tbody");
 
@@ -148,17 +148,17 @@ window.onload = function () {
 
     // Remove functionality
     document.querySelectorAll('.remove-btn').forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', async function () {
             const index = this.dataset.index;
             containers.splice(index, 1);
-            localStorage.setItem('containers', JSON.stringify(containers));
+            await localforage.setItem('containers', JSON.stringify(containers));
             location.reload();
         });
     });
 
     // Edit functionality
     document.querySelectorAll('.edit-btn').forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', async function () {
             const index = this.dataset.index;
             const container = containers[index];
 
@@ -168,13 +168,13 @@ window.onload = function () {
 
             document.getElementById('edit-modal').style.display = 'block';
 
-            document.getElementById('save-edit').addEventListener('click', function () {
+            document.getElementById('save-edit').addEventListener('click', async function () {
                 container.type = document.getElementById('edit-container-type').value;
                 container.volume = document.getElementById('edit-container-volume').value;
                 container.units = document.getElementById('edit-container-units').value;
 
                 containers[index] = container;
-                localStorage.setItem('containers', JSON.stringify(containers));
+                await localforage.setItem('containers', JSON.stringify(containers));
                 location.reload();
             });
 
@@ -189,5 +189,7 @@ document.getElementById('create-new-container').addEventListener('click', functi
     window.location.href = 'create-container.html';
 });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

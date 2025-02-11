@@ -123,8 +123,8 @@
     </div>
 
     <script>
-        window.onload = function () {
-            const conditionCodes = JSON.parse(localStorage.getItem('conditionCodes')) || [];
+        window.onload = async function () {
+            const conditionCodes = JSON.parse = await localforage.getItem('conditionCodes') || [];
 
             const tableBody = document.querySelector("#condition-code-table tbody");
 
@@ -147,16 +147,16 @@
                 });
 
                 document.querySelectorAll('.remove-btn').forEach(button => {
-                    button.addEventListener('click', function () {
+                    button.addEventListener('click', async function () {
                         const index = this.dataset.index;
                         conditionCodes.splice(index, 1);
-                        localStorage.setItem('conditionCodes', JSON.stringify(conditionCodes));
+                        await localforage.setItem('conditionCodes', JSON.stringify(conditionCodes));
                         location.reload();
                     });
                 });
 
                 document.querySelectorAll('.edit-btn').forEach(button => {
-                    button.addEventListener('click', function () {
+                    button.addEventListener('click', async function () {
                         const index = this.dataset.index;
                         const conditionCode = conditionCodes[index];
 
@@ -165,12 +165,12 @@
 
                         document.getElementById('edit-modal').style.display = 'block';
 
-                        document.getElementById('save-edit').addEventListener('click', function () {
+                        document.getElementById('save-edit').addEventListener('click', async function () {
                             conditionCode.conditionCode = document.getElementById('edit-condition-code').value;
                             conditionCode.description = document.getElementById('edit-description').value;
 
                             conditionCodes[index] = conditionCode;
-                            localStorage.setItem('conditionCodes', JSON.stringify(conditionCodes));
+                            await localforage.setItem('conditionCodes', JSON.stringify(conditionCodes));
                             location.reload();
                         });
 
@@ -186,5 +186,7 @@
         window.location.href = 'create-condition-code.html';
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

@@ -120,7 +120,7 @@
     </main>
 
     <script>
-        document.getElementById('submit-button').addEventListener('click', function () {
+        document.getElementById('submit-button').addEventListener('click', async function () {
             const matrixType = document.getElementById('matrix-type').value;
             const matrixTypeCode = document.getElementById('matrix-type-code').value;
             const matrixName = document.getElementById('matrix-name').value;
@@ -132,7 +132,7 @@
                 return;
             }
 
-            const matrixTypes = JSON.parse(localStorage.getItem('matrixTypes')) || [];
+            const matrixTypes = JSON.parse = await localforage.getItem('matrixTypes') || [];
             matrixTypes.push({ 
                 type: matrixType, 
                 typeCode: matrixTypeCode, 
@@ -140,7 +140,7 @@
                 nameCode: matrixNameCode, 
                 description: matrixDescription 
             });
-            localStorage.setItem('matrixTypes', JSON.stringify(matrixTypes));
+            await localforage.setItem('matrixTypes', JSON.stringify(matrixTypes));
 
             alert('Matrix Type added successfully!');
             document.getElementById('matrix-type').value = '';
@@ -154,6 +154,8 @@
         window.location.href = 'matrix-types.html';
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>
 

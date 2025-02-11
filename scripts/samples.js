@@ -1,3 +1,5 @@
+import { loadData } from "./data-handler.js";
+
 document.getElementById('num-rows').addEventListener('keydown', function(event) {
     // Check if the Enter key (key code 13) was pressed
     if (event.key === 'Enter') {
@@ -6,21 +8,21 @@ document.getElementById('num-rows').addEventListener('keydown', function(event) 
     }
 });
 
-function createRows() {
+async function createRows() {
     // Get the number of rows to create
     const numRows = document.getElementById('num-rows').value;
 
-    // Fetch analyses from localStorage
-    const testCodes = JSON.parse(localStorage.getItem("testCodes")) || [];
+    // Fetch analyses from localForage
+    const testCodes = await loadData("testCodes") || [];
     const analysisOptionsHTML = testCodes
         .map(testCode => `<option value="${testCode.analysisId}">${testCode.analysisId}</option>`)
         .join("");
 
-    // Fetch sample types, container types, and matrix types from localStorage
-    const sampleTypes = JSON.parse(localStorage.getItem("sampleTypes")) || [];
-    const containerTypes = JSON.parse(localStorage.getItem("containers")) || [];
-    const matrixTypes = JSON.parse(localStorage.getItem("matrixTypes")) || [];
-    const holdTimes = JSON.parse(localStorage.getItem("holdTimes")) || [];
+    // Fetch sample types, container types, and matrix types from localForage
+    const sampleTypes = await loadData("sampleTypes") || [];
+    const containerTypes = await loadData("containers") || [];
+    const matrixTypes = await loadData("matrixTypes") || [];
+    const holdTimes = await loadData("holdTimes") || [];
 
     // Generate options for Sample Type based on the 4th column (Sample Type Name Abbreviation)
     const sampleTypeOptionsHTML = sampleTypes
@@ -263,8 +265,10 @@ document.getElementById('save-analytes').addEventListener('click', function () {
 // Store selected analytes for each row
 const selectedAnalytes = {};
 
+import { loadData, saveData } from './data-handler.js';
+
 // Show the modal with default or updated selections
-document.getElementById('table-body').addEventListener('click', function (event) {
+document.getElementById('table-body').addEventListener('click', async function (event) {
     if (event.target.classList.contains('analyte-list-btn')) {
         event.preventDefault();
 
@@ -277,7 +281,7 @@ document.getElementById('table-body').addEventListener('click', function (event)
             return;
         }
 
-        const testCodes = JSON.parse(localStorage.getItem('testCodes')) || [];
+        const testCodes = await loadData('testCodes') || [];
         const selectedTestCode = testCodes.find(tc => tc.analysisId === analysisValue);
 
         if (!selectedTestCode || selectedTestCode.analytes.length === 0) {
@@ -290,7 +294,6 @@ document.getElementById('table-body').addEventListener('click', function (event)
 
         // Populate modal with analytes
         selectedTestCode.analytes.forEach(analyte => {
-            // Default to checked if no previous selection exists for this row
             const isChecked = selectedAnalytes[rowIndex]
                 ? selectedAnalytes[rowIndex].includes(analyte.analyteName)
                 : true;
@@ -303,7 +306,6 @@ document.getElementById('table-body').addEventListener('click', function (event)
             analyteListBody.appendChild(row);
         });
 
-        // Store the row index in the modal's dataset for saving
         document.getElementById('analyte-modal').dataset.rowIndex = rowIndex;
         document.getElementById('analyte-modal').style.display = 'block';
     }
@@ -315,31 +317,23 @@ document.getElementById('close-analyte-modal').addEventListener('click', functio
 });
 
 document.getElementById('table-body').addEventListener('keydown', function (event) {
-    // Check for Ctrl+D (Ctrl key and 'D' key)
     if (event.ctrlKey && event.key === 'd') {
-        event.preventDefault(); // Prevent default Ctrl+D behavior (e.g., bookmarking)
+        event.preventDefault();
 
-        // Get the currently focused element
         const focusedElement = document.activeElement;
-
         if (focusedElement) {
-            // Find the column index of the focused element
             const parentRow = focusedElement.closest('tr');
             const columnIndex = Array.from(parentRow.children).indexOf(focusedElement.parentElement);
-
-            // Get the value of the focused element
             const valueToCopy = focusedElement.value;
-
-            // Apply the value to all rows in the same column
             const rows = document.querySelectorAll('#table-body tr');
+
             rows.forEach(row => {
                 const cell = row.children[columnIndex];
                 const targetElement = cell.querySelector('input, select');
                 if (targetElement) {
-                    targetElement.value = valueToCopy; // Set the value
+                    targetElement.value = valueToCopy;
 
                     if (targetElement.tagName === 'SELECT') {
-                        // Manually trigger the 'change' event for dropdowns
                         const event = new Event('change', { bubbles: true });
                         targetElement.dispatchEvent(event);
                     }
@@ -352,11 +346,11 @@ document.getElementById('table-body').addEventListener('keydown', function (even
 });
 
 document.getElementById('login-button').addEventListener('click', function(event) {
-    event.preventDefault();  // Prevent form submission (page refresh)
-    generateSampleIDs();  // Call function to generate sample IDs
+    event.preventDefault();
+    generateSampleIDs();
 });
 
-function generateSampleIDs() {
+async function generateSampleIDs() {
     const numRows = document.getElementById('num-rows').value;
 
     if (numRows > 0) {
@@ -373,23 +367,24 @@ function generateSampleIDs() {
             carrier: document.getElementById('carrier').value || "N/A",
             trackingNumber: document.getElementById('tracking-number').value || "N/A",
             dateReceived: document.getElementById('date-received').value || "N/A",
-            samples: [] // To store the associated samples
+            samples: []
         };
 
         const tableRows = document.querySelectorAll('#table-body tr');
         const today = new Date();
-        const day = String(today.getDate()).padStart(2, '0'); // Ensure 2-digit day
-        const month = String(today.getMonth() + 1).padStart(2, '0'); // Ensure 2-digit month
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0');
         const year = today.getFullYear();
-        const hours = String(today.getHours()).padStart(2, '0'); // Ensure 2-digit hours
-        const minutes = String(today.getMinutes()).padStart(2, '0'); // Ensure 2-digit minutes
-        let sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
+        const hours = String(today.getHours()).padStart(2, '0');
+        const minutes = String(today.getMinutes()).padStart(2, '0');
 
-        tableRows.forEach((row, index) => {
+        let sampleDataArray = await loadData('sampleDataArray') || [];
+
+        for (const [index, row] of tableRows.entries()) {
             const sampleID = `SMP${month}${day}${year}${hours}${minutes}-${String(index + 1).padStart(3, '0')}`;
             row.dataset.sampleId = sampleID;
 
-            const analytes = tempAnalyteSelections[index + 1] || []; // Retrieve temporary analytes for the row
+            const analytes = tempAnalyteSelections[index + 1] || [];
 
             const sampleData = {
                 id: sampleID,
@@ -411,26 +406,27 @@ function generateSampleIDs() {
                 ph: row.querySelector(`input#ph-${index + 1}`)?.value || "N/A",
                 matrix: row.querySelector(`select#matrix-${index + 1}`)?.value || "N/A",
                 holdTime: row.querySelector(`select#hold-time-${index + 1}`)?.value || "N/A",
-                dueDate: row.querySelector(`#due-date-${index + 1}`)?.value || "N/A", // Fix selector
+                dueDate: row.querySelector(`#due-date-${index + 1}`)?.value || "N/A",
                 sampleDescription: row.querySelector('#sample-description')?.value || "N/A",
-                analytes: analytes // Add analytes for this sample
+                analytes: analytes
             };
 
-            workorderData.samples.push(sampleData); // Link sample to workorder
-            sampleDataArray.push(sampleData); // Save globally for all samples
-        });
+            workorderData.samples.push(sampleData);
+            sampleDataArray.push(sampleData);
+        }
 
-        // Save to localStorage
-        let workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
+        let workordersArray = await loadData('workordersArray') || [];
         workordersArray.push(workorderData);
-        localStorage.setItem('workordersArray', JSON.stringify(workordersArray));
-        localStorage.setItem('sampleDataArray', JSON.stringify(sampleDataArray));
+
+        await saveData('workordersArray', workordersArray);
+        await saveData('sampleDataArray', sampleDataArray);
 
         alert(`Workorder ${workorderID} and samples logged successfully!`);
     } else {
         alert("Please enter a valid number of rows greater than 0.");
     }
 }
+
 
 
 

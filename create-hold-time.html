@@ -108,7 +108,7 @@
     </main>
 
     <script>
-        document.getElementById('submit-button').addEventListener('click', function () {
+        document.getElementById('submit-button').addEventListener('click', async function () {
             const holdTime = document.getElementById('hold-time').value;
             const description = document.getElementById('description').value;
 
@@ -117,12 +117,12 @@
                 return;
             }
 
-            const holdTimes = JSON.parse(localStorage.getItem('holdTimes')) || [];
+            const holdTimes = JSON.parseawait = await localforage.getItem('holdTimes') || [];
             holdTimes.push({ 
                 holdTime, 
                 description 
             });
-            localStorage.setItem('holdTimes', JSON.stringify(holdTimes));
+            await localforage.setItem('holdTimes', JSON.stringify(holdTimes));
 
             alert('Hold Time added successfully!');
             document.getElementById('hold-time').value = '';
@@ -133,5 +133,7 @@
         window.location.href = 'hold-time.html';
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

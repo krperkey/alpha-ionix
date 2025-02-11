@@ -85,7 +85,7 @@ window.onload = async function () {
     });
 
     // Close Sample Modal
-    closeModalButton.addEventListener("click", function () {
+    closeModalButton.addEventListener("click", async function () {
         sampleModal.style.display = "none";
     });
 
@@ -245,12 +245,12 @@ confirmAddQCButton.addEventListener("click", async function () {
 });
 
     // Close QC Modal
-    closeAddQCModalButton.addEventListener("click", function () {
+    closeAddQCModalButton.addEventListener("click", async function () {
         addQCModal.style.display = "none";
     });
 
     // Remove Sample functionality
-    sampleSelectionTableBody.addEventListener("click", function (event) {
+    sampleSelectionTableBody.addEventListener("click", async function (event) {
         if (event.target.classList.contains("remove-sample-button")) {
             event.target.closest("tr")?.remove();
         }

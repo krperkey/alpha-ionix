@@ -108,7 +108,7 @@
     </main>
 
     <script>
-        document.getElementById('submit-button').addEventListener('click', function () {
+        document.getElementById('submit-button').addEventListener('click', async function () {
             const qualifierCode = document.getElementById('qualifier-code').value;
             const description = document.getElementById('description').value;
 
@@ -117,12 +117,12 @@
                 return;
             }
 
-            const qualifiers = JSON.parse(localStorage.getItem('qualifiers')) || [];
+            const qualifiers = JSON.parse = await localforage.getItem('qualifiers') || [];
             qualifiers.push({ 
                 qualifierCode, 
                 description 
             });
-            localStorage.setItem('qualifiers', JSON.stringify(qualifiers));
+            await localforage.setItem('qualifiers', JSON.stringify(qualifiers));
 
             alert('Hold Time added successfully!');
             document.getElementById('qualifier-code').value = '';
@@ -133,5 +133,7 @@
         window.location.href = 'qualifiers.html';
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

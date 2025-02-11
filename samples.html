@@ -133,10 +133,12 @@
     </main>
    
     <script>
-        window.onload = function () {
-    const sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
-    const workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
-    const sampleStatusMap = JSON.parse(localStorage.getItem('sampleStatusMap')) || {};
+        import { loadData, saveData } from './data-handler.js';
+
+window.onload = async function () {
+    const sampleDataArray = await loadData('sampleDataArray') || [];
+    const workordersArray = await loadData('workordersArray') || [];
+    const sampleStatusMap = await loadData('sampleStatusMap') || {};
     const tableBody = document.querySelector("#sample-table tbody");
 
     // Populate the table with sample data
@@ -162,9 +164,7 @@
                 <td>${sampleData.holdTime || "N/A"}</td>
                 <td>${sampleData.dueDate || "N/A"}</td>
                 <td>${sampleData.sampleDescription || "N/A"}</td>
-                <td>${sampleData.analytes && sampleData.analytes.length > 0 
-                    ? sampleData.analytes.join(", ") 
-                    : "N/A"}</td>
+                <td>${sampleData.analytes?.length > 0 ? sampleData.analytes.join(", ") : "N/A"}</td>
                 <td>${status}</td>
                 <td><button class="delete-btn" data-sample-id="${sampleData.id}">Delete</button></td>
             `;
@@ -172,7 +172,7 @@
         });
         console.log("Sample table populated successfully.");
     } else {
-        console.log("No sample data found in localStorage.");
+        console.log("No sample data found.");
     }
 
     // Initialize functionalities
@@ -181,28 +181,25 @@
     initializeDeleteFunctionality();
 };
 
-function initializeDeleteFunctionality() {
+async function initializeDeleteFunctionality() {
     const tableBody = document.querySelector("#sample-table tbody");
 
-    // Event delegation for delete buttons
-    tableBody.addEventListener("click", (event) => {
+    tableBody.addEventListener("click", async (event) => {
         if (event.target.classList.contains("delete-btn")) {
-            const sampleID = event.target.dataset.sampleId; // Get the sample ID
+            const sampleID = event.target.dataset.sampleId;
             console.log(`Delete button clicked for Sample ID: ${sampleID}`);
 
-            let sampleDataArray = JSON.parse(localStorage.getItem("sampleDataArray")) || [];
+            let sampleDataArray = await loadData("sampleDataArray") || [];
 
-            // Verify if the sample exists
             if (!sampleDataArray.some(sample => sample.id === sampleID)) {
                 console.error(`Sample ID ${sampleID} not found.`);
                 return;
             }
 
-            // Remove the sample from localStorage
+            // Remove the sample and update storage
             sampleDataArray = sampleDataArray.filter(sample => sample.id !== sampleID);
-            localStorage.setItem("sampleDataArray", JSON.stringify(sampleDataArray));
+            await saveData("sampleDataArray", sampleDataArray);
 
-            // Remove the row from the table
             const rowToRemove = event.target.closest("tr");
             if (rowToRemove) {
                 rowToRemove.remove();
@@ -211,7 +208,6 @@ function initializeDeleteFunctionality() {
                 console.error("Could not find the row to remove.");
             }
 
-            // Refresh the current tab view
             updateTableView();
         }
     });
@@ -226,32 +222,24 @@ function initializeTabFiltering() {
             const tabType = tab.getAttribute("data-tab");
             const allRows = Array.from(tableBody.querySelectorAll("tr"));
 
-            // Activate the clicked tab
             tabs.forEach(t => t.classList.remove("active"));
             tab.classList.add("active");
 
-            // Show or hide rows based on the tab
             allRows.forEach(row => {
                 const sampleType = row.querySelectorAll("td")[2]?.textContent.trim();
-                if (
+                row.style.display = 
                     (tabType === "samples" && sampleType === "SAM") ||
-                    (tabType === "qc-samples" && sampleType !== "SAM")
-                ) {
-                    row.style.display = ""; // Show matching rows
-                } else {
-                    row.style.display = "none"; // Hide non-matching rows
-                }
+                    (tabType === "qc-samples" && sampleType !== "SAM") ? "" : "none";
             });
         });
     });
 
-    // Trigger the initial filter for the default active tab
     document.querySelector(".tab-button.active").click();
 }
 
 function updateTableView() {
     const activeTab = document.querySelector(".tab-button.active");
-    if (activeTab) activeTab.click(); // Refresh the filtering for the active tab
+    if (activeTab) activeTab.click();
 }
 
 function initializeSorting() {
@@ -304,6 +292,9 @@ document.getElementById('new-batch').addEventListener('click', function() {
 });
     </script>
     
+    <script type="module" src="scripts/data-handler.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js"></script>
+
         
 </body>
 </html>

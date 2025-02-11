@@ -1,4 +1,6 @@
-window.onload = function () {
+import { loadData, saveData } from './data-handler.js';
+
+window.onload = async function () {
     const urlParams = new URLSearchParams(window.location.search);
     const batchId = urlParams.get("batchId");
 
@@ -8,8 +10,8 @@ window.onload = function () {
         return;
     }
 
-    // Retrieve batch details from localStorage
-    const batches = JSON.parse(localStorage.getItem("batches")) || [];
+    // Retrieve batch details from localForage
+    const batches = await loadData("batches") || [];
     const batch = batches.find((b) => b.batchId === batchId);
 
     if (batch) {
@@ -17,45 +19,42 @@ window.onload = function () {
         document.getElementById("batch-id").textContent = batch.batchId;
         document.getElementById("analysis").textContent = batch.analysis;
         document.getElementById("date-created").textContent = batch.createdDate;
-        document.getElementById("number-of-samples").textContent = batch.numberOfSamples; // Added
-        document.getElementById("status").textContent = batch.status; // Added
+        document.getElementById("number-of-samples").textContent = batch.numberOfSamples;
+        document.getElementById("status").textContent = batch.status;
 
-        // Display sample results table
-        const samples = JSON.parse(localStorage.getItem("sampleDataArray")) || [];
-        const conditionCodes = JSON.parse(localStorage.getItem("conditionCodes")) || [];
+        // Retrieve sample data and condition codes
+        const samples = await loadData("sampleDataArray") || [];
+        const conditionCodes = await loadData("conditionCodes") || [];
         const associatedSamples = samples.filter(sample => sample.batchId === batchId);
         const resultsTableBody = document.querySelector("#samples-results-table tbody");
 
         // Load previously saved results for the current batch
         const savedResultsKey = `savedBatchResults-${batchId}`;
-        const savedResults = JSON.parse(localStorage.getItem(savedResultsKey)) || {};
+        const savedResults = await loadData(savedResultsKey) || {};
 
         associatedSamples.forEach(sample => {
-            // Pre-fill sample data if saved results exist
             const sampleResults = savedResults[sample.id] || {};
 
             // Main sample row
             const mainRow = document.createElement("tr");
             mainRow.classList.add("sample-row");
             mainRow.innerHTML = `
-                <td>
-                    <button class="expand-btn" data-sample-id="${sample.id}">▶</button>
-                </td>
-                <td>${sample.id}</td> <!-- Sample ID -->
+                <td><button class="expand-btn" data-sample-id="${sample.id}">▶</button></td>
+                <td>${sample.id}</td>
                 <td><input type="text" name="analyst-${sample.id}" value="${sampleResults.analyst || ''}" placeholder="Analyst"; /></td>
                 <td><input type="text" name="instrument-${sample.id}" value="${sampleResults.instrument || ''}" placeholder="Instrument" /></td>
                 <td><input type="date" name="run-date-${sample.id}" value="${sampleResults.runDate || ''}" /></td>
-                <td><input type="text" name="sample-type-${sample.id}" value="${sampleResults.sampleType || ''}" placeholder="Sample Type" /></td> <!-- New -->
-                <td><input type="checkbox" name="spiked-${sample.id}" ${sampleResults.spiked ? 'checked' : ''} /></td> <!-- New -->
-                <td><input type="text" name="standard-id-${sample.id}" value="${sampleResults.standardId || ''}" placeholder="Standard ID" /></td> <!-- New -->
-                <td><input type="text" name="spiked-amount-${sample.id}" value="${sampleResults.spikedAmount || ''}" placeholder="Spiked Amount" /></td> <!-- New -->
+                <td><input type="text" name="sample-type-${sample.id}" value="${sampleResults.sampleType || ''}" placeholder="Sample Type" /></td>
+                <td><input type="checkbox" name="spiked-${sample.id}" ${sampleResults.spiked ? 'checked' : ''} /></td>
+                <td><input type="text" name="standard-id-${sample.id}" value="${sampleResults.standardId || ''}" placeholder="Standard ID" /></td>
+                <td><input type="text" name="spiked-amount-${sample.id}" value="${sampleResults.spikedAmount || ''}" placeholder="Spiked Amount" /></td>
             `;
             resultsTableBody.appendChild(mainRow);
 
             // Sub-row header
             const subRowHeader = document.createElement("tr");
             subRowHeader.classList.add(`sub-header-${sample.id}`, "sub-row-header");
-            subRowHeader.style.display = "none"; // Initially hidden
+            subRowHeader.style.display = "none";
             subRowHeader.innerHTML = `
                 <td></td>
                 <td>Analyte</td>
@@ -70,79 +69,58 @@ window.onload = function () {
 
             /// Sub-rows for each analyte
             const conditionCodeOptionsHTML = conditionCodes
-            .map(code => `<option value="${code.conditionCode}">${code.name}</option>`)
-            .join("");
+                .map(code => `<option value="${code.conditionCode}">${code.name}</option>`)
+                .join("");
 
-        const analyteRow = document.createElement("tr");
-        analyteRow.classList.add("analyte-row", `analyte-row-${sample.id}`);
-        analyteRow.style.display = "none"; // Initially hidden
-        analyteRow.innerHTML = `
-            <td></td> <!-- Empty for alignment -->
-            <td>${analyte}</td> <!-- Analyte first -->
-            <td>
-                <select name="condition-${sample.id}-${index}">
+            const analyteRow = document.createElement("tr");
+            analyteRow.classList.add("analyte-row", `analyte-row-${sample.id}`);
+            analyteRow.style.display = "none";
+            analyteRow.innerHTML = `
+                <td></td>
+                <td>${analyte}</td>
+                <td><select name="condition-${sample.id}-${index}">
                     <option value="" disabled selected>Select Condition</option>
                     ${conditionCodeOptionsHTML}
-                </select>
-            </td>
-            <td><input type="text" name="result-${sample.id}-${index}" value="${analyteResult.result || ''}" placeholder="Result" /></td>
-            <td><input type="text" name="units-${sample.id}-${index}" value="${analyteResult.units || ''}" placeholder="Units" /></td>
-            <td><input type="number" name="initial-volume-${sample.id}-${index}" value="${analyteResult.initialVolume || ''}" step="0.01" placeholder="Initial Volume" /></td>
-            <td><input type="number" name="final-volume-${sample.id}-${index}" value="${analyteResult.finalVolume || ''}" step="0.01" placeholder="Final Volume" /></td>
-            <td><input type="number" name="dilution-${sample.id}-${index}" value="${analyteResult.dilution || ''}" step="0.01" placeholder="Dilution" /></td>
-        `;
-        resultsTableBody.appendChild(analyteRow);
+                </select></td>
+                <td><input type="text" name="result-${sample.id}-${index}" value="${analyteResult.result || ''}" placeholder="Result" /></td>
+                <td><input type="text" name="units-${sample.id}-${index}" value="${analyteResult.units || ''}" placeholder="Units" /></td>
+                <td><input type="number" name="initial-volume-${sample.id}-${index}" value="${analyteResult.initialVolume || ''}" step="0.01" placeholder="Initial Volume" /></td>
+                <td><input type="number" name="final-volume-${sample.id}-${index}" value="${analyteResult.finalVolume || ''}" step="0.01" placeholder="Final Volume" /></td>
+                <td><input type="number" name="dilution-${sample.id}-${index}" value="${analyteResult.dilution || ''}" step="0.01" placeholder="Dilution" /></td>
+            `;
+            resultsTableBody.appendChild(analyteRow);
 
-      
-
-            // Add event listener for expansion
+            // Expand/Collapse event
             const expandBtn = mainRow.querySelector(".expand-btn");
             expandBtn.addEventListener("click", function () {
                 toggleAnalyteRows(sample.id);
             });
         });
 
-        // Handle "Save" button click
-        document.getElementById("save-results-button").addEventListener("click", function () {
+        // Save results
+        document.getElementById("save-results-button").addEventListener("click", async function () {
             const updatedResults = {};
-
-            // Loop through the associated samples and save their values
             associatedSamples.forEach(sample => {
                 updatedResults[sample.id] = {
                     analyst: document.querySelector(`input[name="analyst-${sample.id}"]`)?.value || "",
                     instrument: document.querySelector(`input[name="instrument-${sample.id}"]`)?.value || "",
                     runDate: document.querySelector(`input[name="run-date-${sample.id}"]`)?.value || "",
-                    sampleType: document.querySelector(`input[name="sample-type-${sample.id}"]`)?.value || "",  // New
-                    spiked: document.querySelector(`input[name="spiked-${sample.id}"]`)?.checked || false,     // New
-                    standardId: document.querySelector(`input[name="standard-id-${sample.id}"]`)?.value || "",  // New
-                    spikedAmount: document.querySelector(`input[name="spiked-amount-${sample.id}"]`)?.value || "", // New
-                    analytes: [], // Initialize an empty array for analytes
+                    sampleType: document.querySelector(`input[name="sample-type-${sample.id}"]`)?.value || "",
+                    spiked: document.querySelector(`input[name="spiked-${sample.id}"]`)?.checked || false,
+                    standardId: document.querySelector(`input[name="standard-id-${sample.id}"]`)?.value || "",
+                    spikedAmount: document.querySelector(`input[name="spiked-amount-${sample.id}"]`)?.value || "",
+                    analytes: []
                 };
-
-                // Loop through the sub-rows for this sample to capture analyte data
-                const analytes = sample.analytes || [];
-                analytes.forEach((analyte, index) => {
-                    updatedResults[sample.id].analytes.push({
-                        condition: document.querySelector(`select[name="condition-${sample.id}-${index}"]`)?.value || "",
-                        result: document.querySelector(`input[name="result-${sample.id}-${index}"]`)?.value || "",
-                        units: document.querySelector(`input[name="units-${sample.id}-${index}"]`)?.value || "",
-                        initialVolume: document.querySelector(`input[name="initial-volume-${sample.id}-${index}"]`)?.value || "",
-                        finalVolume: document.querySelector(`input[name="final-volume-${sample.id}-${index}"]`)?.value || "",
-                        dilution: document.querySelector(`input[name="dilution-${sample.id}-${index}"]`)?.value || "",
-                    });
-                });
-                
             });
 
-            // Save the updated results for the current batch to localStorage
-            localStorage.setItem(savedResultsKey, JSON.stringify(updatedResults));
+            await saveData(savedResultsKey, updatedResults);
             alert("Results saved successfully!");
         });
 
-        // Handle "Submit Results" button click
-        document.getElementById("submit-results-button").addEventListener("click", function () {
+        // Submit results
+        document.getElementById("submit-results-button").addEventListener("click", async function () {
             batch.status = "In review";
-            localStorage.setItem("batches", JSON.stringify(batches));
+            await saveData("batches", batches);
             alert("Batch status updated to 'In review'!");
             window.location.href = "batches.html";
         });
@@ -153,22 +131,15 @@ window.onload = function () {
     }
 };
 
-// Function to toggle analyte rows
+// Toggle analyte rows
 function toggleAnalyteRows(sampleId) {
     const analyteRows = document.querySelectorAll(`.analyte-row-${sampleId}`);
     const subRowHeader = document.querySelector(`.sub-header-${sampleId}`);
-
     const isHidden = analyteRows[0]?.style.display === "none";
 
-    // Toggle rows and header
-    analyteRows.forEach(row => {
-        row.style.display = isHidden ? "table-row" : "none";
-    });
-    if (subRowHeader) {
-        subRowHeader.style.display = isHidden ? "table-row" : "none";
-    }
+    analyteRows.forEach(row => row.style.display = isHidden ? "table-row" : "none");
+    if (subRowHeader) subRowHeader.style.display = isHidden ? "table-row" : "none";
 
-    // Toggle the triangle direction
     const expandBtn = document.querySelector(`.expand-btn[data-sample-id="${sampleId}"]`);
     expandBtn.textContent = expandBtn.textContent === "▶" ? "▼" : "▶";
 }

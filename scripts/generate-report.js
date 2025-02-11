@@ -1,9 +1,12 @@
-function generateReport() {
+import { loadData } from './data-handler.js';
+
+async function generateReport() {
     const urlParams = new URLSearchParams(window.location.search);
     const workorderID = urlParams.get('id');
-    const workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
-    const sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
-    const batches = JSON.parse(localStorage.getItem('batches')) || [];
+
+    const workordersArray = await loadData('workordersArray') || [];
+    const sampleDataArray = await loadData('sampleDataArray') || [];
+    const batches = await loadData('batches') || [];
 
     const workorder = workordersArray.find(w => w.id === workorderID);
 
@@ -19,33 +22,31 @@ function generateReport() {
 
     // Function to add headers and footers
     const addHeaderFooter = (doc, pageNumber, totalPages) => {
-        // Footer
         doc.setFontSize(10);
         doc.setFont("helvetica", "italic");
         doc.setTextColor(100);
-        doc.text(`Reported: ${new Date().toLocaleString()}`, 10, 290); // Generated date at bottom-left
-        doc.text(`Page ${pageNumber} of ${totalPages}`, 200, 290, { align: "right" }); // Page number at bottom-right
+        doc.text(`Reported: ${new Date().toLocaleString()}`, 10, 290);
+        doc.text(`Page ${pageNumber} of ${totalPages}`, 200, 290, { align: "right" });
     };
 
     // Add light background for each page
     const addBackground = (doc) => {
-        doc.setFillColor(255, 255, 255); // Light gray (#F5F5F5)
-        doc.rect(0, 0, 210, 297, 'F'); // Full-page rectangle
+        doc.setFillColor(255, 255, 255);
+        doc.rect(0, 0, 210, 297, 'F');
     };
 
     // Add styled title to each page
     const addTitle = (doc, title) => {
         doc.setFontSize(20);
         doc.setFont("helvetica", "bold");
-        doc.setTextColor(0, 0, 0); // Gold
+        doc.setTextColor(0, 0, 0);
         doc.text(title, 105, 25, { align: "center" });
 
-        doc.setDrawColor(218, 165, 32); // Gold
+        doc.setDrawColor(218, 165, 32);
         doc.setLineWidth(0.5);
-        doc.line(14, 27.5, 195.7, 27.5); // Horizontal line below the title
+        doc.line(14, 27.5, 195.7, 27.5);
     };
 
-    // Total pages tracker
     let currentPage = 1;
 
     // Page 1: Workorder Info and Samples Table
@@ -59,14 +60,15 @@ function generateReport() {
         ['Facility Name', workorder.facilityId],
         ['Description', workorder.description],
     ];
+
     doc.autoTable({
         startY: 30,
         head: [['Field', 'Value']],
         body: workorderTable,
         theme: 'grid',
-        headStyles: { fillColor: [0, 0, 0], textColor: [218, 165, 32] }, // Black with gold text
-        bodyStyles: { textColor: [0, 0, 0], fillColor: [245, 245, 245] }, // Black text on light gray rows
-        alternateRowStyles: { fillColor: [255, 255, 255] }, // White for alternating rows
+        headStyles: { fillColor: [0, 0, 0], textColor: [218, 165, 32] },
+        bodyStyles: { textColor: [0, 0, 0], fillColor: [245, 245, 245] },
+        alternateRowStyles: { fillColor: [255, 255, 255] },
     });
 
     const sampleTable = workorder.samples.map(sample => [
@@ -100,7 +102,7 @@ function generateReport() {
         const sampleData = sampleDataArray.find(s => s.id === sample.id) || {};
         const batch = batches.find(b => b.batchId === sampleData.batchId) || {};
         return [
-            sample.id || 'N/A', // Sample ID
+            sample.id || 'N/A',
             sampleData.batchId || 'N/A',
             sampleData.analysis || 'N/A',
         ];
@@ -117,7 +119,7 @@ function generateReport() {
     });
 
     // Subsequent Pages: Sample Details
-    workorder.samples.forEach(sample => {
+    for (const sample of workorder.samples) {
         doc.addPage();
         addBackground(doc);
         addTitle(doc, `Sample Details: ${sample.id}`);
@@ -127,7 +129,7 @@ function generateReport() {
         const batchID = sampleData.batchId || 'Unknown';
         const batch = batches.find(b => b.batchId === batchID) || {};
         const savedResultsKey = `savedBatchResults-${batchID}`;
-        const savedResults = JSON.parse(localStorage.getItem(savedResultsKey)) || {};
+        const savedResults = await loadData(savedResultsKey) || {};
         const sampleResults = savedResults[sample.id] || {};
         const analytes = sample.analytes || [];
 
@@ -154,15 +156,15 @@ function generateReport() {
                 const analyteResult = sampleResults.analytes?.[index] || {};
                 const resultValue = analyteResult.result < analyteResult.loq ? 'ND' : analyteResult.result;
                 return [
-                    analyte, // Analyte Name
-                    sampleResults.runDate || 'N/A', // Run Date
-                    sampleResults.analyst || 'N/A', // Analyst Name
-                    resultValue, // Result or 'ND'
-                    analyteResult.units || 'N/A', // Units
-                    analyteResult.loq || 'N/A', // Reporting Limit
+                    analyte,
+                    sampleResults.runDate || 'N/A',
+                    sampleResults.analyst || 'N/A',
+                    resultValue,
+                    analyteResult.units || 'N/A',
+                    analyteResult.loq || 'N/A',
                 ];
             });
-        
+
             doc.autoTable({
                 startY: doc.lastAutoTable.finalY + 10,
                 head: [['Analyte', 'Run Date', 'Analyst', 'Result', 'Units', 'Reporting Limit']],
@@ -175,11 +177,12 @@ function generateReport() {
         } else {
             doc.text('No sample results available.', 10, doc.lastAutoTable.finalY + 20);
         }
-    });        
+    }
 
     // Save the PDF
     doc.save(`Workorder_${workorder.id}_Report.pdf`);
 }
+
 
 
 

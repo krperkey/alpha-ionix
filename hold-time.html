@@ -123,8 +123,8 @@
     </div>
 
     <script>
-        window.onload = function () {
-            const holdTimes = JSON.parse(localStorage.getItem('holdTimes')) || [];
+        window.onload = async function () {
+            const holdTimes = JSON.parse = await localforage.getItem('holdTimes') || [];
 
             const tableBody = document.querySelector("#hold-time-table tbody");
 
@@ -147,16 +147,16 @@
                 });
 
                 document.querySelectorAll('.remove-btn').forEach(button => {
-                    button.addEventListener('click', function () {
+                    button.addEventListener('click', async function () {
                         const index = this.dataset.index;
                         holdTimes.splice(index, 1);
-                        localStorage.setItem('holdTimes', JSON.stringify(holdTimes));
+                        await localforage.setItem('holdTimes', JSON.stringify(holdTimes));
                         location.reload();
                     });
                 });
 
                 document.querySelectorAll('.edit-btn').forEach(button => {
-                    button.addEventListener('click', function () {
+                    button.addEventListener('click', async function () {
                         const index = this.dataset.index;
                         const holdTime = holdTimes[index];
 
@@ -165,12 +165,12 @@
 
                         document.getElementById('edit-modal').style.display = 'block';
 
-                        document.getElementById('save-edit').addEventListener('click', function () {
+                        document.getElementById('save-edit').addEventListener('click', async function () {
                             holdTime.holdTime = document.getElementById('edit-hold-time').value;
                             holdTime.description = document.getElementById('edit-description').value;
 
                             holdTimes[index] = holdTime;
-                            localStorage.setItem('holdTimes', JSON.stringify(holdTimes));
+                            await localforage.setItem('holdTimes', JSON.stringify(holdTimes));
                             location.reload();
                         });
 
@@ -186,5 +186,7 @@
         window.location.href = 'create-hold-time.html';
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

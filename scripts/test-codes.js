@@ -1,3 +1,6 @@
+// Import localForage
+import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
+
 // Add new analyte row
 document.getElementById('add-analyte-row').addEventListener('click', function () {
     const tableBody = document.querySelector("#analyte-table tbody");
@@ -21,10 +24,10 @@ document.getElementById('add-analyte-row').addEventListener('click', function ()
     });
 });
 
-// Populate the QC dropdown with sample types from localStorage
-function populateQCDropdown() {
+// Populate the QC dropdown with sample types from localForage
+async function populateQCDropdown() {
     const qcDropdown = document.getElementById('qc-sample-type-dropdown');
-    const sampleTypes = JSON.parse(localStorage.getItem('sampleTypes')) || [];
+    const sampleTypes = (await localforage.getItem('sampleTypes')) || [];
 
     sampleTypes.forEach(sampleType => {
         if (sampleType.typeName) { // Ensure the typeName exists
@@ -37,7 +40,7 @@ function populateQCDropdown() {
 }
 
 // Add QC functionality
-document.getElementById('add-qc').addEventListener('click', function () {
+document.getElementById('add-qc').addEventListener('click', async function () {
     const qcDropdown = document.getElementById('qc-sample-type-dropdown');
     const qcSampleType = qcDropdown.value;
 
@@ -47,8 +50,8 @@ document.getElementById('add-qc').addEventListener('click', function () {
         return;
     }
 
-    // Fetch sample types from localStorage
-    const sampleTypes = JSON.parse(localStorage.getItem('sampleTypes')) || [];
+    // Fetch sample types from localForage
+    const sampleTypes = (await localforage.getItem('sampleTypes')) || [];
     const selectedSampleType = sampleTypes.find(type => type.typeName === qcSampleType);
 
     if (!selectedSampleType) {
@@ -134,7 +137,6 @@ document.getElementById('add-qc').addEventListener('click', function () {
             tab.style.display = 'none';
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
         });
-        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
 
         document.getElementById(`${qcSampleType.replace(/\s+/g, '-').toLowerCase()}-container`).style.display = 'block';
         newTabButton.classList.add('active');
@@ -169,12 +171,12 @@ document.querySelectorAll('.tab-button').forEach(button => {
 });
 
 // Initialize tabs on page load and populate QC dropdown
-window.onload = function () {
+window.onload = async function () {
     document.querySelectorAll('.tab').forEach(tabContent => {
         tabContent.style.display = 'none';
     });
-    document.querySelector('.tab-button.active').click(); // Trigger the active tab
-    populateQCDropdown(); // Populate the QC dropdown
+    document.querySelector('.tab-button.active')?.click(); // Trigger the active tab
+    await populateQCDropdown(); // Populate the QC dropdown
 };
 
 // Function to generate a unique ID
@@ -200,6 +202,7 @@ document.getElementById("create-test-code").addEventListener("click", function (
         alert("Please enter a Reference Method.");
         return;
     }
+})
 
     // Create test code data
     const combinedAnalysisId = `${analysisName} (${referenceMethod})`;
@@ -265,15 +268,21 @@ document.getElementById("create-test-code").addEventListener("click", function (
         return;
     }
 
-    // Save Test Code to Local Storage
-    const testCodes = JSON.parse(localStorage.getItem("testCodes")) || [];
+    // Save Test Code to LocalForage
+localforage.getItem("testCodes").then(testCodes => {
+    testCodes = testCodes || []; // Ensure an array exists
     testCodes.push(testCode);
-    localStorage.setItem("testCodes", JSON.stringify(testCodes));
-
+    
+    return localforage.setItem("testCodes", testCodes);
+}).then(() => {
     // Show the generated unique ID in the alert
     alert(`Generated Test Code ID: ${uniqueId}`);
     window.location.href = "test-code-table.html";
+}).catch(error => {
+    console.error("Error saving test code:", error);
+    alert("An error occurred while saving the test code.");
 });
+
 
 // Back button logic (unchanged)
 document.getElementById('back-to-test-code-table').addEventListener('click', function () {

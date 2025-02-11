@@ -136,7 +136,7 @@
     </main>
 
     <script>
-        document.getElementById('submit-button').addEventListener('click', function () {
+        document.getElementById('submit-button').addEventListener('click', async function () {
             const sampleType = document.getElementById('sample-type').value;
             const sampleTypeAbbreviation = document.getElementById('sample-type-abbreviation').value;
             const sampleTypeName = document.getElementById('sample-type-name').value;
@@ -151,7 +151,7 @@
                 return;
             }
 
-            const sampleTypes = JSON.parse(localStorage.getItem('sampleTypes')) || [];
+            const sampleTypes = JSON.parse = await localforage.getItem('sampleTypes') || [];
             sampleTypes.push({ 
                 type: sampleType, 
                 typeAbbreviation: sampleTypeAbbreviation, 
@@ -162,7 +162,7 @@
                 precision: precision,
                 pql: pql
             });
-            localStorage.setItem('sampleTypes', JSON.stringify(sampleTypes));
+            await localforage.setItem('sampleTypes', JSON.stringify(sampleTypes));
 
             alert('Sample Type added successfully!');
             document.getElementById('sample-type').value = '';
@@ -179,6 +179,8 @@
         window.location.href = 'sample-types.html';
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>
 

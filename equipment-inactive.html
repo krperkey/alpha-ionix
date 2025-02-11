@@ -115,8 +115,8 @@
 
     <script>
         // Load inactive data from localStorage when the page loads
-        function loadInactiveData() {
-            const savedData = JSON.parse(localStorage.getItem("inactiveData"));
+        async function loadInactiveData() {
+            const savedData = JSON.parse = await localforage.getItem("inactiveData");
             if (savedData) {
                 const table = document.getElementById("inactive-equipment-table").getElementsByTagName('tbody')[0];
                 savedData.forEach(item => {
@@ -138,7 +138,7 @@
 
                 // Add event listener for Activate button
                 document.querySelectorAll('.activateBtn').forEach(button => {
-                    button.onclick = function() {
+                    button.onclick = async function() {
                         activateRow(this.closest('tr'));
                     };
                 });
@@ -146,7 +146,7 @@
         }
 
         // Activate the row (move it back to the active table)
-        function activateRow(row) {
+        async function activateRow(row) {
             const rowData = {};
             const cells = row.getElementsByTagName('td');
             rowData.equipmentID = cells[0].innerText;
@@ -165,13 +165,13 @@
             saveInactiveData();
 
             // Move the equipment back to the active table
-            let activeData = JSON.parse(localStorage.getItem("instrumentationData")) || [];
+            let activeData = JSON.parse = await localforage.getItem("instrumentationData") || [];
             activeData.push(rowData);
-            localStorage.setItem("instrumentationData", JSON.stringify(activeData));
+            await localforage.setItem("instrumentationData", JSON.stringify(activeData));
         }
 
         // Save the inactive data to localStorage
-        function saveInactiveData() {
+        async function saveInactiveData() {
             const rows = document.querySelectorAll("#inactive-equipment-table tbody tr");
             const data = [];
             rows.forEach(row => {
@@ -188,7 +188,7 @@
                 };
                 data.push(rowData);
             });
-            localStorage.setItem("inactiveData", JSON.stringify(data));
+            await localforage.setItem("inactiveData", JSON.stringify(data));
         }
 
         // Load inactive data when the page is loaded
@@ -198,5 +198,7 @@
         window.location.href = 'equipment.html';
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

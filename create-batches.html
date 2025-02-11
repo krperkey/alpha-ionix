@@ -204,7 +204,7 @@
     </div>
 
     <script>
-        document.getElementById("create-batch-button").addEventListener("click", function () {
+        document.getElementById("create-batch-button").addEventListener("click", async function () {
             // Generate Batch ID
             const batchId = `BAT${Date.now()}`;
     
@@ -236,7 +236,7 @@
             }
     
             // Retrieve the existing sample data array from localStorage
-            const sampleDataArray = JSON.parse(localStorage.getItem("sampleDataArray")) || [];
+            const sampleDataArray = JSON.parse = await localforage.getItem("sampleDataArray") || [];
     
             // Create a map of existing samples for quick lookup
             const sampleMap = sampleDataArray.reduce((map, sample) => {
@@ -253,10 +253,10 @@
             });
     
             // Convert the updated sample map back to an array and save it to localStorage
-            localStorage.setItem("sampleDataArray", JSON.stringify(Object.values(sampleMap)));
+            await localforage.setItem("sampleDataArray", JSON.stringify(Object.values(sampleMap)));
     
             // Save batch details to localStorage
-            const batches = JSON.parse(localStorage.getItem("batches")) || [];
+            const batches = JSON.parse = await localforage.getItem("batches") || [];
             batches.push({
                 batchId,
                 analysis,
@@ -264,7 +264,7 @@
                 numberOfSamples,
                 status,
             });
-            localStorage.setItem("batches", JSON.stringify(batches));
+            await localforage.setItem("batches", JSON.stringify(batches));
     
             alert(`Batch created successfully: ${batchId}`);
         });
@@ -272,6 +272,8 @@
          
     
     <script src="scripts/create-batches.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>
 

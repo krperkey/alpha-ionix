@@ -123,8 +123,8 @@
     </div>
 
     <script>
-        window.onload = function () {
-            const qualifiers = JSON.parse(localStorage.getItem('qualifiers')) || [];
+        window.onload = async function () {
+            const qualifiers = JSON.parse = await localforage.getItem('qualifiers') || [];
 
             const tableBody = document.querySelector("#qualifier-table tbody");
 
@@ -147,16 +147,16 @@
                 });
 
                 document.querySelectorAll('.remove-btn').forEach(button => {
-                    button.addEventListener('click', function () {
+                    button.addEventListener('click', async function () {
                         const index = this.dataset.index;
                         qualifiers.splice(index, 1);
-                        localStorage.setItem('qualifiers', JSON.stringify(qualifiers));
+                        await localforage.setItem('qualifiers', JSON.stringify(qualifiers));
                         location.reload();
                     });
                 });
 
                 document.querySelectorAll('.edit-btn').forEach(button => {
-                    button.addEventListener('click', function () {
+                    button.addEventListener('click', async function () {
                         const index = this.dataset.index;
                         const qualifier = qualifiers[index];
 
@@ -165,12 +165,12 @@
 
                         document.getElementById('edit-modal').style.display = 'block';
 
-                        document.getElementById('save-edit').addEventListener('click', function () {
+                        document.getElementById('save-edit').addEventListener('click', async function () {
                             qualifier.qualifierCode = document.getElementById('edit-qualifier').value;
                             qualifier.description = document.getElementById('edit-description').value;
 
                             qualifiers[index] = qualifier;
-                            localStorage.setItem('qualifiers', JSON.stringify(qualifiers));
+                            await localforage.setItem('qualifiers', JSON.stringify(qualifiers));
                             location.reload();
                         });
 
@@ -186,5 +186,7 @@
         window.location.href = 'create-qualifier.html';
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

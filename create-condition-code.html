@@ -108,7 +108,7 @@
     </main>
 
     <script>
-        document.getElementById('submit-button').addEventListener('click', function () {
+        document.getElementById('submit-button').addEventListener('click', async function () {
             const conditionCode = document.getElementById('condition-code').value;
             const description = document.getElementById('description').value;
 
@@ -117,12 +117,12 @@
                 return;
             }
 
-            const conditionCodes = JSON.parse(localStorage.getItem('conditionCodes')) || [];
+            const conditionCodes = JSON.parse = await localforage.getItem('conditionCodes') || [];
             conditionCodes.push({ 
                 conditionCode, 
                 description 
             });
-            localStorage.setItem('conditionCodes', JSON.stringify(conditionCodes));
+            await localforage.setItem('conditionCodes', JSON.stringify(conditionCodes));
 
             alert('Condition Code added successfully!');
             document.getElementById('condition-code').value = '';
@@ -133,5 +133,7 @@
         window.location.href = 'condition-codes.html';
     });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

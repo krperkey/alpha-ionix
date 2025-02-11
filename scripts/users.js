@@ -1,6 +1,6 @@
 // JavaScript for User Management Page
 
-window.onload = function () {
+window.onload = async function () {
     const userTableBody = document.querySelector(".user-table tbody");
     const addUserForm = document.querySelector("#add-user-form");
     const addUserModal = document.querySelector("#add-user-modal");
@@ -9,12 +9,12 @@ window.onload = function () {
 
     let editUserIndex = null; // Track user being edited
 
-    // Load users from local storage or initialize with mock data
-    let users = JSON.parse(localStorage.getItem("users"))
+    // Load users from localForage
+    let users = await localforage.getItem("users") || [];
 
-    // Save users to local storage
-    function saveUsersToLocalStorage() {
-        localStorage.setItem("users", JSON.stringify(users));
+    // Save users to localForage
+    async function saveUsersToStorage() {
+        await localforage.setItem("users", users);
     }
 
     // Function to generate a random 4-digit user number
@@ -63,7 +63,7 @@ window.onload = function () {
     });
 
     // Event listener to add or edit a user
-    addUserForm.addEventListener("submit", function (e) {
+    addUserForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
         const firstName = document.querySelector("#first-name").value.trim();
@@ -105,7 +105,7 @@ window.onload = function () {
                 users.push({ userNumber, employeeID, firstName, middleName, lastName, initials, positionTitle, email, phone, userRole, status: "Active" });
                 alert("User added successfully!");
             }
-            saveUsersToLocalStorage();
+            await saveUsersToStorage();
             renderUsers();
             addUserForm.reset();
             addUserModal.classList.remove("show");
@@ -115,7 +115,7 @@ window.onload = function () {
     });
 
     // Event listener for table actions
-    userTableBody.addEventListener("click", function (e) {
+    userTableBody.addEventListener("click", async function (e) {
         const index = e.target.dataset.index;
 
         if (e.target.classList.contains("edit-user")) {
@@ -136,7 +136,7 @@ window.onload = function () {
 
         if (e.target.classList.contains("inactivate-user")) {
             users[index].status = "Inactive";
-            saveUsersToLocalStorage();
+            await saveUsersToStorage();
             renderUsers();
         }
 
@@ -153,7 +153,7 @@ window.onload = function () {
         if (e.target.classList.contains("delete-user")) {
             if (confirm("Are you sure you want to delete this user?")) {
                 users.splice(index, 1);
-                saveUsersToLocalStorage();
+                await saveUsersToStorage();
                 renderUsers();
             }
         }

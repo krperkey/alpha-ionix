@@ -156,7 +156,7 @@
     </div>    
 
     <script>
-window.onload = function () {
+window.onload = async function () {
     const urlParams = new URLSearchParams(window.location.search);
     const batchId = urlParams.get("batchId");
     const completeReviewButton = document.querySelector("#complete-review-button");
@@ -168,7 +168,7 @@ window.onload = function () {
     }
 
     // Retrieve batch details from localStorage
-    const batches = JSON.parse(localStorage.getItem("batches")) || [];
+    const batches = JSON.parse = await localforage.getItem("batches") || [];
     const batch = batches.find((b) => b.batchId === batchId);
 
     if (batch) {
@@ -182,33 +182,33 @@ window.onload = function () {
     document.getElementById("status").textContent = batch.status; // Added
     
         // Display sample results table
-        const samples = JSON.parse(localStorage.getItem("sampleDataArray")) || [];
+        const samples = JSON.parse = await localforage.getItem("sampleDataArray") || [];
         const associatedSamples = samples.filter(sample => sample.batchId === batchId);
         const resultsTableBody = document.querySelector("#samples-results-table tbody");
 
         // Load previously saved results for the current batch
         const savedResultsKey = `savedBatchResults-${batchId}`;
-        const savedResults = JSON.parse(localStorage.getItem(savedResultsKey)) || {};
+        const savedResults = JSON.parse = await localforage.getItem(savedResultsKey) || {};
 
         // **Retrieve Analyst Initials from localStorage**
-        const analystInitials = JSON.parse(localStorage.getItem("analystInitials")) || [];
+        const analystInitials = JSON.parse = await localforage.getItem("analystInitials") || [];
 
         // **Retrieve instrument names from localStorage**
-        const instrumentNames = JSON.parse(localStorage.getItem("instrumentNames")) || [];
+        const instrumentNames = JSON.parse = await localforage.getItem("instrumentNames") || [];
 
         // **Retrieve Qualifiers names from localStorage**
-        const qualifiers = JSON.parse(localStorage.getItem("qualifiers")) || [];
+        const qualifiers = JSON.parse = await localforage.getItem("qualifiers") || [];
 
-        const standards = JSON.parse(localStorage.getItem('standards')) || [];
+        const standards = JSON.parse = await localforage.getItem('standards') || [];
 
         // **Get the correct test code based on batch analysis**
-        const testCodes = JSON.parse(localStorage.getItem("testCodes")) || [];
+        const testCodes = JSON.parse = await localforage.getItem("testCodes") || [];
         const matchedTestCode = testCodes.find(tc => tc.analysisId === batch.analysis);
 
         // **Retrieve the corresponding test code details**
         let analyteDetailsMap = {};
         if (matchedTestCode) {
-            const testCodeDetails = JSON.parse(localStorage.getItem("testCodes")) || [];
+            const testCodeDetails = JSON.parse = await localforage.getItem("testCodes") || [];
             const matchedDetails = testCodeDetails.find(tc => tc.uniqueId === matchedTestCode.uniqueId);
 
             if (matchedDetails) {
@@ -372,8 +372,8 @@ window.onload = function () {
                 resultsTableBody.appendChild(spacerRow);
             }
 
-            function getConditionOptions(selectedCondition) {
-            const conditionCodes = JSON.parse(localStorage.getItem('conditionCodes')) || [];
+            async function getConditionOptions(selectedCondition) {
+            const conditionCodes = JSON.parse = await localforage.getItem('conditionCodes') || [];
             let options = '<option value="">Select Condition</option>'; // Default option
 
             // Add the "OK" option and make it selected by default if nothing else is selected
@@ -387,7 +387,7 @@ window.onload = function () {
             return options;
             }
 
-            function getInstrumentOptions(selectedInstrument) {
+            async function getInstrumentOptions(selectedInstrument) {
                 let options = '<option value="">Select Instrument</option>'; // Default option
                 instrumentNames.forEach(instrument => {
                     const isSelected = instrument === selectedInstrument ? 'selected' : '';
@@ -396,8 +396,8 @@ window.onload = function () {
                 return options;
             }
 
-            function getAnalystOptions(selectedAnalyst) {
-            const analystInitials = JSON.parse(localStorage.getItem("analystInitials")) || [];
+            async function getAnalystOptions(selectedAnalyst) {
+            const analystInitials = JSON.parse = await localforage.getItem("analystInitials") || [];
             let options = '<option value="">Select Analyst</option>'; // Default option
             analystInitials.forEach(initials => {
                 const isSelected = initials === selectedAnalyst ? 'selected' : '';
@@ -406,8 +406,8 @@ window.onload = function () {
             return options;
             }
 
-            function getStandardOptions(selectedStandard) {
-            const standards = JSON.parse(localStorage.getItem("standards")) || [];
+            async function getStandardOptions(selectedStandard) {
+            const standards = JSON.parse = await localforage.getItem("standards") || [];
             let options = '<option value="">Select Standard</option>'; // Default option
 
             standards.forEach(standard => {
@@ -418,8 +418,8 @@ window.onload = function () {
             return options;
         }
 
-            function getQualifierOptions(selectedQualifier) {
-            const qualifiers = JSON.parse(localStorage.getItem('qualifiers')) || [];
+            async function getQualifierOptions(selectedQualifier) {
+            const qualifiers = JSON.parse = await localforage.getItem('qualifiers') || [];
             let options = '<option value="">Select Qualifier</option>';
             qualifiers.forEach(qualifier => {
                 const isSelected = qualifier.qualifierCode === selectedQualifier ? 'selected' : '';
@@ -436,7 +436,7 @@ window.onload = function () {
         });
 
         // Handle "Save" button click
-        document.getElementById("save-results-button").addEventListener("click", function () {
+        document.getElementById("save-results-button").addEventListener("click", async function () {
     const updatedResults = {};
 
     // Loop through the associated samples and save their values
@@ -474,22 +474,22 @@ window.onload = function () {
 
     // Save the updated results to localStorage
     const savedResultsKey = `savedBatchResults-${batchId}`;
-    localStorage.setItem(savedResultsKey, JSON.stringify(updatedResults));
+    await localforage.setItem(savedResultsKey, JSON.stringify(updatedResults));
 
     alert("Results have been saved successfully!");
 });
 
         // Handle "Submit Results" button click
-        document.getElementById("submit-results-button").addEventListener("click", function () {
+        document.getElementById("submit-results-button").addEventListener("click", async function () {
             batch.status = "In review";
-            localStorage.setItem("batches", JSON.stringify(batches));
+            await localforage.setItem("batches", JSON.stringify(batches));
             alert("Batch status updated to 'In review'!");
             window.location.href = "batches.html";
         });
 
-        document.getElementById("complete-review-button").addEventListener("click", function() {
+        document.getElementById("complete-review-button").addEventListener("click", async function() {
                     batch.status = "Complete";
-                    localStorage.setItem("batches", JSON.stringify(batches));
+                    await localforage.setItem("batches", JSON.stringify(batches));
                     document.getElementById("status").textContent = "Complete";
                     alert("Batch status updated to 'Complete'!");
                 });
@@ -501,7 +501,7 @@ window.onload = function () {
 };
 
 // Function to toggle analyte rows
-function toggleAnalyteRows(sampleId) {
+async function toggleAnalyteRows(sampleId) {
     const analyteRows = document.querySelectorAll(`.analyte-row-${sampleId}`);
     const subRowHeader = document.querySelector(`.sub-header-${sampleId}`);
     const repeatedHeaderRow = document.querySelector(`.header-row-${sampleId}`);
@@ -572,7 +572,7 @@ function toggleAnalyteRows(sampleId) {
     </script>
 
 <script>
-    document.getElementById("view-qc").addEventListener("click", function () {
+    document.getElementById("view-qc").addEventListener("click", async function () {
         const urlParams = new URLSearchParams(window.location.search);
         const batchId = urlParams.get("batchId");
 
@@ -582,13 +582,13 @@ function toggleAnalyteRows(sampleId) {
         }
 
         // Retrieve necessary data from localStorage
-        const samples = JSON.parse(localStorage.getItem("sampleDataArray")) || [];
-        const standards = JSON.parse(localStorage.getItem("standards")) || []; // Standards data
+        const samples = JSON.parse = await localforage.getItem("sampleDataArray") || [];
+        const standards = JSON.parse = await localforage.getItem("standards") || []; // Standards data
         const associatedSamples = samples.filter(sample => sample.batchId === batchId && sample.sampleType !== "SAM");
         const savedResultsKey = `savedBatchResults-${batchId}`;
-        const savedResults = JSON.parse(localStorage.getItem(savedResultsKey)) || {};
-        const testCodes = JSON.parse(localStorage.getItem("testCodes")) || [];
-        const batch = (JSON.parse(localStorage.getItem("batches")) || []).find(b => b.batchId === batchId);
+        const savedResults = JSON.parse = await localforage.getItem(savedResultsKey) || {};
+        const testCodes = JSON.parse = await localforage.getItem("testCodes") || [];
+        const batch = (JSON.parse = await localforage.getItem("batches")) || [].find(b => b.batchId === batchId);
         const matchedTestCode = testCodes.find(tc => tc.analysisId === batch.analysis);
 
         // Create analyte details map based on test code
@@ -898,7 +898,7 @@ function toggleAnalyteRows(sampleId) {
             });
 
             // Expand/collapse functionality
-            sampleRow.querySelector(".expand-btn").addEventListener("click", function () {
+            sampleRow.querySelector(".expand-btn").addEventListener("click", async function () {
                 const analyteRows = modalTableBody.querySelectorAll(`.analyte-row-${sample.id}`);
                 const isHidden = analyteRows[0]?.style.display === "none";
 
@@ -913,18 +913,18 @@ function toggleAnalyteRows(sampleId) {
         modal.style.display = "block";
 
         // Close modal functionality
-        document.getElementById('close-btn').addEventListener('click', function () {
+        document.getElementById('close-btn').addEventListener('click', async function () {
             document.getElementById('qc-results-modal-table-container').style.display = 'none';
         });
 
         // Close the modal when clicking outside the modal content
-        window.addEventListener("click", function (event) {
+        window.addEventListener("click", async function (event) {
             if (event.target === modal) {
                 modal.style.display = "none";
             }
         });
 
-        function getRelevantControlsForSampleType(sampleType, analyteDetails) {
+        async function getRelevantControlsForSampleType(sampleType, analyteDetails) {
             const controls = [];
             const analyteArray = Object.values(analyteDetails);
 
@@ -956,6 +956,8 @@ function toggleAnalyteRows(sampleId) {
         }
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 
 
 

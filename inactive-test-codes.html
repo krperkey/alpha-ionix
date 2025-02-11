@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inactive Test Codes</title>
+    <link rel="stylesheet" href="styles/12_test-code-table.css">
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <nav>
+            <ul>
+                <!-- Login Dropdown -->
+                <li><a href="#" id="login-btn">Login</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="sample-login.html">Sample Login</a></li>
+                    </ul>
+                </li>
+
+                <!-- Analysis Dropdown -->
+                <li><a href="#" id="login-btn">Analysis</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="batches.html">Batches</a></li>
+                        <li><a href="samples.html">Samples</a></li>
+                        <li><a href="workorders.html">Workorders</a></li>
+                    </ul>
+                </li>
+
+                <!-- Attributes Dropdown -->
+                <li><a href="#" id="login-btn">Sample Attributes</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
+                        <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
+                        <li><a href="hold-time.html">Hold Times</a></li>
+                        <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
+                        <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Clients Dropdown -->
+                <li><a href="#" id="clients-btn">Clients</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="client-by-name.html">Client by Name</a></li>
+                        <li><a href="client-by-site.html">Client by Site</a></li>
+                        <li><a href="client-profile.html">Client Profiles</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Users Dropdown -->
+                <li><a href="#" id="settings-btn">Settings</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="account-settings.html">Account Settings</a></li>
+                        <li><a href="app-settings.html">Application Settings</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <h2>Inactive Test Codes
+            <button id="back-to-test-codes">Active Test Codes</button>
+        </h2>
+        
+        <section id="test-code-container">
+            <table id="test-code-table">
+                <thead>
+                    <tr>
+                        <th>Test Code ID</th>
+                        <th>Analysis Name</th>
+                        <th>Number of Analytes</th>
+                        <th>Preservation Requirements</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be dynamically populated -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script>
+        window.onload = function () {
+        const inactiveTestCodes = JSON.parse(localStorage.getItem("inactiveTestCodes")) || [];
+        const tableBody = document.querySelector("#test-code-table tbody");
+
+        inactiveTestCodes.forEach((testCode) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>
+                    <a href="test-code-details.html?id=${testCode.uniqueId}" class="test-code-link">${testCode.uniqueId}</a>
+                </td>
+                <td>${testCode.analysisId}</td>
+                <td>${testCode.analytes.length}</td>
+                <td>${testCode.preservationRequirements}</td>
+                <td>
+                    <button class="activate-btn">Reactivate</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        tableBody.addEventListener("click", (e) => {
+            if (e.target.classList.contains("activate-btn")) {
+                const rowIndex = e.target.closest("tr").rowIndex - 1; // Adjust for header
+                const testCode = inactiveTestCodes.splice(rowIndex, 1)[0]; // Remove from inactive list
+                const testCodes = JSON.parse(localStorage.getItem("testCodes")) || [];
+                testCodes.push(testCode); // Add to active list
+                localStorage.setItem("testCodes", JSON.stringify(testCodes));
+                localStorage.setItem("inactiveTestCodes", JSON.stringify(inactiveTestCodes));
+                location.reload(); // Refresh the page
+            }
+        });
+    };
+
+    document.getElementById('back-to-test-codes').addEventListener('click', function() {
+        window.location.href = 'test-code-table.html';
+    });
+</script>
+
+</body>
+</html>

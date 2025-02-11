@@ -34,6 +34,9 @@ main {
 
 /* Section heading */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #ffd700;
@@ -60,13 +63,14 @@ h2 {
 #sample-table th {
     background-color: #777;
     color: #FFD700;
-    padding: 5px;
+    padding: 10px 15px;
+    min-width: 150px;
     border: 1px solid #FFD700;
     text-align: center;
     text-transform: uppercase;
-    font-size: 1.0rem;
+    font-size: 0.8rem;
     font-weight: bold;
-    white-space: wrap;
+    white-space: nowrap;
 }
 
 /* Table row styling */
@@ -81,9 +85,11 @@ h2 {
 /* Table cell styling */
 #sample-table td {
     font-size: 0.8rem;
-    padding: 5px;
+    padding: 10px 15px;
+    min-width: 150px;
     border: 1px solid #FFD700;
     text-align: center;
+    white-space: nowrap;
 }
 
 /* Table links (Sample ID links) */
@@ -91,7 +97,7 @@ h2 {
     color: rgb(131, 166, 231);;
     text-decoration: none;
     font-weight: bold;
-    white-space: wrap;
+    white-space: nowrap;
 }
 
 #sample-table a:hover {
@@ -123,3 +129,143 @@ h2 {
     }
 }
 
+#new-batch {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#new-batch:hover {
+    background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
+}
+
+#tab-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #FFD700;
+}
+
+.tab-button {
+    background-color: #333;
+    color: #FFD700;
+    border: 1px solid #ffd700;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+}
+
+.tab-button.active {
+    background-color: #FFD700;
+    color: #333;
+    font-weight: bold;
+}
+
+.tab-button:hover {
+    background-color: #555;
+}
+
+/* Style for table headers */
+th {
+    position: relative;
+    text-align: center; /* Center the text */
+    vertical-align: middle; /* Vertically center the text */
+    padding-right: 20px; /* Add space for the arrow */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* Flexbox container for the header content */
+th .header-content {
+    display: flex;
+    align-items: center; /* Vertically align text and arrow */
+    justify-content: center; /* Center the text within the cell */
+    gap: 5px; /* Add some space between text and arrow */
+}
+
+/* Dropdown container for the arrow */
+.dropdown {
+    position: absolute;
+    right: 5px; /* Align the arrow to the far right of the header */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust vertical alignment */
+    z-index: 1;
+}
+
+/* Arrow and dropdown menu styling */
+.dropdown-arrow {
+    cursor: pointer;
+    padding: 1px;
+    border: 0.5px solid #ffd700;
+    border-radius: 5px;
+    background-color: #333;
+    color: #ffd700;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #444;
+    border: 1px solid #ffb900;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu button {
+    display: block;
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    color: white;
+    text-align: left;
+    width: 100%;
+}
+
+.dropdown-menu button:hover {
+    background-color: #f0f0f0;
+    color: #444;
+}
+
+/* Scrollable table container with always visible scrollbar */
+.table-container {
+    width: 100%; /* Ensure it spans the full width of its parent */
+    overflow-x: scroll; /* Always show the horizontal scrollbar */
+    overflow-y: hidden; /* Prevent vertical scrolling */
+    border: 1px solid #FFD700; /* Optional border for styling */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    background-color: #333; /* Match the table background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
+    scrollbar-width: auto; /* Show scrollbar on modern browsers */
+    scrollbar-color: #999 #444; /* Custom scrollbar colors (optional) */
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+.table-container::-webkit-scrollbar {
+    height: 12px; /* Height of the scrollbar */
+    background-color: #444; /* Background color of the scrollbar track */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #FFD700; /* Scrollbar thumb color */
+    border-radius: 6px; /* Rounded scrollbar */
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background-color: #FFC107; /* Lighter yellow on hover */
+}

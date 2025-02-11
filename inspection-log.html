@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspection Log</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #005b96;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 1rem;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #005b96;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        table th {
+            background-color: #005b96;
+            color: white;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const logContainer = document.getElementById('log-container');
+
+            // Retrieve log data from localStorage
+            const logData = localStorage.getItem('inspectionLogs');
+
+            if (logData) {
+                const logEntries = logData.trim().split('\n');
+                logEntries.forEach((entry, index) => {
+                    const row = document.createElement('tr');
+                    const cellIndex = document.createElement('td');
+                    const cellLog = document.createElement('td');
+
+                    cellIndex.textContent = index + 1;
+                    cellLog.textContent = entry;
+
+                    row.appendChild(cellIndex);
+                    row.appendChild(cellLog);
+                    logContainer.appendChild(row);
+                });
+            } else {
+                const noDataRow = document.createElement('tr');
+                const noDataCell = document.createElement('td');
+                noDataCell.setAttribute('colspan', '2');
+                noDataCell.textContent = 'No inspections logged yet.';
+                noDataCell.style.textAlign = 'center';
+                noDataRow.appendChild(noDataCell);
+                logContainer.appendChild(noDataRow);
+            }
+        });
+    </script>
+</head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
+<body>
+    <header>
+        <h1>Inspection Log</h1>
+        <p>Review completed inspections and their timestamps.</p>
+    </header>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Inspection Details</th>
+                </tr>
+            </thead>
+            <tbody id="log-container">
+                <!-- Log entries will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Compliance Management. All rights reserved.</p>
+    </footer>
+</body>
+</html>

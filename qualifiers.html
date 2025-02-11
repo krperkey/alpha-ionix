@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualifiers</title>
+    <link rel="stylesheet" href="styles/30_qualifiers.css">
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <nav>
+            <ul>
+                <!-- Login Dropdown -->
+                <li><a href="#" id="login-btn">Login</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="sample-login.html">Sample Login</a></li>
+                    </ul>
+                </li>
+
+                <!-- Analysis Dropdown -->
+                <li><a href="#" id="login-btn">Analysis</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="batches.html">Batches</a></li>
+                        <li><a href="samples.html">Samples</a></li>
+                        <li><a href="workorders.html">Workorders</a></li>
+                    </ul>
+                </li>
+
+                <!-- Attributes Dropdown -->
+                <li><a href="#" id="login-btn">Sample Attributes</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
+                        <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
+                        <li><a href="hold-time.html">Hold Times</a></li>
+                        <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
+                        <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Clients Dropdown -->
+                <li><a href="#" id="clients-btn">Clients</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="client-by-name.html">Client by Name</a></li>
+                        <li><a href="client-by-site.html">Client by Site</a></li>
+                        <li><a href="client-profile.html">Client Profiles</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Users Dropdown -->
+                <li><a href="#" id="settings-btn">Settings</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="account-settings.html">Account Settings</a></li>
+                        <li><a href="app-settings.html">Application Settings</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <h2>Qualifiers
+            <button id="new-qualifier">New Qualifier</button>
+        </h2>
+
+        <section id="qualifier-container">
+            <table id="qualifier-table">
+                <thead>
+                    <tr>
+                        <th>Qualifier Code</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be dynamically populated -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Edit Form Modal (hidden by default) -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <h3>Edit Qualifier</h3>
+            <label for="edit-qualifier">Qualifier Code:</label>
+            <input type="text" id="edit-qualifier">
+            <label for="edit-description">Description:</label>
+            <input type="text" id="edit-description">
+
+            <button id="save-edit">Save</button>
+            <button id="cancel-edit">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const qualifiers = JSON.parse(localStorage.getItem('qualifiers')) || [];
+
+            const tableBody = document.querySelector("#qualifier-table tbody");
+
+            if (qualifiers.length === 0) {
+                const noDataRow = document.createElement("tr");
+                noDataRow.innerHTML = `<td colspan="5">No qualifiers available. Create a new one!</td>`;
+                tableBody.appendChild(noDataRow);
+            } else {
+                qualifiers.forEach((qualifiers, index) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${qualifiers.qualifierCode}</td>
+                        <td>${qualifiers.description}</td>
+                        <td>
+                            <button class="edit-btn" data-index="${index}">Edit</button>
+                            <button class="remove-btn" data-index="${index}">Remove</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+
+                document.querySelectorAll('.remove-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const index = this.dataset.index;
+                        qualifiers.splice(index, 1);
+                        localStorage.setItem('qualifiers', JSON.stringify(qualifiers));
+                        location.reload();
+                    });
+                });
+
+                document.querySelectorAll('.edit-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const index = this.dataset.index;
+                        const qualifier = qualifiers[index];
+
+                        document.getElementById('edit-qualifier').value = qualifier.qualifierCode;
+                        document.getElementById('edit-description').value = qualifier.description;
+
+                        document.getElementById('edit-modal').style.display = 'block';
+
+                        document.getElementById('save-edit').addEventListener('click', function () {
+                            qualifier.qualifierCode = document.getElementById('edit-qualifier').value;
+                            qualifier.description = document.getElementById('edit-description').value;
+
+                            qualifiers[index] = qualifier;
+                            localStorage.setItem('qualifiers', JSON.stringify(qualifiers));
+                            location.reload();
+                        });
+
+                        document.getElementById('cancel-edit').addEventListener('click', function () {
+                            document.getElementById('edit-modal').style.display = 'none';
+                        });
+                    });
+                });
+            }
+        };
+
+        document.getElementById('new-qualifier').addEventListener('click', function() {
+        window.location.href = 'create-qualifier.html';
+    });
+    </script>
+</body>
+</html>

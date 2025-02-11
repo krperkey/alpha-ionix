@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="styles/02_top-toolbar.css">
     <link rel="stylesheet" href="styles/01_search-bar.css">
 </head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
 <body>
     <header>
         <a href="index.html" id="logo">Alpha-Ionix</a>
@@ -33,11 +38,17 @@
                 <!-- Attributes Dropdown -->
                 <li><a href="#" id="login-btn">Sample Attributes</a>
                     <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
                         <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
                         <li><a href="hold-time.html">Hold Times</a></li>
                         <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
                         <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
                         <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
                     </ul>
                 </li>
 
@@ -57,6 +68,7 @@
                         <li><a href="app-settings.html">Application Settings</a></li>
                         <li><a href="users.html">Users</a></li>
                         <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
                     </ul>
                 </li>
             </ul>
@@ -78,17 +90,26 @@
 
     <main>
         <section id="samples">
-            <h2>Samples</h2>
+            <h2>Samples
+                <button id="new-batch">Create New Batch</button>
+            </h2>
+
+            <div id="tab-container">
+                <button class="tab-button active" data-tab="samples">Samples</button>
+                <button class="tab-button" data-tab="qc-samples">QC Samples</button>
+            </div>            
 
             <!-- Table to display samples -->
+            <div class="table-container">
             <table id="sample-table">
                 <thead>
                     <tr>
                         <th>Sample ID</th>
                         <th>Workorder ID</th>
+                        <th>Sample Type</th>
                         <th>Client Profile</th>
                         <th>Facility Name</th>
-                        <th>Workorder Description</th>
+                        <th>Workorder Desc</th>
                         <th>Collector Name</th>
                         <th>Received By</th>
                         <th>Date Received</th>
@@ -96,7 +117,7 @@
                         <th>Analysis</th>
                         <th>Hold Time</th>
                         <th>Due Date</th>
-                        <th>Sample Description</th>
+                        <th>Sample Desc</th>
                         <th>Analytes</th>
                         <th>Status</th>
                         <th>Actions</th> <!-- New column for delete button -->
@@ -107,81 +128,182 @@
                     <!-- Table rows will be added dynamically -->
                 </tbody>
             </table>
+        </div>
         </section>
+    </main>
    
-        <script>
-            // JavaScript to retrieve sample IDs and workorder IDs from localStorage and populate the table
-            window.onload = function () {
-                const sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
-                const workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
-                const sampleStatusMap = JSON.parse(localStorage.getItem('sampleStatusMap')) || {};
-                const tableBody = document.querySelector("#sample-table tbody");
-        
-                if (sampleDataArray.length > 0) {
-                    sampleDataArray.forEach((sampleData) => {
-                        // Find the corresponding workorder for this sample
-                        const workorder = workordersArray.find(wo => wo.samples.some(s => s.id === sampleData.id));
-                        const workorderID = workorder ? workorder.id : "N/A"; // Default to "N/A" if no workorder is found
-                        const status = sampleStatusMap[sampleData.id] || "In Progress"; // Retrieve status or default to "Unknown"
-        
-                        // Create a new table row
-                        const row = document.createElement("tr");
-        
-                        row.innerHTML = `
-                            <td><a href="sample-details.html?id=${sampleData.id}">${sampleData.id}</a></td>
-                            <td>${workorderID}</td> <!-- Add Workorder ID to the second column -->
-                            <td>${sampleData.clientProfile || "N/A"}</td>
-                            <td>${sampleData.facilityId || "N/A"}</td>
-                            <td>${sampleData.workorderDescription || "N/A"}</td>
-                            <td>${sampleData.collectorName || "N/A"}</td>
-                            <td>${sampleData.receivedBy || "N/A"}</td>
-                            <td>${sampleData.dateReceived || "N/A"}</td>
-                            <td>${sampleData.collectDate || "N/A"}</td>
-                            <td>${sampleData.analysis || "N/A"}</td>
-                            <td>${sampleData.holdTime || "N/A"}</td>
-                            <td>${sampleData.dueDate || "N/A"}</td>
-                            <td>${sampleData.sampleDescription || "N/A"}</td>
-                            <td>${sampleData.analytes && sampleData.analytes.length > 0 
-                                ? sampleData.analytes.join(", ") 
-                                : "N/A"}</td>
-                            <td>${status}</td> <!-- Add Status value -->
-                            <td><button class="delete-btn" data-sample-id="${sampleData.id}">Delete</button></td>
-                        `;
-                        tableBody.appendChild(row);
-                    });
-        
-                    console.log("Sample table populated successfully:", sampleDataArray);
-                } else {
-                    console.log("No sample data found in localStorage.");
-                }
-        
-                // Add event listener to handle delete buttons
-                document.querySelectorAll('.delete-btn').forEach(button => {
-                    button.addEventListener('click', deleteSample);
-                });
-            };
-        
-            function deleteSample(event) {
-                const sampleID = event.target.dataset.sampleId; // Get the sample ID from the button's data attribute
-                let sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
-        
-                // Filter out the sample to be deleted
-                sampleDataArray = sampleDataArray.filter(sample => sample.id !== sampleID);
-        
-                // Update localStorage
-                localStorage.setItem('sampleDataArray', JSON.stringify(sampleDataArray));
-        
-                // Refresh the table
-                refreshTable();
-            }
-        
-            function refreshTable() {
-                const tableBody = document.querySelector("#sample-table tbody");
-                tableBody.innerHTML = ''; // Clear the current table content
-                window.onload(); // Repopulate the table
-            }
-        </script>
-        
+    <script>
+        window.onload = function () {
+    const sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
+    const workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
+    const sampleStatusMap = JSON.parse(localStorage.getItem('sampleStatusMap')) || {};
+    const tableBody = document.querySelector("#sample-table tbody");
 
+    // Populate the table with sample data
+    if (sampleDataArray.length > 0) {
+        sampleDataArray.forEach((sampleData) => {
+            const workorder = workordersArray.find(wo => wo.samples.some(s => s.id === sampleData.id));
+            const workorderID = workorder ? workorder.id : "N/A";
+            const status = sampleStatusMap[sampleData.id] || "In Progress";
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td><a href="sample-details.html?id=${sampleData.id}">${sampleData.id}</a></td>
+                <td>${workorderID}</td>
+                <td>${sampleData.sampleType || "N/A"}</td>
+                <td>${sampleData.clientProfile || "N/A"}</td>
+                <td>${sampleData.facilityId || "N/A"}</td>
+                <td>${sampleData.workorderDescription || "N/A"}</td>
+                <td>${sampleData.collectorName || "N/A"}</td>
+                <td>${sampleData.receivedBy || "N/A"}</td>
+                <td>${sampleData.dateReceived || "N/A"}</td>
+                <td>${sampleData.collectDate || "N/A"}</td>
+                <td>${sampleData.analysis || "N/A"}</td>
+                <td>${sampleData.holdTime || "N/A"}</td>
+                <td>${sampleData.dueDate || "N/A"}</td>
+                <td>${sampleData.sampleDescription || "N/A"}</td>
+                <td>${sampleData.analytes && sampleData.analytes.length > 0 
+                    ? sampleData.analytes.join(", ") 
+                    : "N/A"}</td>
+                <td>${status}</td>
+                <td><button class="delete-btn" data-sample-id="${sampleData.id}">Delete</button></td>
+            `;
+            tableBody.appendChild(row);
+        });
+        console.log("Sample table populated successfully.");
+    } else {
+        console.log("No sample data found in localStorage.");
+    }
+
+    // Initialize functionalities
+    initializeTabFiltering();
+    initializeSorting();
+    initializeDeleteFunctionality();
+};
+
+function initializeDeleteFunctionality() {
+    const tableBody = document.querySelector("#sample-table tbody");
+
+    // Event delegation for delete buttons
+    tableBody.addEventListener("click", (event) => {
+        if (event.target.classList.contains("delete-btn")) {
+            const sampleID = event.target.dataset.sampleId; // Get the sample ID
+            console.log(`Delete button clicked for Sample ID: ${sampleID}`);
+
+            let sampleDataArray = JSON.parse(localStorage.getItem("sampleDataArray")) || [];
+
+            // Verify if the sample exists
+            if (!sampleDataArray.some(sample => sample.id === sampleID)) {
+                console.error(`Sample ID ${sampleID} not found.`);
+                return;
+            }
+
+            // Remove the sample from localStorage
+            sampleDataArray = sampleDataArray.filter(sample => sample.id !== sampleID);
+            localStorage.setItem("sampleDataArray", JSON.stringify(sampleDataArray));
+
+            // Remove the row from the table
+            const rowToRemove = event.target.closest("tr");
+            if (rowToRemove) {
+                rowToRemove.remove();
+                console.log(`Row for Sample ID ${sampleID} successfully removed.`);
+            } else {
+                console.error("Could not find the row to remove.");
+            }
+
+            // Refresh the current tab view
+            updateTableView();
+        }
+    });
+}
+
+function initializeTabFiltering() {
+    const tabs = document.querySelectorAll(".tab-button");
+    const tableBody = document.querySelector("#sample-table tbody");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            const tabType = tab.getAttribute("data-tab");
+            const allRows = Array.from(tableBody.querySelectorAll("tr"));
+
+            // Activate the clicked tab
+            tabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            // Show or hide rows based on the tab
+            allRows.forEach(row => {
+                const sampleType = row.querySelectorAll("td")[2]?.textContent.trim();
+                if (
+                    (tabType === "samples" && sampleType === "SAM") ||
+                    (tabType === "qc-samples" && sampleType !== "SAM")
+                ) {
+                    row.style.display = ""; // Show matching rows
+                } else {
+                    row.style.display = "none"; // Hide non-matching rows
+                }
+            });
+        });
+    });
+
+    // Trigger the initial filter for the default active tab
+    document.querySelector(".tab-button.active").click();
+}
+
+function updateTableView() {
+    const activeTab = document.querySelector(".tab-button.active");
+    if (activeTab) activeTab.click(); // Refresh the filtering for the active tab
+}
+
+function initializeSorting() {
+    const table = document.querySelector("#sample-table");
+    const headers = table.querySelectorAll("th");
+    const tableBody = table.querySelector("tbody");
+
+    headers.forEach((header, columnIndex) => {
+        const dropdown = document.createElement("div");
+        dropdown.classList.add("dropdown");
+
+        dropdown.innerHTML = `
+            <span class="dropdown-arrow">&#x25BC;</span>
+            <div class="dropdown-menu">
+                <button class="sort-asc">Sort A-Z</button>
+                <button class="sort-desc">Sort Z-A</button>
+            </div>
+        `;
+
+        header.appendChild(dropdown);
+
+        dropdown.querySelector(".sort-asc").addEventListener("click", () => {
+            sortTable(columnIndex, true);
+        });
+
+        dropdown.querySelector(".sort-desc").addEventListener("click", () => {
+            sortTable(columnIndex, false);
+        });
+    });
+}
+
+function sortTable(columnIndex, ascending) {
+    const tableBody = document.querySelector("#sample-table tbody");
+    const rows = Array.from(tableBody.querySelectorAll("tr"));
+
+    rows.sort((rowA, rowB) => {
+        const cellA = rowA.querySelectorAll("td")[columnIndex]?.textContent.trim().toLowerCase();
+        const cellB = rowB.querySelectorAll("td")[columnIndex]?.textContent.trim().toLowerCase();
+
+        if (cellA < cellB) return ascending ? -1 : 1;
+        if (cellA > cellB) return ascending ? 1 : -1;
+        return 0;
+    });
+
+    rows.forEach(row => tableBody.appendChild(row));
+}
+
+document.getElementById('new-batch').addEventListener('click', function() {
+    window.location.href = 'create-batches.html';
+});
+    </script>
+    
+        
 </body>
 </html>

@@ -5,7 +5,8 @@ function generateChartAndTable() {
     const analysisCount = {};
     sampleDataArray.forEach(sample => {
         const status = sampleStatusMap[sample.id];
-        if (status === "In Progress") {
+        const samType = sample.sampleType || "Unknown";
+        if (status === "In Progress" && samType === "SAM") {
             const analysis = sample.analysis || "Unknown";
             analysisCount[analysis] = (analysisCount[analysis] || 0) + 1;
         }

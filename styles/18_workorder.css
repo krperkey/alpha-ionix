@@ -1,7 +1,7 @@
 /* General background and text styling */
 body {
     font-family: 'Libre Baskerville', serif;
-    background-color: white; /* White background for readability */
+    background-color: #333; /* White background for readability */
     color: black;
     margin: 0;
     padding: 0;
@@ -22,7 +22,7 @@ header a#logo {
     text-decoration: none;
     font-size: 1.8rem;
     font-weight: bold;
-    color: #FFD700;
+    color: white;
 }
 
 /* Main container styling */

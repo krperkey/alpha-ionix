@@ -80,11 +80,12 @@ h2 {
 /* Sample Selection Table */
 #sample-selection-container {
     background-color: #333;
-    color: #FFD700;
+    color: white;
     padding: 15px;
     margin-bottom: 20px;
     border: 2px solid #FFD700;
     border-radius: 10px;
+    font-weight: bold;
 }
 
 #sample-selection-container h3 {
@@ -103,12 +104,19 @@ h2 {
 #sample-selection-table td {
     border: 1px solid #FFD700;
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
 
 #sample-selection-table th {
     background-color: #777;
     color: white;
+}
+
+.sample-id-link {
+    color: rgb(131, 166, 231);;
+    text-decoration: none;
+    font-weight: bold;
+    white-space: wrap;
 }
 
 /* Create Batch Button */
@@ -162,11 +170,28 @@ h2 {
 #modal-sample-table th,
 #modal-sample-table td {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     border: 1px solid #FFD700;
 }
 
 #modal-sample-table th {
+    background-color: #444;
+    color: white;
+}
+
+#modal-qc-add-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#modal-qc-add-table th,
+#modal-qc-add-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #FFD700;
+}
+
+#modal-qc-add-table th {
     background-color: #444;
     color: white;
 }
@@ -183,3 +208,82 @@ button {
 button:hover {
     background-color: #FFB800;
 }
+
+/* Table styles */
+.batch-info-table {
+    width: 25%; /* Full width table */
+    border: 1px solid #ffb900; /* Border around the table */
+    border-collapse: collapse; /* Remove gaps between cells */
+    margin-bottom: 20px; /* Add space below the table */
+    text-align: center; /* Align content to the left */
+}
+
+/* Cell styles */
+.batch-info-table td {
+    padding: 10px; /* Add padding inside cells */
+    border: 1px solid #ffb900; /* Border around each cell */
+    vertical-align: middle; /* Vertically align content to the middle */
+}
+
+/* Specific column widths */
+.batch-info-table td:first-child {
+    width: 25%; /* Left column width */
+}
+
+.batch-info-table td:last-child {
+    width: 50%; /* Right column width */
+}
+
+/* Label styling */
+.batch-info-table label {
+    font-weight: bold; /* Make labels bold */
+}
+
+/* Optional: Add background for the left column */
+.batch-info-table td:first-child {
+    background-color: #396ea7; /* Light gray for label cells */
+    color: white;
+}
+
+#batch-analysis {
+    width: 100%;
+    padding: 4px;
+    border: 1px solid #FFD700;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.0rem;
+    font-weight: bold;
+}
+
+#date-created {
+    color: white;
+    font-weight: bold;
+}
+
+.remove-sample-button {
+    background-color: #f44336; /* Red background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 4px 8px; /* Padding for size */
+    font-size: 14px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    margin: 0;
+}
+
+.remove-sample-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+.remove-sample-button:active {
+    background-color: #b71c1c; /* Even darker red on click */
+}
+
+.remove-sample-button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 5px rgba(244, 67, 54, 0.8); /* Add a glow effect */
+}
+

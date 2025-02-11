@@ -8,12 +8,68 @@
     <link rel="stylesheet" href="styles/02_top-toolbar.css">
     <link rel="stylesheet" href="styles/01_search-bar.css">
 </head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
 <body>
     <header>
         <a href="index.html" id="logo">Alpha-Ionix</a>
         <nav>
             <ul>
-                <li><a href="test-codes.html">Create New Analysis</a></li>
+                <!-- Login Dropdown -->
+                <li><a href="#" id="login-btn">Login</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="sample-login.html">Sample Login</a></li>
+                    </ul>
+                </li>
+
+                <!-- Analysis Dropdown -->
+                <li><a href="#" id="login-btn">Analysis</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="batches.html">Batches</a></li>
+                        <li><a href="samples.html">Samples</a></li>
+                        <li><a href="workorders.html">Workorders</a></li>
+                    </ul>
+                </li>
+
+                <!-- Attributes Dropdown -->
+                <li><a href="#" id="login-btn">Sample Attributes</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
+                        <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
+                        <li><a href="hold-time.html">Hold Times</a></li>
+                        <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
+                        <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Clients Dropdown -->
+                <li><a href="#" id="clients-btn">Clients</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="client-by-name.html">Client by Name</a></li>
+                        <li><a href="client-by-site.html">Client by Site</a></li>
+                        <li><a href="client-profile.html">Client Profiles</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Users Dropdown -->
+                <li><a href="#" id="settings-btn">Settings</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="account-settings.html">Account Settings</a></li>
+                        <li><a href="app-settings.html">Application Settings</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>
@@ -32,15 +88,23 @@
     </aside>
 
     <main>
-        <h2>Test Codes</h2>
-
+        <h2>
+            <span>Test Codes</span>
+            <div class="button-container">
+            <button id="inactive-test-code">Inactive Test Codes</button>
+            <button id="create-test-code">New Test Code</button>
+            </div>
+        </h2>
+        
         <section id="test-code-container">
             <table id="test-code-table">
                 <thead>
                     <tr>
-                        <th>Analysis ID</th>
+                        <th>Test Code ID</th>
+                        <th>Analysis Name</th>
                         <th>Number of Analytes</th>
                         <th>Preservation Requirements</th>
+                        <th>Associated QC</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -57,8 +121,8 @@
             <h3>Edit Test Code</h3>
             <label for="edit-analysis-name">Analysis Name:</label>
             <input type="text" id="edit-analysis-name">
-            <label for="edit-test-code-id">Test Code ID:</label>
-            <input type="text" id="edit-test-code-id">
+            <label for="edit-reference-method">Reference Method:</label>
+            <input type="text" id="edit-reference-method">
 
             <label for="edit-preservation">Preservation Requirements:</label>
             <input type="text" id="edit-preservation">
@@ -77,8 +141,8 @@
             <h3>Copy Test Code</h3>
             <label for="copy-analysis-name">Analysis Name:</label>
             <input type="text" id="copy-analysis-name" placeholder="Enter new analysis name">
-            <label for="copy-test-code-id">Test Code ID:</label>
-            <input type="text" id="copy-test-code-id" placeholder="Enter new test code ID">
+            <label for="copy-reference-method">Reference Method:</label>
+            <input type="text" id="copy-reference-method" placeholder="Enter reference method">
 
             <button id="save-copy">Save Copy</button>
             <button id="cancel-copy">Cancel</button>

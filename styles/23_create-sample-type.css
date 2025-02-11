@@ -34,6 +34,9 @@ main {
 
 /* Title styling */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #FFD700;
@@ -47,6 +50,7 @@ h2 {
 #overview-container h3 {
     color: white;
     font-size: 1.6rem;
+    margin-top: 5px;
     margin-bottom: 15px;
 }
 
@@ -59,11 +63,12 @@ h2 {
     background-color: #333;
     color: #FFD700;
     border-radius: 10px;
+    font-weight: bold;
 }
 
 #overview-container input {
     width: 20%;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #FFD700;
     background-color: #333;
     color: white;
@@ -89,4 +94,57 @@ button {
 button:hover {
     background-color: #FFB800;
     border-color: #FFD700;
+}
+
+#sample-types {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#sample-types:hover {
+    background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
+}
+
+#accuracy-precision-container {
+    width: auto;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #FFD700;
+    background-color: #333;
+    color: #FFD700;
+    border-radius: 10px;
+}
+
+#accuracy-precision-container h3 {
+    color: white;
+    font-size: 1.6rem;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/* Checkbox styling in form */
+#accuracy-precision-container .input-group {
+    margin-bottom: 10px;
+    color: #FFD700;
+}
+
+#accuracy-precision-container .input-group label {
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#accuracy-precision-container .input-group input[type="checkbox"] {
+    transform: scale(1.2); /* Make checkboxes slightly larger */
+    accent-color: #FFD700; /* Checkbox color */
 }

@@ -34,6 +34,9 @@ main {
 
 /* Section heading */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #FFD700; /* Dark gray */
@@ -122,7 +125,7 @@ h2 {
 
 #analysis-details-table td {
     background-color: #333;
-    color: #ffd700;
+    color: white;
 }
 
 #analysis-details-table td a {
@@ -174,8 +177,8 @@ h2 {
 .details-table th {
     width: 35%;
     text-align: center;
-    background-color: #333;
-    color: #ffb900;
+    background-color: #396ea7;
+    color: white;
     font-weight: bold;
 }
 
@@ -187,7 +190,7 @@ h2 {
 }
 
 .sample-status-table {
-    width: 25%;
+    width: 32.5%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
@@ -200,21 +203,15 @@ h2 {
 }
 
 .sample-status-table th {
-    width: 30%;
+    width: 32.5%;
     text-align: center;
     background-color: #ffb900;
     color: #333;
     font-weight: bold;
 }
 
-.sample-status-table td {
-    width: 45%;
-    background-color: #333;
-    color: white;
-    font-weight: bold;
-}
-
 #sample-status {
+    width: 60%;
     font-size: 1.0rem;
     text-align: center; /* Center the text */
     background-color: #333; /* Optional: Light background color */
@@ -222,3 +219,13 @@ h2 {
     color: white; /* Optional: Text color */
 }
 
+.sample-link {
+    color: #83a6e7; /* Light blue color for links */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+}
+
+.sample-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+    color: #0056b3; /* Darker blue on hover */
+}

@@ -34,6 +34,9 @@ main {
 
 /* Title styling */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #FFD700;
@@ -59,7 +62,7 @@ h2 {
 /* Section title styling */
 #overview-container h3, #analyte-container h3, #quality-control-container h3 {
     color: #ffd700;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -67,6 +70,7 @@ h2 {
 #overview-container label {
     font-weight: bold;
     color: #FFD700;
+    margin-top: 15px;
     margin-bottom: 5px;
     display: block;
 }
@@ -74,7 +78,7 @@ h2 {
 /* Input fields styling (for both Overview and Analyte containers) */
 #overview-container input {
     width: 30%;
-    padding: 4px;
+    padding: 8px;
     border: 1px solid #FFD700; /* Yellow border */
     background-color: #333; /* Dark background */
     color: white; /* White text */
@@ -119,7 +123,7 @@ h2 {
     margin-top: 0;
     margin-bottom: 2px;
     background-color: #333;
-    color: #FFD700;
+    color: white;
     table-layout: auto;
 }
 
@@ -183,17 +187,6 @@ h2 {
     background-color: #FFD700;
 }
 
-/* Add and remove analyte row button */
-#add-analyte-row {
-    background-color: #FFD700;
-    color: black;
-    padding: 10px 20px;
-    border: 1px solid #FFD700;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
 #add-qc-row {
     background-color: #FFD700;
     color: black;
@@ -202,10 +195,6 @@ h2 {
     border-radius: 8px;
     cursor: pointer;
     margin-top: 10px;
-}
-
-#add-analyte-row:hover {
-    background-color: #FFB800;
 }
 
 #add-qc-row:hover {
@@ -251,6 +240,7 @@ button:hover {
     color: #FFD700;
     cursor: pointer;
     margin-right: 5px;
+    font-weight: bold;
 }
 
 /* Active Tab */
@@ -315,15 +305,15 @@ select[name="associated-analyte[]"] {
 #qc-sample-type-dropdown:focus {
     outline: none;
     border-color: #FFB800; /* Slightly brighter yellow */
-    background-color: white; /* Slightly brighter background */
+    background-color: #333; /* Slightly brighter background */
 }
 
 /* Dynamic QC Tabs */
 #tabs .tab-button {
-    padding: 10px 20px;
+    padding: 8px 12px;
     border: 1px solid #FFD700;
-    background-color: #333; /* Dark background */
-    color: #FFD700; /* Yellow text */
+    background-color: rgb(62, 88, 206); /* Dark background */
+    color: white; /* Yellow text */
     cursor: pointer;
     margin-right: 5px;
     font-size: 1rem;
@@ -332,8 +322,8 @@ select[name="associated-analyte[]"] {
 }
 
 #tabs .tab-button.active {
-    background-color: #FFD700; /* Active tab matches theme */
-    color: #333; /* Text in dark color */
+    background-color: white; /* Active tab matches theme */
+    color: rgb(62, 88, 206); /* Text in dark color */
 }
 
 /* Dynamic Tab Sections */
@@ -357,7 +347,7 @@ select[name="associated-analyte[]"] {
     border-collapse: collapse;
     margin-top: 10px;
     background-color: #333; /* Matches overall design */
-    color: #FFD700;
+    color: white;
     font-size: 1rem;
 }
 
@@ -369,7 +359,7 @@ select[name="associated-analyte[]"] {
 }
 
 .tab table th {
-    background-color: #555; /* Slightly darker than table rows */
+    background-color: #777; /* Slightly darker than table rows */
     color: white;
 }
 
@@ -400,6 +390,13 @@ select[name="associated-analyte[]"] {
     margin-bottom: 0;
 }
 
+#tabs-container h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+}
+
 /* Tabs Container */
 #tabs {
     display: flex;
@@ -421,6 +418,12 @@ select[name="associated-analyte[]"] {
     border-radius: 5px 5px 0 0; /* Rounded corners at the top */
 }
 
+#tab-content h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* QC Dropdown and Button Controls */
 #qc-controls {
     display: flex;
@@ -433,8 +436,8 @@ select[name="associated-analyte[]"] {
     width: 250px;
     padding: 8px;
     border: 1px solid #FFD700;
-    background-color: white;
-    color: black;
+    background-color: #333;
+    color: white;
     border-radius: 5px;
     font-family: 'Libre Baskerville', serif;
     font-size: 1rem;
@@ -442,7 +445,7 @@ select[name="associated-analyte[]"] {
 
 /* Button Styling for Add QC */
 #add-qc {
-    background-color: rgb(67, 107, 182);
+    background-color: rgb(62, 88, 206);
     color: white;
     padding: 9px 18px;
     margin-bottom: 16px;
@@ -454,6 +457,123 @@ select[name="associated-analyte[]"] {
 }
 
 #add-qc:hover {
-    background-color: #FFB800;
+    background-color: rgb(74, 104, 235);
+    color: white;
+}
+
+#back-to-test-code-table {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#back-to-test-code-table:hover {
+    background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
+}
+
+#create-test-code {
+    background-color: green;
+    color: white;
+    padding: 9px 18px;
+    margin-bottom: 16px;
+    border: 1px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Libre Baskerville', serif;
+}
+
+#create-test-code:hover {
+    background-color: rgb(18, 236, 18);
+    color: white;
+}
+
+#add-analyte-row {
+    background-color: #ffd700;
     color: black;
+    padding: 9px 18px;
+    margin-bottom: 16px;
+    border: 1px solid white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Libre Baskerville', serif;
+}
+
+#add-analyte-row:hover {
+    background-color: #ffb800;
+    color: black;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #333;
+    color: #FFD700;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #FFD700;
+    text-align: center;
+}
+
+table th {
+    background-color: #777;
+    color: white;
+}
+
+table input[type="number"] {
+    width: 90%;
+    padding: 5px;
+    border: 1px solid #FFD700;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.remove-tab {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: red;
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.remove-tab:hover {
+    background-color: rgb(204, 93, 93); /* Optional hover effect for complete review button */
+}
+
+.readonly-text {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #333;
+    color: white;
+    font-size: 1.0rem;
+    margin-bottom: 10px;
+}
+
+#test-code-id {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #333;
+    color: rgb(131, 166, 231);
+    font-size: 1.0rem;
+    margin-bottom: 10px;
 }

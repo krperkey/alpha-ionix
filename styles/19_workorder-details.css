@@ -34,10 +34,15 @@ main {
 
 /* Section heading */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #FFD700;
-    margin-top: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
     margin-bottom: 1px;
     text-transform: uppercase;
     border-bottom: 2px solid #FFD700;
@@ -47,8 +52,8 @@ h2 {
 /* Workorder Info */
 #workorder-info {
     margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
     background-color: #333;
     color: #FFD700;
     padding: 15px;
@@ -71,10 +76,11 @@ h2 {
 
 /* Table styling */
 table {
-    width: 97.85%;
+    width: 99.8%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
     background-color: #333;
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -147,19 +153,20 @@ a:hover {
 /* Dropdown styling */
 .dropdown {
     position: relative; /* Keep dropdown positioned relative to its container */
-    z-index: 1;
 }
 
 .dropdown-button {
-    background-color: #007BFF;
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(62, 88, 206);
     color: white;
-    padding: 10px 15px;
-    font-size: 16px;
+    padding: 10px 20px; /* Adjust padding for button appearance */
     border: none;
-    border-radius: 5px;
-    margin-right: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    z-index: -1;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
 }
 
 .dropdown-content {
@@ -168,7 +175,6 @@ a:hover {
     right: 0;
     background-color: white;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
     border-radius: 5px;
     overflow: hidden;
 }

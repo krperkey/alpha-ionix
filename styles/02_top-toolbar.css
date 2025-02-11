@@ -13,6 +13,21 @@ body {
     height: auto; /* Adjust height as needed */
 }
 
+#disclaimer {
+    background-color: #333;
+    color: red;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid #ffd700;
+}
+
+
 #toolbar {
     width: 100%; /* Make the toolbar span the full width of the screen */
     background-color: #ffd700; /* Dark background for the toolbar */
@@ -78,9 +93,16 @@ header {
 
 /* TOOLBAR & LOGO */
 #logo {
-    font-size: 25px; /* Adjusted font size for Alpha-Ionix */
-    color: #FFd700; /* Yellow text */
+    font-size: 1.8rem; /* Adjusted font size for Alpha-Ionix */
+    color: white; /* Yellow text */
     text-decoration: none;
+}
+
+header a#logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
 }
 
 nav {
@@ -102,7 +124,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #ffd700;
+    color: white;
     text-decoration: none;
     padding: 10px;
     display: block;
@@ -126,6 +148,7 @@ nav ul li a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     display: none;
     width: auto;
+    z-index: 10;
 }
 
 /* Hide the dropdown menu by default */

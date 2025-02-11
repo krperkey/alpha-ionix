@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condition Codes</title>
+    <link rel="stylesheet" href="styles/32_condition-codes.css">
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
+</head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
+<body>
+    <header>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <nav>
+            <ul>
+                <!-- Login Dropdown -->
+                <li><a href="#" id="login-btn">Login</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="sample-login.html">Sample Login</a></li>
+                    </ul>
+                </li>
+
+                <!-- Analysis Dropdown -->
+                <li><a href="#" id="login-btn">Analysis</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="batches.html">Batches</a></li>
+                        <li><a href="samples.html">Samples</a></li>
+                        <li><a href="workorders.html">Workorders</a></li>
+                    </ul>
+                </li>
+
+                <!-- Attributes Dropdown -->
+                <li><a href="#" id="login-btn">Sample Attributes</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
+                        <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
+                        <li><a href="hold-time.html">Hold Times</a></li>
+                        <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
+                        <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Clients Dropdown -->
+                <li><a href="#" id="clients-btn">Clients</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="client-by-name.html">Client by Name</a></li>
+                        <li><a href="client-by-site.html">Client by Site</a></li>
+                        <li><a href="client-profile.html">Client Profiles</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Users Dropdown -->
+                <li><a href="#" id="settings-btn">Settings</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="account-settings.html">Account Settings</a></li>
+                        <li><a href="app-settings.html">Application Settings</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <main>
+        <h2>Condition Codes
+            <button id="new-condition-code">New Condition Code</button>
+        </h2>
+
+        <section id="condition-code-container">
+            <table id="condition-code-table">
+                <thead>
+                    <tr>
+                        <th>Condition Code</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows will be dynamically populated -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Edit Form Modal (hidden by default) -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <h3>Edit Condition Code</h3>
+            <label for="edit-condition-code">Hold Time:</label>
+            <input type="text" id="edit-condition-code">
+            <label for="edit-description">Description:</label>
+            <input type="text" id="edit-description">
+
+            <button id="save-edit">Save</button>
+            <button id="cancel-edit">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const conditionCodes = JSON.parse(localStorage.getItem('conditionCodes')) || [];
+
+            const tableBody = document.querySelector("#condition-code-table tbody");
+
+            if (conditionCodes.length === 0) {
+                const noDataRow = document.createElement("tr");
+                noDataRow.innerHTML = `<td colspan="5">No condition codes available. Create a new one!</td>`;
+                tableBody.appendChild(noDataRow);
+            } else {
+                conditionCodes.forEach((conditionCodes, index) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${conditionCodes.conditionCode}</td>
+                        <td>${conditionCodes.description}</td>
+                        <td>
+                            <button class="edit-btn" data-index="${index}">Edit</button>
+                            <button class="remove-btn" data-index="${index}">Remove</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+
+                document.querySelectorAll('.remove-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const index = this.dataset.index;
+                        conditionCodes.splice(index, 1);
+                        localStorage.setItem('conditionCodes', JSON.stringify(conditionCodes));
+                        location.reload();
+                    });
+                });
+
+                document.querySelectorAll('.edit-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const index = this.dataset.index;
+                        const conditionCode = conditionCodes[index];
+
+                        document.getElementById('edit-condition-code').value = conditionCode.conditionCode;
+                        document.getElementById('edit-description').value = conditionCode.description;
+
+                        document.getElementById('edit-modal').style.display = 'block';
+
+                        document.getElementById('save-edit').addEventListener('click', function () {
+                            conditionCode.conditionCode = document.getElementById('edit-condition-code').value;
+                            conditionCode.description = document.getElementById('edit-description').value;
+
+                            conditionCodes[index] = conditionCode;
+                            localStorage.setItem('conditionCodes', JSON.stringify(conditionCodes));
+                            location.reload();
+                        });
+
+                        document.getElementById('cancel-edit').addEventListener('click', function () {
+                            document.getElementById('edit-modal').style.display = 'none';
+                        });
+                    });
+                });
+            }
+        };
+
+        document.getElementById('new-condition-code').addEventListener('click', function() {
+        window.location.href = 'create-condition-code.html';
+    });
+    </script>
+</body>
+</html>

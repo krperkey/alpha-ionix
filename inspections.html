@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspection Checklists</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #005b96;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 1rem;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #005b96;
+        }
+        .checklist {
+            margin-bottom: 2rem;
+        }
+        .checklist input {
+            margin-right: 10px;
+        }
+        .submit-button {
+            display: block;
+            margin: 1rem 0;
+            padding: 10px 20px;
+            background-color: #005b96;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #004070;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+    <script>
+        function logInspection(section) {
+            const allCheckboxes = document.querySelectorAll(`#${section} input[type='checkbox']`);
+            const allChecked = Array.from(allCheckboxes).every(checkbox => checkbox.checked);
+
+            if (allChecked) {
+                const now = new Date();
+                const logEntry = `${section} inspection completed on ${now.toLocaleDateString()} at ${now.toLocaleTimeString()}\n`;
+
+                // Send the log to the inspection log page (mock example using localStorage for simplicity)
+                let logData = localStorage.getItem('inspectionLogs') || '';
+                logData += logEntry;
+                localStorage.setItem('inspectionLogs', logData);
+
+                alert(`Inspection for ${section} logged successfully.`);
+                allCheckboxes.forEach(checkbox => checkbox.checked = false); // Reset checkboxes
+            } else {
+                alert('Please complete all checklist items before submitting.');
+            }
+        }
+    </script>
+</head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
+<body>
+    <header>
+        <h1>Inspection Checklists</h1>
+        <p>Complete and log your inspections.</p>
+    </header>
+
+    <div class="container">
+        <div id="hazardous-waste" class="checklist">
+            <h2>Hazardous Waste Central Accumulation Inspections</h2>
+            <label><input type="checkbox"> Inspect container condition</label><br>
+            <label><input type="checkbox"> Verify proper labeling and marking</label><br>
+            <button class="submit-button" onclick="logInspection('hazardous-waste')">Submit</button>
+        </div>
+
+        <div id="satellite-area" class="checklist">
+            <h2>Satellite Area Accumulation Inspections</h2>
+            <label><input type="checkbox"> Check container integrity</label><br>
+            <label><input type="checkbox"> Confirm proper labeling</label><br>
+            <button class="submit-button" onclick="logInspection('satellite-area')">Submit</button>
+        </div>
+
+        <div id="spcc" class="checklist">
+            <h2>SPCC Inspections (State of Georgia)</h2>
+            <label><input type="checkbox"> Inspect secondary containment</label><br>
+            <label><input type="checkbox"> Examine oil storage tanks</label><br>
+            <button class="submit-button" onclick="logInspection('spcc')">Submit</button>
+        </div>
+
+        <div id="eye-wash" class="checklist">
+            <h2>Eye Wash and Shower Stations</h2>
+            <label><input type="checkbox"> Perform flow testing</label><br>
+            <label><input type="checkbox"> Ensure accessibility and signage</label><br>
+            <button class="submit-button" onclick="logInspection('eye-wash')">Submit</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Compliance Management. All rights reserved.</p>
+    </footer>
+</body>
+</html>

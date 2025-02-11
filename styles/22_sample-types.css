@@ -34,6 +34,9 @@ main {
 
 /* Title styling */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #FFD700;
@@ -60,7 +63,7 @@ h2 {
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #333;
-    color: #FFD700;
+    color: white;
 }
 
 #sample-types-table th,
@@ -71,8 +74,8 @@ h2 {
 }
 
 #sample-types-table th {
-    background-color: #777;
-    color: white;
+    background-color: #666;
+    color: #ffd700;
 }
 
 /* Fixed column widths */
@@ -98,11 +101,16 @@ h2 {
 
 #sample-types-table th:nth-child(5),
 #sample-types-table td:nth-child(5) {
-    width: 55%; /* Description */
+    width: 45%; /* Description */
 }
 
 #sample-types-table th:nth-child(6),
 #sample-types-table td:nth-child(6) {
+    width: 10%; /* Actions */
+}
+
+#sample-types-table th:nth-child(7),
+#sample-types-table td:nth-child(7) {
     width: 13%; /* Actions */
 }
 
@@ -149,6 +157,25 @@ button:hover {
     color: white;
     font-size: 1.6rem;
     margin-bottom: 15px;
+}
+
+/* Checkbox styling in modal */
+.modal-content .input-group {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #FFD700;
+}
+
+.modal-content .input-group label {
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.modal-content .input-group input[type="checkbox"] {
+    transform: scale(1.2); /* Make checkboxes slightly larger */
+    accent-color: #FFD700; /* Checkbox color */
 }
 
 .modal-content input {
@@ -205,4 +232,22 @@ button:hover {
 
 #cancel-edit:hover {
     background-color: #CC0000;
+}
+
+#new-sample-type {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#new-sample-type:hover {
+    background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
 }

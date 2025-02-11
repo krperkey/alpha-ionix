@@ -34,6 +34,9 @@ main {
 
 /* Title styling */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #FFD700;
@@ -89,4 +92,22 @@ button {
 button:hover {
     background-color: #FFB800;
     border-color: #FFD700;
+}
+
+#hold-times {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#hold-times:hover {
+    background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
 }

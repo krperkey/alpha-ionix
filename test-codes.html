@@ -8,12 +8,68 @@
     <link rel="stylesheet" href="styles/02_top-toolbar.css">
     <link rel="stylesheet" href="styles/01_search-bar.css">
 </head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
 <body>
     <header>
         <a href="index.html" id="logo">Alpha-Ionix</a>
         <nav>
             <ul>
-                <li><a href="test-code-table.html">Test Codes</a></li>
+                <!-- Login Dropdown -->
+                <li><a href="#" id="login-btn">Login</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="sample-login.html">Sample Login</a></li>
+                    </ul>
+                </li>
+
+                <!-- Analysis Dropdown -->
+                <li><a href="#" id="login-btn">Analysis</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="batches.html">Batches</a></li>
+                        <li><a href="samples.html">Samples</a></li>
+                        <li><a href="workorders.html">Workorders</a></li>
+                    </ul>
+                </li>
+
+                <!-- Attributes Dropdown -->
+                <li><a href="#" id="login-btn">Sample Attributes</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
+                        <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
+                        <li><a href="hold-time.html">Hold Times</a></li>
+                        <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
+                        <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Clients Dropdown -->
+                <li><a href="#" id="clients-btn">Clients</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="client-by-name.html">Client by Name</a></li>
+                        <li><a href="client-by-site.html">Client by Site</a></li>
+                        <li><a href="client-profile.html">Client Profiles</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Users Dropdown -->
+                <li><a href="#" id="settings-btn">Settings</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="account-settings.html">Account Settings</a></li>
+                        <li><a href="app-settings.html">Application Settings</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>
@@ -32,7 +88,9 @@
     </aside>
 
     <main>
-        <h2>Create Test Codes</h2>
+        <h2>Create Test Codes
+            <button id="back-to-test-code-table">Back to Test Codes</button>
+        </h2>
 
         <!-- Overview Container -->
         <section id="overview-container">
@@ -41,8 +99,8 @@
                 <input type="text" id="analysis-name" placeholder="Enter the analysis name">
             </div>
             <div class="input-group">
-                <label for="test-code-id">Test Code ID:</label>
-                <input type="text" id="test-code-id" placeholder="Enter the test code ID">
+                <label for="reference-method">Reference Method:</label>
+                <input type="text" id="reference-method" placeholder="Enter the reference method">
             </div>
             <div class="input-group">
                 <label for="preservation-requirements">Preservation Requirements:</label>
@@ -50,15 +108,16 @@
             </div>
         </section>
 
+        <div id="qc-controls">
+            <select id="qc-sample-type-dropdown">
+                <option value="">Add QC Sample Type</option>
+            </select>
+            <button id="add-qc">Add QC</button>
+        </div>
+
         <div id="tabs-container">
             <div id="tabs">
                 <button class="tab-button active" data-tab="analyte">Analytes</button>
-            </div>
-            <div id="qc-controls">
-                <select id="qc-sample-type-dropdown">
-                    <option value="">Select QC Sample Type</option>
-                </select>
-                <button id="add-qc">Add QC</button>
             </div>
         </div>
         <div id="tab-content">
@@ -70,8 +129,6 @@
                         <tr>
                             <th>Analyte Name</th>
                             <th>Units</th>
-                            <th>MDL</th>
-                            <th>LOQ</th>
                             <th>Initial Volume</th>
                             <th>Final Volume</th>
                             <th>Hold Time</th>
@@ -89,7 +146,7 @@
          
 
         <div id="save-controls">
-            <button id="create-test-code">Create Test Code</button>
+            <button id="create-test-code">Save</button>
         </div>
         
     </main>

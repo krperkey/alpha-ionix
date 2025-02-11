@@ -20,6 +20,7 @@ function createRows() {
     const sampleTypes = JSON.parse(localStorage.getItem("sampleTypes")) || [];
     const containerTypes = JSON.parse(localStorage.getItem("containers")) || [];
     const matrixTypes = JSON.parse(localStorage.getItem("matrixTypes")) || [];
+    const holdTimes = JSON.parse(localStorage.getItem("holdTimes")) || [];
 
     // Generate options for Sample Type based on the 4th column (Sample Type Name Abbreviation)
     const sampleTypeOptionsHTML = sampleTypes
@@ -29,6 +30,11 @@ function createRows() {
     // Generate options for Matrix based on the 3rd column (Matrix Name)
     const matrixOptionsHTML = matrixTypes
         .map(matrix => `<option value="${matrix.name}">${matrix.name}</option>`)
+        .join("");
+
+    // Generate options for the Hold Time dropdown
+    const holdTimeOptionsHTML = holdTimes
+        .map(holdTime => `<option value="${holdTime.holdTime}">${holdTime.holdTime}</option>`)
         .join("");
 
     // Group container volumes and units by container type
@@ -123,9 +129,14 @@ function createRows() {
                 </select>`;
             row.appendChild(matrixCell);
 
-            // Collect Date and Time
-            row.appendChild(createInputCell('collect-date', 'date'));
-            row.appendChild(createInputCell('collect-time', 'time'));
+            // Collect Date and Time Inputs
+            const collectDateCell = document.createElement('td');
+            collectDateCell.innerHTML = `<input type="date" id="collect-date-${i}">`;
+            row.appendChild(collectDateCell);
+
+            const collectTimeCell = document.createElement('td');
+            collectTimeCell.innerHTML = `<input type="time" id="collect-time-${i}">`;
+            row.appendChild(collectTimeCell);
 
             // Analysis Dropdown
             const analysisCell = document.createElement('td');
@@ -145,9 +156,26 @@ function createRows() {
             analyteListCell.appendChild(analyteListButton);
             row.appendChild(analyteListCell);
 
+            // Hold Time Dropdown
+            const holdTimeCell = document.createElement('td');
+            holdTimeCell.innerHTML = `
+                <select id="hold-time-${i}">
+                    <option value="" disabled selected>Select Hold Time</option>
+                    ${holdTimeOptionsHTML}
+                </select>`;
+            row.appendChild(holdTimeCell);
+
+            // Due Date Display
+            const dueDateCell = document.createElement('td');
+            dueDateCell.innerHTML = `<input type="text" id="due-date-${i}" readonly>`;
+            row.appendChild(dueDateCell);
+
+            // Attach event listener to calculate Due Date
+            row.querySelector(`#hold-time-${i}`).addEventListener('change', () => calculateDueDate(i));
+            row.querySelector(`#collect-date-${i}`).addEventListener('input', () => calculateDueDate(i));
+            row.querySelector(`#collect-time-${i}`).addEventListener('input', () => calculateDueDate(i));
+
             // Remaining cells
-            row.appendChild(createInputCell('hold-time'));
-            row.appendChild(createInputCell('due-date', 'date'));
             row.appendChild(createInputCell('sample-description'));
 
             // Append the new row to the table body
@@ -156,6 +184,41 @@ function createRows() {
     } else {
         alert('Please enter a valid number of rows greater than 0.');
     }
+
+    function calculateDueDate(rowIndex) {
+        const collectDate = document.getElementById(`collect-date-${rowIndex}`).value;
+        const collectTime = document.getElementById(`collect-time-${rowIndex}`).value;
+        const holdTime = document.getElementById(`hold-time-${rowIndex}`).value;
+        const dueDateInput = document.getElementById(`due-date-${rowIndex}`);
+    
+        if (collectDate && holdTime) {
+            const [amount, unit] = holdTime.split(' '); // Extract the numeric amount and unit (e.g., 30 Days)
+            const collectDateTime = new Date(`${collectDate}T${collectTime || '00:00'}`); // Default to 00:00 if time is not provided
+    
+            switch (unit.toLowerCase()) {
+                case 'hours':
+                    collectDateTime.setHours(collectDateTime.getHours() + parseInt(amount, 10));
+                    break;
+                case 'days':
+                    collectDateTime.setDate(collectDateTime.getDate() + parseInt(amount, 10));
+                    break;
+                case 'months':
+                    collectDateTime.setMonth(collectDateTime.getMonth() + parseInt(amount, 10));
+                    break;
+                default:
+                    alert(`Unsupported hold time unit: ${unit}`);
+                    dueDateInput.value = ''; // Clear the due date for unsupported units
+                    return;
+            }
+    
+            // Format Due Date and Time
+            const formattedDate = collectDateTime.toISOString().split('T')[0]; // yyyy-mm-dd
+            const formattedTime = collectDateTime.toTimeString().split(' ')[0].slice(0, 5); // HH:mm
+            dueDateInput.value = `${formattedDate} ${formattedTime}`; // Set the due date
+        } else {
+            dueDateInput.value = ''; // Clear the due date if inputs are incomplete
+        }
+    }    
 
     // Update the Sample Amount dropdown when a Container Type is selected
     window.updateSampleAmountDropdown = (dropdown, rowIndex) => {
@@ -170,9 +233,6 @@ function createRows() {
         `;
     };
 }
-
-// Store selected analytes for each row
-const selectedAnalytes = {};
 
 // Handle "Clear All" button click
 document.getElementById('clear-all').addEventListener('click', function () {
@@ -199,6 +259,9 @@ document.getElementById('save-analytes').addEventListener('click', function () {
     // Remove the alert() to prevent the pop-up
     document.getElementById('analyte-modal').style.display = 'none';
 });
+
+// Store selected analytes for each row
+const selectedAnalytes = {};
 
 // Show the modal with default or updated selections
 document.getElementById('table-body').addEventListener('click', function (event) {
@@ -314,10 +377,16 @@ function generateSampleIDs() {
         };
 
         const tableRows = document.querySelectorAll('#table-body tr');
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0'); // Ensure 2-digit day
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // Ensure 2-digit month
+        const year = today.getFullYear();
+        const hours = String(today.getHours()).padStart(2, '0'); // Ensure 2-digit hours
+        const minutes = String(today.getMinutes()).padStart(2, '0'); // Ensure 2-digit minutes
         let sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
 
         tableRows.forEach((row, index) => {
-            const sampleID = `SMP-${Date.now()}-${index + 1}`;
+            const sampleID = `SMP${month}${day}${year}${hours}${minutes}-${String(index + 1).padStart(3, '0')}`;
             row.dataset.sampleId = sampleID;
 
             const analytes = tempAnalyteSelections[index + 1] || []; // Retrieve temporary analytes for the row
@@ -333,7 +402,7 @@ function generateSampleIDs() {
                 timeReceived: workorderData.timeReceived,
                 carrier: workorderData.carrier,
                 trackingNumber: workorderData.trackingNumber,
-                collectDate: row.querySelector('#collect-date')?.value || "N/A",
+                collectDate: row.querySelector(`#collect-date-${index + 1}`)?.value || "N/A",
                 analysis: row.querySelector('#analysis')?.value || "N/A",
                 sampleType: row.querySelector('select#sample-type')?.value || "N/A",
                 containerType: row.querySelector(`select#container-type-${index + 1}`)?.value || "N/A",
@@ -341,8 +410,8 @@ function generateSampleIDs() {
                 temperature: row.querySelector('input#temperature')?.value || "N/A",
                 ph: row.querySelector(`input#ph-${index + 1}`)?.value || "N/A",
                 matrix: row.querySelector(`select#matrix-${index + 1}`)?.value || "N/A",
-                holdTime: row.querySelector('#hold-time')?.value || "N/A",
-                dueDate: row.querySelector('#due-date')?.value || "N/A",
+                holdTime: row.querySelector(`select#hold-time-${index + 1}`)?.value || "N/A",
+                dueDate: row.querySelector(`#due-date-${index + 1}`)?.value || "N/A", // Fix selector
                 sampleDescription: row.querySelector('#sample-description')?.value || "N/A",
                 analytes: analytes // Add analytes for this sample
             };

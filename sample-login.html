@@ -9,8 +9,12 @@
     <link rel="stylesheet" href="styles/02_top-toolbar.css">
     <link rel="stylesheet" href="styles/01_search-bar.css">
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
 <body>
     <header>
         <a href="index.html" id="logo">Alpha-Ionix</a>
@@ -36,11 +40,17 @@
                 <!-- Attributes Dropdown -->
                 <li><a href="#" id="login-btn">Sample Attributes</a>
                     <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
                         <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
                         <li><a href="hold-time.html">Hold Times</a></li>
                         <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
                         <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
                         <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
                     </ul>
                 </li>
 
@@ -60,6 +70,7 @@
                         <li><a href="app-settings.html">Application Settings</a></li>
                         <li><a href="users.html">Users</a></li>
                         <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
                     </ul>
                 </li>
             </ul>
@@ -138,12 +149,18 @@
                 <h3>Sample Properties</h3>
                 <table>
                     <thead>
+                    </thead>
                     <tbody>
                       <tr> 
-                        <td id="sample-cell"><label for="num-rows">Samples:</label></td>
-                        <td><input type="number" id="num-rows" step="1" min="1" max="99"></td>
-                      </tr>   
+                        <td span id="samplenum" colspan='2'>Number of Samples:</td>
+                        <td span id="numrow" colspan='1'><input type="number" id="num-rows" placeholder="Enter # of samples" step="1" min="1" max="99"></td>
+                        <td span id="directions" colspan='11'>Type the number of samples to log in, then press 'Enter'. Fill out the sample information as needed and click 'Login' to create a workorder. Tip: Use 'ctrl + D' to fill down repeating information.</td>
+                      </tr>
+                      <tr> 
+                        <td span id="emptyspace" colspan='0'></td>
+                      </tr>    
                     </tbody>
+                    <thead>
                         <tr>
                             <th>#</th>
                             <th>Sample Type</th>
@@ -157,7 +174,7 @@
                             <th>Analysis</th>
                             <th>Analyte List</th>
                             <th>Hold Time</th>
-                            <th>Due Date</th>
+                            <th>Due Date & Time</th>
                             <th>Sample Comments</th>
                         </tr>
                     </thead>
@@ -168,16 +185,8 @@
                             <td><input type="text" id="container-type" ></td>
                             <td><input type="number" id="sample-amount" ></td>
                             <td><input type="number" id="temperature" step="0.1" ></td>
-                            <td><input type="number" id="ph" step="0.01" min="0" max="14" ></td>
-                            <td>
-                                <select id="matrix" >
-                                    <option value="" disabled selected>Select Matrix</option>
-                                    <option value="Water">Water</option>
-                                    <option value="Oil">Oil</option>
-                                    <option value="Soil">Soil</option>
-                                    <option value="Solid">Solid</option>
-                                </select>
-                            </td>
+                            <td><input type="text" id="ph" step="0.01" min="0" max="14" ></td>
+                            <td><input type="text" id="matrix" ></td>
                             <td><input type="date" id="collect-date" ></td>
                             <td><input type="time" id="collect-time" ></td>
                             <td><input type="text" id="analysis" ></td>

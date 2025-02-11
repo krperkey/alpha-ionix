@@ -34,6 +34,9 @@ main {
 
 /* Title styling */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #FFD700;
@@ -60,7 +63,7 @@ h2 {
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #333;
-    color: #FFD700;
+    color: white;
 }
 
 #matrix-types-table th,
@@ -205,4 +208,22 @@ button:hover {
 
 #cancel-edit:hover {
     background-color: #CC0000;
+}
+
+#new-matrix-type {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#new-matrix-type:hover {
+    background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
 }

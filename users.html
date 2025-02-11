@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="styles/02_top-toolbar.css">
     <link rel="stylesheet" href="styles/01_search-bar.css">
 </head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
 <body>
     <header>
         <a href="index.html" id="logo">Alpha-Ionix</a>
@@ -33,11 +38,17 @@
                 <!-- Attributes Dropdown -->
                 <li><a href="#" id="login-btn">Sample Attributes</a>
                     <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
                         <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
                         <li><a href="hold-time.html">Hold Times</a></li>
                         <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
                         <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
                         <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
                     </ul>
                 </li>
 
@@ -57,6 +68,7 @@
                         <li><a href="app-settings.html">Application Settings</a></li>
                         <li><a href="users.html">Users</a></li>
                         <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
                     </ul>
                 </li>
             </ul>
@@ -76,12 +88,11 @@
 </div>
     </aside>
 
-    <div class="header-container">
-        <h2>USER MANAGEMENT</h2>
-        <button id="create-user-button">Create New User</button>
-    </div>
-    
     <main>
+        <h2>USER MANAGEMENT
+            <button id="create-user-button">Create New User</button>
+        </h2>
+    
         <section id="user-management-container">
             <table class="user-table">
                 <thead>
@@ -157,10 +168,8 @@
     </div>
 </div>
 
-    <script>
-// JavaScript for User Management Page
-
-window.onload = function () {
+<script>
+document.addEventListener("DOMContentLoaded", function () {
     const userTableBody = document.querySelector(".user-table tbody");
     const addUserForm = document.querySelector("#add-user-form");
     const addUserModal = document.querySelector("#add-user-modal");
@@ -178,51 +187,52 @@ window.onload = function () {
         localStorage.setItem("users", JSON.stringify(users));
     }
 
-    // Function to generate a random 4-digit user number
-    function generateUserNumber() {
-        return String(Math.floor(1000 + Math.random() * 9000)); // Random 4-digit number as a string
-    }
-
-    // Populate roles into the dropdown
-    function populateUserRoleDropdown() {
-        const roles = JSON.parse(localStorage.getItem("roles")) || [];
-        userRoleDropdown.innerHTML = '<option value="" disabled selected>Select a role</option>'; // Reset dropdown
-        roles.forEach(role => {
-            const option = document.createElement("option");
-            option.value = role.name;
-            option.textContent = role.name;
-            userRoleDropdown.appendChild(option);
-        });
+    // Save initials to localStorage
+    function saveInitialsToLocalStorage() {
+        const userInitials = users.map(user => user.initials).filter(initials => initials);
+        localStorage.setItem("analystInitials", JSON.stringify(userInitials));
     }
 
     // Function to render users in the table
     function renderUsers() {
         userTableBody.innerHTML = ""; // Clear the table body
-        users.forEach((user, index) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${user.userNumber}</td>
-                <td>${user.username}</td>
-                <td>${user.employeeID}</td>
-                <td>${user.firstName}</td>
-                <td>${user.middleName || ""}</td>
-                <td>${user.lastName}</td>
-                <td>${user.initials}</td>
-                <td>${user.positionTitle}</td>
-                <td>${user.email}</td>
-                <td>${user.phone}</td>
-                <td>${user.userRole}</td>
-                <td>${user.status}</td>
-                <td>
-                    <button class="edit-user" data-index="${index}">Edit</button>
-                    <button class="inactivate-user" data-index="${index}">Inactivate</button>
-                    <button class="reset-password" data-index="${index}">Reset Password</button>
-                    <button class="delete-user" data-index="${index}">Delete</button>
-                </td>
-            `;
-            userTableBody.appendChild(row);
-        });
+
+        if (users.length === 0) {
+            const noDataRow = document.createElement("tr");
+            noDataRow.innerHTML = `<td colspan="13">No users available. Create a new one!</td>`;
+            userTableBody.appendChild(noDataRow);
+        } else {
+            users.forEach((user, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${user.userNumber}</td>
+                    <td>${user.username}</td>
+                    <td>${user.employeeID}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.middleName || ""}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.initials}</td>
+                    <td>${user.positionTitle}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.userRole}</td>
+                    <td>${user.status}</td>
+                    <td>
+                        <button class="edit-user" data-index="${index}">Edit</button>
+                        <button class="inactivate-user" data-index="${index}">Inactivate</button>
+                        <button class="reset-password" data-index="${index}">Reset Password</button>
+                        <button class="delete-user" data-index="${index}">Delete</button>
+                    </td>
+                `;
+                userTableBody.appendChild(row);
+            });
+        }
+
+        saveInitialsToLocalStorage(); // Save initials every time the table is rendered
     }
+
+    // ✅ Load & Render Users on Page Load
+    renderUsers();
 
     // Event listener to show the modal for adding a new user
     createUserButton.addEventListener("click", function () {
@@ -295,25 +305,22 @@ window.onload = function () {
         const index = e.target.dataset.index;
 
         if (e.target.classList.contains("edit-user")) {
-    // Refresh the user role dropdown to ensure it has the latest roles
-    populateUserRoleDropdown();
+            // Load user data into the form
+            const user = users[index];
+            document.querySelector("#first-name").value = user.firstName;
+            document.querySelector("#middle-name").value = user.middleName;
+            document.querySelector("#last-name").value = user.lastName;
+            document.querySelector("#initials").value = user.initials;
+            document.querySelector("#username").value = user.username;
+            document.querySelector("#position-title").value = user.positionTitle;
+            document.querySelector("#email").value = user.email;
+            document.querySelector("#phone").value = user.phone;
+            userRoleDropdown.value = user.userRole; // Select the correct role
+            document.querySelector("#employee-id").value = user.employeeID;
 
-    // Load user data into the form
-    const user = users[index];
-    document.querySelector("#first-name").value = user.firstName;
-    document.querySelector("#middle-name").value = user.middleName;
-    document.querySelector("#last-name").value = user.lastName;
-    document.querySelector("#initials").value = user.initials;
-    document.querySelector("#username").value = user.username;
-    document.querySelector("#position-title").value = user.positionTitle;
-    document.querySelector("#email").value = user.email;
-    document.querySelector("#phone").value = user.phone;
-    userRoleDropdown.value = user.userRole; // Select the correct role
-    document.querySelector("#employee-id").value = user.employeeID;
-
-    editUserIndex = index; // Set edit index
-    addUserModal.classList.add("show");
-}
+            editUserIndex = index; // Set edit index
+            addUserModal.classList.add("show");
+        }
 
         if (e.target.classList.contains("inactivate-user")) {
             users[index].status = "Inactive";
@@ -340,9 +347,25 @@ window.onload = function () {
         }
     });
 
-    // Initial render
-    renderUsers();
-};
-    </script>
+    // Function to generate a random 4-digit user number
+    function generateUserNumber() {
+        return String(Math.floor(1000 + Math.random() * 9000)); // Random 4-digit number as a string
+    }
+
+    // Populate roles into the dropdown
+    function populateUserRoleDropdown() {
+        const roles = JSON.parse(localStorage.getItem("roles")) || [];
+        userRoleDropdown.innerHTML = '<option value="" disabled selected>Select a role</option>'; // Reset dropdown
+        roles.forEach(role => {
+            const option = document.createElement("option");
+            option.value = role.name;
+            option.textContent = role.name;
+            userRoleDropdown.appendChild(option);
+        });
+    }
+});
+
+</script>
+
 </body>
 </html>

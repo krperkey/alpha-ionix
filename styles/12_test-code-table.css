@@ -34,6 +34,9 @@ main {
 
 /* Title styling */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #FFD700;
@@ -60,7 +63,7 @@ h2 {
     border-collapse: collapse;
     margin-bottom: 0;
     background-color: #333;
-    color: #FFD700;
+    color: white;
     table-layout: auto;
 }
 
@@ -222,16 +225,40 @@ body {
     font-size: 1.3rem;
     color: white;
     margin-top: 20px;
+    margin-bottom: 5px;
 }
 
 .modal-content .analyte-row {
     margin-bottom: 20px;
 }
 
+#add-analyte-row {
+    background-color: rgb(62, 88, 206);
+    color: white;
+}
+
+#add-analyte-row:hover {
+    background-color: rgb(74, 104, 235);
+}
+
+#save-edit {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#save-edit:hover {
+    background-color: rgb(72, 184, 72);
+}
+
 /* Cancel button styling */
 #cancel-edit {
-    background-color: #FFD700;
-    color: black;
+    background-color: red;
+    color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 8px;
@@ -240,14 +267,16 @@ body {
 }
 
 #cancel-edit:hover {
-    background-color: #FFB800;
+    background-color: white;
+    color: black;
 }
 
 /* Modal table styling */
 #analyte-edit-table {
     width: 100%; /* Ensure the table spans the entire modal */
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     background-color: #444;
     color: #FFD700;
 }
@@ -276,8 +305,8 @@ body {
 
 /* Resize and style the Remove button */
 #analyte-edit-table .remove-analyte-btn {
-    background-color: #FFD700;
-    color: black;
+    background-color: red;
+    color: white;
     padding: 5px 12px;
     border: none;
     border-radius: 5px;
@@ -290,5 +319,96 @@ body {
     background-color: #FFB800;
 }
 
+.button-container {
+    display: flex; /* Use flexbox to arrange buttons horizontally */
+    gap: 10px; /* Add space between the buttons */
+}
 
+#create-test-code,
+#inactive-test-code {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
 
+#inactive-test-code {
+    background-color: #ffd700; /* Customize the secondary button's background color */
+    color: black;
+}
+
+#create-test-code:hover {
+    background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
+}
+
+#inactive-test-code:hover {
+    background-color: #ffb900; /* Customize the secondary button's background color */
+}
+
+#test-code-table .remove-btn {
+    background-color: red;
+    color: white;
+    padding: 7.5px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0;
+}
+
+#test-code-table .remove-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+#test-code-table .copy-btn {
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 7px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0;
+}
+
+#test-code-table .copy-btn:hover {
+    background-color: rgb(74, 104, 235);
+}
+
+#test-code-table th:nth-child(4),
+#test-code-table td:nth-child(4) {
+    width: 15%; /* Sample Type */
+}
+
+#test-code-table a {
+    color: rgb(131, 166, 231);;
+    text-decoration: none;
+    font-weight: bold;
+    white-space: wrap;
+}
+
+#back-to-test-codes {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#back-to-test-codes:hover {
+    background-color: rgb(74, 104, 235); /* Customize the secondary button's background color */
+}

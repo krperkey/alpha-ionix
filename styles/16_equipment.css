@@ -35,9 +35,13 @@ main {
 
 /* Section heading */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #FFD700;
+    margin-top: 2px;
     margin-bottom: 20px;
     text-transform: uppercase;
     border-bottom: 2px solid #FFB700;
@@ -141,4 +145,24 @@ button {
         overflow-x: auto;
         white-space: nowrap;
     }
+}
+
+#inactive-equipment,
+#active-equipment {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#inactive-equipment:hover,
+#active-equipment:hover {
+    background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
 }

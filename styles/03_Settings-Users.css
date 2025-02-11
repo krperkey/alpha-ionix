@@ -39,6 +39,7 @@ nav ul li:hover #users-dropdown-menu {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Consistent shadow */
     display: none; /* Hidden until hover */
+    z-index: 1;
 }
 
 /* Style for the table */
@@ -67,4 +68,15 @@ nav ul li:hover #users-dropdown-menu {
 /* Alternate row coloring for better readability */
 #users-table tr:nth-child(even) {
     background-color: white; /* Slightly lighter background for even rows */
+}
+
+#dropdown-menu {
+    position: absolute;
+    top: 40px; /* Aligns with other dropdowns */
+    left: 0;
+    background-color: #555; /* Same color as others */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Consistent shadow */
+    display: none; /* Hidden until hover */
+    z-index: 1;
 }

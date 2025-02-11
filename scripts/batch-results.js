@@ -22,6 +22,7 @@ window.onload = function () {
 
         // Display sample results table
         const samples = JSON.parse(localStorage.getItem("sampleDataArray")) || [];
+        const conditionCodes = JSON.parse(localStorage.getItem("conditionCodes")) || [];
         const associatedSamples = samples.filter(sample => sample.batchId === batchId);
         const resultsTableBody = document.querySelector("#samples-results-table tbody");
 
@@ -41,9 +42,13 @@ window.onload = function () {
                     <button class="expand-btn" data-sample-id="${sample.id}">▶</button>
                 </td>
                 <td>${sample.id}</td> <!-- Sample ID -->
-                <td><input type="text" name="analyst-${sample.id}" value="${sampleResults.analyst || ''}" placeholder="Analyst" /></td>
+                <td><input type="text" name="analyst-${sample.id}" value="${sampleResults.analyst || ''}" placeholder="Analyst"; /></td>
                 <td><input type="text" name="instrument-${sample.id}" value="${sampleResults.instrument || ''}" placeholder="Instrument" /></td>
                 <td><input type="date" name="run-date-${sample.id}" value="${sampleResults.runDate || ''}" /></td>
+                <td><input type="text" name="sample-type-${sample.id}" value="${sampleResults.sampleType || ''}" placeholder="Sample Type" /></td> <!-- New -->
+                <td><input type="checkbox" name="spiked-${sample.id}" ${sampleResults.spiked ? 'checked' : ''} /></td> <!-- New -->
+                <td><input type="text" name="standard-id-${sample.id}" value="${sampleResults.standardId || ''}" placeholder="Standard ID" /></td> <!-- New -->
+                <td><input type="text" name="spiked-amount-${sample.id}" value="${sampleResults.spikedAmount || ''}" placeholder="Spiked Amount" /></td> <!-- New -->
             `;
             resultsTableBody.appendChild(mainRow);
 
@@ -63,25 +68,32 @@ window.onload = function () {
             `;
             resultsTableBody.appendChild(subRowHeader);
 
-            // Sub-rows for each analyte
-            const analytes = sample.analytes || [];
-            analytes.forEach((analyte, index) => {
-                const analyteResult = sampleResults.analytes?.[index] || {};
-                const analyteRow = document.createElement("tr");
-                analyteRow.classList.add("analyte-row", `analyte-row-${sample.id}`);
-                analyteRow.style.display = "none"; // Initially hidden
-                analyteRow.innerHTML = `
-                    <td></td> <!-- Empty for alignment -->
-                    <td>${analyte}</td> <!-- Analyte first -->
-                    <td><input type="text" name="condition-${sample.id}-${index}" value="${analyteResult.condition || ''}" placeholder="Condition" /></td>
-                    <td><input type="text" name="result-${sample.id}-${index}" value="${analyteResult.result || ''}" placeholder="Result" /></td>
-                    <td><input type="text" name="units-${sample.id}-${index}" value="${analyteResult.units || ''}" placeholder="Units" /></td>
-                    <td><input type="number" name="initial-volume-${sample.id}-${index}" value="${analyteResult.initialVolume || ''}" step="0.01" placeholder="Initial Volume" /></td>
-                    <td><input type="number" name="final-volume-${sample.id}-${index}" value="${analyteResult.finalVolume || ''}" step="0.01" placeholder="Final Volume" /></td>
-                    <td><input type="number" name="dilution-${sample.id}-${index}" value="${analyteResult.dilution || ''}" step="0.01" placeholder="Dilution" /></td>
-                `;
-                resultsTableBody.appendChild(analyteRow);
-            });
+            /// Sub-rows for each analyte
+            const conditionCodeOptionsHTML = conditionCodes
+            .map(code => `<option value="${code.conditionCode}">${code.name}</option>`)
+            .join("");
+
+        const analyteRow = document.createElement("tr");
+        analyteRow.classList.add("analyte-row", `analyte-row-${sample.id}`);
+        analyteRow.style.display = "none"; // Initially hidden
+        analyteRow.innerHTML = `
+            <td></td> <!-- Empty for alignment -->
+            <td>${analyte}</td> <!-- Analyte first -->
+            <td>
+                <select name="condition-${sample.id}-${index}">
+                    <option value="" disabled selected>Select Condition</option>
+                    ${conditionCodeOptionsHTML}
+                </select>
+            </td>
+            <td><input type="text" name="result-${sample.id}-${index}" value="${analyteResult.result || ''}" placeholder="Result" /></td>
+            <td><input type="text" name="units-${sample.id}-${index}" value="${analyteResult.units || ''}" placeholder="Units" /></td>
+            <td><input type="number" name="initial-volume-${sample.id}-${index}" value="${analyteResult.initialVolume || ''}" step="0.01" placeholder="Initial Volume" /></td>
+            <td><input type="number" name="final-volume-${sample.id}-${index}" value="${analyteResult.finalVolume || ''}" step="0.01" placeholder="Final Volume" /></td>
+            <td><input type="number" name="dilution-${sample.id}-${index}" value="${analyteResult.dilution || ''}" step="0.01" placeholder="Dilution" /></td>
+        `;
+        resultsTableBody.appendChild(analyteRow);
+
+      
 
             // Add event listener for expansion
             const expandBtn = mainRow.querySelector(".expand-btn");
@@ -100,6 +112,10 @@ window.onload = function () {
                     analyst: document.querySelector(`input[name="analyst-${sample.id}"]`)?.value || "",
                     instrument: document.querySelector(`input[name="instrument-${sample.id}"]`)?.value || "",
                     runDate: document.querySelector(`input[name="run-date-${sample.id}"]`)?.value || "",
+                    sampleType: document.querySelector(`input[name="sample-type-${sample.id}"]`)?.value || "",  // New
+                    spiked: document.querySelector(`input[name="spiked-${sample.id}"]`)?.checked || false,     // New
+                    standardId: document.querySelector(`input[name="standard-id-${sample.id}"]`)?.value || "",  // New
+                    spikedAmount: document.querySelector(`input[name="spiked-amount-${sample.id}"]`)?.value || "", // New
                     analytes: [], // Initialize an empty array for analytes
                 };
 
@@ -107,7 +123,7 @@ window.onload = function () {
                 const analytes = sample.analytes || [];
                 analytes.forEach((analyte, index) => {
                     updatedResults[sample.id].analytes.push({
-                        condition: document.querySelector(`input[name="condition-${sample.id}-${index}"]`)?.value || "",
+                        condition: document.querySelector(`select[name="condition-${sample.id}-${index}"]`)?.value || "",
                         result: document.querySelector(`input[name="result-${sample.id}-${index}"]`)?.value || "",
                         units: document.querySelector(`input[name="units-${sample.id}-${index}"]`)?.value || "",
                         initialVolume: document.querySelector(`input[name="initial-volume-${sample.id}-${index}"]`)?.value || "",
@@ -115,6 +131,7 @@ window.onload = function () {
                         dilution: document.querySelector(`input[name="dilution-${sample.id}-${index}"]`)?.value || "",
                     });
                 });
+                
             });
 
             // Save the updated results for the current batch to localStorage

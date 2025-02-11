@@ -9,13 +9,68 @@
     <link rel="stylesheet" href="styles/02_top-toolbar.css">
     <link rel="stylesheet" href="styles/01_search-bar.css">
 </head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
 <body>
     <header>
         <a href="index.html" id="logo">Alpha-Ionix</a>
         <nav>
             <ul>
-                <li><a href="previous-proc-revisions.html">Previous Revisions</a></li>
-                <li><a href="retired-procedures.html">Retired</a></li>
+                <!-- Login Dropdown -->
+                <li><a href="#" id="login-btn">Login</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="sample-login.html">Sample Login</a></li>
+                    </ul>
+                </li>
+
+                <!-- Analysis Dropdown -->
+                <li><a href="#" id="login-btn">Analysis</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="batches.html">Batches</a></li>
+                        <li><a href="samples.html">Samples</a></li>
+                        <li><a href="workorders.html">Workorders</a></li>
+                    </ul>
+                </li>
+
+                <!-- Attributes Dropdown -->
+                <li><a href="#" id="login-btn">Sample Attributes</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
+                        <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
+                        <li><a href="hold-time.html">Hold Times</a></li>
+                        <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
+                        <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Clients Dropdown -->
+                <li><a href="#" id="clients-btn">Clients</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="client-by-name.html">Client by Name</a></li>
+                        <li><a href="client-by-site.html">Client by Site</a></li>
+                        <li><a href="client-profile.html">Client Profiles</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Users Dropdown -->
+                <li><a href="#" id="settings-btn">Settings</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="account-settings.html">Account Settings</a></li>
+                        <li><a href="app-settings.html">Application Settings</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>
@@ -35,7 +90,9 @@
 
     <main>
         <section id="procedures">
-            <h2>Procedures</h2>
+            <h2>Procedures
+                <button id="retired-procedures">Retired Procedures</button>
+            </h2>
 
             <!-- Table to display users -->
             <table id="procedures-table">
@@ -67,10 +124,9 @@
     </main>
 
     <!-- Add New User Modal -->
-<div id="add-procedure-modal" class="modal hidden">
+<div id="add-procedure-modal" class="modal">
     <div class="modal-content">
-        <span class="close-btn" id="close-modal-btn">&times;</span>
-        <h2>Add New Procedure</h2>
+        <h3>Add New Procedure</h3>
         <form id="add-procedure-form" enctype="multipart/form-data">
             <label for="procedure-id">Procedure ID:</label>
             <input type="text" id="procedure-id" name="procedure-id" required>
@@ -84,10 +140,17 @@
             <label for="rev-date">Last Revised:</label>
             <input type="date" id="rev-date" name="rev-date" required>
 
-            <button type="submit">Add Procedure</button>
+            <button id="submit">Add Procedure</button>
+            <button id="close-modal-btn">Cancel</button>
         </form>
     </div>
 </div>
+
+<script>
+        document.getElementById('retired-procedures').addEventListener('click', function() {
+            window.location.href = 'retired-procedures.html';
+        });
+</script>
 
     <script src="scripts/procedures.js"></script>
 </body>

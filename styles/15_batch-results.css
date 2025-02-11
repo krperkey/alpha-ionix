@@ -31,11 +31,15 @@ main {
 }
 
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
     color: #FFD700;
-    margin-top: 5px;
-    margin-bottom: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2px;
     text-transform: uppercase;
     border-bottom: 2px solid #FFD700;
     padding-bottom: 10px;
@@ -43,7 +47,6 @@ h2 {
 
 /* Batch Info Styling */
 #batch-info-container {
-    position: relative;
     background-color: #333;
     color: #FFD700;
     padding: 15px;
@@ -63,6 +66,8 @@ h2 {
 
 /* Batch Details Section */
 #batch-results-container {
+    max-width: 100%;
+    overflow-x: auto;
     background-color: #333;
     color: #FFD700;
     padding: 15px;
@@ -105,28 +110,40 @@ h2 {
 #samples-results-table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
+    max-width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
 #samples-results-table th,
 #samples-results-table td {
-    border: 1px solid #FFD700;
-    padding: 5px;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #999;
+    padding: 8px;
     text-align: center;
 }
 
-/* Set a fixed width for the first column (expansion triangle) */
-#samples-results-table td:first-child,
-#samples-results-table th:first-child {
-    width: 40px; /* Adjust this value as needed */
-    text-align: center; /* Center the triangle */
-    padding: 5px; /* Reduce padding for compactness */
+/* Set a fixed width for the first column (expansion button) */
+/* Apply fixed width to first column */
+#samples-results-table th:first-child,
+#samples-results-table td:first-child {
+    width: 40px !important; /* Ensure width takes precedence */
+    min-width: 40px !important; /* Prevent shrinking */
+    max-width: 40px !important; /* Prevent expansion */
+    text-align: center;
+    padding: 5px;
 }
 
+/* Header Styling */
 #samples-results-table th {
     background-color: #777;
     color: white;
+    border: 2px solid #999;
+    padding: 4px;
 }
 
 .sample-row {
@@ -134,11 +151,25 @@ h2 {
     color: #FFD700;
 }
 
+.sample-row input {
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
 /* Bold styling for Sample ID in main rows */
 .sample-row td:nth-child(2) {
     color: rgb(131, 166, 231);
     text-decoration: none;
     font-weight: bold;
+    font-size: 0.8rem;
+}
+
+/* Bold styling for Sample ID in main rows */
+.sample-row td:nth-child(3) {
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
 }
 
 #samples-results-table td a {
@@ -147,47 +178,52 @@ h2 {
     font-weight: bold;
 }
 
-#samples-resultstable td a:hover {
+#samples-results-table td a:hover {
     color: #FFB800;
     text-decoration: underline;
 }
 
 /* Ensure borders for sub-row header cells */
 .sub-row-header {
-    background-color: #FFB800;
+    background-color: #ffb900;
     color: black;
     font-weight: bold;
     border-collapse: collapse; /* Ensure proper border collapsing */
+    font-size: 0.8rem;
 }
 
 .sub-row-header td {
     border: 1px solid #333 !important; /* Force dark gray border */
-    padding: 5px; /* Optional: Adjust padding for better appearance */
+    padding: 1px; /* Optional: Adjust padding for better appearance */
     margin: 0;
 }
 
 .analyte-row {
+    display: table-row;
+    width: 100%; /* Ensure sub-row fits within parent */
     background-color: #333; /* Light gray for sub-rows */
 }
 
 /* Style for the analyte column in sub-rows */
 .analyte-row td:nth-child(2) {
-    color: #FFD700; /* Gold color */
-    font-size: 0.9rem;
+    color: white; /* Gold color */
+    font-size: 0.8rem;
     font-weight: bold; /* Optional: make it stand out */
 }
 
 /* Inputs in Table */
 #samples-results-table td input {
-    width: 90%;
-    padding: 4px;
+    box-sizing: border-box;
+    padding: 6px;
     border: 1px solid #FFD700;
     border-radius: 4px;
+    text-align: center;
 }
 
 #samples-results-table td input:focus {
     outline: none;
-    border-color: #FFB800;
+    border-color: #004494; /* Even darker blue */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 /* Sub-row input fields styling */
@@ -203,6 +239,40 @@ h2 {
 .analyte-row td input:focus {
     outline: none; /* Remove default focus outline */
     border-color: #FFB800; /* Highlight border on focus with a lighter gold */
+}
+
+/* Force input and select elements to fit inside table cells */
+#samples-results-table input[type="text"],
+#samples-results-table input[type="number"],
+#samples-results-table input[type="date"],
+#samples-results-table select {
+    width: 100%;          /* Take full width of the cell */
+    box-sizing: border-box; /* Include padding and border in element width */
+    padding: 4px 6px;      /* Adjust padding to fit inside */
+    border: 1px solid #ccc;
+    font-size: 12px;
+    height: auto;         /* Let height auto-adjust */
+}
+
+#samples-results-table input[type="text"]:focus,
+#samples-results-table input[type="number"]:focus,
+#samples-results-table input[type="date"]:focus,
+#samples-results-table select:focus {
+    outline: none;
+    border-color: #004494; /* Even darker blue */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Prevent inputs from being taller than the row */
+.analyte-row td input,
+.analyte-row td select {
+    max-height: 100%;
+}
+
+/* Optional: Align text within inputs and select elements */
+#samples-results-table input,
+#samples-results-table select {
+    vertical-align: middle;
 }
 
 /* Buttons */
@@ -226,7 +296,7 @@ button:hover {
 
 /* Style for the expansion triangle button */
 .expand-btn {
-    font-size: 12px; /* Reduce the size of the triangle */
+    font-size: 10px; /* Reduce the size of the triangle */
     padding: 2px 4px; /* Adjust padding for compactness */
     width: 20px; /* Optional: set a fixed width */
     height: 20px; /* Optional: set a fixed height */
@@ -280,8 +350,8 @@ button:hover {
     margin-top: 1px;
     margin-bottom: 4px;
     margin-left: auto; /* Ensures the button stays on the right side */
-    background-color: #FFD700;
-    color: black;
+    background-color: #007BFF;
+    color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
     border: none;
     border-radius: 8px;
@@ -293,5 +363,409 @@ button:hover {
 
 #submit-results-button:hover,
 #save-results-button:hover {
-    background-color: #FFB800; /* Optional hover effect */
+    background-color: #0056b3; /* Optional hover effect */
 }
+
+/* Style all condition code dropdowns */
+select[name^="condition-"] {
+    width: 100%;
+    background-color: #333; /* Light background */
+    border: 1px solid #ffd700; /* Blue border */
+    color: white; /* Dark text */
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Add hover effect */
+select[name^="condition-"]:hover {
+    border-color: #ffb900; /* Darker blue on hover */
+}
+
+/* Style when dropdown is open */
+select[name^="condition-"]:focus {
+    outline: none;
+    border-color: #004494; /* Even darker blue */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* General styling for all date inputs */
+input[type="date"] {
+    width: 100%;  /* Make it fill the table cell */
+    padding: 6px;
+    background-color: #333; /* Light gray background */
+    border: 2px solid #ffd700; /* Blue border */
+    color: white; /* Text color */
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Change border color on hover */
+input[type="date"]:hover {
+    border-color: #0056b3;
+}
+
+/* Focus styling */
+input[type="date"]:focus {
+    outline: none;
+    border-color: #004494;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.6);
+}
+
+/* Style all Analyst dropdowns */
+select[name^="analyst-"] {
+    width: 100%;  /* Make it fill the table cell */
+    padding: 6px;
+    background-color: #333; /* Light gray background */
+    border: 2px solid #ffd700; /* Blue border */
+    color: white; /* Text color */
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Hover effect */
+select[name^="analyst-"]:hover {
+    border-color: #0056b3;
+}
+
+/* Focus (when clicked) */
+select[name^="analyst-"]:focus {
+    outline: none;
+    border-color: #004494;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.6);
+}
+
+/* Style all Instrument dropdowns */
+select[name^="instrument-"] {
+    width: 100%;  /* Make it fill the table cell */
+    padding: 6px;
+    background-color: #333; /* Light gray background */
+    border: 2px solid #ffd700; /* Blue border */
+    color: white; /* Text color */
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Hover effect */
+select[name^="instrument-"]:hover {
+    border-color: #0056b3;
+}
+
+/* Focus (when clicked) */
+select[name^="instrument-"]:focus {
+    outline: none;
+    border-color: #004494;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.6);
+}
+
+/* Style all Analyst dropdowns */
+select[name^="spiked-"] {
+    width: 100%;  /* Make it fill the table cell */
+    padding: 6px;
+    background-color: #333; /* Light gray background */
+    border: 2px solid #ffd700; /* Blue border */
+    color: white; /* Text color */
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Hover effect */
+select[name^="spiked-"]:hover {
+    border-color: #0056b3;
+}
+
+/* Focus (when clicked) */
+select[name^="spiked-"]:focus {
+    outline: none;
+    border-color: #004494;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.6);
+}
+
+/* Style all Analyst dropdowns */
+select[name^="diluted-first-"] {
+    width: 100%;  /* Make it fill the table cell */
+    padding: 6px;
+    background-color: #333; /* Light gray background */
+    border: 2px solid #ffd700; /* Blue border */
+    color: white; /* Text color */
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Hover effect */
+select[name^="diluted-first-"]:hover {
+    border-color: #0056b3;
+}
+
+/* Focus (when clicked) */
+select[name^="diluted-first-"]:focus {
+    outline: none;
+    border-color: #004494;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.6);
+}
+
+/* Style all Analyst dropdowns */
+select[name^="standard-id-"] {
+    width: 100%;  /* Make it fill the table cell */
+    padding: 6px;
+    background-color: #333; /* Light gray background */
+    border: 2px solid #ffd700; /* Blue border */
+    color: white; /* Text color */
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Hover effect */
+select[name^="standard-id-"]:hover {
+    border-color: #0056b3;
+}
+
+/* Focus (when clicked) */
+select[name^="standard-id-"]:focus {
+    outline: none;
+    border-color: #004494;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.6);
+}
+
+/* Style all condition code dropdowns */
+select[name^="qualifier-"] {
+    width: 100%;
+    background-color: #333; /* Light background */
+    border: 1px solid #ffd700; /* Blue border */
+    color: white; /* Dark text */
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Add hover effect */
+select[name^="qualifier-"]:hover {
+    border-color: #ffb900; /* Darker blue on hover */
+}
+
+/* Style when dropdown is open */
+select[name^="qualifier-"]:focus {
+    outline: none;
+    border-color: #004494; /* Even darker blue */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Dropdown styling */
+.dropdown {
+    position: relative; /* Keep dropdown positioned relative to its container */
+}
+
+.dropdown-button {
+    margin-top: 0;
+    margin-bottom: 5px;
+    background-color: rgb(62, 88, 206);
+    color: white;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    background-color: #444;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.dropdown-content a:hover {
+    background-color: #777;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #333;
+    color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 3px solid #FFD700;
+    width: 100%;
+    max-width: 1800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+    text-align: center;
+    color: white;
+}
+
+#close-btn {
+    background-color: #007BFF;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    font-weight: bold;
+}
+
+.close-btn:hover {
+    color: #FFB800;
+}
+
+
+/* Modal Table Styling */
+#qc-results-modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin: 5px 0;
+    max-width: 100%;
+}
+
+/* Repeated Header Styling */
+#qc-results-modal-table .repeated-header-row th {
+    background-color: #666;
+    color: white;
+    font-weight: bold;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #FFD700;
+    white-space: nowrap;
+    font-size: 0.8rem;
+}
+
+
+/* Main Table Cell Styling */
+#qc-results-modal-table td {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #FFD700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.8rem;
+}
+
+/* Set a fixed width for the first column (expansion button) */
+/* Apply fixed width to first column */
+#qc-results-modal-table th:first-child,
+#qc-results-modal-table td:first-child {
+    width: 40px !important; /* Ensure width takes precedence */
+    min-width: 40px !important; /* Prevent shrinking */
+    max-width: 40px !important; /* Prevent expansion */
+    text-align: center;
+    padding: 5px;
+}
+
+/* Main Table Header Styling */
+#qc-results-modal-table th {
+    background-color: #666;
+    color: white;
+    padding: 8px;
+    border: 1px solid #333;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.sample-row a {
+    color: #ADD8E6;
+    text-decoration: none;
+}
+
+.sample-row a:hover {
+    text-decoration: underline;
+}
+
+/* Style for the sub-row header inside the modal */
+.modal-content .sub-row-header {
+    background-color: #e6f7ff; /* Light blue background */
+    color: #003366; /* Dark blue text */
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Style for the sub-row header cells */
+#qc-results-modal-table .sub-row-header td {
+    background-color: #ffb900; /* Light blue background */
+    color: #333; /* Dark blue text */
+    padding: 8px;
+    border: 1px solid #333;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
+
+/* Optional hover effect for better visibility */
+.modal-content .sub-row-header:hover {
+    background-color: #d0ebff; /* Slightly darker blue */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

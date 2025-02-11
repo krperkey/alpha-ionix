@@ -8,12 +8,68 @@
     <link rel="stylesheet" href="styles/02_top-toolbar.css">
     <link rel="stylesheet" href="styles/01_search-bar.css">
 </head>
+
+<aside id="disclaimer">
+    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
+</aside>
+
 <body>
     <header>
         <a href="index.html" id="logo">Alpha-Ionix</a>
         <nav>
             <ul>
-                <li><a href="batches.html">Batches</a></li>
+                <!-- Login Dropdown -->
+                <li><a href="#" id="login-btn">Login</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="sample-login.html">Sample Login</a></li>
+                    </ul>
+                </li>
+
+                <!-- Analysis Dropdown -->
+                <li><a href="#" id="login-btn">Analysis</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="batches.html">Batches</a></li>
+                        <li><a href="samples.html">Samples</a></li>
+                        <li><a href="workorders.html">Workorders</a></li>
+                    </ul>
+                </li>
+
+                <!-- Attributes Dropdown -->
+                <li><a href="#" id="login-btn">Sample Attributes</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
+                        <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
+                        <li><a href="hold-time.html">Hold Times</a></li>
+                        <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
+                        <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Clients Dropdown -->
+                <li><a href="#" id="clients-btn">Clients</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="client-by-name.html">Client by Name</a></li>
+                        <li><a href="client-by-site.html">Client by Site</a></li>
+                        <li><a href="client-profile.html">Client Profiles</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Users Dropdown -->
+                <li><a href="#" id="settings-btn">Settings</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="account-settings.html">Account Settings</a></li>
+                        <li><a href="app-settings.html">Application Settings</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </header>
@@ -36,38 +92,55 @@
 
         <!-- Batch Information Container -->
         <section id="batch-info-container">
-            <h3>Batch Information</h3>
-            <div class="input-group">
-                <label for="batch-analysis">Analysis:</label>
-                <select id="batch-analysis">
-                    <option value="">Select Analysis</option>
-                    <!-- Populated dynamically -->
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="date-created">Date Created:</label>
-                <input type="date" id="date-created">
-            </div>
+            <h3>Batch Information</h3>            
+        
+            <table class="batch-info-table">
+                <tbody>
+                    <tr>
+                        <td><label for="batch-analysis">Analysis:</label></td>
+                        <td>
+                            <select id="batch-analysis">
+                                <option value="">Select Analysis</option>
+                                <!-- Populated dynamically -->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="batch-id-display" class="batch-id-label">Batch ID:</label></td>
+                        <td>
+                            <span id="batch-id-display" class="batch-id-display"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="date-created">Date Created:</label></td>
+                        <td>
+                            <span id="date-created" class="date-display"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>                                    
         </section>
+                               
 
         <!-- Sample Selection Container -->
         <section id="sample-selection-container">
             <h3>Sample Selection</h3>
 
-            <!-- Placeholder for dynamically displaying the Batch ID -->
-            <div id="batch-id-display" style="margin-bottom: 1em; font-weight: bold; color: rgb(156, 190, 233);"></div>
-
             <button id="select-samples-button">Select Samples</button>
+
+            <button id="add-qc-button">Add QC</button> <!-- Add QC Button -->
 
             <table id="sample-selection-table">
                 <thead>
                     <tr>
                         <th>Sample ID</th>
+                        <th>Client Profile</th>
                         <th>Facility Name</th>
                         <th>Sample Description</th>
                         <th>Date Collected</th>
                         <th>Date Received</th>
                         <th>Due Date</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,7 +151,7 @@
 
         <!-- Create Batch Button -->
         <button id="create-batch-button">Create Batch</button>
-    </main>
+    
 
     <!-- Modal for Selecting Samples -->
     <div id="sample-modal" class="modal">
@@ -103,74 +176,100 @@
             <button id="confirm-samples-button">Confirm Selection</button>
             <button id="close-modal-button">Close</button>
         </div>
+
+    </main>
+
+            <!-- Modal for Adding QC -->
+    <div id="add-qc-modal" class="modal">
+        <div class="modal-content">
+            <h3>Select QC to Add</h3>
+            <table id="modal-qc-add-table">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>QC Name</th>
+                        <th>Abbreviation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamically populated -->
+                </tbody>
+            </table>
+            <button id="confirm-add-qc-button">Confirm Selection</button>
+            <button id="close-add-qc-modal-button">Close</button>
+        </div>
+    </div>
+
         <div id="generated-batch-id" style="margin-top: 1em; font-weight: bold; color: green;"></div>
     </div>
 
     <script>
         document.getElementById("create-batch-button").addEventListener("click", function () {
-    // Generate Batch ID
-    const batchId = `BAT${Date.now()}`;
-
-    // Get selected analysis and created date
-    const analysis = document.getElementById("batch-analysis").value;
-    const createdDate = document.getElementById("date-created").value;
-
-    // Get number of samples selected
-    const sampleRows = document.querySelectorAll("#sample-selection-table tbody tr");
-    const numberOfSamples = sampleRows.length;
-
-    // Set default status
-    const status = "Pending";
-
-    // Validate inputs
-    if (!analysis || !createdDate || numberOfSamples === 0) {
-        alert("Please complete all fields and select samples before creating a batch.");
-        return;
-    }
-
-    // Display the Batch ID dynamically in the sample selection container
-    const batchIdDisplay = document.getElementById("batch-id-display");
-    batchIdDisplay.textContent = `Batch ID: ${batchId}`;
-
-    // Update samples with the batchId
-    const updatedSamples = [];
-    sampleRows.forEach((row) => {
-        const sampleId = row.cells[0].textContent;
-        const sample = JSON.parse(localStorage.getItem("sampleDataArray")).find(s => s.id === sampleId);
-
-        if (sample) {
-            sample.batchId = batchId; // Add batchId to the sample
-            updatedSamples.push(sample);
-        }
-    });
-
-    // Store the updated sample data back to localStorage
-    const sampleDataArray = JSON.parse(localStorage.getItem("sampleDataArray")) || [];
-    updatedSamples.forEach(sample => {
-        const existingIndex = sampleDataArray.findIndex(s => s.id === sample.id);
-        if (existingIndex >= 0) {
-            sampleDataArray[existingIndex] = sample;
-        } else {
-            sampleDataArray.push(sample);
-        }
-    });
-    localStorage.setItem("sampleDataArray", JSON.stringify(sampleDataArray));
-
-    // Save batch details to localStorage
-    const batches = JSON.parse(localStorage.getItem("batches")) || [];
-    batches.push({
-        batchId,
-        analysis,
-        createdDate,
-        numberOfSamples,
-        status,
-    });
-    localStorage.setItem("batches", JSON.stringify(batches));
-
-    // Update the batches table dynamically
-    updateBatchesTable();
-});  
+            // Generate Batch ID
+            const batchId = `BAT${Date.now()}`;
+    
+            // Get selected analysis
+            const analysis = document.getElementById("batch-analysis").value;
+    
+            // Automatically generate current date and time for creation
+            const createdDate = new Date().toLocaleString();
+    
+            // Display the created date and time in the "Date Created" section
+            const dateCreatedElement = document.getElementById("date-created");
+            dateCreatedElement.textContent = createdDate;
+    
+            // Display the Batch ID dynamically as a clickable link
+            const batchIdDisplay = document.getElementById("batch-id-display");
+            batchIdDisplay.innerHTML = `<a href="batch-details.html?batchId=${batchId}" style="font-weight: bold; color: rgb(131, 166, 231); text-decoration: none;">${batchId}</a>`;
+    
+            // Get number of samples selected
+            const sampleRows = document.querySelectorAll("#sample-selection-table tbody tr");
+            const numberOfSamples = sampleRows.length;
+    
+            // Set default status
+            const status = "Pending";
+    
+            // Validate inputs
+            if (!analysis || numberOfSamples === 0) {
+                alert("Please complete all fields and select samples before creating a batch.");
+                return;
+            }
+    
+            // Retrieve the existing sample data array from localStorage
+            const sampleDataArray = JSON.parse(localStorage.getItem("sampleDataArray")) || [];
+    
+            // Create a map of existing samples for quick lookup
+            const sampleMap = sampleDataArray.reduce((map, sample) => {
+                map[sample.id] = sample;
+                return map;
+            }, {});
+    
+            // Update selected samples with the batchId
+            sampleRows.forEach((row) => {
+                const sampleId = row.cells[0].textContent;
+                if (sampleMap[sampleId]) {
+                    sampleMap[sampleId].batchId = batchId; // Add batchId to the sample
+                }
+            });
+    
+            // Convert the updated sample map back to an array and save it to localStorage
+            localStorage.setItem("sampleDataArray", JSON.stringify(Object.values(sampleMap)));
+    
+            // Save batch details to localStorage
+            const batches = JSON.parse(localStorage.getItem("batches")) || [];
+            batches.push({
+                batchId,
+                analysis,
+                createdDate,
+                numberOfSamples,
+                status,
+            });
+            localStorage.setItem("batches", JSON.stringify(batches));
+    
+            alert(`Batch created successfully: ${batchId}`);
+        });
     </script>
+         
     
     <script src="scripts/create-batches.js"></script>
 </body>

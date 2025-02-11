@@ -62,7 +62,7 @@ section#sample-properties-section {
     font-size: 0.8rem;
     padding: 15px;
     margin-bottom: 10px;
-    border: 2px solid #FFD700;
+    border: 3px solid #999;
     border-radius: 10px;
     background-color: #333;
     display: grid; /* Enable grid layout */
@@ -151,8 +151,54 @@ section#sample-properties-section .input-group {
 }
 
 #sample-properties-section #table-body input {
+    width: auto; /* Reduce the width to half */
+    box-sizing: border-box;
+    padding: 5px;
+    background-color: #333;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#sample-properties-section #table-body input:hover {
+    border: 1px solid #ffb900;
+}
+
+#num-rows {
+    width: 100%; /* Makes the input box fill the entire cell */
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    padding: 5px; /* Optional: add some padding for better appearance */
+    text-align: center;
+    background-color: #333;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+#table-body select#sample-type,
+#table-body select[id^="container-type"],
+#table-body select[id^="sample-amount"],
+#table-body select[id^="matrix"],
+#table-body select#analysis,
+#table-body select[id^="hold-time"] {
     margin: 2px;
     width: auto; /* Reduce the width to half */
+    padding: 5px;
+    background-color: #333;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#table-body select#sample-type:hover,
+#table-body select[id^="container-type"]:hover,
+#table-body select[id^="sample-amount"]:hover,
+#table-body select[id^="matrix"]:hover,
+#table-body select#analysis:hover,
+#table-body select[id^="hold-time"]:hover {
+    border: 1px solid #ffb900;
 }
 
 /* Input group styling */
@@ -171,10 +217,10 @@ section#sample-properties-section .input-group {
 .input-group input,
 .input-group select {
     width: 99%;
-    background-color: white; /* Dark input fields */
-    color: black; /* Yellow text */
-    border: 1px solid yellow; /* Yellow border */
-    padding: 2px;
+    background-color: #333; /* Dark input fields */
+    color: white; /* Yellow text */
+    border: 1px solid white; /* Yellow border */
+    padding: 4px;
     border-radius: 5px;
 }
 
@@ -221,6 +267,7 @@ button:hover {
     flex: 1 1 48%; /* Allow flexibility and equal width, with some gap */
     box-sizing: border-box; /* Include padding and border in width */
     margin-right: 10px; /* Add spacing between the sections */
+    border: 3px solid #999;
 }
 
 /* Remove margin on the last section */
@@ -228,4 +275,48 @@ button:hover {
     margin-right: 0;
 }
 
+#samplenum {
+    background-color: #ffb900;
+    color: #333;
+    border: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
 
+.analyte-list-btn {
+    background-color: #ffd700;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+#login-button {
+    background-color: #007BFF;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-size: 1.0rem;
+    font-weight: bold;
+}
+
+#login-button:hover {
+    background-color: #0056b3;
+}
+
+#emptyspace {
+    height: 40px; /* Adjust as needed */
+    background-color: #333;
+    border-right: none !important;
+    border-left: none !important;
+}
+
+#directions {
+    background-color: #333;
+    color: white;
+    font-size: 1.0rem;
+    border-right: none !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    text-align: left !important;
+}

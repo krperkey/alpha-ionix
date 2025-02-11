@@ -43,7 +43,6 @@ h2 {
 
 /* Batch Information Container */
 #batch-info-container {
-    position: relative;
     background-color: #333;
     color: #FFD700;
     padding: 15px;
@@ -93,6 +92,7 @@ h2 {
     border: 1px solid #FFD700;
     padding: 5px;
     text-align: center;
+    font-size: 0.8rem;
 }
 
 #samples-table th {
@@ -113,7 +113,20 @@ h2 {
 #samples-table tbody tr td {
     text-align: center;
     font-style: italic;
-    color: #FFD700;
+    color: white;
+    font-weight: bold;
+}
+
+#samples-table th:nth-child(11), /* Drag handle column */
+#samples-table td:nth-child(11) {
+    width: 9.5%; /* Adjust as needed */
+    text-align: center; /* Center-align for drag handle */
+}
+
+#samples-table th:nth-child(12), /* Sample ID */
+#samples-table td:nth-child(12) {
+    width: 9.5%; /* Adjust as needed */
+    text-align: center; /* Left-align for readability */
 }
 
 /* Batch Details Section */
@@ -160,11 +173,11 @@ h2 {
 }
 
 #complete-review-button:hover {
-    background-color: rgb(18, 236, 18); /* Optional hover effect for complete review button */
+    background-color: #28a745; /* Optional hover effect for complete review button */
 }
 
 #edit-status-button:hover {
-    background-color: #93c3f7; /* Optional hover effect for secondary button */
+    background-color: #0056b3; /* Optional hover effect for secondary button */
 }
 
 #batch-details-container p {
@@ -221,6 +234,24 @@ h2 {
     color: white;
 }
 
+#modal-qc-add-table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+#modal-qc-add-table th,
+#modal-qc-add-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #FFD700;
+}
+
+#modal-qc-add-table th {
+    background-color: #444;
+    color: white;
+}
+
 button {
     padding: 5px 10px;
     background-color: #FFD700;
@@ -246,14 +277,24 @@ button:hover {
     text-decoration: underline;
 }
 
+.table-button-container {
+    display: flex;                 /* Enables flexbox layout */
+    justify-content: space-between; /* Pushes content to both ends */
+    align-items: center;           /* Vertically aligns the buttons */
+    width: 100%;                   /* Ensures container spans the full width */
+}
+
+.left-buttons {
+    display: flex;                 /* Enables flexbox layout for left buttons */
+    gap: 2px;                     /* Adds spacing between the buttons */
+}
+
 #add-samples-button,
-#batch-results-button {
-    margin-top: 2px;
-    margin-bottom: 2px;
-    margin-left: auto; /* Ensures the button stays on the right side */
+#add-qc-button {
+    margin: 2px;
     background-color: #FFD700;
     color: black;
-    padding: 10px 20px; /* Adjust padding for button appearance */
+    padding: 10px 20px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -263,6 +304,99 @@ button:hover {
 }
 
 #add-samples-button:hover,
+#add-qc-button:hover {
+    background-color: #FFB800;
+}
+
+#save-sample-order-button {
+    margin: 2px;
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+#save-sample-order-button:hover {
+    background-color: #0056b3;
+}
+
+#batch-results-button {
+    margin: 2px;
+    background-color: #1abc9c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+}
+
 #batch-results-button:hover {
-    background-color: #FFB800; /* Optional hover effect */
+    background-color: #16a085;
+}
+
+.remove-sample-button {
+    background-color: #f44336; /* Red background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 4px 8px; /* Padding for size */
+    font-size: 14px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    margin: 0;
+}
+
+.remove-sample-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+.remove-sample-button:active {
+    background-color: #b71c1c; /* Even darker red on click */
+}
+
+.remove-sample-button:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 5px rgba(244, 67, 54, 0.8); /* Add a glow effect */
+}
+
+/* General styles for both dropdowns */
+select.parent-dropdown, select.paired-dropdown {
+    width: 100%; /* Make them fill the column */
+    padding: 4px; /* Add some padding for better appearance */
+    font-size: 0.8rem; /* Set a readable font size */
+    border: 1px solid #ccc; /* Add a light border */
+    border-radius: 4px; /* Round the corners */
+    background-color: #333; /* Light background color */
+    color: white; /* Text color */
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Hover effect for dropdowns */
+select.parent-dropdown:hover, select.paired-dropdown:hover {
+    border-color: white; /* Darken the border on hover */
+    background-color: #333; /* Slightly darker background */
+}
+
+/* Focus effect (when clicked or tabbed into) */
+select.parent-dropdown:focus, select.paired-dropdown:focus {
+    outline: none; /* Remove default outline */
+    border-color: #007BFF; /* Add blue border to indicate focus */
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5); /* Add subtle shadow for focus */
+}
+
+/* Style for the dropdown options */
+select.parent-dropdown option, select.paired-dropdown option {
+    padding: 2px; /* Add padding inside options */
+    background-color: #333; /* Ensure white background */
+    color: white; /* Text color */
+    text-align: left;
 }

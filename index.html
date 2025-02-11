@@ -137,52 +137,52 @@
 
 <!-- Firebase Integration -->
 <script type="module">
-  // Import necessary Firebase modules
-  // Import Firebase modules
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
-
-// Your Firebase configuration
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    databaseURL: "YOUR_DATABASE_URL",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-// Function to save local storage data to Firebase
-function saveLocalStorageToFirebase() {
-    const sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
-    const workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
-    const sampleStatusMap = JSON.parse(localStorage.getItem('sampleStatusMap')) || {};
-
-    // Write each data object to a different node in Firebase
-    set(ref(db, 'localStorageData/sampleDataArray'), sampleDataArray)
-        .then(() => console.log('sampleDataArray saved successfully to Firebase'))
-        .catch(error => console.error('Error saving sampleDataArray:', error));
-
-    set(ref(db, 'localStorageData/workordersArray'), workordersArray)
-        .then(() => console.log('workordersArray saved successfully to Firebase'))
-        .catch(error => console.error('Error saving workordersArray:', error));
-
-    set(ref(db, 'localStorageData/sampleStatusMap'), sampleStatusMap)
-        .then(() => console.log('sampleStatusMap saved successfully to Firebase'))
-        .catch(error => console.error('Error saving sampleStatusMap:', error));
-}
-
-// Call the function after the page loads
-window.onload = function () {
-    saveLocalStorageToFirebase();
-};
-
-</script>
+    // Import necessary Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+  
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDhhbDMuP-0aUWRTG7tk6-MdrnoTOKWW_k",
+      authDomain: "alpha-ionix-project.firebaseapp.com",
+      databaseURL: "https://alpha-ionix-project-default-rtdb.firebaseio.com",
+      projectId: "alpha-ionix-project",
+      storageBucket: "alpha-ionix-project.appspot.com",  // Corrected storage bucket URL
+      messagingSenderId: "732932003953",
+      appId: "1:732932003953:web:c57f9a0b1270614089e3d0",
+      measurementId: "G-GPG8N80PZ7"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+  
+    // Function to save local storage data to Firebase
+    function saveLocalStorageToFirebase() {
+        const sampleDataArray = JSON.parse(localStorage.getItem('sampleDataArray')) || [];
+        const workordersArray = JSON.parse(localStorage.getItem('workordersArray')) || [];
+        const sampleStatusMap = JSON.parse(localStorage.getItem('sampleStatusMap')) || {};
+  
+        // Write each data object to a different node in Firebase
+        set(ref(db, 'localStorageData/sampleDataArray'), sampleDataArray)
+            .then(() => console.log('sampleDataArray saved successfully to Firebase'))
+            .catch(error => console.error('Error saving sampleDataArray:', error));
+  
+        set(ref(db, 'localStorageData/workordersArray'), workordersArray)
+            .then(() => console.log('workordersArray saved successfully to Firebase'))
+            .catch(error => console.error('Error saving workordersArray:', error));
+  
+        set(ref(db, 'localStorageData/sampleStatusMap'), sampleStatusMap)
+            .then(() => console.log('sampleStatusMap saved successfully to Firebase'))
+            .catch(error => console.error('Error saving sampleStatusMap:', error));
+    }
+  
+    // Call the function after the page loads
+    window.onload = function () {
+        saveLocalStorageToFirebase();
+    };
+  </script>
+  
 
       
 

@@ -59,11 +59,11 @@ window.onload = async function () {
         }
     });
 
-    document.getElementById("create-test-code").addEventListener("click", function () {
+    document.getElementById("create-test-code").addEventListener("click", async function () {
         window.location.href = "test-codes.html";
     });
 
-    document.getElementById("inactive-test-code").addEventListener("click", function () {
+    document.getElementById("inactive-test-code").addEventListener("click", async function () {
         window.location.href = "inactive-test-codes.html";
     });
 
@@ -134,7 +134,7 @@ window.onload = async function () {
             analyteTableBody.appendChild(newRow);
 
             // Attach remove functionality to the new row's button
-            newRow.querySelector('.remove-analyte-btn').addEventListener('click', function () {
+            newRow.querySelector('.remove-analyte-btn').addEventListener('click', async function () {
                 testCode.analytes.splice(newRowIndex, 1);
                 this.closest('tr').remove();
             });
@@ -184,7 +184,7 @@ tableBody.addEventListener("click", async (e) => {
 });
 
 
-document.getElementById('create-test-code').addEventListener('click', function () {
+document.getElementById('create-test-code').addEventListener('click', async function () {
 window.location.href = 'test-codes.html';
 });
 

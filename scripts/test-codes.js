@@ -2,7 +2,7 @@
 import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
 
 // Add new analyte row
-document.getElementById('add-analyte-row').addEventListener('click', function () {
+document.getElementById('add-analyte-row').addEventListener('click', async function () {
     const tableBody = document.querySelector("#analyte-table tbody");
 
     const newRow = document.createElement('tr');
@@ -19,7 +19,7 @@ document.getElementById('add-analyte-row').addEventListener('click', function ()
     tableBody.appendChild(newRow);
 
     // Add event listener to the remove button in the newly added row
-    newRow.querySelector('.remove-row').addEventListener('click', function () {
+    newRow.querySelector('.remove-row').addEventListener('click', async function () {
         tableBody.removeChild(newRow);
     });
 });
@@ -180,12 +180,12 @@ window.onload = async function () {
 };
 
 // Function to generate a unique ID
-function generateUniqueId() {
+async function generateUniqueId() {
     return `TC-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 }
 
 // Existing "create-test-code" button logic
-document.getElementById("create-test-code").addEventListener("click", function () {
+document.getElementById("create-test-code").addEventListener("click", async function () {
     const uniqueId = `TC-${Date.now()}-${Math.floor(Math.random() * 1000)}`; // Generate unique ID
     console.log(`Generated Test Code ID: ${uniqueId}`);
 
@@ -285,7 +285,7 @@ localforage.getItem("testCodes").then(testCodes => {
 
 
 // Back button logic (unchanged)
-document.getElementById('back-to-test-code-table').addEventListener('click', function () {
+document.getElementById('back-to-test-code-table').addEventListener('click', async function () {
     window.location.href = 'test-code-table.html';
 });
 

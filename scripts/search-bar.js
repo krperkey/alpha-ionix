@@ -3,7 +3,7 @@ import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localfora
 
 // Attach event listeners to search elements
 document.getElementById('search-button').addEventListener('click', performSearch);
-document.getElementById('search-bar').addEventListener('keydown', function (event) {
+document.getElementById('search-bar').addEventListener('keydown', async function (event) {
     if (event.key === 'Enter') performSearch();
 });
 

@@ -89,7 +89,7 @@ async function generateChartAndTable() {
 }
 
 // Call the function on page load
-window.onload = function () {
+window.onload = async function () {
     generateChartAndTable();
 };
 

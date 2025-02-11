@@ -92,7 +92,7 @@ window.onload = async function () {
 
             // Expand/Collapse event
             const expandBtn = mainRow.querySelector(".expand-btn");
-            expandBtn.addEventListener("click", function () {
+            expandBtn.addEventListener("click", async function () {
                 toggleAnalyteRows(sample.id);
             });
         });
@@ -132,7 +132,7 @@ window.onload = async function () {
 };
 
 // Toggle analyte rows
-function toggleAnalyteRows(sampleId) {
+async function toggleAnalyteRows(sampleId) {
     const analyteRows = document.querySelectorAll(`.analyte-row-${sampleId}`);
     const subRowHeader = document.querySelector(`.sub-header-${sampleId}`);
     const isHidden = analyteRows[0]?.style.display === "none";
@@ -144,7 +144,7 @@ function toggleAnalyteRows(sampleId) {
     expandBtn.textContent = expandBtn.textContent === "▶" ? "▼" : "▶";
 }
     
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", async function (event) {
     // Check if "Ctrl+D" is pressed
     if (event.ctrlKey && event.key.toLowerCase() === "d") {
         const activeElement = document.activeElement;

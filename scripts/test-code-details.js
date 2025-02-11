@@ -2,7 +2,7 @@
 import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
 
 // Parse query parameter
-function getQueryParameter(name) {
+async function getQueryParameter(name) {
     const params = new URLSearchParams(window.location.search);
     return params.get(name);
 }
@@ -142,7 +142,7 @@ window.onload = async function () {
 };
 
 // Back button logic (unchanged)
-document.getElementById('back-to-test-code-table').addEventListener('click', function () {
+document.getElementById('back-to-test-code-table').addEventListener('click', async function () {
     window.location.href = 'test-code-table.html';
 });
 

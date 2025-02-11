@@ -23,7 +23,7 @@ async function loadStandards() {
 }
 
 // Attach event listeners for delete buttons
-function attachDeleteEventListeners() {
+async function attachDeleteEventListeners() {
     document.querySelectorAll('.delete-btn').forEach(button => {
         button.removeEventListener('click', deleteStandard); // Prevent duplicate listeners
         button.addEventListener('click', deleteStandard);
@@ -44,7 +44,7 @@ async function deleteStandard(event) {
 }
 
 // Initialize the page on load
-window.onload = function () {
+window.onload = async function () {
     loadStandards();
 };
 

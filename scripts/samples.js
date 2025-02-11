@@ -1,6 +1,6 @@
 import { loadData } from "./data-handler.js";
 
-document.getElementById('num-rows').addEventListener('keydown', function(event) {
+document.getElementById('num-rows').addEventListener('keydown', async function(event) {
     // Check if the Enter key (key code 13) was pressed
     if (event.key === 'Enter') {
         event.preventDefault();  // Prevent form submission (page refresh)
@@ -187,7 +187,7 @@ async function createRows() {
         alert('Please enter a valid number of rows greater than 0.');
     }
 
-    function calculateDueDate(rowIndex) {
+    async function calculateDueDate(rowIndex) {
         const collectDate = document.getElementById(`collect-date-${rowIndex}`).value;
         const collectTime = document.getElementById(`collect-time-${rowIndex}`).value;
         const holdTime = document.getElementById(`hold-time-${rowIndex}`).value;
@@ -237,7 +237,7 @@ async function createRows() {
 }
 
 // Handle "Clear All" button click
-document.getElementById('clear-all').addEventListener('click', function () {
+document.getElementById('clear-all').addEventListener('click', async function () {
     const analyteCheckboxes = document.querySelectorAll('#analyte-list-body input[type="checkbox"]');
     analyteCheckboxes.forEach(checkbox => {
         checkbox.checked = false;
@@ -249,7 +249,7 @@ document.getElementById('clear-all').addEventListener('click', function () {
 let tempAnalyteSelections = {}; // Temporary storage for analyte selections
 
 // Function to handle "Save" in the analyte modal
-document.getElementById('save-analytes').addEventListener('click', function () {
+document.getElementById('save-analytes').addEventListener('click', async function () {
     const analyteCheckboxes = document.querySelectorAll('#analyte-list-body input[type="checkbox"]');
     const selectedAnalyteNames = Array.from(analyteCheckboxes)
         .filter(checkbox => checkbox.checked)
@@ -312,11 +312,11 @@ document.getElementById('table-body').addEventListener('click', async function (
 });
 
 // Close modal functionality
-document.getElementById('close-analyte-modal').addEventListener('click', function () {
+document.getElementById('close-analyte-modal').addEventListener('click', async function () {
     document.getElementById('analyte-modal').style.display = 'none';
 });
 
-document.getElementById('table-body').addEventListener('keydown', function (event) {
+document.getElementById('table-body').addEventListener('keydown', async function (event) {
     if (event.ctrlKey && event.key === 'd') {
         event.preventDefault();
 
@@ -345,7 +345,7 @@ document.getElementById('table-body').addEventListener('keydown', function (even
     }
 });
 
-document.getElementById('login-button').addEventListener('click', function(event) {
+document.getElementById('login-button').addEventListener('click', async function(event) {
     event.preventDefault();
     generateSampleIDs();
 });

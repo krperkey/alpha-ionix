@@ -60,7 +60,7 @@ async function loadSampleDetails(sampleID) {
     }
 }
 
-function populateSampleDetails(sampleData, workorderID) {
+async function populateSampleDetails(sampleData, workorderID) {
     const detailsDiv = document.getElementById('sample-details');
 
     const workorderLink = workorderID !== "N/A" 
@@ -303,7 +303,7 @@ async function openAnalyteModal(sampleID, editMode = false) {
 
 import { loadData, saveData } from './data-handler.js';
 
-function setupModalEventListeners() {
+async function setupModalEventListeners() {
     document.getElementById('close-analyte-modal').addEventListener('click', closeAnalyteModal);
     document.getElementById('clear-all').addEventListener('click', clearAnalyteSelections);
     document.getElementById('save-analytes').addEventListener('click', saveAnalyteSelections);
@@ -314,11 +314,11 @@ function setupModalEventListeners() {
     });
 }
 
-function closeAnalyteModal() {
+async function closeAnalyteModal() {
     document.getElementById('analyte-modal').style.display = 'none';
 }
 
-function clearAnalyteSelections() {
+async function clearAnalyteSelections() {
     const analyteCheckboxes = document.querySelectorAll('#analyte-list-body input[type="checkbox"]');
     if (analyteCheckboxes.length === 0) {
         alert("There are no analytes to clear.");
@@ -417,7 +417,7 @@ async function saveAnalyteSelections() {
     closeAnalyteModal();
 }
 
-function showError(message) {
+async function showError(message) {
     document.getElementById('sample-analysis-details').innerHTML = `<p>${message}</p>`;
 }
 

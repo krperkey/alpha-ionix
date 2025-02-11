@@ -1,7 +1,7 @@
 import { loadData, saveData } from './data-handler.js';
 
 // Generate a unique ID for each standard
-function generateUniqueId() {
+async function generateUniqueId() {
     return `STD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 }
 
@@ -66,7 +66,7 @@ async function saveStandard() {
 }
 
 // Add a new row to the analytes table
-function addAnalyteRow() {
+async function addAnalyteRow() {
     const tableBody = document.querySelector('#analytes-table tbody');
 
     const newRow = document.createElement('tr');
@@ -82,13 +82,13 @@ function addAnalyteRow() {
     tableBody.appendChild(newRow);
 
     // Add event listener to the remove button in the new row
-    newRow.querySelector('.remove-analyte-btn').addEventListener('click', function () {
+    newRow.querySelector('.remove-analyte-btn').addEventListener('click', async function () {
         tableBody.removeChild(newRow);
     });
 }
 
 // Initialize the page
-window.onload = function () {
+window.onload = async function () {
     document.getElementById('save-standard-btn').addEventListener('click', saveStandard);
     document.getElementById('add-analyte-btn').addEventListener('click', addAnalyteRow);
 };

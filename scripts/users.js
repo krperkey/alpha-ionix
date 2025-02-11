@@ -18,12 +18,12 @@ window.onload = async function () {
     }
 
     // Function to generate a random 4-digit user number
-    function generateUserNumber() {
+    async function generateUserNumber() {
         return String(Math.floor(1000 + Math.random() * 9000)); // Random 4-digit number as a string
     }
 
     // Function to render users in the table
-    function renderUsers() {
+    async function renderUsers() {
         userTableBody.innerHTML = ""; // Clear the table body
         users.forEach((user, index) => {
             const row = document.createElement("tr");
@@ -51,14 +51,14 @@ window.onload = async function () {
     }
 
     // Event listener to show the modal for adding a new user
-    createUserButton.addEventListener("click", function () {
+    createUserButton.addEventListener("click", async function () {
         editUserIndex = null; // Reset edit index
         addUserForm.reset(); // Clear form
         addUserModal.classList.add("show");
     });
 
     // Event listener to close the modal
-    closeModalButton.addEventListener("click", function () {
+    closeModalButton.addEventListener("click", async function () {
         addUserModal.classList.remove("show");
     });
 

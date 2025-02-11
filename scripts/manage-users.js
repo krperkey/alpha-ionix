@@ -1,12 +1,12 @@
 import { loadData, saveData } from './data-handler.js';
 
 // Open the modal when "Add New User" is clicked
-document.getElementById('add-user-btn').addEventListener('click', function() {
+document.getElementById('add-user-btn').addEventListener('click', async function() {
     document.getElementById('add-user-modal').style.display = 'flex';
 });
 
 // Close the modal when the close button is clicked
-document.getElementById('close-modal-btn').addEventListener('click', function() {
+document.getElementById('close-modal-btn').addEventListener('click', async function() {
     document.getElementById('add-user-modal').style.display = 'none';
 });
 

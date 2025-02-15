@@ -1,5 +1,5 @@
 // Import localForage for persistent storage
-import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
+import { loadData } from "./data-handler.js";
 
 // Parse query parameter
 async function getQueryParameter(name) {
@@ -9,10 +9,8 @@ async function getQueryParameter(name) {
 
 // Load test code details
 window.onload = async function () {
-    const uniqueId = getQueryParameter("id");
-
-    // Retrieve test codes from localForage
-    const testCodes = (await localforage.getItem("testCodes")) || [];
+    const uniqueId = await getQueryParameter("id");
+    const testCodes = (await loadData("testCodes")) || [];
     const testCode = testCodes.find(tc => tc.uniqueId === uniqueId);
 
     if (!testCode) {
@@ -22,7 +20,7 @@ window.onload = async function () {
     }
 
     // Populate "overview-container" details
-    document.getElementById("test-code-id").textContent = testCode.uniqueId || ""; 
+    document.getElementById("test-code-id").textContent = testCode.uniqueId || ""; // Use textContent for the span
     document.getElementById("analysis-name").textContent = testCode.analysisName || "";
     document.getElementById("reference-method").textContent = testCode.referenceMethod || "N/A";
     document.getElementById("preservation-requirements").textContent = testCode.preservationRequirements || "";
@@ -58,12 +56,12 @@ window.onload = async function () {
             newTabButton.dataset.tab = qcTab.tabName.replace(/\s+/g, "-").toLowerCase();
             newTabButton.textContent = qcTab.tabName;
             tabsContainer.appendChild(newTabButton);
-
+        
             // Create tab content
             const newTabContent = document.createElement("section");
             newTabContent.id = `${qcTab.tabName.replace(/\s+/g, "-").toLowerCase()}-container`;
             newTabContent.className = "tab";
-
+        
             // Check which columns have non-empty values
             const hasData = {
                 lowerLimit: qcTab.rows.some(row => row.lowerLimit?.trim() !== ""),
@@ -72,7 +70,7 @@ window.onload = async function () {
                 mdl: qcTab.rows.some(row => row.mdl?.trim() !== ""),
                 loq: qcTab.rows.some(row => row.loq?.trim() !== ""),
             };
-
+        
             // Build table headers dynamically based on data availability
             let headers = `
                 <th>Analyte Name</th>
@@ -82,7 +80,7 @@ window.onload = async function () {
             if (hasData.precision) headers += `<th>Precision</th>`;
             if (hasData.mdl) headers += `<th>MDL</th>`;
             if (hasData.loq) headers += `<th>LOQ</th>`;
-
+        
             let tabHTML = `
                 <h3>${qcTab.tabName}</h3>
                 <table>
@@ -91,7 +89,7 @@ window.onload = async function () {
                     </thead>
                     <tbody>
             `;
-
+        
             // Populate table rows dynamically based on data availability
             qcTab.rows.forEach(row => {
                 tabHTML += `
@@ -105,34 +103,35 @@ window.onload = async function () {
                 if (hasData.loq) tabHTML += `<td>${row.loq || ""}</td>`;
                 tabHTML += `</tr>`;
             });
-
+        
             tabHTML += `
                     </tbody>
                 </table>
             `;
-
+        
             newTabContent.innerHTML = tabHTML;
             tabContentContainer.appendChild(newTabContent);
-        });
+        });        
+        
 
         // Tab switching logic
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const tab = button.dataset.tab;
+document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+        const tab = button.dataset.tab;
 
-                // Hide all tabs
-                document.querySelectorAll('.tab').forEach(tabContent => {
-                    tabContent.style.display = 'none';
-                });
-
-                // Remove active class from all buttons
-                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-
-                // Show the selected tab and add active class to the button
-                document.querySelector(`#${tab}-container`).style.display = 'block';
-                button.classList.add('active');
-            });
+        // Hide all tabs
+        document.querySelectorAll('.tab').forEach(tabContent => {
+            tabContent.style.display = 'none';
         });
+
+        // Remove active class from all buttons
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+
+        // Show the selected tab and add active class to the button
+        document.querySelector(`#${tab}-container`).style.display = 'block';
+        button.classList.add('active');
+    });
+});
 
         // Show the first tab by default
         document.querySelector(".tab-button").click();

@@ -1,5 +1,5 @@
 // Import localForage for persistent storage
-import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
+import { loadData } from "./data-handler.js";
 
 // Attach event listeners to search elements
 document.getElementById('search-button').addEventListener('click', performSearch);
@@ -18,9 +18,9 @@ async function performSearch() {
 
     // Fetch stored data asynchronously
     const [batches, samples, workorders] = await Promise.all([
-        localforage.getItem('batches') || [],
-        localforage.getItem('sampleDataArray') || [],
-        localforage.getItem('workordersArray') || []
+        loadData('batches') || [],
+        loadData('sampleDataArray') || [],
+        loadData('workordersArray') || []
     ]);
 
     // Search for matches and redirect with the highlight parameter

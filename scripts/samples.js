@@ -1,10 +1,10 @@
-import { loadData } from "./data-handler.js";
+import { loadData, saveData } from "./data-handler.js";
 
 document.getElementById('num-rows').addEventListener('keydown', async function(event) {
     // Check if the Enter key (key code 13) was pressed
     if (event.key === 'Enter') {
         event.preventDefault();  // Prevent form submission (page refresh)
-        createRows();  // Call the function to create rows
+        await createRows();  // Call the function to create rows
     }
 });
 
@@ -264,8 +264,6 @@ document.getElementById('save-analytes').addEventListener('click', async functio
 
 // Store selected analytes for each row
 const selectedAnalytes = {};
-
-import { loadData, saveData } from './data-handler.js';
 
 // Show the modal with default or updated selections
 document.getElementById('table-body').addEventListener('click', async function (event) {

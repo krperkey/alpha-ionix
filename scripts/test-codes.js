@@ -1,5 +1,5 @@
 // Import localForage
-import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
+import { loadData, saveData } from "./data-handler.js";
 
 // Add new analyte row
 document.getElementById('add-analyte-row').addEventListener('click', async function () {
@@ -24,10 +24,10 @@ document.getElementById('add-analyte-row').addEventListener('click', async funct
     });
 });
 
-// Populate the QC dropdown with sample types from localForage
+// Populate the QC dropdown with sample types from localStorage
 async function populateQCDropdown() {
     const qcDropdown = document.getElementById('qc-sample-type-dropdown');
-    const sampleTypes = (await localforage.getItem('sampleTypes')) || [];
+    const sampleTypes = await loadData('sampleTypes') || [];
 
     sampleTypes.forEach(sampleType => {
         if (sampleType.typeName) { // Ensure the typeName exists
@@ -50,8 +50,8 @@ document.getElementById('add-qc').addEventListener('click', async function () {
         return;
     }
 
-    // Fetch sample types from localForage
-    const sampleTypes = (await localforage.getItem('sampleTypes')) || [];
+    // Fetch sample types from localStorage
+    const sampleTypes = await loadData('sampleTypes') || [];
     const selectedSampleType = sampleTypes.find(type => type.typeName === qcSampleType);
 
     if (!selectedSampleType) {
@@ -137,6 +137,7 @@ document.getElementById('add-qc').addEventListener('click', async function () {
             tab.style.display = 'none';
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
         });
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
 
         document.getElementById(`${qcSampleType.replace(/\s+/g, '-').toLowerCase()}-container`).style.display = 'block';
         newTabButton.classList.add('active');
@@ -175,11 +176,11 @@ window.onload = async function () {
     document.querySelectorAll('.tab').forEach(tabContent => {
         tabContent.style.display = 'none';
     });
-    document.querySelector('.tab-button.active')?.click(); // Trigger the active tab
-    await populateQCDropdown(); // Populate the QC dropdown
+    document.querySelector('.tab-button.active').click(); // Trigger the active tab
+    populateQCDropdown(); // Populate the QC dropdown
 };
 
-// Function to generate a unique ID
+// async function to generate a unique ID
 async function generateUniqueId() {
     return `TC-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 }
@@ -202,7 +203,6 @@ document.getElementById("create-test-code").addEventListener("click", async func
         alert("Please enter a Reference Method.");
         return;
     }
-})
 
     // Create test code data
     const combinedAnalysisId = `${analysisName} (${referenceMethod})`;
@@ -268,21 +268,15 @@ document.getElementById("create-test-code").addEventListener("click", async func
         return;
     }
 
-    // Save Test Code to LocalForage
-localforage.getItem("testCodes").then(testCodes => {
-    testCodes = testCodes || []; // Ensure an array exists
+    // Save Test Code to Local Storage
+    const testCodes = await loadData("testCodes") || [];
     testCodes.push(testCode);
-    
-    return localforage.setItem("testCodes", testCodes);
-}).then(() => {
+    saveData("testCodes", testCodes);
+
     // Show the generated unique ID in the alert
     alert(`Generated Test Code ID: ${uniqueId}`);
     window.location.href = "test-code-table.html";
-}).catch(error => {
-    console.error("Error saving test code:", error);
-    alert("An error occurred while saving the test code.");
 });
-
 
 // Back button logic (unchanged)
 document.getElementById('back-to-test-code-table').addEventListener('click', async function () {

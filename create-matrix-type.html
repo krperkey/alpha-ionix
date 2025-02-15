@@ -119,43 +119,8 @@
         <button id="submit-button">Create Matrix Type</button>
     </main>
 
-    <script>
-        document.getElementById('submit-button').addEventListener('click', async function () {
-            const matrixType = document.getElementById('matrix-type').value;
-            const matrixTypeCode = document.getElementById('matrix-type-code').value;
-            const matrixName = document.getElementById('matrix-name').value;
-            const matrixNameCode = document.getElementById('matrix-name-code').value;
-            const matrixDescription = document.getElementById('matrix-description').value;
-
-            if (!matrixType || !matrixTypeCode || !matrixName || !matrixNameCode || !matrixDescription) {
-                alert('Please fill out all fields.');
-                return;
-            }
-
-            const matrixTypes = JSON.parse = await localforage.getItem('matrixTypes') || [];
-            matrixTypes.push({ 
-                type: matrixType, 
-                typeCode: matrixTypeCode, 
-                name: matrixName, 
-                nameCode: matrixNameCode, 
-                description: matrixDescription 
-            });
-            await localforage.setItem('matrixTypes', JSON.stringify(matrixTypes));
-
-            alert('Matrix Type added successfully!');
-            document.getElementById('matrix-type').value = '';
-            document.getElementById('matrix-type-code').value = '';
-            document.getElementById('matrix-name').value = '';
-            document.getElementById('matrix-name-code').value = '';
-            document.getElementById('matrix-description').value = '';
-        });
-
-        document.getElementById('matrix-types').addEventListener('click', function() {
-        window.location.href = 'matrix-types.html';
-    });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="scripts/create-matrix-type.js"></script>
+    
 </body>
 </html>
 

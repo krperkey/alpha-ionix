@@ -1,4 +1,5 @@
-import { loadData, saveData } from './data-handler.js';
+import { loadData, saveData } from "./data-handler.js";
+
 
 // Generate a unique ID for each standard
 async function generateUniqueId() {
@@ -38,7 +39,7 @@ async function saveStandard() {
     });
 
     const newStandard = {
-        id: generateUniqueId(),
+        id: await generateUniqueId(),
         name,
         volume,
         units,
@@ -58,7 +59,7 @@ async function saveStandard() {
 
     const standards = await loadData('standards') || [];
     standards.push(newStandard);
-    await saveData('standards', standards);
+    await saveData('standards', standards); // ✅ Save as an array;
 
     // Notify the table to refresh by sending a custom event
     await saveData('refreshStandardsTable', 'true');
@@ -92,4 +93,6 @@ window.onload = async function () {
     document.getElementById('save-standard-btn').addEventListener('click', saveStandard);
     document.getElementById('add-analyte-btn').addEventListener('click', addAnalyteRow);
 };
+
+
 

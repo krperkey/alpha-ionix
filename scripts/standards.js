@@ -1,9 +1,9 @@
 // Import localForage for persistent storage
-import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
+import { loadData, saveData } from "./data-handler.js";
 
 // Load existing standards from localForage and display them in the table
 async function loadStandards() {
-    const standards = await localforage.getItem('standards') || [];
+    const standards = await loadData('standards') || [];
     const tableBody = document.querySelector('#standards-table tbody');
     tableBody.innerHTML = ''; // Clear existing content
 
@@ -33,11 +33,11 @@ async function attachDeleteEventListeners() {
 // Delete a standard from localForage and update the table
 async function deleteStandard(event) {
     const index = parseInt(event.target.dataset.index, 10);
-    let standards = await localforage.getItem('standards') || [];
+    let standards = await loadData('standards') || [];
 
     if (confirm('Are you sure you want to delete this standard?')) {
         standards.splice(index, 1); // Remove the standard from the array
-        await localforage.setItem('standards', standards); // Save updated list
+        await saveData('standards', standards); // Save updated list
 
         loadStandards(); // Refresh the table
     }

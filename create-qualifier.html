@@ -107,33 +107,7 @@
         <button id="submit-button">Create Qualifier</button>
     </main>
 
-    <script>
-        document.getElementById('submit-button').addEventListener('click', async function () {
-            const qualifierCode = document.getElementById('qualifier-code').value;
-            const description = document.getElementById('description').value;
+    <script type="module" src="scripts/create-qualifier.js"></script>
 
-            if (!qualifierCode || !description) {
-                alert('Please fill out all fields.');
-                return;
-            }
-
-            const qualifiers = JSON.parse = await localforage.getItem('qualifiers') || [];
-            qualifiers.push({ 
-                qualifierCode, 
-                description 
-            });
-            await localforage.setItem('qualifiers', JSON.stringify(qualifiers));
-
-            alert('Hold Time added successfully!');
-            document.getElementById('qualifier-code').value = '';
-            document.getElementById('description').value = '';
-        });
-
-        document.getElementById('qualifiers').addEventListener('click', function() {
-        window.location.href = 'qualifiers.html';
-    });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

@@ -107,33 +107,7 @@
         <button id="submit-button">Create Condition Code</button>
     </main>
 
-    <script>
-        document.getElementById('submit-button').addEventListener('click', async function () {
-            const conditionCode = document.getElementById('condition-code').value;
-            const description = document.getElementById('description').value;
-
-            if (!conditionCode || !description) {
-                alert('Please fill out all fields.');
-                return;
-            }
-
-            const conditionCodes = JSON.parse = await localforage.getItem('conditionCodes') || [];
-            conditionCodes.push({ 
-                conditionCode, 
-                description 
-            });
-            await localforage.setItem('conditionCodes', JSON.stringify(conditionCodes));
-
-            alert('Condition Code added successfully!');
-            document.getElementById('condition-code').value = '';
-            document.getElementById('description').value = '';
-        });
-
-        document.getElementById('conditionCodes').addEventListener('click', function() {
-        window.location.href = 'condition-codes.html';
-    });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="scripts/create-condition-code.js"></script>
+    
 </body>
 </html>

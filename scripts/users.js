@@ -1,59 +1,75 @@
-// JavaScript for User Management Page
+import { loadData, saveData } from "./data-handler.js";
 
-window.onload = async function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const userTableBody = document.querySelector(".user-table tbody");
     const addUserForm = document.querySelector("#add-user-form");
     const addUserModal = document.querySelector("#add-user-modal");
     const createUserButton = document.querySelector("#create-user-button");
     const closeModalButton = document.querySelector("#close-modal-button");
+    const userRoleDropdown = document.querySelector("#user-role");
 
     let editUserIndex = null; // Track user being edited
 
-    // Load users from localForage
-    let users = await localforage.getItem("users") || [];
+    // Load users from local storage or initialize with mock data
+    let users = await loadData("users") || [];
 
-    // Save users to localForage
-    async function saveUsersToStorage() {
-        await localforage.setItem("users", users);
+    // Save users to local storage
+    async function saveUsersToLocalStorage() {
+        await saveData("users", users);
     }
 
-    // Function to generate a random 4-digit user number
-    async function generateUserNumber() {
-        return String(Math.floor(1000 + Math.random() * 9000)); // Random 4-digit number as a string
+    // Save initials to localStorage
+    async function saveInitialsToLocalStorage() {
+        const userInitials = users.map(user => user.initials).filter(initials => initials);
+        await saveData("analystInitials", userInitials);
     }
 
     // Function to render users in the table
     async function renderUsers() {
         userTableBody.innerHTML = ""; // Clear the table body
-        users.forEach((user, index) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${user.userNumber}</td>
-                <td>${user.employeeID}</td>
-                <td>${user.firstName}</td>
-                <td>${user.middleName || ""}</td>
-                <td>${user.lastName}</td>
-                <td>${user.initials}</td>
-                <td>${user.positionTitle}</td>
-                <td>${user.email}</td>
-                <td>${user.phone}</td>
-                <td>${user.userRole}</td>
-                <td>${user.status}</td>
-                <td>
-                    <button class="edit-user" data-index="${index}">Edit</button>
-                    <button class="inactivate-user" data-index="${index}">Inactivate</button>
-                    <button class="reset-password" data-index="${index}">Reset Password</button>
-                    <button class="delete-user" data-index="${index}">Delete</button>
-                </td>
-            `;
-            userTableBody.appendChild(row);
-        });
+
+        if (users.length === 0) {
+            const noDataRow = document.createElement("tr");
+            noDataRow.innerHTML = `<td colspan="13">No users available. Create a new one!</td>`;
+            userTableBody.appendChild(noDataRow);
+        } else {
+            users.forEach((user, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${user.userNumber}</td>
+                    <td>${user.username}</td>
+                    <td>${user.employeeID}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.middleName || ""}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.initials}</td>
+                    <td>${user.positionTitle}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.userRole}</td>
+                    <td>${user.status}</td>
+                    <td>
+                        <button class="edit-user" data-index="${index}">Edit</button>
+                        <button class="inactivate-user" data-index="${index}">Inactivate</button>
+                        <button class="reset-password" data-index="${index}">Reset Password</button>
+                        <button class="delete-user" data-index="${index}">Delete</button>
+                    </td>
+                `;
+                userTableBody.appendChild(row);
+            });
+        }
+
+        await saveInitialsToLocalStorage(); // Save initials every time the table is rendered
     }
+
+    // ✅ Load & Render Users on Page Load
+    await renderUsers();
 
     // Event listener to show the modal for adding a new user
     createUserButton.addEventListener("click", async function () {
         editUserIndex = null; // Reset edit index
         addUserForm.reset(); // Clear form
+        await populateUserRoleDropdown(); // Populate roles in the dropdown
         addUserModal.classList.add("show");
     });
 
@@ -73,8 +89,9 @@ window.onload = async function () {
         const positionTitle = document.querySelector("#position-title").value.trim();
         const email = document.querySelector("#email").value.trim();
         const phone = document.querySelector("#phone").value.trim();
-        const userRole = document.querySelector("#user-role").value.trim();
+        const userRole = userRoleDropdown.value.trim();
         const employeeID = document.querySelector("#employee-id").value.trim();
+        const username = document.querySelector("#username").value.trim();
         const password = document.querySelector("#password").value.trim();
         const confirmPassword = document.querySelector("#confirm-password").value.trim();
 
@@ -101,12 +118,12 @@ window.onload = async function () {
                 alert("User updated successfully!");
             } else {
                 // Add new user
-                const userNumber = generateUserNumber();
-                users.push({ userNumber, employeeID, firstName, middleName, lastName, initials, positionTitle, email, phone, userRole, status: "Active" });
+                const userNumber = await generateUserNumber();
+                users.push({ userNumber, username, employeeID, firstName, middleName, lastName, initials, positionTitle, email, phone, userRole, status: "Active" });
                 alert("User added successfully!");
             }
-            await saveUsersToStorage();
-            renderUsers();
+            await saveUsersToLocalStorage();
+            await renderUsers();
             addUserForm.reset();
             addUserModal.classList.remove("show");
         } else {
@@ -125,19 +142,21 @@ window.onload = async function () {
             document.querySelector("#middle-name").value = user.middleName;
             document.querySelector("#last-name").value = user.lastName;
             document.querySelector("#initials").value = user.initials;
+            document.querySelector("#username").value = user.username;
             document.querySelector("#position-title").value = user.positionTitle;
             document.querySelector("#email").value = user.email;
             document.querySelector("#phone").value = user.phone;
-            document.querySelector("#user-role").value = user.userRole;
+            userRoleDropdown.value = user.userRole; // Select the correct role
             document.querySelector("#employee-id").value = user.employeeID;
+
             editUserIndex = index; // Set edit index
             addUserModal.classList.add("show");
         }
 
         if (e.target.classList.contains("inactivate-user")) {
             users[index].status = "Inactive";
-            await saveUsersToStorage();
-            renderUsers();
+            await saveUsersToLocalStorage();
+            await renderUsers();
         }
 
         if (e.target.classList.contains("reset-password")) {
@@ -153,12 +172,26 @@ window.onload = async function () {
         if (e.target.classList.contains("delete-user")) {
             if (confirm("Are you sure you want to delete this user?")) {
                 users.splice(index, 1);
-                await saveUsersToStorage();
-                renderUsers();
+                await saveUsersToLocalStorage();
+                await renderUsers();
             }
         }
     });
 
-    // Initial render
-    renderUsers();
-};
+    // Function to generate a random 4-digit user number
+    async function generateUserNumber() {
+        return String(Math.floor(1000 + Math.random() * 9000)); // Random 4-digit number as a string
+    }
+
+    // Populate roles into the dropdown
+    async function populateUserRoleDropdown() {
+        const roles = await loadData("roles") || [];
+        userRoleDropdown.innerHTML = '<option value="" disabled selected>Select a role</option>'; // Reset dropdown
+        roles.forEach(role => {
+            const option = document.createElement("option");
+            option.value = role.name;
+            option.textContent = role.name;
+            userRoleDropdown.appendChild(option);
+        });
+    }
+});

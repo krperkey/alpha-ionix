@@ -107,33 +107,7 @@
         <button id="submit-button">Create Hold Time</button>
     </main>
 
-    <script>
-        document.getElementById('submit-button').addEventListener('click', async function () {
-            const holdTime = document.getElementById('hold-time').value;
-            const description = document.getElementById('description').value;
+    <script type="module" src="scripts/create-hold-time.js"></script>
 
-            if (!holdTime || !description) {
-                alert('Please fill out all fields.');
-                return;
-            }
-
-            const holdTimes = JSON.parseawait = await localforage.getItem('holdTimes') || [];
-            holdTimes.push({ 
-                holdTime, 
-                description 
-            });
-            await localforage.setItem('holdTimes', JSON.stringify(holdTimes));
-
-            alert('Hold Time added successfully!');
-            document.getElementById('hold-time').value = '';
-            document.getElementById('description').value = '';
-        });
-
-        document.getElementById('hold-times').addEventListener('click', function() {
-        window.location.href = 'hold-time.html';
-    });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </body>
 </html>

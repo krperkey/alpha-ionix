@@ -1,10 +1,10 @@
 // Import localForage
-import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
+import { loadData, saveData } from "./data-handler.js";
 
 window.onload = async function () {
-    const testCodes = (await localforage.getItem("testCodes")) || [];
-    const inactiveTestCodes = (await localforage.getItem("inactiveTestCodes")) || [];
-    const sampleTypes = (await localforage.getItem("sampleTypes")) || [];
+    const testCodes = (await loadData("testCodes")) || [];
+    const inactiveTestCodes = (await loadData("inactiveTestCodes")) || [];
+    const sampleTypes = (await loadData("sampleTypes")) || [];
     const tableBody = document.querySelector("#test-code-table tbody");
 
     // Populate the table with clickable IDs and properly set data-index for buttons
@@ -50,8 +50,8 @@ window.onload = async function () {
             if (!isNaN(index)) {
                 const testCode = testCodes.splice(index, 1)[0]; // Remove from active list
                 inactiveTestCodes.push(testCode); // Add to inactive list
-                await localforage.setItem("testCodes", testCodes); // Update active list in storage
-                await localforage.setItem("inactiveTestCodes", inactiveTestCodes); // Update inactive list in storage
+                await saveData("testCodes", testCodes); // Update active list in storage
+                await saveData("inactiveTestCodes", inactiveTestCodes); // Update inactive list in storage
                 location.reload(); // Reload the page to update the table
             } else {
                 console.error("Invalid index for inactivation.");
@@ -73,7 +73,7 @@ window.onload = async function () {
             const index = parseInt(e.target.dataset.index, 10);
             if (!isNaN(index)) {
                 testCodes.splice(index, 1);
-                await localforage.setItem("testCodes", testCodes);
+                await saveData("testCodes", testCodes);
                 location.reload();
             } else {
                 console.error("Invalid index for removal.");
@@ -85,7 +85,7 @@ window.onload = async function () {
     document.querySelectorAll('.edit-btn').forEach(button => {
         button.addEventListener('click', async function () {
             const index = this.dataset.index;
-            const testCodes = (await localforage.getItem("testCodes")) || [];
+            const testCodes = (await loadData("testCodes")) || [];
             const testCode = testCodes[index];
 
             // Pre-fill the form with the existing data
@@ -159,28 +159,49 @@ window.onload = async function () {
             }));
 
             testCodes[index] = testCode;
-            await localforage.setItem("testCodes", testCodes);
+            await saveData("testCodes", testCodes);
             location.reload();
         };
     });
 }
 
+// Ensure tableBody is correctly selected
+const tableBody = document.querySelector("#test-code-table tbody");
+
 // Copy functionality
 tableBody.addEventListener("click", async (e) => {
     if (e.target.classList.contains("copy-btn")) {
         const index = e.target.dataset.index;
-        const testCodes = (await localforage.getItem("testCodes")) || [];
+        
+        // ✅ Load test codes correctly
+        let testCodes = (await loadData("testCodes")) || [];
+
+        // ✅ Ensure `testCodes` is an array and index is valid
+        if (!Array.isArray(testCodes) || index === undefined || testCodes[index] === undefined) {
+            alert("Error: Test Code not found.");
+            return;
+        }
+
         const testCode = testCodes[index];
 
         document.getElementById("save-copy").onclick = async () => {
-            const newTestCode = { ...testCode };
+            // ✅ Ensure the copied test code gets a new unique ID
+            const newTestCode = { ...testCode, uniqueId: `TC-${Date.now()}-${Math.floor(Math.random() * 1000)}` };
+
             testCodes.push(newTestCode);
-            await localforage.setItem("testCodes", testCodes);
+            await saveData("testCodes", testCodes); // ✅ Ensure saving is awaited
+
+            alert("Test Code copied successfully!"); // ✅ Add a confirmation alert
             location.reload();
         };
 
         document.getElementById("copy-modal").style.display = "block";
     }
+});
+
+// Ensure cancel button closes the modal
+document.getElementById("cancel-copy").addEventListener("click", function () {
+    document.getElementById("copy-modal").style.display = "none"; // ✅ Hide modal
 });
 
 

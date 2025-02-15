@@ -1,5 +1,5 @@
 // Import localForage for persistent storage
-import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
+import { loadData } from "./data-handler.js";
 
 // Fetch and display the standard details based on the ID from the URL
 async function loadStandardDetails() {
@@ -13,7 +13,7 @@ async function loadStandardDetails() {
     }
 
     // Fetch standards asynchronously from localForage
-    const standards = await localforage.getItem('standards') || [];
+    const standards = await loadData('standards') || [];
     const standard = standards.find(std => std.id === standardId);
 
     if (!standard) {

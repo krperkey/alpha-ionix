@@ -1,7 +1,7 @@
-import localforage from "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
+import "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
 
-// Initialize localForage
-localforage.config({
+// Ensure localForage is properly initialized
+window.localforage.config({
     name: "AlphaIonix",
     storeName: "userDataStore"
 });
@@ -9,21 +9,27 @@ localforage.config({
 // Save data to localForage
 export async function saveData(key, data) {
     try {
-        await localforage.setItem(key, data);
+        await window.localforage.setItem(key, data);
         console.log(`Data saved for key: ${key}`);
     } catch (error) {
         console.error("Error saving data:", error);
     }
 }
 
-// Load data from localForage
 export async function loadData(key) {
     try {
-        const data = await localforage.getItem(key);
-        console.log(`Data loaded for key: ${key}`, data);
-        return data;
+        const data = await window.localforage.getItem(key);
+        if (key.startsWith("savedBatchResults-")) {
+            return Array.isArray(data) ? data : [];  // Ensure it's always an array for batch results
+        }
+        return data !== null ? data : {};
     } catch (error) {
-        console.error("Error loading data:", error);
-        return null;
+        console.error("❌ Error loading data:", error);
+        return key.startsWith("savedBatchResults-") ? [] : {};
     }
 }
+
+
+
+
+

@@ -132,3 +132,7 @@ document.getElementById('procedures-table').addEventListener('click', async func
     }
 });
 
+document.getElementById('retired-procedures').addEventListener('click', function() {
+    window.location.href = 'retired-procedures.html';
+});
+

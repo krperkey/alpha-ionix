@@ -4,79 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inspection Checklists</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        header {
-            background-color: #005b96;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        .container {
-            margin: 2rem auto;
-            max-width: 800px;
-            padding: 1rem;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        h1, h2 {
-            color: #005b96;
-        }
-        .checklist {
-            margin-bottom: 2rem;
-        }
-        .checklist input {
-            margin-right: 10px;
-        }
-        .submit-button {
-            display: block;
-            margin: 1rem 0;
-            padding: 10px 20px;
-            background-color: #005b96;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .submit-button:hover {
-            background-color: #004070;
-        }
-        footer {
-            text-align: center;
-            margin-top: 2rem;
-            padding: 1rem;
-            background-color: #333;
-            color: white;
-        }
-    </style>
-    <script>
-        async function logInspection(section) {
-            const allCheckboxes = document.querySelectorAll(`#${section} input[type='checkbox']`);
-            const allChecked = Array.from(allCheckboxes).every(checkbox => checkbox.checked);
-
-            if (allChecked) {
-                const now = new Date();
-                const logEntry = `${section} inspection completed on ${now.toLocaleDateString()} at ${now.toLocaleTimeString()}\n`;
-
-                // Send the log to the inspection log page (mock example using localStorage for simplicity)
-                let logData = await localforage.getItem('inspectionLogs') || '';
-                logData += logEntry;
-                await localforage.setItem('inspectionLogs', logData);
-
-                alert(`Inspection for ${section} logged successfully.`);
-                allCheckboxes.forEach(checkbox => checkbox.checked = false); // Reset checkboxes
-            } else {
-                alert('Please complete all checklist items before submitting.');
-            }
-        }
-    </script>
 </head>
 
 <aside id="disclaimer">
@@ -122,7 +49,8 @@
     <footer>
         <p>&copy; 2025 Compliance Management. All rights reserved.</p>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+    <script type="module" src="scripts/inspections.js"></script>
+
 </body>
 </html>

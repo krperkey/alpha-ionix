@@ -113,33 +113,6 @@
         <button id="submit-button">Create Container</button>
     </main>
 
-    <script>
-        // Add a new container to localStorage when the Create button is clicked
-document.getElementById('submit-button').addEventListener('click', async function () {
-    const containerType = document.getElementById('container-type').value;
-    const containerVolume = document.getElementById('container-volume').value;
-    const containerUnits = document.getElementById('container-units').value;
-
-    if (!containerType || !containerVolume || !containerUnits) {
-        alert('Please fill out all fields.');
-        return;
-    }
-
-    const containers = JSON.parse = await localforage.setItem('containers') || [];
-    containers.push({ type: containerType, volume: containerVolume, units: containerUnits });
-    await localforage.setItem('containers', JSON.stringify(containers));
-
-    alert('Container added successfully!');
-    document.getElementById('container-type').value = '';
-    document.getElementById('container-volume').value = '';
-    document.getElementById('container-units').value = '';
-});
-
-document.getElementById('back-to-containers').addEventListener('click', function() {
-    window.location.href = 'container-types.html';
-});
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="scripts/create-container.js"></script>
 </body>
 </html>

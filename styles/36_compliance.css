@@ -1,0 +1,92 @@
+/* General background and text styling */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: #333; /* White background for readability */
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #333; /* Dark background */
+    color: #FFD700; /* Yellow text */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header a#logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+/* Main container styling */
+main {
+    padding: 20px;
+    max-width: auto;
+    margin: 0 auto;
+}
+
+/* Section heading */
+h2 {
+    text-align: left;
+    font-size: 2rem;
+    color: #FFD700; /* Dark gray */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #FFD700;
+    padding-bottom: 10px;
+}
+.container {
+    margin: 2rem auto;
+    max-width: 1825px;
+    padding: 1rem;
+    background: #333;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: 3px solid #ffd700;
+    color: white;
+    font-size: 1.0rem;
+    font-weight: bold;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+table th {
+    background-color: #005b96;
+    color: white;
+}
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+}
+.link-button {
+    display: inline-block;
+    margin-top: 0;
+    padding: 10px 20px;
+    background-color: #005b96;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.link-button:hover {
+    background-color: #004070;
+}

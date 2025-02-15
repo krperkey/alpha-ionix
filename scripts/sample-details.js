@@ -2,8 +2,8 @@ import { loadData, saveData } from './data-handler.js';
 
 // Automatically save default analytes for QC samples
 async function saveDefaultAnalytes() {
-    const sampleDataArray = await loadData('sampleDataArray') || [];
-    const testCodes = await loadData('testCodes') || []; // From test-code-table
+    const sampleDataArray = (await loadData('sampleDataArray')) || [];
+    const testCodes = (await loadData('testCodes')) || []; // From test-code-table
 
     let updated = false;
 
@@ -44,8 +44,8 @@ window.onload = async function () {
 };
 
 async function loadSampleDetails(sampleID) {
-    const sampleDataArray = await loadData('sampleDataArray') || [];
-    const workordersArray = await loadData('workordersArray') || [];
+    const sampleDataArray = (await loadData('sampleDataArray')) || [];
+    const workordersArray = (await loadData('workordersArray')) || [];
     const sampleData = sampleDataArray.find(sample => sample.id === sampleID);
 
     if (sampleData) {
@@ -124,9 +124,9 @@ async function populateAnalysisTable(sampleData) {
     analysisTableBody.innerHTML = ''; // Clear previous rows
     analysisTableHead.innerHTML = ''; // Clear previous headers
 
-    const batches = await loadData('batches') || [];
-    const sampleDataArray = await loadData('sampleDataArray') || [];
-    const testCodes = await loadData('testCodes') || []; // From test-code-table
+    const batches = (await loadData('batches')) || [];
+    const sampleDataArray = (await loadData('sampleDataArray')) || [];
+    const testCodes = (await loadData('testCodes')) || []; // From test-code-table
 
     // Check if any sample has valid parent or paired data
     const hasParent = sampleDataArray.some(sample => sample.parent);
@@ -211,7 +211,7 @@ async function populateAnalysisTable(sampleData) {
 
                 if (sampleType === "QC" && analysis && analysis !== "No Analysis Found" && analysis !== "No Batch Found") {
                     // Find the corresponding test code
-                    const testCodes = await loadData('testCodes') || [];
+                    const testCodes = (await loadData('testCodes')) || [];
                     const testCode = testCodes.find(tc => tc.analysisId === analysis);
                     if (testCode) {
                         openQCAnalyteModal(testCode.analytes);
@@ -248,7 +248,7 @@ async function updateSampleStatus() {
     sampleStatusElement.textContent = sampleStatus;
 
     const sampleID = new URLSearchParams(window.location.search).get('id');
-    const sampleStatusMap = await loadData('sampleStatusMap') || {};
+    const sampleStatusMap = (await loadData('sampleStatusMap')) || {};
     sampleStatusMap[sampleID] = sampleStatus;
     await saveData('sampleStatusMap', sampleStatusMap);
 }
@@ -260,8 +260,8 @@ async function openAnalyteModal(sampleID, editMode = false) {
     modal.dataset.sampleId = sampleID;
     analyteListBody.innerHTML = ''; // Clear previous content
 
-    const sampleDataArray = await loadData('sampleDataArray') || [];
-    const testCodes = await loadData('testCodes') || [];
+    const sampleDataArray = (await loadData('sampleDataArray')) || [];
+    const testCodes = (await loadData('testCodes')) || [];
     const sample = sampleDataArray.find(sample => sample.id === sampleID);
 
     if (sample) {
@@ -300,9 +300,6 @@ async function openAnalyteModal(sampleID, editMode = false) {
     modal.style.display = 'block';
 }
 
-
-import { loadData, saveData } from './data-handler.js';
-
 async function setupModalEventListeners() {
     document.getElementById('close-analyte-modal').addEventListener('click', closeAnalyteModal);
     document.getElementById('clear-all').addEventListener('click', clearAnalyteSelections);
@@ -337,7 +334,7 @@ document.getElementById('analysis-details-table').addEventListener('click', asyn
         const analysis = button.dataset.analysis;
         const sampleType = button.dataset.sampleType;
 
-        const testCodes = await loadData('testCodes') || [];
+        const testCodes = (await loadData('testCodes')) || [];
 
         if (sampleType === "QC") {
             const testCode = testCodes.find(tc => tc.analysisId === analysis);
@@ -360,7 +357,7 @@ async function openQCAnalyteModal(analytes, sampleID) {
     analyteListBody.innerHTML = '';
 
     if (analytes && analytes.length > 0) {
-        const sampleDataArray = await loadData('sampleDataArray') || [];
+        const sampleDataArray = (await loadData('sampleDataArray')) || [];
         const sample = sampleDataArray.find(sample => sample.id === sampleID);
 
         if (!sample.analytes || sample.analytes.length === 0) {
@@ -403,7 +400,7 @@ async function saveAnalyteSelections() {
     const modal = document.getElementById('analyte-modal');
     const sampleID = modal.dataset.sampleId;
 
-    const sampleDataArray = await loadData('sampleDataArray') || [];
+    const sampleDataArray = (await loadData('sampleDataArray')) || [];
     const sample = sampleDataArray.find(sample => sample.id === sampleID);
 
     if (sample) {

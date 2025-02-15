@@ -110,46 +110,7 @@
         </section>
     </main>
 
-    <script>
-        window.onload = async function () {
-        const inactiveTestCodes = JSON.parse = await localforage.getItem("inactiveTestCodes") || [];
-        const tableBody = document.querySelector("#test-code-table tbody");
-
-        inactiveTestCodes.forEach((testCode) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>
-                    <a href="test-code-details.html?id=${testCode.uniqueId}" class="test-code-link">${testCode.uniqueId}</a>
-                </td>
-                <td>${testCode.analysisId}</td>
-                <td>${testCode.analytes.length}</td>
-                <td>${testCode.preservationRequirements}</td>
-                <td>
-                    <button class="activate-btn">Reactivate</button>
-                </td>
-            `;
-            tableBody.appendChild(row);
-        });
-
-        tableBody.addEventListener("click", async (e) => {
-            if (e.target.classList.contains("activate-btn")) {
-                const rowIndex = e.target.closest("tr").rowIndex - 1; // Adjust for header
-                const testCode = inactiveTestCodes.splice(rowIndex, 1)[0]; // Remove from inactive list
-                const testCodes = JSON.parse = await localforage.getItem("testCodes") || [];
-                testCodes.push(testCode); // Add to active list
-                await localforage.setItem("testCodes", JSON.stringify(testCodes));
-                await localforage.setItem("inactiveTestCodes", JSON.stringify(inactiveTestCodes));
-                location.reload(); // Refresh the page
-            }
-        });
-    };
-
-    document.getElementById('back-to-test-codes').addEventListener('click', function() {
-        window.location.href = 'test-code-table.html';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="scripts/inactive-test-codes.js"></script>
 
 </body>
 </html>

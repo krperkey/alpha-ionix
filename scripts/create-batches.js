@@ -257,6 +257,71 @@ confirmAddQCButton.addEventListener("click", async function () {
     });
 };
 
+document.getElementById("create-batch-button").addEventListener("click", async function () {
+    // Generate Batch ID
+    const batchId = `BAT${Date.now()}`;
+
+    // Get selected analysis
+    const analysis = document.getElementById("batch-analysis").value;
+
+    // Automatically generate current date and time for creation
+    const createdDate = new Date().toLocaleString();
+
+    // Display the created date and time in the "Date Created" section
+    const dateCreatedElement = document.getElementById("date-created");
+    dateCreatedElement.textContent = createdDate;
+
+    // Display the Batch ID dynamically as a clickable link
+    const batchIdDisplay = document.getElementById("batch-id-display");
+    batchIdDisplay.innerHTML = `<a href="batch-details.html?batchId=${batchId}" style="font-weight: bold; color: rgb(131, 166, 231); text-decoration: none;">${batchId}</a>`;
+
+    // Get number of samples selected
+    const sampleRows = document.querySelectorAll("#sample-selection-table tbody tr");
+    const numberOfSamples = sampleRows.length;
+
+    // Set default status
+    const status = "Pending";
+
+    // Validate inputs
+    if (!analysis || numberOfSamples === 0) {
+        alert("Please complete all fields and select samples before creating a batch.");
+        return;
+    }
+
+    // Retrieve the existing sample data array from localStorage
+    const sampleDataArray = await loadData("sampleDataArray") || [];
+
+    // Create a map of existing samples for quick lookup
+    const sampleMap = sampleDataArray.reduce((map, sample) => {
+        map[sample.id] = sample;
+        return map;
+    }, {});
+
+    // Update selected samples with the batchId
+    sampleRows.forEach((row) => {
+        const sampleId = row.cells[0].textContent;
+        if (sampleMap[sampleId]) {
+            sampleMap[sampleId].batchId = batchId; // Add batchId to the sample
+        }
+    });
+
+    // Convert the updated sample map back to an array and save it to localStorage
+    await saveData("sampleDataArray", Object.values(sampleMap));
+
+    // Save batch details to localStorage
+    const batches = await loadData("batches") || [];
+    batches.push({
+        batchId,
+        analysis,
+        createdDate,
+        numberOfSamples,
+        status,
+    });
+    await saveData("batches", batches);
+
+    alert(`Batch created successfully: ${batchId}`);
+});
+
 
 
 

@@ -3,11 +3,6 @@ import { getFirestore, doc, setDoc, getDoc, onSnapshot, serverTimestamp } from "
 import "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
 
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-
 // Import the functions you need from the SDKs you need
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,6 +19,10 @@ const firebaseConfig = {
     appId: "1:732932003953:web:c57f9a0b1270614089e3d0",
     measurementId: "G-GPG8N80PZ7"
   };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 // Ensure localForage is properly initialized
 window.localforage.config({

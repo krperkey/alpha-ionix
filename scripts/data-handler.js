@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
 
 
 // Import the functions you need from the SDKs you need
@@ -22,7 +23,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-localforage.config({
+// Ensure localForage is properly initialized
+window.localforage.config({
     name: "AlphaIonix",
     storeName: "userDataStore"
 });

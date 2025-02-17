@@ -28,33 +28,20 @@ localforage.config({
 });
 
 // Save data to localForage
-export async function saveData(key, newData) {
+export async function saveData(key, data) {
     try {
-        // Load existing data from Firestore
+        // Save to LocalForage
+        await window.localforage.setItem(key, data);
+        console.log(`✅ Data saved locally for key: ${key}`);
+
+        // Save to Firestore (only if data is new or changed)
         const docRef = doc(db, "userContent", key);
-        const docSnap = await getDoc(docRef);
-        let existingData = [];
-
-        if (docSnap.exists()) {
-            existingData = docSnap.data().content || [];
-        }
-
-        // Ensure the data is an array
-        if (!Array.isArray(existingData)) {
-            existingData = [];
-        }
-
-        // Append new entry
-        existingData.push(newData);
-
-        // Save back to Firestore
-        await setDoc(docRef, { content: existingData, timestamp: serverTimestamp() }, { merge: true });
+        await setDoc(docRef, {
+            content: data,
+            timestamp: serverTimestamp()
+        }, { merge: true });  // Ensures Firebase data is merged, not overwritten
 
         console.log(`☁️ Data synced to Firebase for key: ${key}`);
-
-        // Also store locally in LocalForage
-        await localforage.setItem(key, existingData);
-        console.log(`✅ Data saved locally for key: ${key}`);
     } catch (error) {
         console.error("❌ Error saving data:", error);
     }
@@ -63,10 +50,10 @@ export async function saveData(key, newData) {
 export async function loadData(key) {
     try {
         // Load from LocalForage first
-        let data = await localforage.getItem(key);
+        let data = await window.localforage.getItem(key);
 
         if (data !== null) {
-            console.log(`✅ Loaded from LocalForage: ${key}`, data);
+            console.log(`✅ Loaded from LocalForage: ${key}`);
             return data;
         }
 
@@ -75,19 +62,20 @@ export async function loadData(key) {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            data = docSnap.data().content || [];
-            console.log(`☁️ Loaded from Firebase: ${key}`, data);
+            data = docSnap.data().content;
+            console.log(`☁️ Loaded from Firebase: ${key}`);
 
             // Store it locally for next time
-            await localforage.setItem(key, data);
+            await window.localforage.setItem(key, data);
             return data;
         }
 
-        console.warn(`⚠️ No Firebase data found for key: ${key}`);
-        return [];
+        // If Firebase is empty, return `null` but **do not erase local data**
+        console.log(`⚠️ No Firebase data found for key: ${key}. Keeping local data.`);
+        return null;
     } catch (error) {
         console.error("❌ Error loading data:", error);
-        return [];
+        return null;
     }
 }
 

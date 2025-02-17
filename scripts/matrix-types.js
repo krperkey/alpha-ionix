@@ -1,7 +1,7 @@
 import { loadData, saveData } from "./data-handler.js";
 
 window.onload = async function () {
-    const matrixTypes = JSON.parse = await loadData('matrixTypes') || [];
+    const matrixTypes = await loadData('matrixTypes') || [];
 
     const tableBody = document.querySelector("#matrix-types-table tbody");
 

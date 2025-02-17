@@ -1,7 +1,7 @@
 import { loadData, saveData } from "./data-handler.js";
 
 window.onload = async function () {
-    const sampleTypes = JSON.parse = await loadData('sampleTypes') || [];
+    const sampleTypes = await loadData('sampleTypes') || [];
 
     const tableBody = document.querySelector("#sample-types-table tbody");
 

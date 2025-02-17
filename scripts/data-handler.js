@@ -1,14 +1,14 @@
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, setDoc, getDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
-import { getAnalytics, doc, setDoc, getDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getAnalytics(app);
+const db = getFirestore(app);
 
 
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

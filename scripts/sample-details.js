@@ -218,9 +218,6 @@ async function populateAnalysisTable(sampleData) {
                     } else {
                         alert("No matching test code found for this analysis.");
                     }
-                } else if (sampleType !== "QC") {
-                    const sampleID = button.dataset.sampleId;
-                    openAnalyteModal(sampleID);
                 }
             }
         });
@@ -256,8 +253,8 @@ async function updateSampleStatus() {
 async function openAnalyteModal(sampleID, editMode = false) {
     const modal = document.getElementById('analyte-modal');
     const analyteListBody = document.getElementById('analyte-list-body');
-
     modal.dataset.sampleId = sampleID;
+    
     analyteListBody.innerHTML = ''; // Clear previous content
 
     const sampleDataArray = (await loadData('sampleDataArray')) || [];
@@ -354,20 +351,19 @@ async function openQCAnalyteModal(analytes, sampleID) {
     const analyteListBody = document.getElementById('analyte-list-body');
     modal.dataset.sampleId = sampleID;
 
-    // Clear previous content to prevent duplication
     analyteListBody.innerHTML = '';
 
     if (analytes && analytes.length > 0) {
         const sampleDataArray = (await loadData('sampleDataArray')) || [];
         const sample = sampleDataArray.find(sample => sample.id === sampleID);
 
-        // Prevent modifying sample.analytes every time the modal is opened
-        let savedAnalytes = sample.analytes ? [...sample.analytes] : [];
+        if (!sample.analytes || sample.analytes.length === 0) {
+            sample.analytes = analytes.map(analyte => analyte.analyteName);
+            await saveData('sampleDataArray', sampleDataArray);
+        }
 
         analytes.forEach((analyte, index) => {
-            // Ensure the checkbox is only checked if it was saved before
-            const isChecked = savedAnalytes.includes(analyte.analyteName);
-
+            const isChecked = sample.analytes.includes(analyte.analyteName);
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>
@@ -392,6 +388,28 @@ async function openQCAnalyteModal(analytes, sampleID) {
     modal.style.display = 'block';
 }
 
+async function saveAnalyteSelections() {
+    const analyteCheckboxes = document.querySelectorAll('#analyte-list-body input[type="checkbox"]');
+    const selectedAnalytes = Array.from(analyteCheckboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+
+    const modal = document.getElementById('analyte-modal');
+    const sampleID = modal.dataset.sampleId;
+
+    const sampleDataArray = (await loadData('sampleDataArray')) || [];
+    const sample = sampleDataArray.find(sample => sample.id === sampleID);
+
+    if (sample) {
+        sample.analytes = selectedAnalytes;
+        await saveData('sampleDataArray', sampleDataArray);
+        alert(`Analytes saved for sample ID ${sampleID}: ${selectedAnalytes.join(', ')}`);
+    } else {
+        alert(`Failed to save analytes for sample ID ${sampleID}.`);
+    }
+
+    closeAnalyteModal();
+}
 
 async function showError(message) {
     document.getElementById('sample-analysis-details').innerHTML = `<p>${message}</p>`;

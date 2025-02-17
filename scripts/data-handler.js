@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
 
@@ -15,15 +15,15 @@ const db = getFirestore(app);
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDhhbDMuP-0aUWRTG7tk6-MdrnoTOKWW_k",
-  authDomain: "alpha-ionix-project.firebaseapp.com",
-  databaseURL: "https://alpha-ionix-project-default-rtdb.firebaseio.com",
-  projectId: "alpha-ionix-project",
-  storageBucket: "alpha-ionix-project.firebasestorage.app",
-  messagingSenderId: "732932003953",
-  appId: "1:732932003953:web:c57f9a0b1270614089e3d0",
-  measurementId: "G-GPG8N80PZ7"
-};
+    apiKey: "AIzaSyDhhbDMuP-0aUWRTG7tk6-MdrnoTOKWW_k",
+    authDomain: "alpha-ionix-project.firebaseapp.com",
+    databaseURL: "https://alpha-ionix-project-default-rtdb.firebaseio.com",
+    projectId: "alpha-ionix-project",
+    storageBucket: "alpha-ionix-project.firebasestorage.app",
+    messagingSenderId: "732932003953",
+    appId: "1:732932003953:web:c57f9a0b1270614089e3d0",
+    measurementId: "G-GPG8N80PZ7"
+  };
 
 // Ensure localForage is properly initialized
 window.localforage.config({

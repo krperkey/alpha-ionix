@@ -1,9 +1,10 @@
 import { loadData, saveData } from "./data-handler.js";
 
 window.onload = async function () {
-    const sampleDataArray = await loadData('sampleDataArray') || [];
-    const workordersArray = await loadData('workordersArray') || [];
-    const sampleStatusMap = await loadData('sampleStatusMap') || {};
+    const sampleDataArray = (await loadData('sampleDataArray')) || [];
+    const workordersArray = (await loadData('workordersArray')) || [];
+    const sampleStatusMap = (await loadData('sampleStatusMap')) || {};
+
     const tableBody = document.querySelector("#sample-table tbody");
 
     // Populate the table with sample data

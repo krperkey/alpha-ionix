@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, doc, setDoc, getDoc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
 
 
 // Import the functions you need from the SDKs you need
@@ -12,9 +11,8 @@ import "https://cdn.jsdelivr.net/npm/localforage/dist/localforage.min.js";
 const firebaseConfig = {
     apiKey: "AIzaSyDhhbDMuP-0aUWRTG7tk6-MdrnoTOKWW_k",
     authDomain: "alpha-ionix-project.firebaseapp.com",
-    databaseURL: "https://alpha-ionix-project-default-rtdb.firebaseio.com",
     projectId: "alpha-ionix-project",
-    storageBucket: "alpha-ionix-project.firebasestorage.app",
+    storageBucket: "alpha-ionix-project.appspot.com",
     messagingSenderId: "732932003953",
     appId: "1:732932003953:web:c57f9a0b1270614089e3d0",
     measurementId: "G-GPG8N80PZ7"
@@ -24,27 +22,39 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Ensure localForage is properly initialized
-window.localforage.config({
+localforage.config({
     name: "AlphaIonix",
     storeName: "userDataStore"
 });
 
 // Save data to localForage
-export async function saveData(key, data) {
+export async function saveData(key, newData) {
     try {
-        // Save to LocalForage
-        await window.localforage.setItem(key, data);
-        console.log(`✅ Data saved locally for key: ${key}`);
-
-        // Save to Firestore (only if data is new or changed)
+        // Load existing data from Firestore
         const docRef = doc(db, "userContent", key);
-        await setDoc(docRef, {
-            content: data,
-            timestamp: serverTimestamp()
-        }, { merge: true });  // Ensures Firebase data is merged, not overwritten
+        const docSnap = await getDoc(docRef);
+        let existingData = [];
+
+        if (docSnap.exists()) {
+            existingData = docSnap.data().content || [];
+        }
+
+        // Ensure the data is an array
+        if (!Array.isArray(existingData)) {
+            existingData = [];
+        }
+
+        // Append new entry
+        existingData.push(newData);
+
+        // Save back to Firestore
+        await setDoc(docRef, { content: existingData, timestamp: serverTimestamp() }, { merge: true });
 
         console.log(`☁️ Data synced to Firebase for key: ${key}`);
+
+        // Also store locally in LocalForage
+        await localforage.setItem(key, existingData);
+        console.log(`✅ Data saved locally for key: ${key}`);
     } catch (error) {
         console.error("❌ Error saving data:", error);
     }
@@ -53,10 +63,10 @@ export async function saveData(key, data) {
 export async function loadData(key) {
     try {
         // Load from LocalForage first
-        let data = await window.localforage.getItem(key);
+        let data = await localforage.getItem(key);
 
         if (data !== null) {
-            console.log(`✅ Loaded from LocalForage: ${key}`);
+            console.log(`✅ Loaded from LocalForage: ${key}`, data);
             return data;
         }
 
@@ -65,20 +75,19 @@ export async function loadData(key) {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            data = docSnap.data().content;
-            console.log(`☁️ Loaded from Firebase: ${key}`);
+            data = docSnap.data().content || [];
+            console.log(`☁️ Loaded from Firebase: ${key}`, data);
 
             // Store it locally for next time
-            await window.localforage.setItem(key, data);
+            await localforage.setItem(key, data);
             return data;
         }
 
-        // If Firebase is empty, return `null` but **do not erase local data**
-        console.log(`⚠️ No Firebase data found for key: ${key}. Keeping local data.`);
-        return null;
+        console.warn(`⚠️ No Firebase data found for key: ${key}`);
+        return [];
     } catch (error) {
         console.error("❌ Error loading data:", error);
-        return null;
+        return [];
     }
 }
 

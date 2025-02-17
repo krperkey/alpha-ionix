@@ -11,7 +11,7 @@ window.onload = async function () {
     if (sampleDataArray.length > 0) {
         sampleDataArray.forEach((sampleData) => {
             const workorder = workordersArray.find(wo => wo.samples.some(s => s.id === sampleData.id));
-            const workorderID = workorder ? workorder.id : "N/A";
+            const workorderID = workorder ? workorder.id : "QC Workorder";
             const status = sampleStatusMap[sampleData.id] || "In Progress";
 
             const row = document.createElement("tr");

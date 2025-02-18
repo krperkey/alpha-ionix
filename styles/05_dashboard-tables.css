@@ -82,26 +82,27 @@ h2 {
     padding: 10px; /* Add padding for a neat layout */
 }
 
-/* Mobile-Friendly Tables */
+/* Ensure Charts & Graphs Are Centered on Mobile */
 @media (max-width: 768px) {
-    #dashboard {
-        flex-direction: column; /* Stack columns vertically */
+    .dashboard-section {
+        display: flex;
+        justify-content: center; /* Horizontally center */
+        align-items: center; /* Vertically center */
+        text-align: center;
+        flex-direction: column;
     }
 
-    #left-column, #right-column {
-        width: 100%;
-        padding: 10px;
+    /* Ensure Canvases (Charts) Take Full Width */
+    .dashboard-section canvas {
+        max-width: 100%;
+        width: 90%; /* Adjust width for better display */
+        height: auto; /* Maintain aspect ratio */
     }
 
-    #department-backlog-table {
-        display: block;
-        overflow-x: auto; /* Enables horizontal scrolling */
-        white-space: nowrap;
-    }
-
-    #department-backlog-table th, 
-    #department-backlog-table td {
-        font-size: 14px; /* Reduce text size */
-        padding: 8px;
+    /* Center Headings */
+    .dashboard-section h2 {
+        text-align: center;
+        margin-bottom: 10px;
     }
 }
+

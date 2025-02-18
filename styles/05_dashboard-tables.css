@@ -81,28 +81,3 @@ h2 {
     text-align: center; /* Center-align the text */
     padding: 10px; /* Add padding for a neat layout */
 }
-
-/* Mobile-Friendly Tables */
-@media (max-width: 768px) {
-    #dashboard {
-        flex-direction: column; /* Stack columns vertically */
-    }
-
-    #left-column, #right-column {
-        width: 90%;
-        padding: 10px;
-    }
-
-    #department-backlog-table {
-        display: block;
-        overflow-x: auto; /* Enables horizontal scrolling */
-        overflow-y: auto;
-        white-space: nowrap;
-    }
-
-    #department-backlog-table th, 
-    #department-backlog-table td {
-        font-size: 14px; /* Reduce text size */
-        padding: 8px;
-    }
-}

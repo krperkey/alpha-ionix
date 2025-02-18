@@ -135,6 +135,7 @@ table {
     background-color: #333;
     color: white;
     table-layout: auto;
+    font-weight: bold;
 }
 
 table th, table td {

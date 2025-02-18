@@ -69,7 +69,7 @@ h2 {
 #create-role-container h3,
 #role-list-container h3 {
     font-size: 1.6rem;
-    color: #FFD700;
+    color: white;
     margin-bottom: 15px;
     text-align: center;
 }
@@ -121,11 +121,11 @@ textarea {
 }
 
 .form-table button {
-    background-color: #FFD700;
-    color: black;
+    background-color: green;
+    color: white;
     font-size: 1rem;
     padding: 10px 20px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -135,7 +135,7 @@ textarea {
 }
 
 .form-table button:hover {
-    background-color: #FFB800;
+    background-color: #28a745;
 }
 
 /* Table styling for the role list */
@@ -148,7 +148,7 @@ textarea {
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #333;
-    color: #FFD700;
+    color: white;
 }
 
 #role-list th,
@@ -177,7 +177,7 @@ textarea {
     background-color: #FFD700;
     color: black;
     border: 1px solid #FFD700;
-    padding: 5px 10px;
+    padding: 4px 10px;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -185,10 +185,13 @@ textarea {
 #role-list .delete-role {
     background-color: #FF0000;
     color: white;
+    border: none;
 }
 
 #role-list .edit-role:hover {
     background-color: #FFB800;
+    color: black;
+    border: none;
 }
 
 #role-list .delete-role:hover {

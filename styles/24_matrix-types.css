@@ -64,6 +64,7 @@ h2 {
     margin-top: 20px;
     background-color: #333;
     color: white;
+    font-weight: bold;
 }
 
 #matrix-types-table th,
@@ -226,4 +227,24 @@ button:hover {
 
 #new-matrix-type:hover {
     background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
+}
+
+.remove-btn {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+}
+
+.remove-btn:hover {
+    background-color: #CC0000;
+}
+
+.edit-btn {
+    background-color: #FFD700;
+    color: black;
+    border: none;
+}
+
+.edit-btn:hover {
+    background-color: #ffb800;
 }

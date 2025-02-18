@@ -63,9 +63,9 @@ async function loadSampleDetails(sampleID) {
 async function populateSampleDetails(sampleData, workorderID) {
     const detailsDiv = document.getElementById('sample-details');
 
-    const workorderLink = workorderID !== "N/A" 
+    const workorderLink = workorderID !== "QC Workorder" 
         ? `<a href="workorder-details.html?id=${workorderID}" style="color: rgb(131, 166, 231); text-decoration: none; font-weight: bold;">${workorderID}</a>` 
-        : "N/A";
+        : "QC Workorder";
 
     const sampleType = sampleData.sampleType || "N/A";
 

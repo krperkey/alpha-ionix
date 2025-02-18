@@ -105,7 +105,7 @@ h3 {
 .user-table th {
     background-color: #555;
     font-weight: bold;
-    color: #ffb900;
+    color: white;
 }
 
 .user-table tbody tr:nth-child(odd) {
@@ -224,27 +224,60 @@ h3 {
     border-color: #FFB800;
 }
 
-.edit-user {
-    outline: 2px solid black;
-    background-color: #ffb900;
-    color: #333;
+/* Style the dropdown */
+.user-actions {
+    background-color: #007BFF; /* Gold background */
+    color: white;
+    font-weight: bold;
+    border: 1px solid white;
+    padding: 6px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    appearance: none; /* Removes default dropdown arrow */
+    position: relative;
+    text-align: center;
 }
 
-.inactivate-user {
-    outline: 2px solid white;
-    background-color: rgb(62, 88, 206);
+/* Custom dropdown arrow */
+.user-actions {
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23000000' d='M2 5L0 0h4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 10px;
+    padding-right: 20px; /* Space for arrow */
+}
+
+/* Override background color for dropdown items */
+.user-actions option {
+    color: white;
+    background-color: #444; /* Dark gray background */
+    padding: 10px;
+}
+
+#close-modal-button {
+    background-color: #FF0000;
     color: white;
 }
 
-.reset-password {
-    outline: 2px solid white;
-    background-color: green;
+/* Hover Effect */
+#close-modal-button:hover {
+    background-color: #CC0000;  /* Darker green */
+}
+
+/* Add User Button (Green) */
+#add-user-button {
+    background-color: green;  /* Bootstrap Green */
     color: white;
 }
 
-.delete-user {
-    outline: 2px solid white;
-    background-color: red;
-    color: white;
+/* Hover Effect */
+#add-user-button:hover {
+    background-color: #28a745;  /* Darker green */
 }
+
+
+
+
 

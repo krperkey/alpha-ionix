@@ -64,6 +64,7 @@ h2 {
     margin-top: 20px;
     background-color: #333;
     color: white;
+    font-weight: bold;
 }
 
 #sample-types-table th,
@@ -75,7 +76,7 @@ h2 {
 
 #sample-types-table th {
     background-color: #666;
-    color: #ffd700;
+    color: white;
 }
 
 /* Fixed column widths */
@@ -250,4 +251,34 @@ button:hover {
 
 #new-sample-type:hover {
     background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
+}
+
+/* Cancel button styling */
+.edit-btn {
+    background-color: #FFd700;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+.edit-btn:hover {
+    background-color: #ffb800;
+}
+
+/* Cancel button styling */
+.remove-btn {
+    background-color: #FF0000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+.remove-btn:hover {
+    background-color: #CC0000;
 }

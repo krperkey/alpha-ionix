@@ -62,7 +62,7 @@ h2 {
 /* Table header styling */
 #sample-table th {
     background-color: #777;
-    color: #FFD700;
+    color: white;
     padding: 10px 15px;
     min-width: 150px;
     border: 1px solid #FFD700;
@@ -268,4 +268,18 @@ th .header-content {
 
 .table-container::-webkit-scrollbar-thumb:hover {
     background-color: #FFC107; /* Lighter yellow on hover */
+}
+
+.delete-btn {
+    background-color: #FF0000;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 0;
+}
+
+.delete-btn:hover {
+    background-color: #CC0000;
 }

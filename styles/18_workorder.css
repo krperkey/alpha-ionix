@@ -110,3 +110,17 @@ table a:hover {
         white-space: nowrap;
     }
 }
+
+.delete-button {
+    background-color: #FF0000;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 0;
+}
+
+.delete-button:hover {
+    background-color: #CC0000;
+}

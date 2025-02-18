@@ -24,3 +24,17 @@
     display: none; /* Hide the separate button */
     color: black;
 }
+
+/* Responsive Search Bar */
+@media (max-width: 768px) {
+    #search-container {
+        justify-content: center; /* Center the search bar */
+        width: 100%;
+        margin-right: 0;
+    }
+
+    #search-bar {
+        width: 90%; /* Expand search bar to almost full width */
+        font-size: 16px;
+    }
+}

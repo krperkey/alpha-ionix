@@ -61,7 +61,7 @@ table {
 
 table th {
     background-color: #555; /* Medium dark background */
-    color: #FFD700; /* Yellow text */
+    color: white; /* Yellow text */
     padding: 10px;
     text-align: center;
     text-transform: uppercase;

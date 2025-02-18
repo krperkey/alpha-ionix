@@ -161,4 +161,68 @@ nav ul li:hover #dropdown-menu {
     width: auto;
 }
 
+/* Mobile-Friendly Toolbar */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 10px;
+        text-align: center;
+    }
+
+    #logo {
+        font-size: 1.5rem; /* Adjust logo size */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack menu items vertically */
+        align-items: center;
+        padding: 0;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    #toolbar {
+        flex-direction: column; /* Stack toolbar elements */
+        height: auto;
+        padding: 10px;
+    }
+
+    #toolbar ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #toolbar ul li {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    #toolbar ul li a {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    /* Make dropdowns full width */
+    #dropdown-menu {
+        position: static;
+        width: 100%;
+        text-align: center;
+    }
+
+    nav ul li:hover #dropdown-menu {
+        display: block;
+    }
+}
 

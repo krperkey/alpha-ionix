@@ -29,7 +29,7 @@ body {
 
 
 #toolbar {
-    width: 100%; /* Make the toolbar span the full width of the screen */
+    width: auto; /* Make the toolbar span the full width of the screen */
     background-color: #ffd700; /* Dark background for the toolbar */
     color: #ffd700;
     padding: 1px;

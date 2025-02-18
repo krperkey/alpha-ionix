@@ -9,7 +9,7 @@
 
 /* Search bar styling with magnifying glass */
 #search-bar {
-    width: 380px;
+    width: auto;
     padding: 10px 40px 10px 10px; /* Add padding to the right for the icon */
     border: 1px solid black;
     border-radius: 5px;

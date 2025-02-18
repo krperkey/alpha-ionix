@@ -161,68 +161,74 @@ nav ul li:hover #dropdown-menu {
     width: auto;
 }
 
-/* Mobile-Friendly Toolbar */
+/* Hides the navigation menu by default on mobile */
 @media (max-width: 768px) {
-    header {
+    nav {
+        display: none; /* Hide the nav bar initially */
         flex-direction: column;
-        padding: 10px;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #333;
         text-align: center;
+        z-index: 1000;
+        border-bottom: 2px solid #555;
     }
 
-    #logo {
-        font-size: 1.5rem; /* Adjust logo size */
+    nav.active {
+        display: flex; /* Show nav when activated */
     }
 
     nav ul {
-        flex-direction: column; /* Stack menu items vertically */
-        align-items: center;
+        flex-direction: column;
         padding: 0;
+        width: 100%;
     }
 
     nav ul li {
         width: 100%;
         text-align: center;
+        padding: 10px 0;
     }
 
     nav ul li a {
         display: block;
         padding: 12px;
         font-size: 16px;
+        color: white;
     }
 
-    #toolbar {
-        flex-direction: column; /* Stack toolbar elements */
-        height: auto;
-        padding: 10px;
-    }
-
-    #toolbar ul {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    #toolbar ul li {
-        text-align: center;
-        width: 100%;
-        margin-bottom: 5px;
-    }
-
-    #toolbar ul li a {
+    /* Hamburger Menu Icon */
+    .hamburger {
         display: block;
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        z-index: 1001;
     }
 
-    /* Make dropdowns full width */
-    #dropdown-menu {
-        position: static;
-        width: 100%;
-        text-align: center;
+    .hamburger div {
+        width: 30px;
+        height: 4px;
+        background-color: white;
+        margin: 6px 0;
+        transition: 0.4s;
     }
 
-    nav ul li:hover #dropdown-menu {
-        display: block;
+    /* Style changes when menu is active */
+    .hamburger.active div:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+    }
+
+    .hamburger.active div:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
     }
 }
+
 

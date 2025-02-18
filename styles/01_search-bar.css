@@ -25,16 +25,18 @@
     color: black;
 }
 
-/* Responsive Search Bar */
 @media (max-width: 768px) {
     #search-container {
-        justify-content: center; /* Center the search bar */
+        display: flex;
+        justify-content: center;
         width: 100%;
-        margin-right: 0;
+        margin: 10px auto;
     }
 
     #search-bar {
-        width: 90%; /* Expand search bar to almost full width */
+        width: 90%;
         font-size: 16px;
+        padding: 10px;
     }
 }
+

@@ -161,10 +161,21 @@ nav ul li:hover #dropdown-menu {
     width: auto;
 }
 
-/* Hides the navigation menu by default on mobile */
+/* Default Desktop Navigation */
+#main-nav {
+    display: flex;
+}
+
+/* Hide the Hamburger Menu by Default */
+.hamburger {
+    display: none;
+}
+
+/* Mobile-Specific Styles */
 @media (max-width: 768px) {
-    nav {
-        display: none; /* Hide the nav bar initially */
+    /* Hide desktop navigation */
+    #main-nav {
+        display: none;
         flex-direction: column;
         width: 100%;
         position: absolute;
@@ -176,32 +187,15 @@ nav ul li:hover #dropdown-menu {
         border-bottom: 2px solid #555;
     }
 
-    nav.active {
-        display: flex; /* Show nav when activated */
+    /* Show Mobile Navigation When Active */
+    #main-nav.active {
+        display: flex;
     }
 
-    nav ul {
-        flex-direction: column;
-        padding: 0;
-        width: 100%;
-    }
-
-    nav ul li {
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-    }
-
-    nav ul li a {
-        display: block;
-        padding: 12px;
-        font-size: 16px;
-        color: white;
-    }
-
-    /* Hamburger Menu Icon */
+    /* Show the Hamburger Menu */
     .hamburger {
-        display: block;
+        display: flex;
+        flex-direction: column;
         cursor: pointer;
         position: absolute;
         top: 15px;
@@ -217,7 +211,7 @@ nav ul li:hover #dropdown-menu {
         transition: 0.4s;
     }
 
-    /* Style changes when menu is active */
+    /* Hamburger Menu Animation */
     .hamburger.active div:nth-child(1) {
         transform: translateY(10px) rotate(45deg);
     }
@@ -230,5 +224,6 @@ nav ul li:hover #dropdown-menu {
         transform: translateY(-10px) rotate(-45deg);
     }
 }
+
 
 

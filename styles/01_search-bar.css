@@ -30,13 +30,23 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        margin: 10px auto;
+        margin: 0;
+        padding: 10px;
+        position: relative;
     }
 
     #search-bar {
-        width: 90%;
+        width: 95%;
         font-size: 16px;
-        padding: 10px;
+        padding: 12px;
+        border-radius: 8px;
+        border: 2px solid black;
+        background-color: #fff;
+    }
+
+    #toolbar + #search-container {
+        margin-top: 10px;
     }
 }
+
 

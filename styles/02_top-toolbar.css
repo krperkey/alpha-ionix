@@ -48,7 +48,7 @@ body {
     display: flex; /* Arrange list items horizontally */
     padding: 0;
     margin: 0;
-    width: 100%; /* Ensure the list spans the full width */
+    width: auto; /* Ensure the list spans the full width */
 }
 
 #toolbar ul li {

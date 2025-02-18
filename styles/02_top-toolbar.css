@@ -171,6 +171,13 @@ nav ul li:hover #dropdown-menu {
     display: none;
 }
 
+
+
+/* Hide the toolbar hamburger menu by default */
+.toolbar-hamburger {
+    display: none;
+}
+
 /* Mobile-Specific Styles */
 @media (max-width: 768px) {
     /* Hide desktop navigation */
@@ -223,6 +230,71 @@ nav ul li:hover #dropdown-menu {
     .hamburger.active div:nth-child(3) {
         transform: translateY(-10px) rotate(-45deg);
     }
+
+
+/* Hide Toolbar Menu By Default */
+#toolbar-menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #ffd700;
+    text-align: center;
+    border-bottom: 2px solid #555;
 }
+
+/* Show when active */
+#toolbar-menu.active {
+    display: flex;
+}
+
+/* Show Toolbar Hamburger Menu */
+.toolbar-hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.toolbar-hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+    transition: 0.4s;
+}
+
+/* Animate Hamburger */
+.toolbar-hamburger.active div:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.toolbar-hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.toolbar-hamburger.active div:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Make Search Bar Full Width */
+#search-container {
+    width: 90%;
+    padding: 10px;
+    text-align: center;
+}
+
+#search-bar {
+    width: 90%;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid black;
+}
+}
+
 
 

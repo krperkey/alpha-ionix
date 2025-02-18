@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-        if (firstName && lastName && initials && positionTitle && email && phone && userRole && employeeID) {
+        if (firstName && middleName && lastName && initials && positionTitle && email && phone && userRole && employeeID) {
             if (editUserIndex !== null) {
                 // Edit existing user
                 users[editUserIndex] = {

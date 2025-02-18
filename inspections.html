@@ -4,46 +4,324 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inspection Checklists</title>
+    <link rel="stylesheet" href="styles/37_inspections.css">
+    <link rel="stylesheet" href="styles/02_top-toolbar.css">
+    <link rel="stylesheet" href="styles/01_search-bar.css">
 </head>
-
-<aside id="disclaimer">
-    *NONE OF THE DATA ON THIS SITE IS REAL AND IS ONLY USED AS A DEMONSTRATION OF HOW THE SITE WORKS*
-</aside>
 
 <body>
     <header>
-        <h1>Inspection Checklists</h1>
-        <p>Complete and log your inspections.</p>
+        <a href="index.html" id="logo">Alpha-Ionix</a>
+        <!-- Navigation Toolbar -->
+        <nav>
+            <ul>
+                <!-- Login Dropdown -->
+                <li><a href="#" id="login-btn">Login</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="sample-login.html">Sample Login</a></li>
+                    </ul>
+                </li>
+
+                <!-- Analysis Dropdown -->
+                <li><a href="#" id="login-btn">Analysis</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="batches.html">Batches</a></li>
+                        <li><a href="samples.html">Samples</a></li>
+                        <li><a href="workorders.html">Workorders</a></li>
+                    </ul>
+                </li>
+
+                <!-- Attributes Dropdown -->
+                <li><a href="#" id="login-btn">Sample Attributes</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="benchsheets.html">BenchSheets</a></li>
+                        <li><a href="container-types.html">Containers</a></li>
+                        <li><a href="equipment.html">Equipment</a></li>
+                        <li><a href="hold-time.html">Hold Times</a></li>
+                        <li><a href="matrix-types.html">Matrix Types</a></li>
+                        <li><a href="reports.html">Reports</a></li>
+                        <li><a href="sample-types.html">Sample Types</a></li>
+                        <li><a href="standards.html">Standards</a></li>
+                        <li><a href="test-code-table.html">Test Codes</a></li>
+                        <li><a href="qualifiers.html">Qualifiers</a></li>
+                        <li><a href="condition-codes.html">Condition Codes</a></li>
+                    </ul>
+                </li>
+
+                <!-- Clients Dropdown -->
+                <li><a href="#" id="clients-btn">Clients</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="client-by-name.html">Client by Name</a></li>
+                        <li><a href="client-by-site.html">Client by Site</a></li>
+                        <li><a href="client-profile.html">Client Profiles</a></li>
+                    </ul>
+                </li>
+    
+                <!-- Users Dropdown -->
+                <li><a href="#" id="settings-btn">Settings</a>
+                    <ul id="dropdown-menu" class="hidden">
+                        <li><a href="account-settings.html">Account Settings</a></li>
+                        <li><a href="app-settings.html">Application Settings</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="user-role-management.html">Roles</a></li>
+                        <li><a href="help.html">Help</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="container">
-        <div id="hazardous-waste" class="checklist">
-            <h2>Hazardous Waste Central Accumulation Inspections</h2>
-            <label><input type="checkbox"> Inspect container condition</label><br>
-            <label><input type="checkbox"> Verify proper labeling and marking</label><br>
-            <button class="submit-button" onclick="logInspection('hazardous-waste')">Submit</button>
+    <aside id="toolbar">
+        <ul>
+            <li><a href="compliance.html">Compliance</a></li>
+            <li><a href="chemicials.html">Chemicals</a></li>
+            <li><a href="procedures.html">Procedures</a></li> 
+        </ul>
+        <!-- Search Bar -->
+<div id="search-container">
+    <input type="text" id="search-bar" placeholder="Search..." />
+    <button id="search-button">🔍</button>
+</div>
+    </aside>
+
+    <h1>Inspection Checklists</h1>
+
+    <!-- Tab Navigation -->
+    <div class="tab-container">
+        <button class="tab-button active" data-tab="caa">CAA Inspection</button>
+        <button class="tab-button" data-tab="saa">SAA Inspection</button>
+        <button class="tab-button" data-tab="spcc">SPCC Inspection</button>
+        <button class="tab-button" data-tab="eye-wash">Eye Wash Inspection</button>
+    </div>
+
+
+    <div id="caa" class="tab-content active">
+        <h2>Hazardous Waste Central Accumulation Area (CAA) Inspection</h2>
+        <table id="caa-inspection-table">
+            <thead>
+                <tr>
+                    <th>Inspection Item</th>
+                    <th>Pass</th>
+                    <th>Fail</th>
+                    <th>Comments</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Container Condition (No leaks, bulging, rust)</td>
+                    <td><input type="radio" name="container-condition" value="Pass"></td>
+                    <td><input type="radio" name="container-condition" value="Fail"></td>
+                    <td><input type="text" name="container-condition-comment"></td>
+                    <td><input type="date" name="container-condition-date"></td>
+                </tr>
+                <tr>
+                    <td>Proper Labeling (Hazardous Waste, Accumulation Date)</td>
+                    <td><input type="radio" name="labeling" value="Pass"></td>
+                    <td><input type="radio" name="labeling" value="Fail"></td>
+                    <td><input type="text" name="labeling-comment"></td>
+                    <td><input type="date" name="labeling-date"></td>
+                </tr>
+                <tr>
+                    <td>Secondary Containment (No spills, adequate capacity)</td>
+                    <td><input type="radio" name="containment" value="Pass"></td>
+                    <td><input type="radio" name="containment" value="Fail"></td>
+                    <td><input type="text" name="containment-comment"></td>
+                    <td><input type="date" name="containment-date"></td>
+                </tr>
+                <tr>
+                    <td>Emergency Equipment (Fire extinguishers, spill kits)</td>
+                    <td><input type="radio" name="equipment" value="Pass"></td>
+                    <td><input type="radio" name="equipment" value="Fail"></td>
+                    <td><input type="text" name="equipment-comment"></td>
+                    <td><input type="date" name="equipment-date"></td>
+                </tr>
+                <tr>
+                    <td>Aisle Space (At least 2 feet clearance)</td>
+                    <td><input type="radio" name="aisle-space" value="Pass"></td>
+                    <td><input type="radio" name="aisle-space" value="Fail"></td>
+                    <td><input type="text" name="aisle-space-comment"></td>
+                    <td><input type="date" name="aisle-space-date"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="submit-button" onclick="logInspection()">Submit Inspection</button>
+    </div>
+
+    <div id="saa" class="tab-content">
+            <h2>Satellite Accumulation Area (SAA) Inspection</h2>
+        <table id="saa-inspection-table">
+            <thead>
+                <tr>
+                    <th>Inspection Item</th>
+                    <th>Pass</th>
+                    <th>Fail</th>
+                    <th>Comments</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Container Condition (No leaks, bulging, rust)</td>
+                    <td><input type="radio" name="container-condition" value="Pass"></td>
+                    <td><input type="radio" name="container-condition" value="Fail"></td>
+                    <td><input type="text" name="container-condition-comment"></td>
+                    <td><input type="date" name="container-condition-date"></td>
+                </tr>
+                <tr>
+                    <td>Proper Labeling (Hazardous Waste, Accumulation Date)</td>
+                    <td><input type="radio" name="labeling" value="Pass"></td>
+                    <td><input type="radio" name="labeling" value="Fail"></td>
+                    <td><input type="text" name="labeling-comment"></td>
+                    <td><input type="date" name="labeling-date"></td>
+                </tr>
+                <tr>
+                    <td>Secondary Containment (No spills, adequate capacity)</td>
+                    <td><input type="radio" name="containment" value="Pass"></td>
+                    <td><input type="radio" name="containment" value="Fail"></td>
+                    <td><input type="text" name="containment-comment"></td>
+                    <td><input type="date" name="containment-date"></td>
+                </tr>
+                <tr>
+                    <td>Emergency Equipment (Fire extinguishers, spill kits)</td>
+                    <td><input type="radio" name="equipment" value="Pass"></td>
+                    <td><input type="radio" name="equipment" value="Fail"></td>
+                    <td><input type="text" name="equipment-comment"></td>
+                    <td><input type="date" name="equipment-date"></td>
+                </tr>
+                <tr>
+                    <td>Aisle Space (At least 2 feet clearance)</td>
+                    <td><input type="radio" name="aisle-space" value="Pass"></td>
+                    <td><input type="radio" name="aisle-space" value="Fail"></td>
+                    <td><input type="text" name="aisle-space-comment"></td>
+                    <td><input type="date" name="aisle-space-date"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="submit-button" onclick="logSAAInspection()">Submit Inspection</button>
         </div>
 
-        <div id="satellite-area" class="checklist">
-            <h2>Satellite Area Accumulation Inspections</h2>
-            <label><input type="checkbox"> Check container integrity</label><br>
-            <label><input type="checkbox"> Confirm proper labeling</label><br>
-            <button class="submit-button" onclick="logInspection('satellite-area')">Submit</button>
+        <div id="spcc" class="tab-content">
+            <h2>SPCC Inspection Checklist</h2>
+            <table id="spcc-inspection-table">
+                <thead>
+                    <tr>
+                        <th>Inspection Item</th>
+                        <th>Pass</th>
+                        <th>Fail</th>
+                        <th>Comments</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Secondary Containment Integrity (No cracks, leaks, or structural issues)</td>
+                        <td><input type="radio" name="containment-integrity" value="Pass"></td>
+                        <td><input type="radio" name="containment-integrity" value="Fail"></td>
+                        <td><input type="text" name="containment-integrity-comment"></td>
+                        <td><input type="date" name="containment-integrity-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Bulk Storage Container Condition (No leaks, rust, or corrosion)</td>
+                        <td><input type="radio" name="storage-condition" value="Pass"></td>
+                        <td><input type="radio" name="storage-condition" value="Fail"></td>
+                        <td><input type="text" name="storage-condition-comment"></td>
+                        <td><input type="date" name="storage-condition-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Loading/Unloading Areas (Spill containment and equipment integrity)</td>
+                        <td><input type="radio" name="loading-areas" value="Pass"></td>
+                        <td><input type="radio" name="loading-areas" value="Fail"></td>
+                        <td><input type="text" name="loading-areas-comment"></td>
+                        <td><input type="date" name="loading-areas-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Piping and Transfer Systems (No visible leaks, proper support)</td>
+                        <td><input type="radio" name="piping" value="Pass"></td>
+                        <td><input type="radio" name="piping" value="Fail"></td>
+                        <td><input type="text" name="piping-comment"></td>
+                        <td><input type="date" name="piping-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Emergency Response Equipment (Spill kits, fire extinguishers available)</td>
+                        <td><input type="radio" name="emergency-equipment" value="Pass"></td>
+                        <td><input type="radio" name="emergency-equipment" value="Fail"></td>
+                        <td><input type="text" name="emergency-equipment-comment"></td>
+                        <td><input type="date" name="emergency-equipment-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Security Measures (Fencing, locked valves, and restricted access)</td>
+                        <td><input type="radio" name="security" value="Pass"></td>
+                        <td><input type="radio" name="security" value="Fail"></td>
+                        <td><input type="text" name="security-comment"></td>
+                        <td><input type="date" name="security-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Employee Training Compliance (Annual SPCC training completed)</td>
+                        <td><input type="radio" name="training" value="Pass"></td>
+                        <td><input type="radio" name="training" value="Fail"></td>
+                        <td><input type="text" name="training-comment"></td>
+                        <td><input type="date" name="training-date"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="submit-button" onclick="logSPCCInspection()">Submit Inspection</button>
         </div>
+        
 
-        <div id="spcc" class="checklist">
-            <h2>SPCC Inspections (State of Georgia)</h2>
-            <label><input type="checkbox"> Inspect secondary containment</label><br>
-            <label><input type="checkbox"> Examine oil storage tanks</label><br>
-            <button class="submit-button" onclick="logInspection('spcc')">Submit</button>
+        <div id="eye-wash" class="tab-content">
+            <h2>Eye Wash & Shower Station Inspection Checklist</h2>
+            <table id="eye-wash-inspection-table">
+                <thead>
+                    <tr>
+                        <th>Inspection Item</th>
+                        <th>Pass</th>
+                        <th>Fail</th>
+                        <th>Comments</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Flow Testing (Proper water pressure and steady stream)</td>
+                        <td><input type="radio" name="flow-testing" value="Pass"></td>
+                        <td><input type="radio" name="flow-testing" value="Fail"></td>
+                        <td><input type="text" name="flow-testing-comment"></td>
+                        <td><input type="date" name="flow-testing-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Accessibility (Unobstructed and easy to reach)</td>
+                        <td><input type="radio" name="accessibility" value="Pass"></td>
+                        <td><input type="radio" name="accessibility" value="Fail"></td>
+                        <td><input type="text" name="accessibility-comment"></td>
+                        <td><input type="date" name="accessibility-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Signage and Labels (Clearly marked, visible instructions)</td>
+                        <td><input type="radio" name="signage" value="Pass"></td>
+                        <td><input type="radio" name="signage" value="Fail"></td>
+                        <td><input type="text" name="signage-comment"></td>
+                        <td><input type="date" name="signage-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Activation Time (Activates in 1 second or less)</td>
+                        <td><input type="radio" name="activation-time" value="Pass"></td>
+                        <td><input type="radio" name="activation-time" value="Fail"></td>
+                        <td><input type="text" name="activation-time-comment"></td>
+                        <td><input type="date" name="activation-time-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Water Clarity & Temperature (Clean water, between 60-100°F)</td>
+                        <td><input type="radio" name="water-clarity" value="Pass"></td>
+                        <td><input type="radio" name="water-clarity" value="Fail"></td>
+                        <td><input type="text" name="water-clarity-comment"></td>
+                        <td><input type="date" name="water-clarity-date"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="submit-button" onclick="logEyeWashInspection()">Submit Inspection</button>
         </div>
-
-        <div id="eye-wash" class="checklist">
-            <h2>Eye Wash and Shower Stations</h2>
-            <label><input type="checkbox"> Perform flow testing</label><br>
-            <label><input type="checkbox"> Ensure accessibility and signage</label><br>
-            <button class="submit-button" onclick="logInspection('eye-wash')">Submit</button>
-        </div>
+        
     </div>
 
     <footer>

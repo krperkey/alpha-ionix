@@ -19,7 +19,7 @@ html, body {
 }
 
 h2 {
-    color: #ffd700;
+    color: white;
 }
 
 /* Style the left column */
@@ -76,7 +76,7 @@ h2 {
 /* Style the header of the department-backlog-table */
 #department-backlog-table th {
     background-color: #555; /* Dark gray background */
-    color: #ffd700; /* White text */
+    color: white; /* White text */
     font-weight: bold; /* Bold text for clarity */
     text-align: center; /* Center-align the text */
     padding: 10px; /* Add padding for a neat layout */

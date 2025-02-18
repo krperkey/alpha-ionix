@@ -79,7 +79,7 @@ button {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFB700;
+    border: 2px solid #FFd700;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -90,7 +90,7 @@ button {
     background-color: #777;
     color: white;
     padding: 10px;
-    border: 1px solid #FFB700;
+    border: 1px solid #FFd700;
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
@@ -99,7 +99,7 @@ button {
 /* Table row styling */
 #equipment-table tr:nth-child(odd),
 #inactive-equipment-table tr:nth-child(odd) {
-    background-color: #444; /* Slightly lighter background for odd rows */
+    background-color: #333; /* Slightly lighter background for odd rows */
 }
 
 #equipment-table tr:nth-child(even),
@@ -111,7 +111,7 @@ button {
 #equipment-table td,
 #inactive-equipment-table td {
     padding: 10px;
-    border: 1px solid #FFB700;
+    border: 1px solid #FFd700;
     text-align: center;
 }
 

@@ -47,18 +47,6 @@ h2 {
     padding-bottom: 10px;
 }
 
-/* Matrix Types Table */
-#qualifier-container {
-    width: auto;
-    padding: 20px;
-    margin-top: 10px;
-    border: 2px solid #FFD700;
-    background-color: #333;
-    color: white;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
 #qualifier-table {
     width: 100%;
     border-collapse: collapse;
@@ -87,12 +75,12 @@ h2 {
 
 #qualifier-table th:nth-child(2),
 #qualifier-table td:nth-child(2) {
-    width: 5%; /* Sample Type Abbreviation */
+    width: 75%; /* Sample Type Abbreviation */
 }
 
 #qualifier-table th:nth-child(3),
 #qualifier-table td:nth-child(3) {
-    width: 10%; /* Sample Name */
+    width: 15%; /* Sample Name */
 }
 
 #qualifier-table th:nth-child(4),

@@ -75,7 +75,7 @@ h2 {
 
 /* Table row styling */
 #sample-table tr:nth-child(odd) {
-    background-color: #444; /* Slightly lighter background for odd rows */
+    background-color: #333; /* Slightly lighter background for odd rows */
 }
 
 #sample-table tr:nth-child(even) {

@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         <select class="user-actions" data-index="${index}">
                             <option value="" hidden>Actions</option> <!-- Hidden option -->
                             <option value="edit">Edit</option>
+                            <option value="Activate">Activate</option>
                             <option value="inactivate">Inactivate</option>
                             <option value="reset-password">Reset Password</option>
                             <option value="delete">Delete</option>
@@ -70,6 +71,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         
                 if (selectedAction === "edit") {
                     editUser(index);
+                } else if (selectedAction === "Activate") {
+                    activateUser(index);
                 } else if (selectedAction === "inactivate") {
                     inactivateUser(index);
                 } else if (selectedAction === "reset-password") {
@@ -86,8 +89,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // Edit User Function
-    function editUser(index) {
+    async function editUser(index) {
         const user = users[index];
+
+        await populateUserRoleDropdown(); // Ensure roles are populated before setting value
+
         document.querySelector("#first-name").value = user.firstName;
         document.querySelector("#middle-name").value = user.middleName;
         document.querySelector("#last-name").value = user.lastName;
@@ -106,6 +112,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Inactivate User Function
     async function inactivateUser(index) {
         users[index].status = "Inactive";
+        await saveUsersToLocalStorage();
+        await renderUsers();
+    }
+
+    // Inactivate User Function
+    async function activateUser(index) {
+        users[index].status = "Active";
         await saveUsersToLocalStorage();
         await renderUsers();
     }

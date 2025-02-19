@@ -1,31 +1,54 @@
 import { loadData, saveData } from './data-handler.js';
 
-/**
- * Logs inspection results for a given table.
- */
-async function logInspection(tableId, logKey, resetFunction) {
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".tab-button").forEach(button => {
+        button.addEventListener("click", () => {
+            openTab(button.getAttribute("data-tab"));
+        });
+    });
+    openTab("caa"); // Set default tab on page load
+
+    // Attach event listeners to submit buttons
+    document.querySelector(".submit-button[onclick='logCAAInspection()']").addEventListener("click", logCAAInspection);
+    document.querySelector(".submit-button[onclick='logSAAInspection()']").addEventListener("click", logSAAInspection);
+    document.querySelector(".submit-button[onclick='logSPCCInspection()']").addEventListener("click", logSPCCInspection);
+    document.querySelector(".submit-button[onclick='logEyeWashInspection()']").addEventListener("click", logEyeWashInspection);
+});
+
+function openTab(tabId) {
+    document.querySelectorAll(".tab-content").forEach(content => content.style.display = "none");
+    document.querySelectorAll(".tab-button").forEach(button => button.classList.remove("active"));
+    document.getElementById(tabId).style.display = "block";
+    document.querySelector(`.tab-button[data-tab='${tabId}']`).classList.add("active");
+}
+
+async function logInspection(tableHeadId, tableId, inspectionType) {
+    const tableHead = document.getElementById(tableHeadId);
     const table = document.getElementById(tableId);
+    if (!tableHead || !table) {
+        alert("Error: Inspection table not found!");
+        return;
+    }
+
     const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+    const headInputs = tableHead.getElementsByTagName("input");
 
     let inspectionResults = [];
     let allFieldsCompleted = true;
 
     for (let row of rows) {
         const cells = row.getElementsByTagName("td");
+        const item = cells[0].innerText || "Unknown Item";
+        const pass = cells[1]?.querySelector("input[type='radio']:checked")?.value === "Pass";
+        const fail = cells[2]?.querySelector("input[type='radio']:checked")?.value === "Fail";
+        const comment = cells[3]?.querySelector("input")?.value.trim() || "No comment";
 
-        const item = cells[0].innerText;
-        const pass = cells[1].getElementsByTagName("input")[0].checked;
-        const fail = cells[2].getElementsByTagName("input")[0].checked;
-        const comment = cells[3].getElementsByTagName("input")[0].value.trim();
-        const date = cells[4].getElementsByTagName("input")[0].value;
-
-        if ((!pass && !fail) || date === "") {
+        if (!pass && !fail) {
             allFieldsCompleted = false;
             break;
         }
 
-        let status = pass ? "Pass" : "Fail";
-        inspectionResults.push({ item, status, comment, date });
+        inspectionResults.push({ item, status: pass ? "Pass" : "Fail", comment });
     }
 
     if (!allFieldsCompleted) {
@@ -33,85 +56,57 @@ async function logInspection(tableId, logKey, resetFunction) {
         return;
     }
 
-    const now = new Date();
+    const inspectorName = headInputs[0]?.value || "Unknown Inspector";
+    const date = headInputs[1]?.value || "Unknown Date";
+    const time = headInputs[2]?.value || "Unknown Time";
+    const observation = headInputs[3]?.checked ? "Observed" : "No Observation";
+    const headComment = headInputs[4]?.value || "No Comment";
+
     const logEntry = {
-        timestamp: now.toISOString(),
+        timestamp: new Date().toISOString(),
+        type: inspectionType,
+        inspectorName,
+        date,
+        time,
+        observation,
+        headComment,
         results: inspectionResults
     };
 
-    let logData = await loadData(logKey) || [];
+    let logData = await loadData("inspectionLogs") || [];
     logData.push(logEntry);
-    await saveData(logKey, logData);
+    await saveData("inspectionLogs", logData);
 
-    alert("Inspection logged successfully.");
-    resetFunction();
+    alert(`${inspectionType} Inspection logged successfully.`);
+    resetInspectionForm(tableHeadId, tableId);
+    window.location.href = "inspection-log.html";
 }
 
-/**
- * Resets form inputs for a given inspection table.
- */
-function resetInspectionForm(tableId) {
+function resetInspectionForm(tableHeadId, tableId) {
+    const tableHead = document.getElementById(tableHeadId);
     const table = document.getElementById(tableId);
-    const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
-
-    for (let row of rows) {
-        const cells = row.getElementsByTagName("td");
-        cells[1].getElementsByTagName("input")[0].checked = false;
-        cells[2].getElementsByTagName("input")[0].checked = false;
-        cells[3].getElementsByTagName("input")[0].value = "";
-        cells[4].getElementsByTagName("input")[0].value = "";
-    }
+    tableHead.querySelectorAll("input").forEach(input => input.type === "radio" ? (input.checked = false) : (input.value = ""));
+    table.querySelectorAll("tbody tr").forEach(row => {
+        row.querySelectorAll("input[type='radio']").forEach(radio => (radio.checked = false));
+        row.querySelector("input[type='text']").value = "";
+    });
 }
 
-/**
- * Functions for logging specific inspections.
- */
 function logCAAInspection() {
-    logInspection("caa-inspection-table", "caaInspectionLogs", () => resetInspectionForm("caa-inspection-table"));
+    logInspection("caa-inspection-table-head", "caa-inspection-table", "CAA");
 }
-
 function logSAAInspection() {
-    logInspection("saa-inspection-table", "saaInspectionLogs", () => resetInspectionForm("saa-inspection-table"));
+    logInspection("saa-inspection-table-head", "saa-inspection-table", "SAA");
 }
-
 function logSPCCInspection() {
-    logInspection("spcc-inspection-table", "spccInspectionLogs", () => resetInspectionForm("spcc-inspection-table"));
+    logInspection("spcc-inspection-table-head", "spcc-inspection-table", "SPCC");
 }
-
 function logEyeWashInspection() {
-    logInspection("eye-wash-inspection-table", "eyeWashInspectionLogs", () => resetInspectionForm("eye-wash-inspection-table"));
+    logInspection("eye-wash-inspection-table-head", "eye-wash-inspection-table", "Eye Wash");
 }
-
-/**
- * Handles tab switching for inspections.
- */
-function openTab(tabId) {
-    const tabContents = document.querySelectorAll(".tab-content");
-    const tabButtons = document.querySelectorAll(".tab-button");
-
-    tabContents.forEach(content => {
-        content.style.display = "none"; // Hide all tabs
-    });
-
-    tabButtons.forEach(button => {
-        button.classList.remove("active"); // Remove active state from all buttons
-    });
-
-    document.getElementById(tabId).style.display = "block"; // Show the selected tab
-    document.querySelector(`.tab-button[data-tab="${tabId}"]`).classList.add("active"); // Highlight active tab
-}
-
-// Ensure tab buttons have event listeners
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".tab-button").forEach(button => {
-        button.addEventListener("click", () => {
-            openTab(button.getAttribute("data-tab"));
-        });
-    });
-
-    openTab("caa"); // Set default tab on page load
-});
 
 export { logCAAInspection, logSAAInspection, logSPCCInspection, logEyeWashInspection };
+
+
 
 

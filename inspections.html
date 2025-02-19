@@ -96,7 +96,28 @@
 
 
     <div id="caa" class="tab-content active">
-        <h2>Hazardous Waste Central Accumulation Area (CAA) Inspection</h2>
+        <h2>Hazardous Waste - Central Accumulation Area (CAA) Inspection</h2>
+        <table id="caa-inspection-table-head">
+            <thead>
+                <tr>
+                    <th>inspector Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Observation</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="container-condition-name"></td>
+                    <td><input type="date" name="container-condition-date"></td>
+                    <td><input type="time" name="container-condition-time"></td>
+                    <td><input type="radio" name="container-condition-observation" value="Observation"></td>
+                    <td><input type="text" name="container-condition-comment"></td>
+                </tr>
+            </tbody>
+        </thead>
+
         <table id="caa-inspection-table">
             <thead>
                 <tr>
@@ -104,7 +125,6 @@
                     <th>Pass</th>
                     <th>Fail</th>
                     <th>Comments</th>
-                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -113,96 +133,127 @@
                     <td><input type="radio" name="container-condition" value="Pass"></td>
                     <td><input type="radio" name="container-condition" value="Fail"></td>
                     <td><input type="text" name="container-condition-comment"></td>
-                    <td><input type="date" name="container-condition-date"></td>
                 </tr>
                 <tr>
                     <td>Proper Labeling (Hazardous Waste, Accumulation Date)</td>
                     <td><input type="radio" name="labeling" value="Pass"></td>
                     <td><input type="radio" name="labeling" value="Fail"></td>
                     <td><input type="text" name="labeling-comment"></td>
-                    <td><input type="date" name="labeling-date"></td>
                 </tr>
                 <tr>
                     <td>Secondary Containment (No spills, adequate capacity)</td>
                     <td><input type="radio" name="containment" value="Pass"></td>
                     <td><input type="radio" name="containment" value="Fail"></td>
                     <td><input type="text" name="containment-comment"></td>
-                    <td><input type="date" name="containment-date"></td>
                 </tr>
                 <tr>
                     <td>Emergency Equipment (Fire extinguishers, spill kits)</td>
                     <td><input type="radio" name="equipment" value="Pass"></td>
                     <td><input type="radio" name="equipment" value="Fail"></td>
                     <td><input type="text" name="equipment-comment"></td>
-                    <td><input type="date" name="equipment-date"></td>
                 </tr>
                 <tr>
                     <td>Aisle Space (At least 2 feet clearance)</td>
                     <td><input type="radio" name="aisle-space" value="Pass"></td>
                     <td><input type="radio" name="aisle-space" value="Fail"></td>
                     <td><input type="text" name="aisle-space-comment"></td>
-                    <td><input type="date" name="aisle-space-date"></td>
                 </tr>
             </tbody>
         </table>
-        <button class="submit-button" onclick="logInspection()">Submit Inspection</button>
+        <button class="submit-button" onclick="logCAAInspection()">Submit Inspection</button>
     </div>
 
     <div id="saa" class="tab-content">
-            <h2>Satellite Accumulation Area (SAA) Inspection</h2>
-        <table id="saa-inspection-table">
-            <thead>
-                <tr>
-                    <th>Inspection Item</th>
-                    <th>Pass</th>
-                    <th>Fail</th>
-                    <th>Comments</th>
-                    <th>Date</th>
-                </tr>
+            <h2>Hazardous Waste - Satellite Accumulation Area (SAA) Inspection</h2>
+            <table id="saa-inspection-table-head">
+                <thead>
+                    <tr>
+                        <th>inspector Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Observation</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="container-condition-name"></td>
+                        <td><input type="date" name="container-condition-date"></td>
+                        <td><input type="time" name="container-condition-time"></td>
+                        <td><input type="radio" name="container-condition-observation" value="Observation"></td>
+                        <td><input type="text" name="container-condition-comment"></td>
+                    </tr>
+                </tbody>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Container Condition (No leaks, bulging, rust)</td>
-                    <td><input type="radio" name="container-condition" value="Pass"></td>
-                    <td><input type="radio" name="container-condition" value="Fail"></td>
-                    <td><input type="text" name="container-condition-comment"></td>
-                    <td><input type="date" name="container-condition-date"></td>
-                </tr>
-                <tr>
-                    <td>Proper Labeling (Hazardous Waste, Accumulation Date)</td>
-                    <td><input type="radio" name="labeling" value="Pass"></td>
-                    <td><input type="radio" name="labeling" value="Fail"></td>
-                    <td><input type="text" name="labeling-comment"></td>
-                    <td><input type="date" name="labeling-date"></td>
-                </tr>
-                <tr>
-                    <td>Secondary Containment (No spills, adequate capacity)</td>
-                    <td><input type="radio" name="containment" value="Pass"></td>
-                    <td><input type="radio" name="containment" value="Fail"></td>
-                    <td><input type="text" name="containment-comment"></td>
-                    <td><input type="date" name="containment-date"></td>
-                </tr>
-                <tr>
-                    <td>Emergency Equipment (Fire extinguishers, spill kits)</td>
-                    <td><input type="radio" name="equipment" value="Pass"></td>
-                    <td><input type="radio" name="equipment" value="Fail"></td>
-                    <td><input type="text" name="equipment-comment"></td>
-                    <td><input type="date" name="equipment-date"></td>
-                </tr>
-                <tr>
-                    <td>Aisle Space (At least 2 feet clearance)</td>
-                    <td><input type="radio" name="aisle-space" value="Pass"></td>
-                    <td><input type="radio" name="aisle-space" value="Fail"></td>
-                    <td><input type="text" name="aisle-space-comment"></td>
-                    <td><input type="date" name="aisle-space-date"></td>
-                </tr>
+    
+            <table id="saa-inspection-table">
+                <thead>
+                    <tr>
+                        <th>Inspection Item</th>
+                        <th>Pass</th>
+                        <th>Fail</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Container Condition (No leaks, bulging, rust)</td>
+                        <td><input type="radio" name="container-condition" value="Pass"></td>
+                        <td><input type="radio" name="container-condition" value="Fail"></td>
+                        <td><input type="text" name="container-condition-comment"></td>
+                    </tr>
+                    <tr>
+                        <td>Proper Labeling (Hazardous Waste, Accumulation Date)</td>
+                        <td><input type="radio" name="labeling" value="Pass"></td>
+                        <td><input type="radio" name="labeling" value="Fail"></td>
+                        <td><input type="text" name="labeling-comment"></td>
+                    </tr>
+                    <tr>
+                        <td>Secondary Containment (No spills, adequate capacity)</td>
+                        <td><input type="radio" name="containment" value="Pass"></td>
+                        <td><input type="radio" name="containment" value="Fail"></td>
+                        <td><input type="text" name="containment-comment"></td>
+                    </tr>
+                    <tr>
+                        <td>Emergency Equipment (Fire extinguishers, spill kits)</td>
+                        <td><input type="radio" name="equipment" value="Pass"></td>
+                        <td><input type="radio" name="equipment" value="Fail"></td>
+                        <td><input type="text" name="equipment-comment"></td>
+                    </tr>
+                    <tr>
+                        <td>Aisle Space (At least 2 feet clearance)</td>
+                        <td><input type="radio" name="aisle-space" value="Pass"></td>
+                        <td><input type="radio" name="aisle-space" value="Fail"></td>
+                        <td><input type="text" name="aisle-space-comment"></td>
+                    </tr>
             </tbody>
         </table>
         <button class="submit-button" onclick="logSAAInspection()">Submit Inspection</button>
         </div>
 
         <div id="spcc" class="tab-content">
-            <h2>SPCC Inspection Checklist</h2>
+            <h2>Spill Prevention, Control, and Countermeasure (SPCC) Inspection Checklist</h2>
+            <table id="spcc-inspection-table-head">
+                <thead>
+                    <tr>
+                        <th>inspector Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Observation</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="container-condition-name"></td>
+                        <td><input type="date" name="container-condition-date"></td>
+                        <td><input type="time" name="container-condition-time"></td>
+                        <td><input type="radio" name="container-condition-observation" value="Observation"></td>
+                        <td><input type="text" name="container-condition-comment"></td>
+                    </tr>
+                </tbody>
+            </thead>
+
             <table id="spcc-inspection-table">
                 <thead>
                     <tr>
@@ -210,7 +261,6 @@
                         <th>Pass</th>
                         <th>Fail</th>
                         <th>Comments</th>
-                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -219,49 +269,42 @@
                         <td><input type="radio" name="containment-integrity" value="Pass"></td>
                         <td><input type="radio" name="containment-integrity" value="Fail"></td>
                         <td><input type="text" name="containment-integrity-comment"></td>
-                        <td><input type="date" name="containment-integrity-date"></td>
                     </tr>
                     <tr>
                         <td>Bulk Storage Container Condition (No leaks, rust, or corrosion)</td>
                         <td><input type="radio" name="storage-condition" value="Pass"></td>
                         <td><input type="radio" name="storage-condition" value="Fail"></td>
                         <td><input type="text" name="storage-condition-comment"></td>
-                        <td><input type="date" name="storage-condition-date"></td>
                     </tr>
                     <tr>
                         <td>Loading/Unloading Areas (Spill containment and equipment integrity)</td>
                         <td><input type="radio" name="loading-areas" value="Pass"></td>
                         <td><input type="radio" name="loading-areas" value="Fail"></td>
                         <td><input type="text" name="loading-areas-comment"></td>
-                        <td><input type="date" name="loading-areas-date"></td>
                     </tr>
                     <tr>
                         <td>Piping and Transfer Systems (No visible leaks, proper support)</td>
                         <td><input type="radio" name="piping" value="Pass"></td>
                         <td><input type="radio" name="piping" value="Fail"></td>
                         <td><input type="text" name="piping-comment"></td>
-                        <td><input type="date" name="piping-date"></td>
                     </tr>
                     <tr>
                         <td>Emergency Response Equipment (Spill kits, fire extinguishers available)</td>
                         <td><input type="radio" name="emergency-equipment" value="Pass"></td>
                         <td><input type="radio" name="emergency-equipment" value="Fail"></td>
                         <td><input type="text" name="emergency-equipment-comment"></td>
-                        <td><input type="date" name="emergency-equipment-date"></td>
                     </tr>
                     <tr>
                         <td>Security Measures (Fencing, locked valves, and restricted access)</td>
                         <td><input type="radio" name="security" value="Pass"></td>
                         <td><input type="radio" name="security" value="Fail"></td>
                         <td><input type="text" name="security-comment"></td>
-                        <td><input type="date" name="security-date"></td>
                     </tr>
                     <tr>
                         <td>Employee Training Compliance (Annual SPCC training completed)</td>
                         <td><input type="radio" name="training" value="Pass"></td>
                         <td><input type="radio" name="training" value="Fail"></td>
                         <td><input type="text" name="training-comment"></td>
-                        <td><input type="date" name="training-date"></td>
                     </tr>
                 </tbody>
             </table>
@@ -271,6 +314,27 @@
 
         <div id="eye-wash" class="tab-content">
             <h2>Eye Wash & Shower Station Inspection Checklist</h2>
+            <table id="eye-wash-inspection-table-head">
+                <thead>
+                    <tr>
+                        <th>inspector Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Observation</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="container-condition-name"></td>
+                        <td><input type="date" name="container-condition-date"></td>
+                        <td><input type="time" name="container-condition-time"></td>
+                        <td><input type="radio" name="container-condition-observation" value="Observation"></td>
+                        <td><input type="text" name="container-condition-comment"></td>
+                    </tr>
+                </tbody>
+            </thead>
+
             <table id="eye-wash-inspection-table">
                 <thead>
                     <tr>
@@ -278,7 +342,6 @@
                         <th>Pass</th>
                         <th>Fail</th>
                         <th>Comments</th>
-                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -287,35 +350,30 @@
                         <td><input type="radio" name="flow-testing" value="Pass"></td>
                         <td><input type="radio" name="flow-testing" value="Fail"></td>
                         <td><input type="text" name="flow-testing-comment"></td>
-                        <td><input type="date" name="flow-testing-date"></td>
                     </tr>
                     <tr>
                         <td>Accessibility (Unobstructed and easy to reach)</td>
                         <td><input type="radio" name="accessibility" value="Pass"></td>
                         <td><input type="radio" name="accessibility" value="Fail"></td>
                         <td><input type="text" name="accessibility-comment"></td>
-                        <td><input type="date" name="accessibility-date"></td>
                     </tr>
                     <tr>
                         <td>Signage and Labels (Clearly marked, visible instructions)</td>
                         <td><input type="radio" name="signage" value="Pass"></td>
                         <td><input type="radio" name="signage" value="Fail"></td>
                         <td><input type="text" name="signage-comment"></td>
-                        <td><input type="date" name="signage-date"></td>
                     </tr>
                     <tr>
                         <td>Activation Time (Activates in 1 second or less)</td>
                         <td><input type="radio" name="activation-time" value="Pass"></td>
                         <td><input type="radio" name="activation-time" value="Fail"></td>
                         <td><input type="text" name="activation-time-comment"></td>
-                        <td><input type="date" name="activation-time-date"></td>
                     </tr>
                     <tr>
                         <td>Water Clarity & Temperature (Clean water, between 60-100°F)</td>
                         <td><input type="radio" name="water-clarity" value="Pass"></td>
                         <td><input type="radio" name="water-clarity" value="Fail"></td>
                         <td><input type="text" name="water-clarity-comment"></td>
-                        <td><input type="date" name="water-clarity-date"></td>
                     </tr>
                 </tbody>
             </table>

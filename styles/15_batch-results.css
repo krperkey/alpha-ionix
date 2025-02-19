@@ -51,8 +51,8 @@ h2 {
     color: #FFD700;
     padding: 15px;
     margin-bottom: 20px;
-    border: 2px solid #FFD700;
-    border-radius: 10px;
+    border: 3px solid #FFD700;
+    border-radius: 5px;
 }
 
 #batch-info-container h3 {
@@ -62,18 +62,6 @@ h2 {
     font-size: 1.6rem;
     color: white;
     margin-bottom: 15px;
-}
-
-/* Batch Details Section */
-#batch-results-container {
-    max-width: 100%;
-    overflow-x: auto;
-    background-color: #333;
-    color: #FFD700;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 2px solid #FFD700;
-    border-radius: 10px;
 }
 
 #batch-results-container h3 {

@@ -129,16 +129,6 @@ h2 {
     text-align: center; /* Left-align for readability */
 }
 
-/* Batch Details Section */
-#batch-details-container {
-    background-color: #333;
-    color: #FFD700;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 2px solid #FFD700;
-    border-radius: 10px;
-}
-
 #batch-details-container h3 {
     display: flex; /* Use flexbox for horizontal layout */
     justify-content: space-between; /* Push the button to the right */

@@ -139,7 +139,7 @@ window.onload = async function () {
         <td>${sample.sampleType}</td>
         <td>
             <select name="analyst-${sample.id}">
-                <option value="" disabled>Select Analyst</option>
+                <option value="" >Select Analyst</option>
                 ${analystOptionsHTML.replace(
                     `<option value="${sampleResults.analyst}">`,
                     `<option value="${sampleResults.analyst}" selected>`
@@ -148,7 +148,7 @@ window.onload = async function () {
         </td>
         <td>
             <select name="instrument-${sample.id}">
-                <option value="" disabled>Select Instrument</option>
+                <option value="" >Select Instrument</option>
                 ${instrumentOptionsHTML.replace(
                     `<option value="${sampleResults.instrument}">`,
                     `<option value="${sampleResults.instrument}" selected>`
@@ -170,7 +170,7 @@ window.onload = async function () {
         </td>
         <td>
             <select name="standard-id-${sample.id}">
-                <option value="" disabled>Select Standard</option>
+                <option value="" >Select Standard</option>
                 ${standardOptionsHTML.replace(
                     `<option value="${sampleResults.standard}">`,
                     `<option value="${sampleResults.standard}" selected>`
@@ -241,7 +241,7 @@ analytes.forEach((analyte, index) => {
         <td><input type="number" name="dilution-${sample.id}-${index}" value="${analyteResult.dilution || "1"}" placeholder="Dilution" /></td>
         <td>
             <select name="qualifier-${sample.id}-${index}">
-                <option value="" disabled>Select Qualifier</option>
+                <option value="" >Select Qualifier</option>
                 ${qualifierOptionsHTML}
             </select>
         </td>
@@ -431,12 +431,12 @@ async function toggleAnalyteRows(sampleId) {
         }
 
         // Retrieve necessary data from localStorage
-        const samples = await loadData("sampleDataArray") || [];
-        const standards = await loadData("standards") || []; // Standards data
+        const samples = (await loadData("sampleDataArray")) || [];
+        const standards = (await loadData("standards")) || []; // Standards data
         const associatedSamples = samples.filter(sample => sample.batchId === batchId && sample.sampleType !== "SAM");
         const savedResultsKey = `savedBatchResults-${batchId}`;
-        const savedResults = await loadData(savedResultsKey) || {};
-        const testCodes = await loadData("testCodes") || [];
+        const savedResults = (await loadData(savedResultsKey)) || {};
+        const testCodes = (await loadData("testCodes")) || [];
         const batch = (await loadData("batches")) || [].find(b => b.batchId === batchId);
         const matchedTestCode = testCodes.find(tc => tc.analysisId === batch.analysis);
 

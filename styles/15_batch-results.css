@@ -110,7 +110,7 @@ h2 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    border: 1px solid #999;
+    border: 2px solid #999;
     padding: 8px;
     text-align: center;
 }
@@ -150,14 +150,15 @@ h2 {
     color: rgb(131, 166, 231);
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 /* Bold styling for Sample ID in main rows */
 .sample-row td:nth-child(3) {
     color: white;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
 
 #samples-results-table td a {
@@ -199,6 +200,11 @@ h2 {
     font-weight: bold; /* Optional: make it stand out */
 }
 
+.spacer-row {
+    background-color: #333;
+    height: 30px;
+}
+
 /* Inputs in Table */
 #samples-results-table td input {
     box-sizing: border-box;
@@ -216,8 +222,8 @@ h2 {
 
 /* Sub-row input fields styling */
 .analyte-row td input {
-    background-color: #333; /* Black background */
-    color: white; /* White text */
+    background-color: #BEE3FF; /* Black background */
+    color: black; /* White text */
     border: 1px solid #FFD700; /* Optional: Gold border for consistency */
     padding: 5px; /* Adjust padding for readability */
     border-radius: 4px; /* Rounded corners for aesthetics */
@@ -236,7 +242,7 @@ h2 {
 #samples-results-table select {
     width: 100%;          /* Take full width of the cell */
     box-sizing: border-box; /* Include padding and border in element width */
-    padding: 4px 6px;      /* Adjust padding to fit inside */
+    padding: 6px 6px;      /* Adjust padding to fit inside */
     border: 1px solid #ccc;
     font-size: 12px;
     height: auto;         /* Let height auto-adjust */
@@ -357,9 +363,9 @@ button:hover {
 /* Style all condition code dropdowns */
 select[name^="condition-"] {
     width: 100%;
-    background-color: #333; /* Light background */
+    background-color: #BEE3FF; /* Light background */
     border: 1px solid #ffd700; /* Blue border */
-    color: white; /* Dark text */
+    color: black; /* Dark text */
     font-size: 12px;
     padding: 5px;
     border-radius: 4px;
@@ -532,9 +538,9 @@ select[name^="standard-id-"]:focus {
 /* Style all condition code dropdowns */
 select[name^="qualifier-"] {
     width: 100%;
-    background-color: #333; /* Light background */
+    background-color: #BEE3FF; /* Light background */
     border: 1px solid #ffd700; /* Blue border */
-    color: white; /* Dark text */
+    color: black; /* Dark text */
     font-size: 12px;
     padding: 5px;
     border-radius: 4px;

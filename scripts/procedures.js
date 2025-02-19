@@ -12,7 +12,7 @@ document.getElementById('close-modal-btn').addEventListener('click', function() 
 
 // Handle form submission
 document.getElementById('add-procedure-form').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevent form from refreshing the page
+    event.preventDefault(); // Prevent page refresh
 
     // Get form data
     const procedureId = document.getElementById('procedure-id').value.trim();
@@ -33,71 +33,76 @@ document.getElementById('add-procedure-form').addEventListener('submit', async f
 
     // Get the uploaded file
     const file = fileInput.files[0];
-    const fileName = file.name;
 
-    // Generate a temporary URL for the uploaded file
-    const fileURL = URL.createObjectURL(file);
+    try {
+        // Upload file to Firebase Storage and get the public URL
+        const fileURL = await uploadFileToFirebase(file);
 
-    // Load existing procedures from localForage
-    const procedures = await loadData('procedures') || [];
+        // Save metadata to Firestore
+        await saveFileMetadata(procedureId, procedureDesc, file.name, fileURL, revisionDate);
 
-    // Create new procedure object
-    const newProcedure = {
+        // Update table with new entry
+        addProcedureToTable(procedureId, procedureDesc, file.name, fileURL, revisionDate);
+
+        // Clear the form
+        document.getElementById('add-procedure-form').reset();
+
+        // Close the modal
+        document.getElementById('add-procedure-modal').style.display = 'none';
+
+    } catch (error) {
+        console.error("Error uploading procedure:", error);
+        alert("File upload failed. Please try again.");
+    }
+});
+
+// Upload file to Firebase Storage and return the file's public URL
+async function uploadFileToFirebase(file) {
+    const storageRef = firebase.storage().ref("procedures/" + file.name);
+    const snapshot = await storageRef.put(file);
+    return await snapshot.ref.getDownloadURL();
+}
+
+// Save procedure metadata to Firestore
+async function saveFileMetadata(procedureId, procedureDesc, fileName, fileURL, revisionDate) {
+    const db = firebase.firestore();
+    await db.collection("procedures").add({
         procedureId,
-        procedureDesc,
-        fileURL,
+        description: procedureDesc,
         fileName,
-        revisionDate
-    };
+        fileURL,
+        revisionDate,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+}
 
-    // Save procedure to localForage
-    procedures.push(newProcedure);
-    await saveData('procedures', procedures);
-
-    // Add new row to the table
+// Add a new procedure row to the table
+function addProcedureToTable(procedureId, procedureDesc, fileName, fileURL, revisionDate) {
     const table = document.getElementById('procedures-table').querySelector('tbody');
     const newRow = table.insertRow();
     newRow.innerHTML = `
         <td>${procedureId}</td>
         <td>${procedureDesc}</td>
-        <td><a href="${fileURL}" download="${fileName}">${fileName}</a></td>
+        <td><a href="${fileURL}" target="_blank">${fileName}</a></td>
         <td>${revisionDate}</td>
         <td>
             <button class="revise-procedure-btn" data-procedure-id="${procedureId}">Revise</button>
             <button class="retire-procedure-btn" data-procedure-id="${procedureId}">Retire</button>
         </td>
     `;
+}
 
-    // Release the URL when no longer needed (optional)
-    setTimeout(() => URL.revokeObjectURL(fileURL), 10000);
-    
-    // Clear the form
-    document.getElementById('add-procedure-form').reset();
-
-    // Close the modal
-    document.getElementById('add-procedure-modal').style.display = 'none';
-});
-
-// Load existing procedures from localForage when the page loads
+// Load existing procedures from Firestore when the page loads
 document.addEventListener('DOMContentLoaded', async function () {
     const table = document.getElementById('procedures-table').querySelector('tbody');
 
-    // Retrieve saved procedures from localForage
-    const savedProcedures = await loadData('procedures') || [];
+    // Fetch procedures from Firestore
+    const db = firebase.firestore();
+    const snapshot = await db.collection("procedures").orderBy("timestamp", "desc").get();
 
-    // Populate the table with the saved procedures
-    savedProcedures.forEach(procedure => {
-        const newRow = table.insertRow();
-        newRow.innerHTML = `
-            <td>${procedure.procedureId}</td>
-            <td>${procedure.procedureDesc}</td>
-            <td><a href="${procedure.fileURL}" download="${procedure.fileName}">${procedure.fileName}</a></td>
-            <td>${procedure.revisionDate}</td>
-            <td>
-                <button class="revise-procedure-btn" data-procedure-id="${procedure.procedureId}">Revise</button>
-                <button class="retire-procedure-btn" data-procedure-id="${procedure.procedureId}">Retire</button>
-            </td>
-        `;
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        addProcedureToTable(data.procedureId, data.description, data.fileName, data.fileURL, data.revisionDate);
     });
 });
 
@@ -107,66 +112,23 @@ document.getElementById('procedures-table').addEventListener('click', async func
         const confirmRetire = confirm("Are you sure you want to retire this document?");
         if (!confirmRetire) return;
 
-        // Get the row that contains the "Retire" button
+        // Get the row & procedure ID
         const row = event.target.closest('tr');
         const procedureId = event.target.dataset.procedureId;
 
-        // Load existing procedures from localForage
-        const procedures = await loadData('procedures') || [];
-        const retiredProcedures = await loadData('retiredProcedures') || [];
+        // Move procedure to "retiredProcedures" in Firestore
+        const db = firebase.firestore();
+        const snapshot = await db.collection("procedures").where("procedureId", "==", procedureId).get();
 
-        // Find the procedure to retire
-        const procedureToRetire = procedures.find(proc => proc.procedureId === procedureId);
-        if (!procedureToRetire) return;
-
-        // Save the retired procedure to localForage
-        retiredProcedures.push(procedureToRetire);
-        await saveData('retiredProcedures', retiredProcedures);
-
-        // Remove the row from the current table
-        row.remove();
-
-        // Update the procedures list in localForage
-        const updatedProcedures = procedures.filter(proc => proc.procedureId !== procedureId);
-        await saveData('procedures', updatedProcedures);
+        snapshot.forEach(async doc => {
+            await db.collection("retiredProcedures").add(doc.data());
+            await doc.ref.delete(); // Remove from active procedures
+            row.remove(); // Remove row from table
+        });
     }
 });
 
-async function uploadFile() {
-    const fileInput = document.getElementById('procedure-link');
-    if (!fileInput.files.length) {
-        alert("Please select a file to upload.");
-        return;
-    }
-
-    const file = fileInput.files[0];
-    const storageRef = firebase.storage().ref("procedures/" + file.name);
-
-    try {
-        // Upload file to Firebase Storage
-        const snapshot = await storageRef.put(file);
-        const downloadURL = await snapshot.ref.getDownloadURL();
-
-        console.log("File available at:", downloadURL);
-
-        // Save metadata to Firestore (or LocalForage if needed)
-        saveFileMetadata(file.name, downloadURL);
-    } catch (error) {
-        console.error("Upload failed:", error);
-    }
-}
-
-// Save file details in Firestore (or your local database)
-async function saveFileMetadata(fileName, fileURL) {
-    const db = firebase.firestore();
-    await db.collection("procedures").add({
-        fileName: fileName,
-        fileURL: fileURL,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
-}
-
-
+// Redirect to retired procedures page
 document.getElementById('retired-procedures').addEventListener('click', function() {
     window.location.href = 'retired-procedures.html';
 });

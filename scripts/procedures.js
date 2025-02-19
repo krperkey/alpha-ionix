@@ -132,41 +132,6 @@ document.getElementById('procedures-table').addEventListener('click', async func
     }
 });
 
-async function uploadFile() {
-    const fileInput = document.getElementById('procedure-link');
-    if (!fileInput.files.length) {
-        alert("Please select a file to upload.");
-        return;
-    }
-
-    const file = fileInput.files[0];
-    const storageRef = firebase.storage().ref("procedures/" + file.name);
-
-    try {
-        // Upload file to Firebase Storage
-        const snapshot = await storageRef.put(file);
-        const downloadURL = await snapshot.ref.getDownloadURL();
-
-        console.log("File available at:", downloadURL);
-
-        // Save metadata to Firestore (or LocalForage if needed)
-        saveFileMetadata(file.name, downloadURL);
-    } catch (error) {
-        console.error("Upload failed:", error);
-    }
-}
-
-// Save file details in Firestore (or your local database)
-async function saveFileMetadata(fileName, fileURL) {
-    const db = firebase.firestore();
-    await db.collection("procedures").add({
-        fileName: fileName,
-        fileURL: fileURL,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    });
-}
-
-
 document.getElementById('retired-procedures').addEventListener('click', function() {
     window.location.href = 'retired-procedures.html';
 });

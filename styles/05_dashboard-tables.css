@@ -84,3 +84,39 @@ h2 {
     padding: 10px; /* Add padding for a neat layout */
 }
 
+
+/* Ensure full viewport fit on mobile devices */
+@media screen and (max-width: 600px) {
+    html, body {
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        width: 100vw; /* Ensure body fits within viewport width */
+    }
+
+    #dashboard {
+        flex-direction: column; /* Stack dashboard sections vertically */
+        height: auto; /* Adjust height for smaller screens */
+        width: 100vw; /* Ensure it fits within viewport width */
+        gap: 10px;
+    }
+
+    #left-column, #right-column {
+        width: 100%; /* Make both columns span the full width */
+        flex: none; /* Disable flex-grow for better control */
+        padding: 10px;
+    }
+
+    .dashboard-section {
+        max-width: 100%; /* Ensure sections fit within the screen */
+    }
+
+    #sample-count-chart, #department-backlog-table {
+        width: 100%; /* Ensure elements take full width */
+        max-width: 100vw; /* Prevent overflow */
+    }
+
+    #department-backlog-table th, #department-backlog-table td {
+        padding: 5px; /* Reduce padding for better fit */
+        font-size: 14px; /* Adjust font size for readability */
+    }
+}
+

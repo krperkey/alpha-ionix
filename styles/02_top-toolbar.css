@@ -178,7 +178,7 @@ nav ul li:hover #dropdown-menu {
         box-sizing: border-box; /* Include padding in width */
         border-bottom: 2px solid #555;
         border-radius: 2px; /* Remove border radius for a flat bar across the top */
-        font-size: 15px;
+        font-size: 6px;
         display: flex; /* Use flexbox for horizontal alignment */
         align-items: center; /* Center items vertically in the toolbar */
         justify-content: space-around; /* Evenly space items across the toolbar */
@@ -201,14 +201,14 @@ nav ul li:hover #dropdown-menu {
         color: #333;
         text-decoration: none;
         display: inline-block; /* Ensure links remain inline */
-        padding: 10px 20px; /* Adjust padding for better spacing */
+        padding: 2px 4px; /* Adjust padding for better spacing */
         border-radius: 10px;
         text-align: center;
         font-weight: bold;
     }
 
     nav {
-        font-size: 15px;
+        font-size: 6px;
         background-color: #333;
         padding: 5px;
     }

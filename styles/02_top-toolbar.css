@@ -209,9 +209,12 @@ nav ul li:hover #dropdown-menu {
         width: 100%; /* Ensure all primary sections fit within the screen */
     }
 
+    header {
+        white-space: nowrap;
+    }
+
     header a#logo {
         font-size: 1.0rem;
-        white-space: nowrap;
     }
 
     #toolbar {

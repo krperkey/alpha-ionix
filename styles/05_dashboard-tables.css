@@ -88,7 +88,7 @@ h2 {
 /* Ensure full viewport fit on mobile devices */
 @media screen and (max-width: 600px) {
     html, body {
-        overflow-x: hidden; /* Prevent horizontal scrolling */
+        overflow-x: auto; /* Prevent horizontal scrolling */
         width: 100vw; /* Ensure body fits within viewport width */
     }
 

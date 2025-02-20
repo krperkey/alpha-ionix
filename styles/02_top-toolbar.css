@@ -209,7 +209,7 @@ nav ul li:hover #dropdown-menu {
         width: 100%; /* Ensure all primary sections fit within the screen */
     }
 
-    #logo {
+    header a#logo {
         font-size: 1.0rem;
     }
 

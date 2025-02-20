@@ -197,7 +197,7 @@ nav ul li:hover #dropdown-menu {
 /* Ensure full viewport fit on mobile devices */
 @media screen and (max-width: 600px) {
     body {
-        overflow-x: auto; /* Prevent horizontal scrolling */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
         width: 100vw; /* Ensure body fits within viewport width */
     }
 
@@ -207,6 +207,16 @@ nav ul li:hover #dropdown-menu {
 
     #toolbar, #aside-layout, header, nav {
         width: 100%; /* Ensure all primary sections fit within the screen */
+    }
+
+    #nav ul {
+        align-items: center;
+    }
+
+    #nav ul li {
+        width: 100%;
+        text-align: center;
+        font-size: 0.6rem;
     }
 
     #toolbar ul {

@@ -110,7 +110,7 @@ h2 {
     }
 
     #left-column, #right-column {
-        width: 100%; /* Make both columns span the full width */
+        width: 95%; /* Make both columns span the full width */
         flex: none; /* Disable flex-grow for better control */
         padding: 10px;
     }

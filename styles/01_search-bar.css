@@ -39,6 +39,14 @@
         background-color: rgb(243, 240, 240);
     }
 
+    #search-container {
+        display: flex;
+        justify-content: flex-end; /* Aligns the search bar to the right */
+        margin-left: auto; /* Pushes the search bar to the far right */
+        margin-right: 20px;
+        height: 30px;
+    }
+
 }
 
 

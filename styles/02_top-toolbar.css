@@ -161,5 +161,53 @@ nav ul li:hover #dropdown-menu {
     width: auto;
 }
 
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    
+    #aside-layout {
+        display: flex;
+        flex-direction: column; /* Arrange toolbar and content vertically */
+        height: auto; /* Adjust height as needed */
+    }
+
+    #toolbar {
+        width: auto; /* Make the toolbar span the full width of the screen */
+        background-color: #ffd700; /* Dark background for the toolbar */
+        color: #ffd700;
+        padding: 1px;
+        box-sizing: border-box; /* Include padding in width */
+        border-bottom: 2px solid #555;
+        border-radius: 2px; /* Remove border radius for a flat bar across the top */
+        font-size: 15px;
+        display: flex; /* Use flexbox for horizontal alignment */
+        align-items: center; /* Center items vertically in the toolbar */
+        justify-content: space-around; /* Evenly space items across the toolbar */
+        height: 50%;
+    }
+    
+    #toolbar ul {
+        list-style: none;
+        display: flex; /* Arrange list items horizontally */
+        padding: 0;
+        margin: 0;
+        width: auto; /* Ensure the list spans the full width */
+    }
+    
+    #toolbar ul li {
+        margin: 0; /* Remove margin between list items */
+    }
+    
+    #toolbar ul li a {
+        color: #333;
+        text-decoration: none;
+        display: inline-block; /* Ensure links remain inline */
+        padding: 10px 20px; /* Adjust padding for better spacing */
+        border-radius: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+}
+
 
 

@@ -111,3 +111,25 @@ footer {
     margin-top: 2px;
     margin-bottom: 2px;
 }
+
+.expand-button {
+    font-size: 10px; /* Reduce the size of the triangle */
+    padding: 2px 4px; /* Adjust padding for compactness */
+    width: 20px; /* Optional: set a fixed width */
+    height: 20px; /* Optional: set a fixed height */
+    line-height: 10px; /* Align triangle vertically */
+    text-align: center; /* Center the triangle horizontally */
+    background-color: transparent; /* Remove background if not needed */
+    border: none; /* Remove border for a cleaner look */
+    cursor: pointer; /* Ensure it's clickable */
+    color: white;
+    margin: 0;
+}
+
+.expand-button:focus {
+    outline: none; /* Remove focus outline for a cleaner appearance */
+}
+
+button:hover {
+    background-color: #FFB800;
+}

@@ -164,84 +164,168 @@ nav ul li:hover #dropdown-menu {
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     
-    #aside-layout {
-        display: flex;
-        flex-direction: column; /* Arrange toolbar and content vertically */
-        height: auto; /* Adjust height as needed */
-    }
+    /* General Layout */
+body {
+    background-color: #333; /* White background */
+    color: #444; /* White text */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
 
-    #toolbar {
-        width: auto; /* Make the toolbar span the full width of the screen */
-        background-color: #ffd700; /* Dark background for the toolbar */
-        color: #ffd700;
-        padding: 1px;
-        box-sizing: border-box; /* Include padding in width */
-        border-bottom: 2px solid #555;
-        border-radius: 2px; /* Remove border radius for a flat bar across the top */
-        font-size: 6px;
-        display: flex; /* Use flexbox for horizontal alignment */
-        align-items: center; /* Center items vertically in the toolbar */
-        justify-content: space-around; /* Evenly space items across the toolbar */
-        height: 50%;
-    }
-    
-    #toolbar ul {
-        list-style: none;
-        display: flex; /* Arrange list items horizontally */
-        padding: 0;
-        margin: 0;
-        width: auto; /* Ensure the list spans the full width */
-    }
-    
-    #toolbar ul li {
-        margin: 0; /* Remove margin between list items */
-    }
-    
-    #toolbar ul li a {
-        color: #333;
-        text-decoration: none;
-        display: inline-block; /* Ensure links remain inline */
-        padding: 2px 4px; /* Adjust padding for better spacing */
-        border-radius: 10px;
-        text-align: center;
-        font-weight: bold;
-    }
+#aside-layout {
+    display: flex;
+    flex-direction: column; /* Arrange toolbar and content vertically */
+    height: auto; /* Adjust height as needed */
+}
 
-    nav {
-        font-size: 6px;
-        background-color: #333;
-        padding: 5px;
-    }
-    
-    nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        align-items: center;
-    }
-    
-    nav ul li {
-        position: relative;
-    }
-    
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-        padding: 10px;
-        display: block;
-    }
-    
-    nav ul li a:hover {
-        color: #333;
-        background-color: #ffd700;
-        border-radius: 10px;
-    }
+#disclaimer {
+    background-color: #333;
+    color: red;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    width: 98.9%;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid #ffd700;
+}
 
-    nav ul li:hover #dropdown-menu {
-        display: block;
-        width: auto;
-    }
+
+#toolbar {
+    width: auto; /* Make the toolbar span the full width of the screen */
+    background-color: #ffd700; /* Dark background for the toolbar */
+    color: #ffd700;
+    padding: 1px;
+    box-sizing: border-box; /* Include padding in width */
+    border-bottom: 2px solid #555;
+    border-radius: 2px; /* Remove border radius for a flat bar across the top */
+    font-size: 15px;
+    display: flex; /* Use flexbox for horizontal alignment */
+    align-items: center; /* Center items vertically in the toolbar */
+    justify-content: space-around; /* Evenly space items across the toolbar */
+    height: 50%;
+}
+
+#toolbar ul {
+    list-style: none;
+    display: flex; /* Arrange list items horizontally */
+    padding: 0;
+    margin: 0;
+    width: auto; /* Ensure the list spans the full width */
+}
+
+#toolbar ul li {
+    margin: 0; /* Remove margin between list items */
+}
+
+#toolbar ul li a {
+    color: #333;
+    text-decoration: none;
+    display: inline-block; /* Ensure links remain inline */
+    padding: 10px 20px; /* Adjust padding for better spacing */
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#toolbar ul li a:hover {
+    color: #ffd900;
+    background-color: #333; /* Add a slight background change for hover effect */
+}
+
+#toolbar ul li a img {
+    width: 40px; /* Adjust size as needed */
+    height: auto;
+    margin: 0; /* No extra margin needed for horizontal alignment */
+}
+
+/* Header Styling - Alpha-Ionix Logo & Navigation toolbar */
+header {
+    background-color: #333; /* Dark gray */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-bottom: 2px solid #555;
+    border-radius: 2px;
+    font-weight: bold;
+    height: 30px;
+}
+
+/* TOOLBAR & LOGO */
+#logo {
+    font-size: 1.8rem; /* Adjusted font size for Alpha-Ionix */
+    color: white; /* Yellow text */
+    text-decoration: none;
+}
+
+header a#logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+}
+
+nav {
+    font-size: 15px;
+    background-color: #333;
+    padding: 5px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+nav ul li a:hover {
+    color: #333;
+    background-color: #ffd700;
+    border-radius: 10px;
+}
+
+/* Dropdown menu for Login, Clients, Samples*/
+#dropdown-menu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    color: #ffd700;
+    background-color: #444;
+    border: 1px solid #ffd700;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    display: none;
+    width: auto;
+    z-index: 10;
+}
+
+/* Hide the dropdown menu by default */
+.hidden {
+    display: none;
+}
+
+nav ul li:hover #dropdown-menu {
+    display: block;
+    width: auto;
+}
 
 }
 

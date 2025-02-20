@@ -7,6 +7,12 @@ body {
     padding: 0;
 }
 
+/* Main container styling */
+main {
+    max-width: 100%; /* Allow content to take the full width */
+    margin: 0 auto;
+}
+
 #aside-layout {
     display: flex;
     flex-direction: column; /* Arrange toolbar and content vertically */
@@ -162,7 +168,11 @@ nav ul li:hover #dropdown-menu {
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
+
+    main {
+        padding: 10px;
+    }
     
     /* General Layout */
 body {

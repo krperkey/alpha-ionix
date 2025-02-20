@@ -40,7 +40,7 @@ async function generateChartAndTable() {
                     ticks: {
                         color: '#ffd700',
                         font: {
-                            size: 12,
+                            size: 10,
                             weight: 'bold'
                         }
                     },

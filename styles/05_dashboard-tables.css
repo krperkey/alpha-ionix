@@ -11,10 +11,7 @@ html, body {
 #dashboard {
     display: flex; /* Use flexbox for side-by-side layout */
     height: 100%; /* Fill the entire height of the viewport */
-    width: 98.5%; /* Fill the entire width of the viewport */
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 14px;
+    width: 100%; /* Fill the entire width of the viewport */
     gap: 15px;
 }
 
@@ -32,7 +29,6 @@ h2 {
     background-color: #333; /* Optional: Light blue background for distinction */
     border: 4px solid #999; /* Optional: Divider between columns */
     border-radius: 5px;
-    padding: 20px;
 }
 
 /* Style the right column */
@@ -45,13 +41,12 @@ h2 {
     background-color: #333; /* Optional: Light yellow background for distinction */
     border: 4px solid #999;
     border-radius: 5px;
-    padding: 20px;
 }
 
 /* Style the dashboard sections inside the columns */
 .dashboard-section {
     width: 100%;
-    max-width: 800px; /* Optional: Limit the maximum width */
+    max-width: 1000px; /* Optional: Limit the maximum width */
     text-align: center;
 }
 
@@ -59,11 +54,18 @@ h2 {
 #sample-count-chart {
     max-width: 100%;
     height: auto;
+    text-align: center;
+    padding: 20px;
 }
 
 #department-backlog-table {
-    width: 100%;
+    width: 100%; /* Make the table span the full width */
     border-collapse: collapse;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    border: 2px solid #FFD700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 #department-backlog-table th, #department-backlog-table td {
@@ -80,95 +82,5 @@ h2 {
     font-weight: bold; /* Bold text for clarity */
     text-align: center; /* Center-align the text */
     padding: 10px; /* Add padding for a neat layout */
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-
-    /* Ensure the body and html take up the full viewport height */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    box-sizing: border-box;
-    border: 1px solid #333; /* Optional: Divider between columns */
-}
-
-/* Style the dashboard section */
-#dashboard {
-    display: flex; /* Use flexbox for side-by-side layout */
-    height: 100%; /* Fill the entire height of the viewport */
-    width: 98.5%; /* Fill the entire width of the viewport */
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 14px;
-    gap: 15px;
-    
-}
-
-h2 {
-    color: white;
-}
-
-/* Style the left column */
-#left-column {
-    flex: 1; /* Take up half the screen */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    background-color: #333; /* Optional: Light blue background for distinction */
-    border: 4px solid #999; /* Optional: Divider between columns */
-    border-radius: 5px;
-    padding: 20px;
-}
-
-/* Style the right column */
-#right-column {
-    flex: 1; /* Take up half the screen */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    background-color: #333; /* Optional: Light yellow background for distinction */
-    border: 4px solid #999;
-    border-radius: 5px;
-    padding: 20px;
-}
-
-/* Style the dashboard sections inside the columns */
-.dashboard-section {
-    width: 100%;
-    max-width: 800px; /* Optional: Limit the maximum width */
-    text-align: center;
-}
-
-/* Ensure the canvas and table fit well */
-#sample-count-chart {
-    max-width: 100%;
-    height: auto;
-}
-
-#department-backlog-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#department-backlog-table th, #department-backlog-table td {
-    border: 1px solid #ffd700;
-    padding: 10px;
-    color: white;
-    text-align: center;
-}
-
-/* Style the header of the department-backlog-table */
-#department-backlog-table th {
-    background-color: #555; /* Dark gray background */
-    color: white; /* White text */
-    font-weight: bold; /* Bold text for clarity */
-    text-align: center; /* Center-align the text */
-    padding: 10px; /* Add padding for a neat layout */
-}
-
 }
 

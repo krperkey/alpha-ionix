@@ -167,176 +167,66 @@ nav ul li:hover #dropdown-menu {
     width: auto;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 600px) {
-
-    main {
-        padding: 10px;
-    }
-    
-    /* General Layout */
-body {
-    background-color: #333; /* White background */
-    color: #444; /* White text */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-#aside-layout {
+/* Updated search container */
+#search-container {
     display: flex;
-    flex-direction: column; /* Arrange toolbar and content vertically */
-    height: auto; /* Adjust height as needed */
-}
-
-#disclaimer {
-    background-color: #333;
-    color: red;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.9rem;
-    width: 98.9%;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
-    border-bottom: 3px solid #ffd700;
-}
-
-
-#toolbar {
-    width: auto; /* Make the toolbar span the full width of the screen */
-    background-color: #ffd700; /* Dark background for the toolbar */
-    color: #ffd700;
-    padding: 1px;
-    box-sizing: border-box; /* Include padding in width */
-    border-bottom: 2px solid #555;
-    border-radius: 2px; /* Remove border radius for a flat bar across the top */
-    font-size: 15px;
-    display: flex; /* Use flexbox for horizontal alignment */
-    align-items: center; /* Center items vertically in the toolbar */
-    justify-content: space-around; /* Evenly space items across the toolbar */
-    height: 50%;
-}
-
-#toolbar ul {
-    list-style: none;
-    display: flex; /* Arrange list items horizontally */
-    padding: 0;
-    margin: 0;
-    width: auto; /* Ensure the list spans the full width */
-}
-
-#toolbar ul li {
-    margin: 0; /* Remove margin between list items */
-}
-
-#toolbar ul li a {
-    color: #333;
-    text-decoration: none;
-    display: inline-block; /* Ensure links remain inline */
-    padding: 10px 20px; /* Adjust padding for better spacing */
-    border-radius: 10px;
-    text-align: center;
-    font-weight: bold;
-}
-
-#toolbar ul li a:hover {
-    color: #ffd900;
-    background-color: #333; /* Add a slight background change for hover effect */
-}
-
-#toolbar ul li a img {
-    width: 40px; /* Adjust size as needed */
-    height: auto;
-    margin: 0; /* No extra margin needed for horizontal alignment */
-}
-
-/* Header Styling - Alpha-Ionix Logo & Navigation toolbar */
-header {
-    background-color: #333; /* Dark gray */
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 0;
-    margin-bottom: 0;
-    border-bottom: 2px solid #555;
-    border-radius: 2px;
-    font-weight: bold;
+    justify-content: flex-end; /* Aligns the search bar to the right */
+    margin-left: auto; /* Pushes the search bar to the far right */
+    margin-right: 20px;
     height: 30px;
 }
 
-/* TOOLBAR & LOGO */
-#logo {
-    font-size: 1.8rem; /* Adjusted font size for Alpha-Ionix */
-    color: white; /* Yellow text */
-    text-decoration: none;
+/* Search bar styling with magnifying glass */
+#search-bar {
+    width: 100%;
+    padding: 10px 40px 10px 10px; /* Add padding to the right for the icon */
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="%23000000"%3E%3Ccircle cx="9" cy="9" r="7" stroke="%23000000" stroke-width="2" fill="%23E2DFDF"%3E%3C/circle%3E%3Cline x1="13" y1="13" x2="19" y2="19" stroke="%23000000" stroke-width="2" /%3E%3C/svg%3E') no-repeat right 10px center;
+    background-size: 16px; /* Adjust size of the magnifying glass */
+    background-color: rgb(243, 240, 240);
 }
 
-header a#logo {
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: white;
+/* Remove the search button */
+#search-button {
+    display: none; /* Hide the separate button */
+    color: black;
 }
 
-nav {
-    font-size: 15px;
-    background-color: #333;
-    padding: 5px;
-}
+/* Ensure full viewport fit on mobile devices */
+@media screen and (max-width: 600px) {
+    body {
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        width: 100vw; /* Ensure body fits within viewport width */
+    }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-}
+    main {
+        max-width: 100vw; /* Ensure main content fits within the screen */
+    }
 
-nav ul li {
-    position: relative;
-}
+    #toolbar, #aside-layout, header, nav {
+        width: 100%; /* Ensure all primary sections fit within the screen */
+    }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    display: block;
-}
+    #toolbar ul {
+        flex-direction: column; /* Stack toolbar items vertically for smaller screens */
+        align-items: center;
+    }
 
-nav ul li a:hover {
-    color: #333;
-    background-color: #ffd700;
-    border-radius: 10px;
-}
+    #toolbar ul li {
+        width: 100%;
+        text-align: center;
+    }
 
-/* Dropdown menu for Login, Clients, Samples*/
-#dropdown-menu {
-    position: absolute;
-    top: 40px;
-    left: 0;
-    color: #ffd700;
-    background-color: #444;
-    border: 1px solid #ffd700;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    display: none;
-    width: auto;
-    z-index: 10;
-}
+    #search-container {
+        justify-content: center; /* Center search bar */
+        width: 90%;
+    }
 
-/* Hide the dropdown menu by default */
-.hidden {
-    display: none;
-}
-
-nav ul li:hover #dropdown-menu {
-    display: block;
-    width: auto;
-}
-
+    #search-bar {
+        width: 100%; /* Ensure search bar scales correctly */
+    }
 }
 
 

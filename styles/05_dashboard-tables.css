@@ -120,9 +120,8 @@ h2 {
     }
 
     #sample-count-chart, #department-backlog-table {
-        display: block;
-        overflow-x: auto;
-        white-space: wrap;
+        width: 100%; /* Ensure elements take full width */
+        max-width: 100vw; /* Prevent overflow */
     }
 
     #department-backlog-table th, #department-backlog-table td {

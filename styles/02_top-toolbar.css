@@ -211,6 +211,7 @@ nav ul li:hover #dropdown-menu {
 
     #nav ul {
         align-items: center;
+        font-size: 0.6rem;
     }
 
     #nav ul li {

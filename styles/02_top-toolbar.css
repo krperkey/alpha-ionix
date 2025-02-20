@@ -209,14 +209,6 @@ nav ul li:hover #dropdown-menu {
         width: 100%; /* Ensure all primary sections fit within the screen */
     }
 
-    header {
-        font-size: 0.6rem;
-    }
-
-    #logo {
-        font-size: 1.8rem; /* Adjusted font size for Alpha-Ionix */
-    }
-
     header a#logo {
         font-size: 1.0rem;
     }

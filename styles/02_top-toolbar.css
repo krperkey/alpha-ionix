@@ -168,7 +168,7 @@ nav ul li:hover #dropdown-menu {
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
 
     main {
         padding: 10px;
@@ -235,7 +235,7 @@ body {
     color: #333;
     text-decoration: none;
     display: inline-block; /* Ensure links remain inline */
-    padding: 10px 20px; /* Adjust padding for better spacing */
+    padding: 10px; /* Adjust padding for better spacing */
     border-radius: 10px;
     text-align: center;
     font-weight: bold;
@@ -285,7 +285,6 @@ nav {
     font-size: 15px;
     background-color: #333;
     padding: 5px;
-    margin-right: 20px;
 }
 
 nav ul {
@@ -305,7 +304,6 @@ nav ul li a {
     text-decoration: none;
     padding: 10px;
     display: block;
-    margin-right: 20px;
 }
 
 nav ul li a:hover {

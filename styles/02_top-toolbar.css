@@ -221,15 +221,6 @@ nav ul li:hover #dropdown-menu {
         font-size: 0.6rem;
     }
 
-    #nav ul {
-        align-items: center;
-    }
-
-    #nav ul li {
-        width: 100%;
-        text-align: center;
-    }
-
     #toolbar ul {
         flex-direction: column; /* Stack toolbar items vertically for smaller screens */
         align-items: center;

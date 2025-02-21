@@ -69,6 +69,7 @@ async function generateChartAndTable() {
             scales: {
                 x: {
                     ticks: {
+                        display: false,
                         color: '#ffd700',
                         font: {
                             size: 10,
@@ -76,8 +77,8 @@ async function generateChartAndTable() {
                         }
                     },
                     grid: {
-                        color: '#ffffff',
-                        borderColor: '#ffffff',
+                        color: '#999',
+                        borderColor: '#999',
                         borderWidth: 1
                     }
                 },
@@ -91,8 +92,8 @@ async function generateChartAndTable() {
                         }
                     },
                     grid: {
-                        color: '#ffffff',
-                        borderColor: '#ffffff',
+                        color: '#999',
+                        borderColor: '#999',
                         borderWidth: 1
                     }
                 }

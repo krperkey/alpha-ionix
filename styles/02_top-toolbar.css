@@ -206,8 +206,14 @@ nav ul li:hover #dropdown-menu {
         width: 100%; /* Ensure all primary sections fit within the screen */
     }
 
-    header, nav {
-        width: 95%;
+    header {
+        width: 100%;
+        text-align: left;
+    }
+
+    nav {
+        max-width: 65%;
+        width: 100%
     }
 
     header {

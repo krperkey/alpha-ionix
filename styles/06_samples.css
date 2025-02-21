@@ -1,3 +1,8 @@
+#samples {
+    max-width: 100%;
+    padding: 10px;
+}
+
 /* Section heading */
 h2 {
     display: flex;
@@ -6,11 +11,8 @@ h2 {
     text-align: left;
     font-size: 2rem;
     color: #ffd700;
-    margin-top: 1px;
-    margin-bottom: 20px;
     text-transform: uppercase;
     border-bottom: 2px solid #FFD700;
-    padding-bottom: 10px;
 }
 
 /* Table container */

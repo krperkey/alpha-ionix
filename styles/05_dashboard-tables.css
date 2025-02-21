@@ -38,7 +38,7 @@ h2 {
 /* Style the dashboard sections inside the columns */
 .dashboard-section {
     width: 100%;
-    max-width: 1000px; /* Optional: Limit the maximum width */
+    max-width: 100%; /* Optional: Limit the maximum width */
     text-align: center;
 }
 

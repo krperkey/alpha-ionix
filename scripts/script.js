@@ -4,19 +4,50 @@ async function generateChartAndTable() {
     const sampleDataArray = await loadData('sampleDataArray') || [];
     const sampleStatusMap = await loadData('sampleStatusMap') || {};
 
-    const analysisCount = {};
+    const analyteCount = {}; // For the chart
+    const analysisStatusCount = {}; // For the table (counts per analysis)
 
     sampleDataArray.forEach(sample => {
-        const status = sampleStatusMap[sample.id];
+        const status = sampleStatusMap[sample.id] || "Unknown";
         const samType = sample.sampleType || "Unknown";
-        if (status === "In Progress" && samType === "SAM") {
-            const analysis = sample.analysis || "Unknown";
-            analysisCount[analysis] = (analysisCount[analysis] || 0) + 1;
+
+        // Only process samples that have sampleType === "SAM"
+        if (samType !== "SAM") {
+            return; // Skip non-SAM samples
         }
+
+        const analysis = sample.analysis || "Unknown";
+
+        if (!analysisStatusCount[analysis]) {
+            analysisStatusCount[analysis] = { inProgress: 0, inReview: 0, total: 0 };
+        }
+
+        if (status === "In Progress") {
+            // Count samples for the chart (analytes)
+            const analytes = sample.analytes 
+                ? (Array.isArray(sample.analytes) ? sample.analytes : sample.analytes.split(', ')) 
+                : ["Unknown"];
+            
+            analytes.forEach(analyte => {
+                analyteCount[analyte] = (analyteCount[analyte] || 0) + 1;
+            });
+
+            // Count "In Progress" for the table
+            analysisStatusCount[analysis].inProgress += 1;
+        }
+
+        if (status === "In Review") {
+            // Count "In Review" for the table
+            analysisStatusCount[analysis].inReview += 1;
+        }
+
+        // Update the total count (In Progress + In Review)
+        analysisStatusCount[analysis].total = analysisStatusCount[analysis].inProgress + analysisStatusCount[analysis].inReview;
     });
 
-    const labels = Object.keys(analysisCount);
-    const data = Object.values(analysisCount);
+    // Chart Data
+    const labels = Object.keys(analyteCount);
+    const data = Object.values(analyteCount);
     const colors = ['#83A6E7', '#8B0000', '#FF8C00', '#006400', '#00008B', '#ffb900'];
 
     // Generate the chart
@@ -26,7 +57,7 @@ async function generateChartAndTable() {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Analysis Count',
+                label: 'Production Samples ("SAM" Type) Only - QC not included',
                 data: data,
                 backgroundColor: colors,
                 borderColor: 'darkgray',
@@ -74,15 +105,17 @@ async function generateChartAndTable() {
         }
     });
 
-    // Populate the table
+    // Populate the table (Samples per Analysis Count with In Progress, In Review & Total)
     const tableBody = document.querySelector("#department-backlog-table tbody");
     tableBody.innerHTML = "";
 
-    labels.forEach((label, index) => {
+    Object.keys(analysisStatusCount).forEach((analysis) => {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${label}</td>
-            <td>${data[index]}</td>
+            <td>${analysis}</td>
+            <td>${analysisStatusCount[analysis].inProgress}</td>
+            <td>${analysisStatusCount[analysis].inReview}</td>
+            <td>${analysisStatusCount[analysis].total}</td>
         `;
         tableBody.appendChild(row);
     });
@@ -92,8 +125,6 @@ async function generateChartAndTable() {
 window.onload = async function () {
     generateChartAndTable();
 };
-
-
 
 
 

@@ -189,6 +189,10 @@ nav ul li:hover #dropdown-menu {
     color: black;
 }
 
+#hamburger-btn {
+    display: none;
+}
+
 /* Ensure full viewport fit on mobile devices */
 /* Ensure full viewport fit on mobile devices */
 @media screen and (max-width: 768px) {

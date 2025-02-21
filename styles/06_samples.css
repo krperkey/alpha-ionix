@@ -243,7 +243,7 @@ th .header-content {
     /* Make the table scrollable on smaller screens */
     #sample-table {
         display: block;
-        overflow-x: hidden;
+        overflow-x: auto;
         white-space: wrap;
     }
 }

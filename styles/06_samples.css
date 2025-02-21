@@ -251,7 +251,7 @@ th .header-content {
     /* Make the table scrollable on smaller screens */
     #sample-table {
         display: block;
-        overflow-x: auto;
+        overflow-x: hidden;
         white-space: wrap;
     }
 }

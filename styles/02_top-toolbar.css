@@ -9,19 +9,9 @@ body {
 
 /* Main container styling */
 main {
-    padding: 20px;
+    padding: 10px;
     max-width: 100%; /* Allow content to take the full width */
     margin: 0 auto;
-}
-
-h2 {
-    
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    font-size: 1.0rem;
-    color: white;
-    text-transform: uppercase;
 }
 
 #aside-layout {
@@ -123,7 +113,6 @@ header a#logo {
 nav {
     font-size: 15px;
     background-color: #333;
-    padding: 5px;
 }
 
 nav ul {

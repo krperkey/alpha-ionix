@@ -9,6 +9,7 @@ body {
 
 /* Main container styling */
 main {
+    padding: 20px;
     max-width: 100%; /* Allow content to take the full width */
     margin: 0 auto;
 }
@@ -46,7 +47,6 @@ main {
     display: flex; /* Use flexbox for horizontal alignment */
     align-items: center; /* Center items vertically in the toolbar */
     justify-content: space-around; /* Evenly space items across the toolbar */
-    height: 50%;
 }
 
 #toolbar ul {

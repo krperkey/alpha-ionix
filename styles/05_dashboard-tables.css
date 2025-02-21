@@ -4,6 +4,7 @@
     height: 100%; /* Fill the entire height of the viewport */
     width: 100%; /* Fill the entire width of the viewport */
     gap: 15px;
+    margin-top: 20px;
 }
 
 h2 {
@@ -186,20 +187,78 @@ header {
         text-align: left;
     }
 
-    header #logo {
+    header a#logo {
         font-size: 1.2rem !important;
-        padding: 5px 0px !important;
+        padding: 0px 15px !important;
         margin-top: 5px;
+        
     }
     
     #dashboard {
         flex-direction: column;
-        padding: 10px;
+        padding: 20px;
     }
 
     #left-column, #right-column {
         width: 100%;
         padding: 10px;
+    }
+
+    #toolbar {
+        font-size: 0.7rem;
+        text-align: left;
+        padding: 0 !important;
+    }
+
+    #toolbar ul {
+        flex-direction: column; /* Stack toolbar items vertically for smaller screens */
+        align-items: center;
+    }
+
+    #toolbar ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #search-container {
+        justify-content: center; /* Center search bar */
+        width: 90%;
+        padding: 5px;
+    }
+
+    #search-bar {
+        width: 100%; /* Ensure search bar scales correctly */
+    }
+
+    /* Ensure navigation and toolbar are hidden by default */
+    #main-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: fixed; /* Keep them in place */
+        left: 0;
+    }
+
+    /* Ensure toolbar appears BELOW the nav */
+    #toolbar {
+        top: 102px; /* Position it below the nav */
+        background-color: #ffd700;
+        z-index: 1000; /* Lower z-index than nav */
+    }
+
+    /* Make toolbar items stack */
+    #toolbar ul {
+        flex-direction: row;
+        width: 80%;
+        text-align: center;
+    }
+
+    #toolbar ul li {
+        width: 100%;
+    }
+
+    #toolbar ul li a {
+        padding: 5px 10px !important;
     }
 }
 

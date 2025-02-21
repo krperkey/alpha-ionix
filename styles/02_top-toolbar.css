@@ -36,7 +36,6 @@ main {
     width: auto; /* Make the toolbar span the full width of the screen */
     background-color: #ffd700; /* Dark background for the toolbar */
     color: #ffd700;
-    padding: 1px;
     box-sizing: border-box; /* Include padding in width */
     border-bottom: 2px solid #555;
     border-radius: 2px; /* Remove border radius for a flat bar across the top */
@@ -81,7 +80,7 @@ main {
 /* Header Styling - Alpha-Ionix Logo & Navigation toolbar */
 header {
     background-color: #333; /* Dark gray */
-    padding: 15px;
+    padding: 15px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -105,7 +104,7 @@ header a#logo {
     font-size: 1.8rem;
     font-weight: bold;
     color: white;
-    padding: 0;
+    padding: 15px;
 }
 
 nav {
@@ -332,7 +331,7 @@ nav ul li:hover #dropdown-menu {
     }
 
     #toolbar ul li a {
-        padding: 5px 10px;
+        padding: 5px 10px !important;
     }
 }
 

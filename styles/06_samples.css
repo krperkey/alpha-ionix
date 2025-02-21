@@ -72,8 +72,7 @@ h2 {
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    
+@media screen and (max-width: 600px) {
 
     h2 {
         font-size: 1.6rem;

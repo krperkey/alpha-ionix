@@ -182,13 +182,14 @@ header {
 /* Mobile Fix */
 @media screen and (max-width: 768px) {
     header {
-        height: 62px !important;
+        height: 60px !important;
         text-align: left;
     }
 
     header #logo {
-        font-size: 1.0rem !important;
+        font-size: 1.2rem !important;
         padding: 5px 0px !important;
+        margin-top: 5px;
     }
     
     #dashboard {

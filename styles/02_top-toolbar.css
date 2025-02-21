@@ -10,7 +10,6 @@ body {
 /* Main container styling */
 main {
     max-width: 100%; /* Allow content to take the full width */
-    margin: 0 auto;
 }
 
 #aside-layout {
@@ -44,7 +43,6 @@ main {
     font-size: 15px;
     display: flex; /* Use flexbox for horizontal alignment */
     align-items: center; /* Center items vertically in the toolbar */
-    justify-content: space-around; /* Evenly space items across the toolbar */
 }
 
 #toolbar ul {
@@ -107,6 +105,7 @@ header a#logo {
     font-size: 1.8rem;
     font-weight: bold;
     color: white;
+    padding: 15px;
 }
 
 nav {
@@ -118,7 +117,7 @@ nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
+    display: inline-flex;
     align-items: center;
 }
 
@@ -213,22 +212,21 @@ nav ul li:hover #dropdown-menu {
 
     nav {
         max-width: 65%;
+        font-size: 0.6rem;
     }
 
     header {
         width: 100%;
         max-width: 100vw;
+        text-align: left;
     }
 
     header a#logo {
         font-size: 1.0rem;
+        text-align: left;
     }
 
     #toolbar {
-        font-size: 0.6rem;
-    }
-
-    nav {
         font-size: 0.6rem;
     }
 
@@ -254,12 +252,12 @@ nav ul li:hover #dropdown-menu {
     #main-nav, #toolbar {
         display: none; /* Hide by default */
         flex-direction: column;
-        background-color: #333;
+        background-color: #ffd700;
         width: 100%;
         position: absolute;
         top: 60px;
         left: 0;
-        z-index: 100;
+        z-index: 1000;
     }
 
     /* Show the navigation and toolbar when active */

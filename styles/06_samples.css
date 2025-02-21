@@ -230,15 +230,6 @@ th .header-content {
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
-    body {
-        overflow-x: hidden; /* Prevent horizontal scrolling */
-        width: 100vw; /* Ensure body fits within viewport width */
-    }
-
-    main {
-        max-width: 100vw; /* Ensure main content fits within the screen */
-    }
-
     h2 {
         font-size: 1.6rem;
     }

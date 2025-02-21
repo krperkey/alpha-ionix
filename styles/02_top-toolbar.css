@@ -14,6 +14,16 @@ main {
     margin: 0 auto;
 }
 
+h2 {
+    
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    font-size: 1.0rem;
+    color: white;
+    text-transform: uppercase;
+}
+
 #aside-layout {
     display: flex;
     flex-direction: column; /* Arrange toolbar and content vertically */

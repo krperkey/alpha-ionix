@@ -231,10 +231,8 @@ nav ul li:hover #dropdown-menu {
     }
 
     nav ul {
-        flex-direction: row;
         align-items: center;
         justify-content: center;
-        overflow: visible !important;
     }
 
     nav ul li {

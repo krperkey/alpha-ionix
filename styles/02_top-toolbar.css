@@ -213,7 +213,6 @@ nav ul li:hover #dropdown-menu {
 
     nav {
         max-width: 65%;
-        width: 100%
     }
 
     header {
@@ -251,7 +250,68 @@ nav ul li:hover #dropdown-menu {
     #search-bar {
         width: 100%; /* Ensure search bar scales correctly */
     }
+
+    #main-nav, #toolbar {
+        display: none; /* Hide by default */
+        flex-direction: column;
+        background-color: #333;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 100;
+    }
+
+    /* Show the navigation and toolbar when active */
+    #main-nav.active, #toolbar.active {
+        display: flex;
+    }
+
+    /* Style the hamburger button */
+    #hamburger-btn {
+        display: block;
+        font-size: 24px;
+        background: none;
+        color: white;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        z-index: 101;
+    }
+
+    /* Make the nav links take full width */
+    #main-nav ul {
+        width: 100%;
+        padding: 0;
+    }
+
+    #main-nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #main-nav ul li a {
+        display: block;
+        padding: 10px;
+        font-size: 18px;
+        color: white;
+    }
+
+    /* Make toolbar items stack */
+    #toolbar ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    #toolbar ul li {
+        width: 100%;
+    }
 }
+
+
 
 
 

@@ -210,8 +210,6 @@ nav ul li:hover #dropdown-menu {
     }
 
     header {
-        white-space: normal;
-        word-wrap: break-word;
         width: 100%;
         max-width: 100vw;
     }

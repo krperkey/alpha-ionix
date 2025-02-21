@@ -249,7 +249,7 @@ nav ul li:hover #dropdown-menu {
         width: auto;
         background-color: #444;
         border: 1px solid #ffd700;
-        z-index: 1000;
+        z-index: 10;
     }
 
     nav ul li:hover > #dropdown-menu {

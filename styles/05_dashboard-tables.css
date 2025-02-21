@@ -10,16 +10,18 @@ h2 {
     color: white;
 }
 
-/* Style the left column */
+/* Ensure the left column stretches the full width */
 #left-column {
-    flex: 1; /* Take up half the screen */
+    flex: 1; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    background-color: #333; /* Optional: Light blue background for distinction */
-    border: 4px solid #999; /* Optional: Divider between columns */
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    border: 4px solid #999;
     border-radius: 5px;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap; /* Prevents chart wrapping */
 }
 
 /* Style the right column */
@@ -42,12 +44,32 @@ h2 {
     text-align: center;
 }
 
+#sample-count {
+    width: 100%;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    padding: 10px;
+}
+
 /* Ensure the canvas and table fit well */
 #sample-count-chart {
     max-width: 100%;
     height: auto;
     text-align: center;
     padding: 20px;
+}
+
+/* Optional: Hide scrollbar (if preferred) */
+#sample-count::-webkit-scrollbar {
+    height: 8px; /* Adjust scrollbar height */
+}
+
+#sample-count::-webkit-scrollbar-thumb {
+    background: #888; /* Dark scrollbar */
+    border-radius: 4px;
+}
+
+#sample-count::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 #department-backlog-table {

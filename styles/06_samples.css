@@ -246,7 +246,6 @@ th .header-content {
     #sample-table th,
     #sample-table td {
         font-size: 0.9rem;
-        padding: 8px;
     }
 
     /* Make the table scrollable on smaller screens */

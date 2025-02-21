@@ -230,55 +230,7 @@ th .header-content {
 
 /* Responsive adjustments */
 @media screen and (max-width: 600px) {
-    body {
-        overflow-x: hidden; /* Prevent horizontal scrolling */
-        width: 100vw; /* Ensure body fits within viewport width */
-    }
-
-    main {
-        max-width: 100vw; /* Ensure main content fits within the screen */
-    }
-
-    #toolbar, #aside-layout, header, nav {
-        width: 100%; /* Ensure all primary sections fit within the screen */
-    }
-
-    header {
-        width: 100%;
-        max-width: 100vw;
-    }
-
-    header a#logo {
-        font-size: 1.0rem;
-    }
-
-    #toolbar {
-        font-size: 0.6rem;
-    }
-
-    nav {
-        font-size: 0.6rem;
-    }
-
-    #toolbar ul {
-        flex-direction: column; /* Stack toolbar items vertically for smaller screens */
-        align-items: center;
-    }
-
-    #toolbar ul li {
-        width: 100%;
-        text-align: center;
-    }
-
-    #search-container {
-        justify-content: center; /* Center search bar */
-        width: 90%;
-    }
-
-    #search-bar {
-        width: 100%; /* Ensure search bar scales correctly */
-    }
-
+    
     h2 {
         font-size: 1.6rem;
     }

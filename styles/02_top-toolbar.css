@@ -34,7 +34,6 @@ main {
     border-bottom: 3px solid #ffd700;
 }
 
-
 #toolbar {
     width: auto; /* Make the toolbar span the full width of the screen */
     background-color: #ffd700; /* Dark background for the toolbar */

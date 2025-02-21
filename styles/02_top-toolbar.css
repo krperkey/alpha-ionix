@@ -105,7 +105,7 @@ header a#logo {
     font-size: 1.8rem;
     font-weight: bold;
     color: white;
-    padding: 15px;
+    padding: 0;
 }
 
 nav {
@@ -224,6 +224,7 @@ nav ul li:hover #dropdown-menu {
     header a#logo {
         font-size: 1.0rem;
         text-align: left;
+        padding: 0;
     }
 
     #toolbar {
@@ -261,7 +262,12 @@ nav ul li:hover #dropdown-menu {
     }
 
     /* Show the navigation and toolbar when active */
-    #main-nav.active, #toolbar.active {
+    #main-nav.active {
+        display: flex;
+    }
+
+    /* Show the navigation and toolbar when active */
+    #toolbar.active {
         display: flex;
     }
 

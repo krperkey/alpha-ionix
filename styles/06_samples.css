@@ -1,6 +1,7 @@
 #samples {
     max-width: 100%;
     padding: 10px;
+    overflow-x: hidden;
 }
 
 /* Section heading */
@@ -230,7 +231,7 @@ th .header-content {
 
 /* Responsive adjustments */
 @media screen and (max-width: 600px) {
-    
+
     h2 {
         font-size: 1.6rem;
     }

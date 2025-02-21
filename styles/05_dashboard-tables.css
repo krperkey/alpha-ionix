@@ -61,6 +61,7 @@ h2 {
 /* Optional: Hide scrollbar (if preferred) */
 #sample-count::-webkit-scrollbar {
     height: 8px; /* Adjust scrollbar height */
+    background-color: #444;
 }
 
 #sample-count::-webkit-scrollbar-thumb {
@@ -137,6 +138,7 @@ h2 {
     #sample-count-chart, #department-backlog-table {
         width: 100%; /* Ensure elements take full width */
         max-width: 100vw; /* Prevent overflow */
+        overflow-x: auto;
     }
 
     #department-backlog-table {

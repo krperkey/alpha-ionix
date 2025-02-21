@@ -9,7 +9,6 @@ body {
 
 /* Main container styling */
 main {
-    padding: 10px;
     max-width: 100%; /* Allow content to take the full width */
     margin: 0 auto;
 }

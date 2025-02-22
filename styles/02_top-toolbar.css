@@ -259,14 +259,12 @@ nav ul li:hover #dropdown-menu {
         width: 100%;
         position: fixed; /* Keep them in place */
         left: 0;
-        border-top: 1px solid #ffd700;
     }
 
     /* Ensure navigation appears above toolbar */
     #main-nav {
         top: 60px; /* Set it below the header */
         background-color: #333;
-        border-top: 1px solid #ffd700;
         text-align: center;
         width: 100%;
         z-index: 1001; /* Higher z-index than the toolbar */
@@ -314,7 +312,7 @@ nav ul li:hover #dropdown-menu {
 
     #main-nav ul li a {
         display: block;
-        padding: 13px 20px;
+        padding: 13px 17px;
         font-size: 12px;
         color: white;
         background-color: #444;

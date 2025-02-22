@@ -11,8 +11,8 @@ h2 {
     color: white;
 }
 
-/* Ensure the left column stretches the full width */
-#left-column {
+/* ======= FIX: Ensure Both Left & Right Columns Have Scrollbars ======= */
+#left-column, #right-column {
     flex: 1; 
     display: flex;
     flex-direction: column;
@@ -22,19 +22,13 @@ h2 {
     border: 4px solid #999;
     border-radius: 5px;
     overflow-x: auto; /* Enables horizontal scrolling */
-    white-space: nowrap; /* Prevents chart wrapping */
+    white-space: nowrap; /* Prevents text wrapping */
+    width: 100%;
+    max-width: 100%;
 }
 
 /* Style the right column */
 #right-column {
-    flex: 1; /* Take up half the screen */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    background-color: #333; /* Optional: Light yellow background for distinction */
-    border: 4px solid #999;
-    border-radius: 5px;
     padding: 10px;
 }
 
@@ -45,21 +39,24 @@ h2 {
     text-align: center;
 }
 
+/* ======= FIX: Ensure Chart Container Has Scrollbar ======= */
 #sample-count {
     width: 100%;
+    max-width: 100%; /* Prevents overflow */
     overflow-x: auto; /* Enables horizontal scrolling */
     padding: 10px;
+    white-space: nowrap; /* Prevents chart wrapping */
 }
 
-/* Ensure the canvas and table fit well */
+/* Ensure the canvas fits well inside the container */
 #sample-count-chart {
-    max-width: 100%;
+    min-width: 100%; /* Ensures it stretches beyond if needed */
     height: auto;
     text-align: center;
     padding: 10px;
 }
 
-/* Optional: Hide scrollbar (if preferred) */
+/* Chart Scrollbar */
 #sample-count::-webkit-scrollbar {
     height: 8px; /* Adjust scrollbar height */
     background-color: #444;
@@ -74,21 +71,35 @@ h2 {
     background: #555;
 }
 
+/* ======= FIX: Ensure Backlog Table Has Scrollbar ======= */
+#department-backlog-table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+/* Ensure table stays inside container */
 #department-backlog-table {
-    width: 100%; /* Make the table span the full width */
+    width: 100%; /* Ensure table spans full width */
+    max-width: 100%; /* Prevent overflow */
     border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     border: 2px solid #FFD700;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    table-layout: auto; /* Automatically adjust column widths based on content */
+    table-layout: fixed; /* Ensures columns stay within container */
+    word-wrap: break-word; /* Prevents long text from expanding table */
 }
 
+/* Ensure table cells do not expand beyond container */
 #department-backlog-table th, #department-backlog-table td {
     border: 1px solid #ffd700;
     padding: 10px;
     color: white;
     text-align: center;
+    white-space: nowrap; /* Prevents text wrapping */
+    overflow: hidden; /* Hides overflowing content */
+    text-overflow: ellipsis; /* Adds "..." when text is too long */
 }
 
 /* Style the header of the department-backlog-table */
@@ -109,7 +120,22 @@ h2 {
     padding: 10px; /* Add padding for a neat layout */
 }
 
-/* Ensure full viewport fit on mobile devices */
+/* Table Scrollbar */
+#department-backlog-table-container::-webkit-scrollbar {
+    height: 8px; /* Adjust scrollbar height */
+    background-color: #444;
+}
+
+#department-backlog-table-container::-webkit-scrollbar-thumb {
+    background: #888; /* Dark scrollbar */
+    border-radius: 4px;
+}
+
+#department-backlog-table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ======= FIX: Keep Scrollbars for Both Table & Chart on Mobile ======= */
 @media screen and (max-width: 768px) {
     *, *::before, *::after {
         box-sizing: border-box;
@@ -130,21 +156,30 @@ h2 {
         max-width: 100vw;
         flex: none;
         padding: 10px;
+        overflow-x: auto; /* Ensure scrolling on small screens */
     }
 
     .dashboard-section {
         max-width: 100%; /* Ensure sections fit within the screen */
     }
 
-    #sample-count-chart, #department-backlog-table {
+    #sample-count, #department-backlog-table-container {
+        display: block;
         width: 100%; /* Ensure elements take full width */
         max-width: 100vw; /* Prevent overflow */
-        overflow-x: auto;
+        overflow-x: auto; /* Enables scrolling */
+        white-space: nowrap; /* Prevents text from wrapping */
+    }
+
+    #sample-count h2 {
+        margin-top: 1px;
+        margin-bottom: 1px;
     }
 
     #department-backlog-table {
-        table-layout: fixed;
-        word-wrap: break-word;
+        display: block;
+        overflow-x: auto;
+        white-space: wrap;
     }
 
     #department-backlog-table th, #department-backlog-table td {
@@ -171,13 +206,8 @@ header {
 
 /* Ensure tables remain formatted correctly */
 #department-backlog-table {
-    table-layout: auto !important; /* Keeps automatic column sizing */
+    table-layout: fixed !important; /* Ensures column widths remain contained */
     width: 100%;
-}
-
-#department-backlog-table th, 
-#department-backlog-table td {
-    padding: 10px !important; /* Ensures table spacing is preserved */
 }
 
 /* Mobile Fix */
@@ -191,7 +221,6 @@ header {
         font-size: 1.2rem !important;
         padding: 0px 15px !important;
         margin-top: 5px;
-        
     }
     
     #dashboard {
@@ -229,37 +258,10 @@ header {
     #search-bar {
         width: 100%; /* Ensure search bar scales correctly */
     }
-
-    /* Ensure navigation and toolbar are hidden by default */
-    #main-nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: fixed; /* Keep them in place */
-        left: 0;
-    }
-
-    /* Ensure toolbar appears BELOW the nav */
-    #toolbar {
-        top: 102px; /* Position it below the nav */
-        background-color: #ffd700;
-        z-index: 1000; /* Lower z-index than nav */
-    }
-
-    /* Make toolbar items stack */
-    #toolbar ul {
-        flex-direction: row;
-        width: 80%;
-        text-align: center;
-    }
-
-    #toolbar ul li {
-        width: 100%;
-    }
-
-    #toolbar ul li a {
-        padding: 5px 10px !important;
-    }
 }
+
+
+
+
 
 

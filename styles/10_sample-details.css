@@ -1,28 +1,6 @@
-
-
-/* Header styling */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #333; /* Dark background */
-    color: #FFD700; /* Yellow text */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header a#logo {
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #FFD700;
-}
-
-/* Main container styling */
-main {
-    padding: 20px;
-    max-width: auto;
-    margin: 0 auto;
+#sample-details-section {
+    max-width: 100%;
+    padding: 10px;
 }
 
 /* Section heading */
@@ -64,21 +42,6 @@ h2 {
 #sample-details p span {
     font-size: 1.0rem;
     color: white; /* Highlight field labels in white */
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 600px) {
-    main {
-        padding: 10px;
-    }
-
-    h2 {
-        font-size: 1.6rem;
-    }
-
-    #sample-details p {
-        font-size: 1rem;
-    }
 }
 
 #sample-analysis-details {
@@ -189,7 +152,7 @@ h2 {
 }
 
 .sample-status-table th, .sample-status-table td {
-    border: 1px solid #ffb900;
+    border: 1px solid white;
     padding: 8px;
     text-align: left;
     vertical-align: top;
@@ -201,15 +164,22 @@ h2 {
     background-color: #ffb900;
     color: #333;
     font-weight: bold;
+    border: 1px solid white;
 }
 
 #sample-status {
-    width: 60%;
+    width: 100%;
     font-size: 1.0rem;
     text-align: center; /* Center the text */
     background-color: #333; /* Optional: Light background color */
     font-weight: bold; /* Make the text bold */
     color: white; /* Optional: Text color */
+}
+
+#sample-id {
+    text-align: center;
+    color: #83a6e7;
+    font-weight: bold;
 }
 
 .sample-link {
@@ -221,4 +191,85 @@ h2 {
 .sample-link:hover {
     text-decoration: underline; /* Add underline on hover */
     color: #0056b3; /* Darker blue on hover */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+    
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .hamburger {
+        margin-top: -8px;
+    }
+
+    #sample-details p {
+        font-size: 1rem;
+    }
+
+    #sample-details th,
+    #sample-details td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #sample-details {
+        display: block;
+        overflow-x: auto;
+        white-space: wrap;
+    }
+
+    .sample-status-table {
+        max-width: 100%;
+        width: 100%;
+        display: block;
+        white-space: nowrap;
+        padding: 0 10px;
+    }
+
+    .details-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* Adjust spacing between sections if needed */
+    }
+
+    .details-section {
+        width: 100%;
+    }
+
+    .details-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .details-table th,
+    .details-table td {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .details-table tr {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .details-table th {
+        font-weight: bold;
+        background: #396ea7;
+        padding: 8px;
+        border: 1px solid white;
+    }
+
+    .details-table td {
+        padding: 8px;
+        border: 1px solid white;
+    }
+
+    #analysis-details-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }

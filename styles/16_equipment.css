@@ -1,29 +1,6 @@
-
-
-/* Header styling */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #333; /* Dark background */
-    color: #FFB700; /* Yellow text */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Logo link */
-header a#logo {
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #FFB700;
-}
-
-/* Main container styling */
-main {
-    padding: 20px;
-    max-width: 100%; /* Allow content to take the full width */
-    margin: 0 auto;
+#equipment {
+    max-width: 100%;
+    padding: 10px;
 }
 
 /* Section heading */
@@ -33,12 +10,9 @@ h2 {
     align-items: center;
     text-align: left;
     font-size: 2rem;
-    color: #FFD700;
-    margin-top: 2px;
-    margin-bottom: 20px;
+    color: #ffd700;
     text-transform: uppercase;
-    border-bottom: 2px solid #FFB700;
-    padding-bottom: 10px;
+    border-bottom: 2px solid #FFD700;
 }
 
 /* Button styling for Create New */
@@ -121,33 +95,6 @@ button {
 #inactive-equipment-table a:hover {
     color: #FFA700; /* Lighter yellow on hover */
     text-decoration: underline;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    main {
-        padding: 10px;
-    }
-
-    h2 {
-        font-size: 1.6rem;
-    }
-
-    #equipment-table th,
-    #inactive-equipment-table th,
-    #equipment-table td,
-    #inactive-equipment-table td {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
-
-    /* Make the table scrollable on smaller screens */
-    #equipment-table,
-    #inactive-equipment-table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
 }
 
 #inactive-equipment,
@@ -233,7 +180,7 @@ button {
 /* Modal Styling */
 .modal {
     display: none;
-    position: fixed;
+    position: relative;
     z-index: 1000;
     left: 0;
     top: 0;
@@ -359,5 +306,76 @@ button {
 
 #cancelBtn:hover {
     background-color: #CC0000;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .hamburger {
+        margin-top: -4px;
+    }
+
+    #equipment-table th,
+    #inactive-equipment-table th,
+    #equipment-table td,
+    #inactive-equipment-table td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #equipment-table,
+    #inactive-equipment-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .modal {
+        display: none;
+        position: fixed; /* Keeps the modal in the viewport */
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+        overflow-y: auto; /* Allow scrolling if content overflows */
+    }
+
+    .modal-content {
+        background-color: #333;
+        width: 90%; /* Adjust width for smaller screens */
+        max-width: 90%; /* Ensures it's not too wide */
+        margin: auto; /* Centers the modal */
+        padding: 15px;
+        border: 2px solid #FFD700;
+        border-radius: 10px;
+        text-align: left;
+        color: #FFD700;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        position: relative; /* Prevents it from moving outside view */
+    }
+
+    .modal-content h2 {
+        font-size: 1.0rem; /* Adjusted font size for mobile */
+    }
+
+    .modal-content input,
+    .modal-content select,
+    .modal-content textarea {
+        width: 100%; /* Full width input fields */
+        font-size: 0.8rem;
+    }
+
+    .modal-content button {
+        width: 100%; /* Make buttons full width for easier tapping */
+        font-size: 1rem;
+    }
+
 }
 

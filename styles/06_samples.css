@@ -243,6 +243,6 @@ th .header-content {
     #sample-table {
         display: block;
         overflow-x: auto;
-        white-space: wrap;
+        white-space: nowrap;
     }
 }

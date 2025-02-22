@@ -1,3 +1,8 @@
+#workorder-details {
+    max-width: 100%;
+    padding: 10px;
+}
+
 /* Section heading */
 h2 {
     display: flex;

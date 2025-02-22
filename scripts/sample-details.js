@@ -72,6 +72,10 @@ async function populateSampleDetails(sampleData, workorderID) {
     detailsDiv.innerHTML = `
         <table class="sample-status-table">
             <tr>
+                <th>Sample ID:</th>
+                <td id="sample-id">${sampleData.id}</td>
+            </tr>
+            <tr>
                 <th>Sample Status:</th>
                 <td id="sample-status">${sampleData.sampleStatus || 'In Progress'}</td>
             </tr>

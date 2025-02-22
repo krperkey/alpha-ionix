@@ -295,8 +295,8 @@ nav ul li:hover #dropdown-menu {
         border: none;
         cursor: pointer;
         position: absolute;
-        top: 12px;
-        right: 10px;
+        top: 14px;
+        right: 5px;
         z-index: 101;
     }
 

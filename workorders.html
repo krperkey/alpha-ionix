@@ -12,6 +12,7 @@
 <body>
     <header>
         <a href="index.html" id="logo">Alpha-Ionix</a>
+        <button id="hamburger-btn" class="hamburger">&#9776;</button>
         <!-- Navigation Toolbar -->
         <nav>
             <ul>
@@ -32,7 +33,7 @@
                 </li>
 
                 <!-- Attributes Dropdown -->
-                <li><a href="#" id="login-btn">Sample Attributes</a>
+                <li><a href="#" id="login-btn">Attributes</a>
                     <ul id="dropdown-menu" class="hidden">
                         <li><a href="benchsheets.html">BenchSheets</a></li>
                         <li><a href="container-types.html">Containers</a></li>
@@ -84,8 +85,12 @@
 </div>
     </aside>
 
-    <h2>Workorders</h2>
-    <table>
+    <main>
+
+        <main>
+            <section id="workorder">
+                <h2>Workorders</h2>
+        <table id="workorders-table">
         <thead>
             <tr>
                 <th>Workorder ID</th>
@@ -100,8 +105,11 @@
             <!-- Rows will be dynamically populated -->
         </tbody>
     </table>
+    </section>
+</main>
         
     <script type="module" src="scripts/workorders.js"></script>
+    <script type="module" src="scripts/hamburger-menu.js"></script>
 
 </body>
 </html>

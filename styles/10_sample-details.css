@@ -229,8 +229,8 @@ h2 {
         font-size: 0.6rem;
     }
 
-    #sample-status td {
-        margin-top: 2px;
+    .sample-status-table th, td {
+        font-size: 0.6;
     }
 
     .details-container {

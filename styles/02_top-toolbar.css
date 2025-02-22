@@ -228,7 +228,7 @@ nav ul li:hover #dropdown-menu {
     #toolbar {
         font-size: 0.7rem;
         text-align: left;
-        padding: 0 !important;
+        padding: 5px 0 !important;
     }
 
     #toolbar ul {
@@ -243,8 +243,9 @@ nav ul li:hover #dropdown-menu {
 
     #search-container {
         justify-content: center; /* Center search bar */
-        width: 90%;
-        padding: 5px;
+        width: 110%;
+        width: 100vw;
+        padding: 0 0;
     }
 
     #search-bar {
@@ -295,7 +296,7 @@ nav ul li:hover #dropdown-menu {
         cursor: pointer;
         position: absolute;
         top: 12px;
-        right: 20px;
+        right: 10px;
         z-index: 101;
     }
 

@@ -196,7 +196,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 0px;
+    padding: 5px 0;
 }
 
 /* Prevent dashboard styles from interfering with the header */
@@ -213,7 +213,7 @@ header {
 /* Mobile Fix */
 @media screen and (max-width: 768px) {
     header {
-        height: 60px !important;
+        height: 62.4px !important;
         text-align: left;
     }
 
@@ -236,7 +236,7 @@ header {
     #toolbar {
         font-size: 0.7rem;
         text-align: left;
-        padding: 0 !important;
+        padding: 1px !important;
     }
 
     #toolbar ul {

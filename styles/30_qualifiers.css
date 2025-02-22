@@ -215,13 +215,13 @@ button:hover {
         margin-top: -8px;
     }
 
-    #qualifiers-table th,
-    #qualifiers-table td {
+    #qualifier-table th,
+    #qualifier-table td {
         font-size: 0.9rem;
     }
 
     /* Make the table scrollable on smaller screens */
-    #qualifiers-table {
+    #qualifier-table {
         display: block;
         overflow-x: auto;
         white-space: nowrap;

@@ -6,71 +6,63 @@
     <title>Workorders</title>
     <link rel="stylesheet" href="styles/18_workorder.css">
     <link rel="stylesheet" href="styles/02_top-toolbar.css">
-    <link rel="stylesheet" href="styles/01_search-bar.css">
 </head>
 
 <body>
     <header>
+        <!-- Alpha-Ionix Logo (clickable) -->
         <a href="index.html" id="logo">Alpha-Ionix</a>
         <button id="hamburger-btn" class="hamburger">&#9776;</button>
-        <!-- Navigation Toolbar -->
-        <nav>
-            <ul>
-                <!-- Login Dropdown -->
-                <li><a href="#" id="login-btn">Login</a>
-                    <ul id="dropdown-menu" class="hidden">
-                        <li><a href="sample-login.html">Sample Login</a></li>
-                    </ul>
-                </li>
 
-                <!-- Analysis Dropdown -->
-                <li><a href="#" id="login-btn">Analysis</a>
-                    <ul id="dropdown-menu" class="hidden">
-                        <li><a href="batches.html">Batches</a></li>
-                        <li><a href="samples.html">Samples</a></li>
-                        <li><a href="workorders.html">Workorders</a></li>
-                    </ul>
-                </li>
-
-                <!-- Attributes Dropdown -->
-                <li><a href="#" id="login-btn">Attributes</a>
-                    <ul id="dropdown-menu" class="hidden">
-                        <li><a href="benchsheets.html">BenchSheets</a></li>
-                        <li><a href="container-types.html">Containers</a></li>
-                        <li><a href="equipment.html">Equipment</a></li>
-                        <li><a href="hold-time.html">Hold Times</a></li>
-                        <li><a href="matrix-types.html">Matrix Types</a></li>
-                        <li><a href="reports.html">Reports</a></li>
-                        <li><a href="sample-types.html">Sample Types</a></li>
-                        <li><a href="standards.html">Standards</a></li>
-                        <li><a href="test-code-table.html">Test Codes</a></li>
-                        <li><a href="qualifiers.html">Qualifiers</a></li>
-                        <li><a href="condition-codes.html">Condition Codes</a></li>
-                    </ul>
-                </li>
-
-                <!-- Clients Dropdown -->
-                <li><a href="#" id="clients-btn">Clients</a>
-                    <ul id="dropdown-menu" class="hidden">
-                        <li><a href="client-by-name.html">Client by Name</a></li>
-                        <li><a href="client-by-site.html">Client by Site</a></li>
-                        <li><a href="client-profile.html">Client Profiles</a></li>
-                    </ul>
-                </li>
-    
-                <!-- Users Dropdown -->
-                <li><a href="#" id="settings-btn">Settings</a>
-                    <ul id="dropdown-menu" class="hidden">
-                        <li><a href="account-settings.html">Account Settings</a></li>
-                        <li><a href="app-settings.html">Application Settings</a></li>
-                        <li><a href="users.html">Users</a></li>
-                        <li><a href="user-role-management.html">Roles</a></li>
-                        <li><a href="help.html">Help</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
+        <!-- Desktop Navigation (Remains Unchanged) -->
+    <nav id="main-nav">
+        <ul>
+            <li><a href="#" id="login-btn">Login</a>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="sample-login.html">Sample Login</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="login-btn">Analysis</a>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="batches.html">Batches</a></li>
+                    <li><a href="samples.html">Samples</a></li>
+                    <li><a href="workorders.html">Workorders</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="login-btn">Attributes</a>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="benchsheets.html">BenchSheets</a></li>
+                    <li><a href="container-types.html">Containers</a></li>
+                    <li><a href="equipment.html">Equipment</a></li>
+                    <li><a href="hold-time.html">Hold Times</a></li>
+                    <li><a href="matrix-types.html">Matrix Types</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                    <li><a href="sample-types.html">Sample Types</a></li>
+                    <li><a href="standards.html">Standards</a></li>
+                    <li><a href="test-code-table.html">Test Codes</a></li>
+                    <li><a href="qualifiers.html">Qualifiers</a></li>
+                    <li><a href="condition-codes.html">Condition Codes</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="clients-btn">Clients</a>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="client-by-name.html">Client by Name</a></li>
+                    <li><a href="client-by-site.html">Client by Site</a></li>
+                    <li><a href="client-profile.html">Client Profiles</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="settings-btn">Settings</a>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="account-settings.html">Account Settings</a></li>
+                    <li><a href="app-settings.html">Application Settings</a></li>
+                    <li><a href="users.html">Users</a></li>
+                    <li><a href="user-role-management.html">Roles</a></li>
+                    <li><a href="help.html">Help</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
 
     <aside id="toolbar">
         <ul>

@@ -226,11 +226,10 @@ h2 {
         display: block;
         white-space: wrap;
         padding: 0 0;
-        font-size: 0.6rem;
     }
 
-    .sample-status-table th, td {
-        font-size: 0.6;
+    .sample-status-table th, .sample-status-table td {
+        vertical-align: middle;
     }
 
     .details-container {

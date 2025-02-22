@@ -1,36 +1,18 @@
-
-
-header {
-    background-color: #333;
-    color: #FFD700;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+#userroles {
+    max-width: 100%;
+    padding: 10px;
 }
 
-/* Main container styling */
-main {
-    padding: 20px;
-    margin: 0 auto;
-    background-color: #333;
-    border-radius: 8px;
-    color: black;
-}
-
+/* Section heading */
 h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: left;
     font-size: 2rem;
-    color: #FFD700;
-    margin-top: 2px;
-    margin-bottom: 20px;
+    color: #ffd700;
     text-transform: uppercase;
     border-bottom: 2px solid #FFD700;
-    padding-bottom: 10px;
 }
 
 /* Flex container for Create Role and Role List sections */
@@ -51,10 +33,6 @@ h2 {
     flex: 1;
 }
 
-#create-role-container {
-    margin-right: auto;
-}
-
 #role-list-container {
     margin-left: auto;
 }
@@ -68,34 +46,40 @@ h2 {
 }
 
 /* Center align form inputs and labels */
-.form-table {
-    width: 100%;
+#form-table {
+    width: 100%; /* Make the table span the full width */
     border-collapse: collapse;
-    margin-top: 10px;
-    background-color: #444;
-    border: 1px solid #FFD700;
-    color: white;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    border: 2px solid #FFD700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
-.form-table th,
-.form-table td {
+#form-table th,
+#form-table td {
     padding: 10px;
     border: 1px solid #FFD700;
     text-align: center;
     vertical-align: middle;
 }
 
-.form-table td:first-child {
+#form-table td:first-child {
     width: 15%;
 }
 
-.form-table td:last-child {
+#form-table td:last-child {
     width: 80%;
 }
 
-.form-table input,
-.form-table textarea,
-.form-table select {
+#form-table tr td {
+    background-color: #777;
+}
+
+#form-table input,
+#form-table textarea,
+#form-table select {
     width: 100%;
     padding: 8px;
     border: 1px solid #FFD700;
@@ -113,7 +97,7 @@ textarea {
     width: 100%
 }
 
-.form-table button {
+#form-table button {
     background-color: green;
     color: white;
     font-size: 1rem;
@@ -127,7 +111,7 @@ textarea {
     text-align: center;
 }
 
-.form-table button:hover {
+#form-table button:hover {
     background-color: #28a745;
 }
 
@@ -137,11 +121,14 @@ textarea {
 }
 
 #role-list {
-    width: 100%;
+    width: 100%; /* Make the table span the full width */
     border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #333;
-    color: white;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    border: 2px solid #FFD700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 #role-list th,
@@ -158,7 +145,7 @@ textarea {
 }
 
 #role-list tbody tr:nth-child(odd) {
-    background-color: #444;
+    background-color: #333;
 }
 
 #role-list tbody tr:nth-child(even) {
@@ -264,6 +251,71 @@ textarea {
 
 .modal-content button:hover {
     background-color: #FFB800;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    #form-table th,
+    #form-table td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #form-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #role-list th,
+    #role-list td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #role-list {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .container-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* Adjust spacing between sections if needed */
+    }
+
+    #form-table button {
+        background-color: green;
+        color: white;
+        font-size: 0.8rem;
+        border: 1px solid white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+        text-align: center;
+    }
+    
+    #form-table button:hover {
+        background-color: #28a745;
+    }
+
+    #create-role-container,
+    #role-list-container {
+        display: flex;
+        flex-direction: column;
+        overflow-x: auto;
+        gap: 20px; /* Adjust spacing between sections if needed */
+    }
 }
 
 

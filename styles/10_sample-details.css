@@ -229,6 +229,10 @@ h2 {
         font-size: 0.6rem;
     }
 
+    #sample-status td {
+        margin-top: 2px;
+    }
+
     .details-container {
         display: flex;
         flex-direction: column;

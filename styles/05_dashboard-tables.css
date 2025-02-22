@@ -213,7 +213,7 @@ header {
 /* Mobile Fix */
 @media screen and (max-width: 768px) {
     header {
-        height: 62.4px !important;
+        height: 51.5px !important;
         text-align: left;
     }
 

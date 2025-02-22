@@ -224,8 +224,9 @@ h2 {
         max-width: 100%;
         width: 100%;
         display: block;
-        white-space: nowrap;
+        white-space: wrap;
         padding: 0 0;
+        font-size: 0.8rem;
     }
 
     .details-container {

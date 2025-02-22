@@ -191,8 +191,6 @@ th .header-content {
     width: 100%; /* Ensure it spans the full width of its parent */
     overflow-x: scroll; /* Always show the horizontal scrollbar */
     overflow-y: hidden; /* Prevent vertical scrolling */
-    border: 1px solid #FFD700; /* Optional border for styling */
-    border-radius: 5px; /* Optional: Add rounded corners */
     background-color: #333; /* Match the table background */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
     scrollbar-width: auto; /* Show scrollbar on modern browsers */

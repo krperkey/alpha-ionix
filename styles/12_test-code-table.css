@@ -1,52 +1,29 @@
-
-
-/* Header styling */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #333; /* Dark background */
-    color: #FFD700; /* Yellow text */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+#testcodes {
+    max-width: 100%;
+    padding: 10px;
 }
 
-header a#logo {
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #FFD700;
-}
-
-/* Main container styling */
-main {
-    padding: 20px;
-    max-width: auto;
-    margin: 0 auto;
-}
-
-/* Title styling */
+/* Section heading */
 h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: left;
     font-size: 2rem;
-    color: #FFD700;
-    margin-top: 2px;
-    margin-bottom: 20px;
+    color: #ffd700;
     text-transform: uppercase;
     border-bottom: 2px solid #FFD700;
-    padding-bottom: 10px;
 }
 
 #test-code-table {
-    width: 100%;
+    width: 100%; /* Make the table span the full width */
     border-collapse: collapse;
-    margin-bottom: 0;
-    background-color: #333;
-    color: white;
-    table-layout: auto;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    border: 2px solid #FFd700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 #test-code-table th,
@@ -393,4 +370,27 @@ body {
 
 #back-to-test-codes:hover {
     background-color: rgb(74, 104, 235); /* Customize the secondary button's background color */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .hamburger {
+        margin-top: -8px;
+    }
+
+    #test-code-table th,
+    #test-code-table td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #test-code-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }

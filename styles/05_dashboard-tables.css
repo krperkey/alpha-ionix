@@ -206,7 +206,7 @@ header {
 
 /* Ensure tables remain formatted correctly */
 #department-backlog-table {
-    table-layout: fixed !important; /* Ensures column widths remain contained */
+    table-layout: auto !important; /* Ensures column widths remain contained */
     width: 100%;
 }
 

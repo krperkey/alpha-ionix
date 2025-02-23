@@ -1,6 +1,6 @@
 #sample-details-section {
     max-width: 100%;
-    padding: 10px;
+    padding: 0;
 }
 
 /* Section heading */
@@ -22,7 +22,7 @@ h2 {
 #sample-details {
     background-color: #333; /* Dark background */
     color: #FFD700; /* Yellow text */
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     border: 2px solid #FFD700; /* Yellow border */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

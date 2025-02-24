@@ -121,3 +121,25 @@ window.onload = async function () {
     // Populate the table initially
     populateRoles();
 };
+
+// Get modal elements
+const createRoleModal = document.querySelector("#create-role-modal");
+const openCreateRoleButton = document.querySelector("#open-create-role-modal");
+const closeCreateModalButton = document.querySelector("#close-create-modal");
+
+// Open the "Create Role" modal
+openCreateRoleButton.addEventListener("click", () => {
+    createRoleModal.style.display = "block";
+});
+
+// Close the modal when clicking the close button
+closeCreateModalButton.addEventListener("click", () => {
+    createRoleModal.style.display = "none";
+});
+
+// Close modal when clicking outside the modal content
+window.addEventListener("click", (event) => {
+    if (event.target === createRoleModal) {
+        createRoleModal.style.display = "none";
+    }
+});

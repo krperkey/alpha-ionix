@@ -407,7 +407,7 @@ select.parent-dropdown option, select.paired-dropdown option {
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     h2 {
         font-size: 1.6rem;
     }

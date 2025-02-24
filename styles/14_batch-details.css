@@ -1,47 +1,35 @@
+#sampletable {
+    max-width: 100%;
+    padding: 10px;
+}
 
+#buttons {
+    max-width: 100%;
+    padding: 10px;
+}
 
-header {
+/* Section heading */
+h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background-color: #333;
-    color: #FFD700;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header a#logo {
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #FFD700;
-}
-
-main {
-    padding: 20px;
-    max-width: 1850px;
-    margin: 0 auto;
-}
-
-h2 {
     text-align: left;
     font-size: 2rem;
-    color: #FFD700;
-    margin-top: 5px;
-    margin-bottom: 20px;
+    color: #ffd700;
     text-transform: uppercase;
     border-bottom: 2px solid #FFD700;
-    padding-bottom: 10px;
 }
 
 /* Batch Information Container */
 #batch-info-container {
+    max-width: 100%;
+    padding: 10px 10px;
     background-color: #333;
     color: #FFD700;
-    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #FFD700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
-    border: 3px solid #FFD700;
-    border-radius: 5px;
 }
 
 #batch-info-container h3 {
@@ -75,9 +63,14 @@ h2 {
 
 /* Sample Table */
 #samples-table {
-    width: 100%;
+    width: 100%; /* Make the table span the full width */
     border-collapse: collapse;
-    margin-top: 5px;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    border: 2px solid #FFD700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 #samples-table th,
@@ -264,12 +257,19 @@ button:hover {
     display: flex;                 /* Enables flexbox layout */
     justify-content: space-between; /* Pushes content to both ends */
     align-items: center;           /* Vertically aligns the buttons */
-    width: 100%;                   /* Ensures container spans the full width */
+    width: 100%;                 /* Ensures container spans the full width */
 }
 
 .left-buttons {
     display: flex;                 /* Enables flexbox layout for left buttons */
-    gap: 2px;                     /* Adds spacing between the buttons */
+    gap: 2px;  
+    padding: 0 10px;                   /* Adds spacing between the buttons */
+}
+
+.right-buttons {
+    display: flex;                 /* Enables flexbox layout for left buttons */
+    gap: 2px;  
+    padding: 0 10px;                   /* Adds spacing between the buttons */
 }
 
 #add-samples-button,
@@ -382,4 +382,32 @@ select.parent-dropdown option, select.paired-dropdown option {
     background-color: #333; /* Ensure white background */
     color: white; /* Text color */
     text-align: left;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    #samples-table th,
+    #samples-table td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #samples-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #add-samples-button,
+    #add-qc-button,
+    #save-sample-order-button,
+    #batch-results-button {
+        padding: 0 20px;
+        font-size: .9rem;
+    }
+
 }

@@ -3,7 +3,18 @@
     padding: 10px;
 }
 
+#batch-details-container {
+    max-width: 100%;
+    padding: 5px;
+}
+
 #buttons {
+    max-width: 100%;
+    padding: 10px 0;
+    margin-bottom: 0;
+}
+
+#title {
     max-width: 100%;
     padding: 10px;
 }
@@ -68,6 +79,7 @@ h2 {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
+    margin-top: 0;
     border: 2px solid #FFD700;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
@@ -79,16 +91,19 @@ h2 {
     padding: 5px;
     text-align: center;
     font-size: 0.8rem;
+    margin-top: 0;
 }
 
 #samples-table th {
     background-color: #777;
     color: white;
+    margin-top: 0;
 }
 
 #samples-table td a {
     color: #FFD700;
     text-decoration: none;
+    margin-top: 0;
 }
 
 #samples-table td a:hover {
@@ -127,6 +142,7 @@ h2 {
 
 .button-container {
     display: flex; /* Use flexbox to arrange buttons horizontally */
+    margin-bottom: 0;
     gap: 10px; /* Add space between the buttons */
 }
 
@@ -257,19 +273,22 @@ button:hover {
     display: flex;                 /* Enables flexbox layout */
     justify-content: space-between; /* Pushes content to both ends */
     align-items: center;           /* Vertically aligns the buttons */
-    width: 100%;                 /* Ensures container spans the full width */
+    width: 100%;          /* Ensures container spans the full width */
+    margin-bottom: -20px;
 }
 
 .left-buttons {
     display: flex;                 /* Enables flexbox layout for left buttons */
     gap: 2px;  
-    padding: 0 10px;                   /* Adds spacing between the buttons */
+    padding: 0 0;
+    margin-bottom: 0;                   /* Adds spacing between the buttons */
 }
 
 .right-buttons {
     display: flex;                 /* Enables flexbox layout for left buttons */
     gap: 2px;  
-    padding: 0 10px;                   /* Adds spacing between the buttons */
+    padding: 0 0; 
+    margin-bottom: 0;                   /* Adds spacing between the buttons */
 }
 
 #add-samples-button,
@@ -279,11 +298,12 @@ button:hover {
     color: black;
     padding: 8px 16px;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
     text-decoration: none;
+    margin-bottom: 0;  
 }
 
 #add-samples-button:hover,
@@ -295,13 +315,14 @@ button:hover {
     margin: 2px;
     background-color: #007BFF;
     color: white;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
     text-decoration: none;
+    margin-bottom: 0;  
 }
 
 #save-sample-order-button:hover {
@@ -312,13 +333,14 @@ button:hover {
     margin: 2px;
     background-color: #1abc9c;
     color: white;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
     text-decoration: none;
+    margin-bottom: 0;  
 }
 
 #batch-results-button:hover {
@@ -385,14 +407,20 @@ select.parent-dropdown option, select.paired-dropdown option {
 }
 
 /* Responsive adjustments */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
     h2 {
         font-size: 1.6rem;
+    }
+
+    .hamburger {
+        margin-top: -4px;
     }
 
     #samples-table th,
     #samples-table td {
         font-size: 0.9rem;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     /* Make the table scrollable on smaller screens */
@@ -402,12 +430,17 @@ select.parent-dropdown option, select.paired-dropdown option {
         white-space: nowrap;
     }
 
+    select.parent-dropdown, select.paired-dropdown {
+        width: 175px;
+    }
+
     #add-samples-button,
     #add-qc-button,
     #save-sample-order-button,
     #batch-results-button {
-        padding: 0 20px;
-        font-size: .9rem;
-    }
+        padding: 5px 20px;
+        font-size: 0.7rem;
+        margin-bottom: 0;
+        }
 
 }

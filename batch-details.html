@@ -80,7 +80,7 @@
     </aside>
 
     <main>
-        
+        <section id="title">
         <h2>Batch Details</h2>
 <section id="batch-details-container">
     <h3>
@@ -107,7 +107,9 @@
                     <button id="save-sample-order-button">Save Changes</button>
                     <button id="batch-results-button" onclick="location.href='batch-results.html?batchId=' + encodeURIComponent(document.getElementById('batch-id').textContent)">Batch Data Entry</button>
                 </div>
-            </div>          
+            </div>  
+        </section>
+    </section>        
 
             <!-- Edit button, only visible if status is 'In review' -->
              <section id="sampletable">
@@ -179,7 +181,7 @@
                 </div>
             </div>
 
-        </section>
+        
     </main>
 
     <script type="module" src="scripts/batch-details.js"></script>

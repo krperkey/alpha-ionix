@@ -1,6 +1,6 @@
 #inspectiontab {
-    max-width: 100%;
-    padding: 20px;
+    max-width: 99%;
+    padding: 10px;
 }
 
 /* Section heading */
@@ -209,7 +209,7 @@ footer {
     }
 
     .tab-container {
-        width: 100%;
+        width: 95%;
         display: block;
         overflow-x: auto;
         white-space: nowrap;

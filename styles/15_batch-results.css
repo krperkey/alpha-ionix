@@ -780,8 +780,9 @@ select[name^="qualifier-"]:focus {
         width: 150px;          /* Take full width of the cell */
     }
 
+    #samples-results-table input[type="date"],
     #samples-results-table select {
-        padding: 6px 10px;
+        padding: 6px 0;
     }
 
     #complete-review-button,

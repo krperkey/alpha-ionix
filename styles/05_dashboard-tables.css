@@ -177,7 +177,7 @@ h2 {
     }
 
     #department-backlog-table {
-        display: block;
+        display: block 0;
         overflow-x: auto;
         white-space: wrap;
     }

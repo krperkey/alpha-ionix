@@ -1,69 +1,54 @@
-
-
-/* Header styling */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background-color: #333; /* Dark background */
-    color: #FFD700; /* Yellow text */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header a#logo {
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #FFD700;
-}
-
-/* Main container styling */
-main {
-    padding: 20px;
-    max-width: auto;
-    margin: 0 auto;
+#compliance-dash {
+    max-width: 100%;
+    padding: 10px;
 }
 
 /* Section heading */
 h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     font-size: 2rem;
-    color: #FFD700; /* Dark gray */
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+    color: #ffd700;
     text-transform: uppercase;
     border-bottom: 2px solid #FFD700;
-    padding-bottom: 10px;
 }
+
 .container {
-    margin: 2rem auto;
-    max-width: 1825px;
-    padding: 1rem;
+    max-width: 100%;
+    padding: 10px;
     background: #333;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 4px;
     border: 3px solid #ffd700;
     color: white;
     font-size: 1.0rem;
     font-weight: bold;
 }
+
 table {
-    width: 100%;
+    width: 100%; /* Make the table span the full width */
     border-collapse: collapse;
-    margin: 1rem 0;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    border: 2px solid #FFD700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
+
 table th, table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
 }
+
 table th {
     background-color: #005b96;
     color: white;
 }
+
 footer {
     text-align: center;
     margin-top: 2rem;
@@ -71,6 +56,7 @@ footer {
     background-color: #333;
     color: white;
 }
+
 .link-button {
     display: inline-block;
     margin-top: 0;
@@ -80,6 +66,26 @@ footer {
     text-decoration: none;
     border-radius: 5px;
 }
+
 .link-button:hover {
     background-color: #004070;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    table th,
+    table td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }

@@ -137,7 +137,7 @@ h2 {
     font-size: 1.6rem;
     color: white;
     margin-top: 1px;
-    margin-bottom: 4px;
+    margin-bottom: 1px;
 }
 
 .button-container {
@@ -148,12 +148,12 @@ h2 {
 
 #complete-review-button,
 #edit-status-button {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     background-color: green;
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -432,6 +432,11 @@ select.parent-dropdown option, select.paired-dropdown option {
 
     select.parent-dropdown, select.paired-dropdown {
         width: 175px;
+    }
+
+    #complete-review-button {
+        padding: 5px 20px;
+        font-size: 0.9rem;
     }
 
     #add-samples-button,

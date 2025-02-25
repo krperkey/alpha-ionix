@@ -308,8 +308,9 @@ document.getElementById("create-batch-button").addEventListener("click", async f
     // Convert the updated sample map back to an array and save it to localStorage
     await saveData("sampleDataArray", Object.values(sampleMap));
 
-    // Save batch details to localStorage
-    const batches = await loadData("batches") || [];
+     // Retrieve batches and ensure it's an array
+     const batches = Array.isArray(await loadData("batches")) ? await loadData("batches") : [];
+
     batches.push({
         batchId,
         analysis,

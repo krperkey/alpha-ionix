@@ -42,7 +42,7 @@ h2 {
 #batch-info-container {
     background-color: #333;
     color: #FFD700;
-    padding: 15px;
+    padding: 10px 10px;
     margin-bottom: 20px;
     border: 3px solid #FFD700;
     border-radius: 5px;
@@ -89,12 +89,15 @@ h2 {
 
 /* Table Styling */
 #samples-results-table {
-    width: 100%;
+    width: 100%; /* Make the table span the full width */
     border-collapse: collapse;
-    table-layout: fixed;
-    max-width: 100%;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    margin-top: 0;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 #samples-results-table th,
@@ -302,13 +305,13 @@ button:hover {
 
 #complete-review-button {
     margin-top: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     margin-left: auto; /* Ensures the button stays on the right side */
     background-color: green;
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -340,8 +343,8 @@ button:hover {
     background-color: #007BFF;
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -564,8 +567,8 @@ select[name^="qualifier-"]:focus {
     background-color: rgb(62, 88, 206);
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -733,7 +736,64 @@ select[name^="qualifier-"]:focus {
     background-color: #d0ebff; /* Slightly darker blue */
 }
 
+#resultstable {
+    width: 100%;
+    padding: 0 0;
+    border: 2px solid #ffd700;
+}
 
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    #batch-info-container h3,
+    #batch-results-container h3 {
+        font-size: 1.4rem
+    }
+
+
+    .hamburger {
+        margin-top: -4px;
+    }
+
+    #samples-results-table th,
+    #samples-results-table td {
+        font-size: 0.9rem;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #samples-results-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* Force input and select elements to fit inside table cells */
+    #samples-results-table input[type="text"],
+    #samples-results-table input[type="number"],
+    #samples-results-table input[type="date"],
+    #samples-results-table select {
+    width: 150px;          /* Take full width of the cell */
+}
+
+    #complete-review-button,
+    .dropdown-button {
+        padding: 5px 20px;
+        font-size: 0.9rem;
+    }
+
+    #submit-results-button,
+    #save-results-button {
+        padding: 5px 20px;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        }
+
+}
 
 
 

@@ -51,3 +51,36 @@ async function deleteBatch(index) {
 document.getElementById('new-batch').addEventListener('click', function() {
     window.location.href = 'create-batches.html';
 });
+
+// Load batches from sample-details
+async function loadBatchesFromSamples() {
+    const sampleDetails = await loadData("sample-details") || [];
+    let newBatches = [];
+
+    sampleDetails.forEach(sample => {
+        if (sample.batchId && !newBatches.some(b => b.batchId === sample.batchId)) {
+            newBatches.push({
+                batchId: sample.batchId,
+                analysis: sample.analysis || "N/A",
+                createdDate: sample.createdDate || "N/A",
+                numberOfSamples: sample.numberOfSamples || 0,
+                status: sample.status || "Unknown"
+            });
+        }
+    });
+
+    if (newBatches.length > 0) {
+        await saveData("batches", newBatches);
+        window.location.reload();
+    } else {
+        alert("No new batches found in sample details.");
+    }
+}
+
+// Add event listener for the new batch creation button
+document.getElementById('new-batch').addEventListener('click', function() {
+    window.location.href = 'create-batches.html';
+});
+
+// Add event listener for loading batches from sample details
+document.getElementById('load-batches').addEventListener('click', loadBatchesFromSamples);

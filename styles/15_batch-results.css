@@ -777,8 +777,12 @@ select[name^="qualifier-"]:focus {
     #samples-results-table input[type="number"],
     #samples-results-table input[type="date"],
     #samples-results-table select {
-    width: 150px;          /* Take full width of the cell */
-}
+        width: 150px;          /* Take full width of the cell */
+    }
+
+    #samples-results-table select {
+        padding: 6px 10px;
+    }
 
     #complete-review-button,
     .dropdown-button {

@@ -755,7 +755,7 @@ select[name^="qualifier-"]:focus {
 
 
     .hamburger {
-        margin-top: -4px;
+        margin-top: -8px;
     }
 
     #samples-results-table th,

@@ -202,13 +202,9 @@ footer {
 
     /* Make the table scrollable on smaller screens */
     table {
-        display: block 0;
+        display: block;
         overflow-x: auto;
         white-space: nowrap;
-    }
-
-    table input {
-        width: 100px;
     }
 
     .tab-container {

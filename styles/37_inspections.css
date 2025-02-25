@@ -207,6 +207,10 @@ footer {
         white-space: nowrap;
     }
 
+    table input {
+        width: 100px;
+    }
+
     .tab-container {
         width: 95%;
         display: flex;

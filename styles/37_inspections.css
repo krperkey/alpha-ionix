@@ -207,6 +207,18 @@ footer {
         white-space: nowrap;
     }
 
+    /* Force input and select elements to fit inside table cells */
+    table input[type="text"],
+    table input[type="number"],
+    table select {
+        width: 250px;          /* Take full width of the cell */
+    }
+
+    table input[type="date"],
+    table input[type="time"] {
+        width: 150px;
+    }
+
     .tab-container {
         width: 95%;
         display: flex;

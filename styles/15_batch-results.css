@@ -750,7 +750,7 @@ select[name^="qualifier-"]:focus {
 
     #batch-info-container h3,
     #batch-results-container h3 {
-        font-size: 1.4rem
+        font-size: 1.2rem
     }
 
 
@@ -782,14 +782,14 @@ select[name^="qualifier-"]:focus {
 
     #complete-review-button,
     .dropdown-button {
-        padding: 5px 20px;
-        font-size: 0.9rem;
+        padding: 5px 8px;
+        font-size: 0.7rem;
     }
 
     #submit-results-button,
     #save-results-button {
-        padding: 5px 20px;
-        font-size: 0.9rem;
+        padding: 5px 8px;
+        font-size: 0.7rem;
         margin-bottom: 5px;
         }
 

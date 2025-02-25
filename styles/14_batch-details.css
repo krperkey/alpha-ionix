@@ -5,7 +5,7 @@
 
 #batch-details-container {
     max-width: 100%;
-    padding: 5px;
+    padding: 2px;
 }
 
 #buttons {
@@ -183,7 +183,7 @@ h2 {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
@@ -297,7 +297,7 @@ button:hover {
     background-color: #FFD700;
     color: black;
     padding: 8px 16px;
-    border: none;
+    border: 1px solid black;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
@@ -316,7 +316,7 @@ button:hover {
     background-color: #007BFF;
     color: white;
     padding: 8px 16px;
-    border: none;
+    border: 1px solid white;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
@@ -334,7 +334,7 @@ button:hover {
     background-color: #1abc9c;
     color: white;
     padding: 8px 16px;
-    border: none;
+    border: 1px solid white;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
@@ -406,10 +406,38 @@ select.parent-dropdown option, select.paired-dropdown option {
     text-align: left;
 }
 
+#confirm-add-samples-button,
+#close-add-samples-modal-button,
+#confirm-add-qc-button,
+#close-add-qc-modal-button {
+    margin: 2px;
+    background-color: #FFD700;
+    color: black;
+    padding: 8px 16px;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 0;
+}
+
+#confirm-add-samples-button:hover,
+#close-add-samples-modal-button:hover,
+#confirm-add-qc-button:hover,
+#close-add-qc-modal-button:hover {
+    background-color: #ffb800;
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     h2 {
         font-size: 1.6rem;
+    }
+
+    span {
+        font-size: 1.2rem;
     }
 
     .hamburger {
@@ -434,18 +462,42 @@ select.parent-dropdown option, select.paired-dropdown option {
         width: 175px;
     }
 
-    #complete-review-button {
-        padding: 5px 20px;
-        font-size: 0.9rem;
+    #complete-review-button,
+    #edit-status-button {
+        padding: 5px 8px;
+        font-size: 0.7rem;
     }
 
     #add-samples-button,
     #add-qc-button,
     #save-sample-order-button,
     #batch-results-button {
-        padding: 5px 20px;
+        padding: 5px 8px;
         font-size: 0.7rem;
         margin-bottom: 0;
         }
+
+    #batch-info-container p strong {
+        font-size: 1.0rem;
+    }
+    
+    /* Style for the dynamically generated information */
+    #batch-info-container p span {
+        font-size: 1.0rem;
+    }
+
+    #modal-sample-add-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #confirm-add-samples-button,
+    #close-add-samples-modal-button,
+    #confirm-add-qc-button,
+    #close-add-qc-modal-button {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
 
 }

@@ -3,8 +3,8 @@ import { loadData, saveData } from './data-handler.js';
 window.onload = async function () {
     const tableBody = document.querySelector("#sample-table tbody");
 
-    // Retrieve batch details from localForage
-    const batches = await loadData("batches") || [];
+    // Retrieve batch details from localForage and ensure it's an array
+    const batches = Array.isArray(await loadData("batches")) ? await loadData("batches") : [];
 
     // Clear existing rows in the table
     tableBody.innerHTML = "";
@@ -33,8 +33,8 @@ window.onload = async function () {
 
 // Function to delete a batch
 async function deleteBatch(index) {
-    // Retrieve the batch details from localForage
-    let batches = await loadData("batches") || [];
+    // Retrieve the batch details from localForage and ensure it's an array
+    let batches = Array.isArray(await loadData("batches")) ? await loadData("batches") : [];
 
     if (batches.length > 0) {
         // Remove the batch at the specified index

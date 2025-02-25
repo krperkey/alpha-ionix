@@ -211,7 +211,7 @@ footer {
     table input[type="text"],
     table input[type="number"],
     table select {
-        width: 250px;          /* Take full width of the cell */
+        width: 300px;          /* Take full width of the cell */
     }
 
     table input[type="date"],

@@ -37,10 +37,11 @@ export async function saveData(key, data) {
 
         // Save to Firestore (only if data is new or changed)
         const docRef = doc(db, "userContent", key);
-        await setDoc(docRef, {
-            content: data,
+        await setDoc(docRef, { 
+            content: Array.isArray(data) && data.length > 0 ? data : [],
             timestamp: serverTimestamp()
-        }, { merge: true });  // Ensures Firebase data is merged, not overwritten
+        }, { merge: true });
+        
 
         console.log(`☁️ Data synced to Firebase for key: ${key}`);
     } catch (error) {

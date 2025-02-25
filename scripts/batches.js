@@ -1,16 +1,10 @@
 import { loadData, saveData } from './data-handler.js';
 
 window.onload = async function () {
-    const tableBody = document.getElementById("sample-table")?.querySelector("tbody");
-
+    const tableBody = document.querySelector("#sample-table tbody");
 
     // Retrieve batch details from localForage
-    const batches = await loadData("batches");
-    if (!batches) {
-        console.log("No batches found locally, reloading from Firebase...");
-        syncFirebaseToLocal("batches");
-    }
-
+    const batches = await loadData("batches") || [];
 
     // Clear existing rows in the table
     tableBody.innerHTML = "";

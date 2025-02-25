@@ -1,6 +1,6 @@
-#inspections {
+#inspectiontab {
     max-width: 100%;
-    padding: 10px;
+    padding: 20px;
 }
 
 /* Section heading */
@@ -183,6 +183,7 @@ footer {
 /* Show active tab */
 .tab-content.active {
     display: block;
+    max-width: 100%;
 }
 
 /* Responsive adjustments */
@@ -208,11 +209,15 @@ footer {
     }
 
     .tab-container {
-        font-size: 0.7rem;
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     .tab-button {
         font-size: 0.7rem;
+        padding: 10px;
     }
 
     .submit-button {

@@ -105,6 +105,41 @@
         </section>
     </main>
 
+    <!-- New Sample Type Modal -->
+    <div id="new-sample-type-modal" class="modal">
+        <div class="modal-content">
+            <h3>Create New Sample Type</h3>
+            <label for="new-sample-type-input">Sample Type:</label>
+            <input type="text" id="new-sample-type-input" placeholder="Enter sample type">
+
+            <label for="new-sample-type-abbreviation">Sample Type Abbreviation:</label>
+            <input type="text" id="new-sample-type-abbreviation" placeholder="Enter abbreviation">
+
+            <label for="new-sample-type-name">Sample Type Name:</label>
+            <input type="text" id="new-sample-type-name" placeholder="Enter sample type name">
+
+            <label for="new-sample-type-name-abbreviation">Sample Type Name Abbreviation:</label>
+            <input type="text" id="new-sample-type-name-abbreviation" placeholder="Enter abbreviation">
+
+            <label for="new-sample-description">Description:</label>
+            <input type="text" id="new-sample-description" placeholder="Enter description">
+            <div class="input-group">
+                <label><input type="checkbox" id="new-accuracy"> Accuracy</label>
+            </div>
+            <div class="input-group">
+                <label><input type="checkbox" id="new-precision"> Precision</label>
+            </div>
+            <div class="input-group">
+                <label><input type="checkbox" id="new-pql"> PQL</label>
+            </div>
+
+                <button id="save-new-sample-type">Save</button>
+                <button id="cancel-new-sample-type">Cancel</button>
+            </div>
+        </div>
+    
+
+
     <!-- Edit Form Modal (hidden by default) -->
     <div id="edit-modal" class="modal">
         <div class="modal-content">

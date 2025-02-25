@@ -75,9 +75,9 @@ window.onload = async function () {
             let headers = `
                 <th>Analyte Name</th>
                 <th>Units</th>`;
-            if (hasData.lowerLimit) headers += `<th>Lower Limit</th>`;
-            if (hasData.upperLimit) headers += `<th>Upper Limit</th>`;
-            if (hasData.precision) headers += `<th>Precision</th>`;
+            if (hasData.lowerLimit) headers += `<th>Lower Limit (%)</th>`;
+            if (hasData.upperLimit) headers += `<th>Upper Limit (%)</th>`;
+            if (hasData.precision) headers += `<th>Precision (RPD)</th>`;
             if (hasData.mdl) headers += `<th>MDL</th>`;
             if (hasData.loq) headers += `<th>LOQ</th>`;
         

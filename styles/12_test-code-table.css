@@ -3,6 +3,11 @@
     padding: 10px;
 }
 
+#test-code-container {
+    max-width: 100%;
+    padding: 10px;
+}
+
 /* Section heading */
 h2 {
     display: flex;
@@ -24,6 +29,11 @@ h2 {
     border: 2px solid #FFd700;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
+    white-space: nowrap;
+}
+
+#test-code-table:nth-child(1) {
+    white-space: nowrap;
 }
 
 #test-code-table th,
@@ -45,19 +55,6 @@ h2 {
     background-color: #333;
     color: white;
     border-radius: 5px;
-}
-
-#test-code-table button {
-    background-color: #FFB800;
-    color: black;
-    padding: 5px 10px;
-    border: 1px solid #FFD700;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#test-code-table button:hover {
-    background-color: #FFD700;
 }
 
 /* Add and remove analyte row button */
@@ -283,15 +280,14 @@ body {
     gap: 10px; /* Add space between the buttons */
 }
 
-#create-test-code,
-#inactive-test-code {
+#create-test-code {
     margin-top: 2px;
     margin-bottom: 10px;
     background-color: rgb(62, 88, 206);
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -299,8 +295,17 @@ body {
 }
 
 #inactive-test-code {
-    background-color: #ffd700; /* Customize the secondary button's background color */
+    margin-top: 2px;
+    margin-bottom: 10px;
+    background-color: #ffd700;
     color: black;
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
 }
 
 #create-test-code:hover {
@@ -327,12 +332,22 @@ body {
     color: black;
 }
 
+#delete-btn {
+    background-color: #FF0000;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
 #test-code-table .copy-btn {
     background-color: rgb(62, 88, 206);
     color: white;
     padding: 7px 12px;
-    border: none;
-    border-radius: 5px;
+    border: 1px solid white;
+    border-radius: 4px;
     font-size: 0.9rem;
     cursor: pointer;
     margin: 0;
@@ -351,7 +366,7 @@ body {
     color: rgb(131, 166, 231);;
     text-decoration: none;
     font-weight: bold;
-    white-space: wrap;
+    white-space: nowrap;
 }
 
 #back-to-test-codes {
@@ -360,8 +375,8 @@ body {
     background-color: rgb(62, 88, 206);
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -372,15 +387,30 @@ body {
     background-color: rgb(74, 104, 235); /* Customize the secondary button's background color */
 }
 
+.inactivate-btn {
+    background-color: #ffd700;
+    color: black;
+    padding: 7px 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0;
+}
+
+.inactivate-btn:hover {
+    background-color: #ffb800; /* Darker red on hover */
+}
+
 /* Cancel button styling */
 #save-copy {
     background-color: green;
     color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
-    margin-top: 5px;
+    margin-top: 2px;
 }
 
 #save-copy:hover {
@@ -391,15 +421,85 @@ body {
 #cancel-copy {
     background-color: #FF0000;
     color: white;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 8px;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
-    margin-top: 5px;
+    margin-top: 2px;
 }
 
 #cancel-copy:hover {
     background-color: #CC0000;
+}
+
+/* Reactivate Button */
+.activate-btn {
+    background-color: green; /* Green background */
+    color: white; /* White text */
+    border: 1px solid white;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s ease-in-out;
+}
+
+.activate-btn:hover {
+    background-color: #28a745; /* Darker green on hover */
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: #FF0000; /* Red background */
+    color: white; /* White text */
+    border: 1px solid white;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s ease-in-out;
+}
+
+.delete-btn:hover {
+    background-color: #CC0000; /* Darker red on hover */
+}
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 1500px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .hamburger {
+        margin-top: -8px;
+    }
+
+    #test-code-table th,
+    #test-code-table td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #test-code-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #create-test-code {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+    
+    #inactive-test-code,
+    #back-to-test-codes {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+
 }
 
 /* Responsive adjustments */
@@ -423,4 +523,19 @@ body {
         overflow-x: auto;
         white-space: nowrap;
     }
+
+    #create-test-code {
+        padding: 5px 8px;
+        font-size: 0.7rem;
+        margin-bottom: 4px;
+    }
+    
+    #inactive-test-code,
+    #back-to-test-codes {
+        padding: 5px 8px;
+        font-size: 0.7rem;
+        margin-bottom: 4px;
+    }
+
 }
+

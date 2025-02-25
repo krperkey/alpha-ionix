@@ -203,8 +203,8 @@ button:hover {
     background-color: rgb(62, 88, 206);
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -215,13 +215,29 @@ button:hover {
     background-color: rgb(74, 104, 235); /* Optional hover effect for complete review button */
 }
 
+#save-new-sample-type,
+#save-edit {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+#save-new-sample-type:hover,
+#save-edit:hover {
+    background-color: #28a745;
+}
+
 /* Cancel button styling */
 .edit-btn {
     background-color: #FFd700;
     color: black;
     padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
     cursor: pointer;
     margin-top: 2px;
 }
@@ -231,17 +247,19 @@ button:hover {
 }
 
 /* Cancel button styling */
-.remove-btn {
+.remove-btn,
+#cancel-new-sample-type {
     background-color: #FF0000;
     color: white;
     padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     margin-top: 2px;
 }
 
-.remove-btn:hover {
+.remove-btn:hover,
+#cancel-new-sample-type {
     background-color: #CC0000;
 }
 

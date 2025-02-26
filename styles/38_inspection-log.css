@@ -24,7 +24,6 @@ table {
     border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
-    margin-bottom: 20px;
     border: 2px solid #FFD700;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
@@ -98,8 +97,9 @@ button:hover {
 
     /* Make the table scrollable on smaller screens */
     table {
-        display: block 0;
+        display: block;
         overflow-x: auto;
         white-space: nowrap;
     }
+
 }

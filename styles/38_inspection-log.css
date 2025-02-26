@@ -98,7 +98,7 @@ button:hover {
 
     /* Make the table scrollable on smaller screens */
     table {
-        display: block;
+        display: block 0;
         overflow-x: auto;
         white-space: nowrap;
     }

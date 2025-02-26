@@ -96,7 +96,7 @@ async function loadStandardDetails() {
                     </tbody>
                 </table>
             </table>
-        </section>
+        
 
         <section id="analytes-section"> 
             <table class="analytes-table">      
@@ -124,6 +124,7 @@ async function loadStandardDetails() {
                     </tbody>
                 </table>
             </table>
+        </section>
         </section>
     `;
 }

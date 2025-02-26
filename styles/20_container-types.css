@@ -225,4 +225,12 @@ button:hover {
         overflow-x: auto;
         white-space: nowrap;
     }
+
+    #create-new-container,
+    .edit-btn,
+    .remove-btn {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+
 }

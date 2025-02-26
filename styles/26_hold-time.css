@@ -28,7 +28,7 @@ h2 {
 
 #hold-time-table th,
 #hold-time-table td {
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #FFD700;
     text-align: center;
 }
@@ -250,4 +250,21 @@ button:hover {
         overflow-x: auto;
         white-space: nowrap;
     }
+
+    .modal-content input {
+        width: 97.5%;
+        padding: 5px;
+    }
+
+    #new-hold-time,
+    #save-edit,
+    #cancel-edit,
+    #save-new-hold-time,
+    #cancel-new-hold-time,
+    .remove-btn,
+    .edit-btn {
+        padding: 5px 10px !important;
+        font-size: 0.8rem;
+    }
+
 }

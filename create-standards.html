@@ -6,70 +6,65 @@
     <title>Create Standards</title>
     <link rel="stylesheet" href="styles/35_create-standards.css"> <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="styles/02_top-toolbar.css">
-    <link rel="stylesheet" href="styles/01_search-bar.css">
 </head>
 
 <body>
     <header>
+        <!-- Alpha-Ionix Logo (clickable) -->
         <a href="index.html" id="logo">Alpha-Ionix</a>
-        <nav>
-            <ul>
-                <!-- Login Dropdown -->
-                <li><a href="#" id="login-btn">Login</a>
-                    <ul id="dropdown-menu" class="hidden">
-                        <li><a href="sample-login.html">Sample Login</a></li>
-                    </ul>
-                </li>
+        <button id="hamburger-btn" class="hamburger">&#9776;</button>
 
-                <!-- Analysis Dropdown -->
-                <li><a href="#" id="login-btn">Analysis</a>
-                    <ul id="dropdown-menu" class="hidden">
-                        <li><a href="batches.html">Batches</a></li>
-                        <li><a href="samples.html">Samples</a></li>
-                        <li><a href="workorders.html">Workorders</a></li>
-                    </ul>
-                </li>
+        <!-- Desktop Navigation (Remains Unchanged) -->
+    <nav id="main-nav">
+        <ul>
+            <li><a href="#" id="login-btn">Login</a>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="sample-login.html">Sample Login</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="login-btn">Analysis</a>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="batches.html">Batches</a></li>
+                    <li><a href="samples.html">Samples</a></li>
+                    <li><a href="workorders.html">Workorders</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="login-btn">Attributes</a>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="benchsheets.html">BenchSheets</a></li>
+                    <li><a href="container-types.html">Containers</a></li>
+                    <li><a href="equipment.html">Equipment</a></li>
+                    <li><a href="hold-time.html">Hold Times</a></li>
+                    <li><a href="matrix-types.html">Matrix Types</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                    <li><a href="sample-types.html">Sample Types</a></li>
+                    <li><a href="standards.html">Standards</a></li>
+                    <li><a href="test-code-table.html">Test Codes</a></li>
+                    <li><a href="qualifiers.html">Qualifiers</a></li>
+                    <li><a href="condition-codes.html">Condition Codes</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="clients-btn">Clients</a>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="client-by-name.html">Client by Name</a></li>
+                    <li><a href="client-by-site.html">Client by Site</a></li>
+                    <li><a href="client-profile.html">Client Profiles</a></li>
+                </ul>
+            </li>
+            <li><a href="#" id="settings-btn">Settings</a>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="account-settings.html">Account Settings</a></li>
+                    <li><a href="app-settings.html">Application Settings</a></li>
+                    <li><a href="users.html">Users</a></li>
+                    <li><a href="user-role-management.html">Roles</a></li>
+                    <li><a href="help.html">Help</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-                <!-- Attributes Dropdown -->
-                <li><a href="#" id="login-btn">Sample Attributes</a>
-                    <ul id="dropdown-menu" class="hidden">
-                        <li><a href="benchsheets.html">BenchSheets</a></li>
-                        <li><a href="container-types.html">Containers</a></li>
-                        <li><a href="equipment.html">Equipment</a></li>
-                        <li><a href="hold-time.html">Hold Times</a></li>
-                        <li><a href="matrix-types.html">Matrix Types</a></li>
-                        <li><a href="reports.html">Reports</a></li>
-                        <li><a href="sample-types.html">Sample Types</a></li>
-                        <li><a href="standards.html">Standards</a></li>
-                        <li><a href="test-code-table.html">Test Codes</a></li>
-                        <li><a href="qualifiers.html">Qualifiers</a></li>
-                        <li><a href="condition-codes.html">Condition Codes</a></li>
-                    </ul>
-                </li>
-
-                <!-- Clients Dropdown -->
-                <li><a href="#" id="clients-btn">Clients</a>
-                    <ul id="dropdown-menu" class="hidden">
-                        <li><a href="client-by-name.html">Client by Name</a></li>
-                        <li><a href="client-by-site.html">Client by Site</a></li>
-                        <li><a href="client-profile.html">Client Profiles</a></li>
-                    </ul>
-                </li>
-    
-                <!-- Users Dropdown -->
-                <li><a href="#" id="settings-btn">Settings</a>
-                    <ul id="dropdown-menu" class="hidden">
-                        <li><a href="account-settings.html">Account Settings</a></li>
-                        <li><a href="app-settings.html">Application Settings</a></li>
-                        <li><a href="users.html">Users</a></li>
-                        <li><a href="user-role-management.html">Roles</a></li>
-                        <li><a href="help.html">Help</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
+    <!-- Left Toolbar -->
     <aside id="toolbar">
         <ul>
             <li><a href="compliance.html">Compliance</a></li>
@@ -84,21 +79,20 @@
     </aside>
 
     <main>
-        <div class="title-button-container">
-            <h2>Create Standards</h2>
+        <section id="createstandards">
+            <h2>Create Standards
             <div class="button-container">
                 <button id="save-standard-btn">Save Standard</button>
                 <button id="cancel-btn" onclick="window.location.href='standards.html'">Cancel</button>
-            </div>
-        </div>        
+            </div> 
+        </h2>      
         </section>
-
-        <!-- Form to create stock standard -->
-        <section id="standard-form-container">
 
             <!-- First Table -->
             
-            <table class="standard-table">
+            <section id="standards-table-container">
+                <table class="standards-table">
+                <table id="specification-table">
                 <thead>
                     <tr>
                         <th>Standard Name</th>
@@ -118,10 +112,11 @@
                     </tr>
                 </tbody>
             </table>
+        </table>
         
             <!-- Second Table -->
-            
-            <table class="standard-table">
+            <table class="standards-table">
+            <table id="manufacture-table">
                 <thead>
                     <tr>
                         <th>Manufacturer</th>
@@ -141,10 +136,11 @@
                     </tr>
                 </tbody>
             </table>
+        </table>
         
             <!-- Third Table -->
-            
-            <table class="standard-table">
+            <table class="standards-table">
+            <table id="certification-table">
                 <thead>
                     <tr>
                         <th>Preparation Date</th>
@@ -162,15 +158,10 @@
                     </tr>
                 </tbody>
             </table>
-        
-        </section>
-        
+        </table>
         
         
-        
-
         <!-- Table for analytes -->
-        <section id="analytes-section">
             <table id="analytes-table">
                 <thead>
                     <tr>
@@ -191,6 +182,7 @@
     </main>
 
     <script type="module" src="scripts/create-standards.js"></script>
+    <script type="module" src="scripts/hamburger-menu.js"></script>
 
 
 </body>

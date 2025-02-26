@@ -28,7 +28,7 @@ h2 {
 
 #matrix-types-table th,
 #matrix-types-table td {
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #FFD700;
     text-align: center;
 }
@@ -208,7 +208,7 @@ button:hover {
     border: 1px solid white;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 10px;
+
 }
 
 .remove-btn:hover {
@@ -222,7 +222,6 @@ button:hover {
     border: 1px solid black;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 2px;
 }
 
 .edit-btn:hover {
@@ -249,5 +248,21 @@ button:hover {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
+    }
+
+    .modal-content input {
+        width: 97.5%;
+        padding: 5px;
+    }
+
+    #save-new-matrix-type,
+    #cancel-new-matrix-type,
+    #new-matrix-type,
+    #save-edit,
+    #cancel-edit,
+    .edit-btn,
+    .remove-btn {
+        padding: 5px 10px !important;
+        font-size: 0.8rem;
     }
 }

@@ -29,7 +29,7 @@ button {
 }
 
 #createNewBtn {
-    background-color: green !important;
+    background-color: green;
     color: white !important;
     border: 1px solid white !important;
 }
@@ -104,8 +104,8 @@ button {
     background-color: rgb(62, 88, 206);
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -122,8 +122,8 @@ button {
     background-color: #FFd700;
     color: black;
     padding: 6px 12px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
     cursor: pointer;
     margin-top: 2px;
 }
@@ -137,8 +137,8 @@ button {
     background-color: #FF0000;
     color: white;
     padding: 6px 12px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     margin-top: 2px;
 }
@@ -152,8 +152,8 @@ button {
     background-color: #007BFF;
     color: white;
     padding: 6px 12px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     margin-top: 2px;
 }
@@ -167,8 +167,8 @@ button {
     background-color: #FF0000;
     color: white;
     padding: 6px 12px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     margin-top: 2px;
 }
@@ -267,8 +267,8 @@ button {
     background-color: #FFD700;
     color: black;
     padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 6px;
     cursor: pointer;
     margin-top: 10px;
     font-weight: bold;
@@ -283,8 +283,8 @@ button {
     background-color: green;
     color: white;
     padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 6px;
     cursor: pointer;
     margin-top: 10px;
 }
@@ -298,8 +298,8 @@ button {
     background-color: #FF0000;
     color: white;
     padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 6px;
     cursor: pointer;
     margin-top: 10px;
 }
@@ -376,6 +376,19 @@ button {
         width: 100%; /* Make buttons full width for easier tapping */
         font-size: 1rem;
     }
+
+    .inactivateBtn,
+    .editBtn,
+    .deleteBtn,
+    .activateBtn,
+    #createNewBtn,
+    #inactive-equipment,
+    #active-equipment {
+        padding: 5px 8px !important;
+        font-size: 0.7rem;
+    }
+
+
 
 }
 

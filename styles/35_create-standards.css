@@ -1,73 +1,106 @@
+#createstandards {
+    max-width: 100%;
+    padding: 10px;
+}
 
+#standards-table-container {
+    max-width: 100%;
+    padding: 10px;
+}
 
-/* Header styling */
-header {
+/* Section heading */
+h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background-color: #333;
-    color: #FFD700;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-header a#logo {
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #FFD700;
-}
-
-main {
-    padding: 20px;
-    max-width: auto;
-    margin: 0 auto;
-}
-
-h2 {
+    text-align: left;
     font-size: 2rem;
-    color: #FFD700;
-    margin: 0;
+    color: #ffd700;
     text-transform: uppercase;
-    
+    border-bottom: 2px solid #FFD700;
 }
 
-/* Section title */
-h3 {
-    font-size: 1.0rem;
+#specification-table,
+#manufacture-table,
+#certification-table {
+    width: 100%; /* Make the table span the full width */
+    border-collapse: collapse;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    border: 2px solid #FFd700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
+}
+
+#specification-table th,
+#manufacture-table th,
+#certification-table th {
+    background-color: #777;
     color: white;
-    margin-bottom: 5px;
+    padding: 6px;
+    border: 1px solid #FFd700;
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#specification-table td,
+#manufacture-table td,
+#certification-table td {
+    background-color: #333;
+    color: white;
+    border: 1px solid #FFd700;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#specification-table input,
+#manufacture-table input,
+#certification-table input {
+    width: 96%;
+    padding: 4px;
+    border: 1px solid white;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.0rem;
 }
 
 /* Table styling for analytes */
 #analytes-section {
-    width: 97.75%;
+    width: 100%;
     margin-top: 5px;
-    padding: 20px;
-    background-color: #333;
-    border-radius: 8px;
+    padding: 10px;
 }
 
 /* Table styling for analytes */
 #analytes-table {
-    width: 100%;
+    width: 100%; /* Make the table span the full width */
     border-collapse: collapse;
-    margin-top: 0;
-    margin-bottom: 2px;
-    background-color: #333;
-    color: #FFD700;
-    table-layout: auto;
-}
-
-#analytes-table th, #analytes-table td {
-    padding: 6px;
-    border: 1px solid white;
-    text-align: center;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    border: 2px solid #FFd700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 #analytes-table th {
+    padding: 6px;
+    border: 1px solid white;
+    text-align: center;
     background-color: #007BFF;
     color: white;
+}
+
+#analytes-table td {
+    padding: 6px;
+    border: 1px solid white;
+    text-align: center;
 }
 
 #analytes-table input[type="text"] {
@@ -118,8 +151,8 @@ button.remove-analyte-btn {
     background-color: red;
     color: white;
     padding: 6px 24px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -128,12 +161,12 @@ button.remove-analyte-btn:hover {
 }
 
 #add-analyte-btn {
-    margin-top: 20px;
-    background-color: #ffd700;
-    color: black;
+    margin-top: 5px;
+    background-color: rgb(62, 88, 206);
+    color: white;
     padding: 10px 20px;
     border: 1px solid white;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -144,18 +177,10 @@ button.remove-analyte-btn:hover {
     background-color: #ffb900;
 }
 
-.title-button-container {
-    display: flex;
-    justify-content: space-between; /* Place title on the left and buttons on the right */
-    align-items: center;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #FFD700;
-    padding-bottom: 10px;
-}
-
 .button-container {
-    display: flex; /* Arrange buttons horizontally */
-    gap: 10px; /* Add spacing between buttons */
+    display: flex;
+    justify-content: right;
+    gap: 5px;
 }
 
 #save-standard-btn,
@@ -164,8 +189,8 @@ button.remove-analyte-btn:hover {
     background-color: green;
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -184,70 +209,79 @@ button.remove-analyte-btn:hover {
     background-color: #CC0000; /* Optional hover effect for secondary button */
 }
 
-/* Main form container */
-#standard-form-container {
-    width: 98.25%;
-    padding: 15px;
-    margin-top: 0;
-    margin-bottom: 20px;
-    background-color: #333;
-    color: white;
-    border-radius: 10px;
-}
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    h2 {
+        font-size: 1.6rem;
+    }
 
-/* Separate container for the form tables */
-.form-tables-container {
-    padding: 20px;
-    border: 2px solid white;
-    background-color: #222;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
+    .hamburger {
+        margin-top: -8px;
+    }
 
-h3 {
-    color: white;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    border-bottom: 3px solid #FFD700;
-    padding-bottom: 5px;
-}
+    #specification-table th,
+    #specification-table td {
+        font-size: 0.9rem;
+    }
 
-.standard-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 0;
-    color: #FFD700;
-    table-layout: auto;
-    background-color: #333;
-    border: 2px solid #ffd700;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
+    /* Make the table scrollable on smaller screens */
+    #specification-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 
-.standard-table th {
-    background-color: #777;
-    color: white;
-    font-weight: bold;
-    padding: 6px;
-    border: 2px solid #FFD700;
-    text-align: center;
-}
+    #manufacture-table th,
+    #manufacture-table td {
+        font-size: 0.9rem;
+    }
 
-.standard-table td {
-    padding: 6px;
-    border: 1px solid #FFD700;
-    text-align: center;
-}
+    /* Make the table scrollable on smaller screens */
+    #manufacture-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 
-.standard-table input {
-    width: 96%;
-    padding: 4px;
-    border: 1px solid white;
-    background-color: #333;
-    color: white;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 1.0rem;
+    #certification-table th,
+    #certification-table td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #certification-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #analytes-table th,
+    #analytes-table td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    #analytes-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #save-standard-btn,
+    #cancel-btn,
+    #add-analyte-btn,
+    button.remove-analyte-btn {
+        padding: 5px 10px !important;
+        font-size: 0.7rem;
+    }
+
+    #specification-table input,
+    #manufacture-table input,
+    #certification-table input,
+    #analytes-table input[type="text"],
+    #analytes-table input[type="number"] {
+        width: 200px;
+    }
 }
 
 

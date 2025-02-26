@@ -28,7 +28,7 @@ h2 {
 
 #sample-types-table th,
 #sample-types-table td {
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #FFD700;
     text-align: center;
 }
@@ -187,8 +187,8 @@ button:hover {
     background-color: #FF0000;
     color: white;
     padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     margin-top: 10px;
 }
@@ -283,5 +283,27 @@ button:hover {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
+    }
+
+    .modal-content input {
+        width: 97%;
+        padding: 5px;
+    }
+
+    .modal-content .input-group input[type="checkbox"] {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #save-new-sample-type,
+    #cancel-new-sample-type,
+    #new-sample-type,
+    #save-edit,
+    #cancel-edit,
+    .edit-btn,
+    .remove-btn {
+        padding: 5px 10px !important;
+        font-size: 0.8rem;
     }
 }

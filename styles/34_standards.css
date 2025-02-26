@@ -3,6 +3,20 @@
     padding: 10px;
 }
 
+#standard-details-container {
+    max-width: 99%;
+}
+
+#standarddetails {
+    max-width: 100%;
+    padding: 10px;
+}
+
+#standard-form-container {
+    max-width: 100%;
+    padding: 10px;
+}
+
 /* Section heading */
 h2 {
     display: flex;
@@ -16,8 +30,7 @@ h2 {
 }
 
 #standard-form-container {
-    width: auto;
-    padding: 15px;
+    width: 100%;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     border-radius: 10px;
@@ -25,7 +38,7 @@ h2 {
 
 /* Test Code Table styling */
 #standard-table-container {
-    width: auto;
+    width: 100%;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     border-radius: 10px;
@@ -37,15 +50,14 @@ h2 {
     border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
-    margin-bottom: 20px;
     border: 2px solid #FFd700;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 .standards-table td {
-    width: auto;
-    padding: 15px;
+    width: 100%;
+    padding: 10px;
     border: 2px solid #FFD700;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
@@ -53,8 +65,7 @@ h2 {
 }
 
 #analytes-section {
-    width: auto;
-    padding: 15px;
+    width: 100%;
     margin-bottom: 20px;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
@@ -68,43 +79,34 @@ h3 {
 }
 
 .analytes-table {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 2px solid #FFD700;
+    width: 100%; /* Make the table span the full width */
+    border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
-    border-radius: 10px;
+    border: 2px solid #FFd700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 .analytes-table td {
-    width: auto;
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 2px solid #FFD700;
+    width: 100%; /* Make the table span the full width */
+    border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
-    border-radius: 10px;
-}
-
-#standard-details-container {
-    width: auto;
-    padding: 15px;
-    margin-bottom: 20px;
-    background-color: #333; /* Dark background */
-    color: #FFD700; /* Yellow text */
-    border-radius: 10px;
+    border: 2px solid #FFd700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 /* Table styling */
 table {
-    width: 100%;
+    width: 100%; /* Make the table span the full width */
     border-collapse: collapse;
-    margin-bottom: 0;
-    background-color: #333;
-    color: white;
-    table-layout: auto;
-    font-weight: bold;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    border: 2px solid #FFd700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 table th, table td {
@@ -147,8 +149,8 @@ button.remove-analyte-btn:hover {
     background-color: red;
     color: white;
     padding: 6px 24px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -158,8 +160,8 @@ button.remove-analyte-btn:hover {
     background-color: rgb(62, 88, 206);
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -170,11 +172,22 @@ button.remove-analyte-btn:hover {
     background-color: rgb(74, 104, 235);
 }
 
+#standards-table {
+    width: 100%; /* Make the table span the full width */
+    border-collapse: collapse;
+    background-color: #333; /* Dark background */
+    color: white; /* Yellow text */
+    margin-bottom: 20px;
+    border: 2px solid #FFd700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    table-layout: auto; /* Automatically adjust column widths based on content */
+}
+
 #standards-table a {
     color: rgb(131, 166, 231);;
     text-decoration: none;
     font-weight: bold;
-    white-space: wrap;
+    white-space: nowrap;
 }
 
 #back-btn {
@@ -183,8 +196,8 @@ button.remove-analyte-btn:hover {
     background-color: rgb(62, 88, 206);
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -201,8 +214,24 @@ button.remove-analyte-btn:hover {
         font-size: 1.6rem;
     }
 
+    h3 {
+        font-size: 1.1rem;
+    }
+
     .hamburger {
         margin-top: -8px;
+    }
+
+    table th,
+    table td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     #standards-table th,
@@ -215,5 +244,43 @@ button.remove-analyte-btn:hover {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
+    }
+
+    .analytes-table th,
+    .analytes-table td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    .standards-table,
+    .analytes-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .standards-table th,
+    .standards-table td {
+        font-size: 0.9rem;
+    }
+
+    .analytes-table th,
+    .analytes-table td {
+        font-size: 0.9rem;
+    }
+
+    /* Make the table scrollable on smaller screens */
+    .standards-table,
+    .analytes-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    #create-standard-btn,
+    .delete-btn,
+    #back-btn {
+        padding: 5px 10px !important;
+        font-size: 0.7rem;
     }
 }

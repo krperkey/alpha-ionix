@@ -22,8 +22,8 @@ h2 {
 
 /* Section styling for Overview and Analyte (same design for both) */
 #overview-container, #analyte-container, #quality-control-container {
-    width: 100%;
-    padding: 15px;
+    max-width: 100%;
+    padding: 0 10px;
     margin-top: 0;
     margin-bottom: 20px;
     border: 2px solid #FFD700;
@@ -472,7 +472,7 @@ select[name="associated-analyte[]"] {
     padding: 9px 18px;
     margin-bottom: 16px;
     border: 1px solid white;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     font-family: 'Libre Baskerville', serif;
@@ -489,7 +489,7 @@ select[name="associated-analyte[]"] {
     padding: 9px 18px;
     margin-bottom: 16px;
     border: 1px solid white;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     font-family: 'Libre Baskerville', serif;
@@ -535,8 +535,8 @@ table input[type="number"] {
     background-color: red;
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -622,5 +622,10 @@ table input[type="number"] {
         font-size: 0.7rem;
         overflow-x: auto;
         white-space: nowrap;
+    }
+
+    .remove-tab {
+        padding: 5px 8px;
+        font-size: 0.8rem;
     }
 }

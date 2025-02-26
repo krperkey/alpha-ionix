@@ -604,12 +604,19 @@ table input[type="number"] {
         font-size: 0.9rem;
     }
 
+    tbody {
+        display: block 0;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
     /* Make the table scrollable on smaller screens */
     table {
         display: block 0;
         overflow-x: auto;
         white-space: nowrap;
     }
+    
 
     #back-to-test-code-table {
         padding: 5px 8px;
@@ -617,9 +624,20 @@ table input[type="number"] {
         margin-bottom: 4px;
     }
 
+    #tabs {
+        display: block 0;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
     #tabs .tab-button {
         padding: 5px 8px;
         font-size: 0.7rem;
+        
+    }
+
+    .tab {
+        display: block 0;
         overflow-x: auto;
         white-space: nowrap;
     }

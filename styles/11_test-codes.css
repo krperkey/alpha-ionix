@@ -23,7 +23,7 @@ h2 {
 /* Section styling for Overview and Analyte (same design for both) */
 #overview-container, #analyte-container, #quality-control-container {
     max-width: 100%;
-    padding: 0 10px;
+    padding: 10px 15px;
     margin-top: 0;
     margin-bottom: 20px;
     border: 2px solid #FFD700;
@@ -52,7 +52,7 @@ h2 {
 #overview-container input {
     width: 30%;
     padding: 8px;
-    border: 1px solid #FFD700; /* Yellow border */
+    border: 1px solid white; /* Yellow border */
     background-color: #333; /* Dark background */
     color: white; /* White text */
     border-radius: 5px;
@@ -63,7 +63,7 @@ h2 {
 #analyte-container input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #FFD700; /* Yellow border */
+    border: 1px solid white; /* Yellow border */
     background-color: #333; /* Dark background */
     color: white; /* White text */
     border-radius: 5px;
@@ -74,7 +74,7 @@ h2 {
 #quality-control-container input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #FFD700; /* Yellow border */
+    border: 1px solid white; /* Yellow border */
     background-color: #333; /* Dark background */
     color: white; /* White text */
     border-radius: 5px;
@@ -188,20 +188,6 @@ table {
     background-color: #FFB800;
 }
 
-/* Remove row button styling */
-.remove-row {
-    background-color: #FF0000;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.remove-row:hover {
-    background-color: #CC0000;
-}
-
 /* Button styling */
 button {
     align-self: center;
@@ -288,10 +274,16 @@ select[name="associated-analyte[]"] {
     padding-right: 25px;
 }
 
+#qc-sample-type-dropdown {
+    outline: none;
+    border-color: white; /* Slightly brighter yellow */
+    background-color: #333; /* Slightly brighter background */
+}
+
 /* Focus style for the QC dropdown */
 #qc-sample-type-dropdown:focus {
     outline: none;
-    border-color: #FFB800; /* Slightly brighter yellow */
+    border-color: white; /* Slightly brighter yellow */
     background-color: #333; /* Slightly brighter background */
 }
 
@@ -352,8 +344,8 @@ select[name="associated-analyte[]"] {
 
 .tab table input[type="text"] {
     width: 90%;
-    padding: 5px;
-    border: 1px solid #FFD700;
+    padding: 8px;
+    border: 1px solid white;
     background-color: #333; /* Matches table background */
     color: #FFD700; /* Matches theme */
     border-radius: 5px;
@@ -437,7 +429,7 @@ select[name="associated-analyte[]"] {
     padding: 9px 18px;
     margin-bottom: 16px;
     border: 1px solid white;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     font-family: 'Libre Baskerville', serif;
@@ -479,13 +471,13 @@ select[name="associated-analyte[]"] {
 }
 
 #create-test-code:hover {
-    background-color: rgb(18, 236, 18);
+    background-color: #28a745;
     color: white;
 }
 
 #add-analyte-row {
-    background-color: #ffd700;
-    color: black;
+    background-color: rgb(62, 88, 206);
+    color: white;
     padding: 9px 18px;
     margin-bottom: 16px;
     border: 1px solid white;
@@ -496,8 +488,7 @@ select[name="associated-analyte[]"] {
 }
 
 #add-analyte-row:hover {
-    background-color: #ffb800;
-    color: black;
+    background-color: rgb(74, 104, 235);
 }
 
 table {
@@ -521,8 +512,8 @@ table th {
 
 table input[type="number"] {
     width: 90%;
-    padding: 5px;
-    border: 1px solid #FFD700;
+    padding: 8px;
+    border: 1px solid white;
     background-color: #333;
     color: white;
     border-radius: 5px;
@@ -563,6 +554,20 @@ table input[type="number"] {
     color: rgb(131, 166, 231);
     font-size: 1.0rem;
     margin-bottom: 10px;
+}
+
+/* Remove row button styling */
+.remove-row {
+    background-color: #FF0000;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-row:hover {
+    background-color: #CC0000;
 }
 
 /* Responsive adjustments */
@@ -642,8 +647,29 @@ table input[type="number"] {
         white-space: nowrap;
     }
 
-    .remove-tab {
+    .remove-tab,
+    #add-qc,
+    #add-analyte-row,
+    .remove-tab,
+    #create-test-code,
+    .remove-row {
         padding: 5px 8px;
         font-size: 0.8rem;
+    }
+
+    #qc-sample-type-dropdown {
+        width: 85%;
+        padding: 5px 8px;
+    }
+
+    #overview-container input {
+        width: 97%;
+        padding: 5px 8px;
+    }
+
+    #analyte-container input,
+    #quality-control-container input {
+        width: 200px;
+        padding: 5px 8px;
     }
 }

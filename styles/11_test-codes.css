@@ -582,7 +582,7 @@ table input[type="number"] {
 
     /* Make the table scrollable on smaller screens */
     #analyte-table {
-        display: block;
+        display: block 0;
         overflow-x: auto;
         white-space: nowrap;
     }

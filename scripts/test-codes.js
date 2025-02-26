@@ -75,9 +75,7 @@ document.getElementById('add-qc').addEventListener('click', async function () {
 
     // Build the table structure dynamically
     let qcTableHTML = `
-        <h3>${qcSampleType}
         <button class="remove-tab" data-tab="${newTabContent.id}">Remove QC Tab</button>
-        </h3>
         <table>
             <thead>
                 <tr>

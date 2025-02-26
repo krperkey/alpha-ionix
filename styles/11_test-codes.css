@@ -29,7 +29,7 @@ h2 {
     border: 2px solid #FFD700;
     background-color: #333; /* Dark background */
     color: #FFD700; /* Yellow text */
-    border-radius: 10px;
+    border-radius: 4px;
 }
 
 /* Section title styling */
@@ -651,19 +651,22 @@ table input[type="number"] {
     #add-qc,
     #add-analyte-row,
     .remove-tab,
-    #create-test-code,
     .remove-row {
         padding: 5px 8px;
         font-size: 0.8rem;
     }
 
+    #create-test-code {
+        font-size: 1.0rem;
+    }
+
     #qc-sample-type-dropdown {
-        width: 85%;
+        width: 75%;
         padding: 5px 8px;
     }
 
     #overview-container input {
-        width: 97%;
+        width: 95%;
         padding: 5px 8px;
     }
 

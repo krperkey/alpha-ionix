@@ -661,12 +661,12 @@ table input[type="number"] {
     }
 
     #qc-sample-type-dropdown {
-        width: 75%;
+        width: 80%;
         padding: 5px 8px;
     }
 
     #overview-container input {
-        width: 95%;
+        width: 94%;
         padding: 5px 8px;
     }
 

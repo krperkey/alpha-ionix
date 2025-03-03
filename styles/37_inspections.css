@@ -129,16 +129,6 @@ input[type="time"] {
     background-color: #28a745;
 }
 
-/* Footer Styling */
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    text-align: center;
-}
-
 /* Tab navigation container */
 .tab-container {
     display: flex;
@@ -234,7 +224,6 @@ footer {
 
     .submit-button {
         padding: 5px 10px;
-        margin-bottom: 20px;
     }
     
 }

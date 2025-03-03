@@ -193,16 +193,6 @@ nav ul li:hover #dropdown-menu {
     display: none;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    text-align: center;
-}
-
-
 /* Ensure full viewport fit on mobile devices */
 /* Ensure full viewport fit on mobile devices */
 @media screen and (max-width: 768px) {

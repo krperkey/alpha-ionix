@@ -50,11 +50,12 @@ table th {
 }
 
 footer {
-    text-align: center;
-    margin-top: 2rem;
-    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     background-color: #333;
     color: white;
+    text-align: center;
 }
 
 .link-button {

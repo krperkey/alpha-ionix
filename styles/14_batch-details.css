@@ -37,8 +37,8 @@ h2 {
     padding: 10px 10px;
     background-color: #333;
     color: #FFD700;
-    border-radius: 8px;
-    border: 2px solid #FFD700;
+    border-radius: 4px;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
 }
@@ -80,14 +80,14 @@ h2 {
     color: white; /* Yellow text */
     margin-bottom: 20px;
     margin-top: 0;
-    border: 2px solid #FFD700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 #samples-table th,
 #samples-table td {
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     padding: 5px;
     text-align: center;
     font-size: 0.8rem;
@@ -212,17 +212,19 @@ h2 {
     width: 100%;
     margin-bottom: 20px;
     border-collapse: collapse;
+    border: 2px solid #999;
 }
 
 #modal-sample-add-table th,
 #modal-sample-add-table td {
     padding: 10px;
     text-align: center;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
+    color: white;
 }
 
 #modal-sample-add-table th {
-    background-color: #444;
+    background-color: #777;
     color: white;
 }
 
@@ -230,17 +232,19 @@ h2 {
     width: 100%;
     margin-bottom: 20px;
     border-collapse: collapse;
+    border: 2px solid #999;
 }
 
 #modal-qc-add-table th,
 #modal-qc-add-table td {
     padding: 10px;
     text-align: center;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
+    color: white;
 }
 
 #modal-qc-add-table th {
-    background-color: #444;
+    background-color: #777;
     color: white;
 }
 
@@ -297,7 +301,7 @@ button:hover {
     background-color: #FFD700;
     color: black;
     padding: 8px 16px;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
@@ -350,8 +354,8 @@ button:hover {
 .remove-sample-button {
     background-color: #f44336; /* Red background */
     color: #fff; /* White text */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
+    border: 1px solid white; /* No border */
+    border-radius: 4px; /* Rounded corners */
     padding: 4px 8px; /* Padding for size */
     font-size: 14px; /* Font size */
     cursor: pointer; /* Pointer cursor on hover */
@@ -407,14 +411,12 @@ select.parent-dropdown option, select.paired-dropdown option {
 }
 
 #confirm-add-samples-button,
-#close-add-samples-modal-button,
-#confirm-add-qc-button,
-#close-add-qc-modal-button {
+#confirm-add-qc-button {
     margin: 2px;
-    background-color: #FFD700;
-    color: black;
+    background-color: #007BFF;
+    color: white;
     padding: 8px 16px;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
@@ -423,11 +425,19 @@ select.parent-dropdown option, select.paired-dropdown option {
     margin-bottom: 0;
 }
 
-#confirm-add-samples-button:hover,
-#close-add-samples-modal-button:hover,
-#confirm-add-qc-button:hover,
-#close-add-qc-modal-button:hover {
-    background-color: #ffb800;
+#close-add-samples-modal-button,
+#close-add-qc-modal-button {
+    margin: 2px;
+    background-color: #FF0000;
+    color: white;
+    padding: 8px 16px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 0;
 }
 
 /* Responsive adjustments */

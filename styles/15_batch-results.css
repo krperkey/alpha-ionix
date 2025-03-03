@@ -44,7 +44,7 @@ h2 {
     color: #FFD700;
     padding: 10px 10px;
     margin-bottom: 20px;
-    border: 3px solid #FFD700;
+    border: 3px solid #999;
     border-radius: 5px;
 }
 
@@ -93,7 +93,6 @@ h2 {
     border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
-    margin-bottom: 20px;
     margin-top: 0;
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -106,7 +105,7 @@ h2 {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    border: 2px solid #999;
+    border: 2px solid white;
     padding: 8px;
     text-align: center;
 }
@@ -126,8 +125,8 @@ h2 {
 #samples-results-table th {
     background-color: #777;
     color: white;
-    border: 2px solid #999;
-    padding: 4px;
+    border: 2px solid white;
+    padding: 8px;
 }
 
 .sample-row {
@@ -178,7 +177,7 @@ h2 {
 }
 
 .sub-row-header td {
-    border: 1px solid #333 !important; /* Force dark gray border */
+    border: 1px solid white !important; /* Force dark gray border */
     padding: 1px; /* Optional: Adjust padding for better appearance */
     margin: 0;
 }
@@ -739,7 +738,7 @@ select[name^="qualifier-"]:focus {
 #resultstable {
     width: 100%;
     padding: 0 0;
-    border: 2px solid #ffd700;
+    border: 3px solid #999;
 }
 
 /* Responsive adjustments */

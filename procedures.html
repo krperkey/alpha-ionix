@@ -96,6 +96,8 @@
                         <th>Description</th>
                         <th>Document Link</th>
                         <th>Last Revised</th>
+                        <th>Revision Number</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -110,6 +112,46 @@
             
         </section>
     </main>
+
+    <!-- Revise Procedure Modal -->
+<div id="revise-procedure-modal" class="modal">
+    <div class="modal-content">
+        <h3>Edit Procedure</h3>
+        <form id="revise-procedure-form">
+            <label for="revise-procedure-id">Procedure ID:</label>
+            <input type="text" id="revise-procedure-id" readonly>
+
+            <label for="revise-procedure-desc">Description:</label>
+            <input type="text" id="revise-procedure-desc" required>
+
+            <label for="revise-revision-number">Revision Number:</label>
+            <input type="text" id="revise-revision-number" readonly>
+
+            <label for="revise-status">Status:</label>
+            <input type="text" id="revise-status" readonly>
+
+            <label for="revise-procedure-link">Current Document:</label>
+            <div id="current-procedure-link" class="bordered-box"></div>
+
+            <!-- Separate "Edit" button container outside the bordered section -->
+            <div id="edit-button-container"></div>
+
+            <label for="revise-procedure-link">Upload New Document:</label>
+            <input type="file" id="revise-procedure-link" accept=".pdf">
+
+            <label for="revise-rev-date">Last Revised:</label>
+            <input type="date" id="revise-rev-date" required>
+
+            <div class="modal-buttons">
+                <button type="button" id="save-revision">Save</button>
+                <button type="button" id="cancel-revision">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
 
     <!-- Add New User Modal -->
 <div id="add-procedure-modal" class="modal">

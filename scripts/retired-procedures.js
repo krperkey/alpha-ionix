@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             <td>${procedure.procedureDesc}</td>
             <td><a href="${procedure.fileURL}" download="${procedure.fileName}" target="_blank">${procedure.fileName}</a></td>
             <td>${procedure.revisionDate}</td>
+            <td>${procedure.revisionNumber}</td>
+            <td>Retired</td>
             <td>
                 <button class="unretire-btn">Unretire</button>
                 <button class="delete-btn">Delete</button>
@@ -29,7 +31,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                 procedureDesc: procedure.procedureDesc,
                 fileURL: procedure.fileURL,
                 fileName: procedure.fileName,
-                revisionDate: procedure.revisionDate
+                revisionDate: procedure.revisionDate,
+                revisionNumber: procedure.revisionNumber,
+                status: procedure.status
             };
 
             // Add back to procedures list

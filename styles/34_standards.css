@@ -50,7 +50,7 @@ h2 {
     border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -58,7 +58,7 @@ h2 {
 .standards-table td {
     width: 100%;
     padding: 10px;
-    border: 2px solid #FFD700;
+    border: 2px solid white;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     border-radius: 10px;
@@ -83,7 +83,7 @@ h3 {
     border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -93,7 +93,7 @@ h3 {
     border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
-    border: 2px solid #FFd700;
+    border: 2px solid white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -104,14 +104,14 @@ table {
     border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 table th, table td {
     padding: 10px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     text-align: center;
 }
 
@@ -178,7 +178,7 @@ button.remove-analyte-btn:hover {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }

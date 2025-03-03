@@ -52,7 +52,7 @@ h2 {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFD700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -60,7 +60,7 @@ h2 {
 #form-table th,
 #form-table td {
     padding: 10px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     text-align: center;
     vertical-align: middle;
 }
@@ -81,7 +81,7 @@ h2 {
 #form-table select {
     width: 100%;
     padding: 8px;
-    border: 1px solid #FFD700;
+    border: 1px solid white !important;
     border-radius: 5px;
     background-color: #333;
     color: white;
@@ -125,14 +125,14 @@ textarea {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFD700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 #role-list th,
 #role-list td {
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     padding: 10px;
     text-align: center;
 }
@@ -219,7 +219,7 @@ textarea {
 .modal-content input {
     width: 100%;
     padding: 6px 0;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     background-color: #333;
     color: white;
     border-radius: 5px;
@@ -229,7 +229,7 @@ textarea {
 .modal-content textarea {
     width: 100%;
     padding: 6px 0;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     background-color: #333;
     color: white;
     border-radius: 5px;
@@ -239,7 +239,7 @@ textarea {
 .modal-content select {
     width: 100%;
     padding: 6px 0;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     background-color: #333;
     color: white;
     border-radius: 5px;

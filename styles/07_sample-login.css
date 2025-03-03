@@ -91,7 +91,7 @@ section#sample-properties-section th {
     color: white;
     padding: 10px;
     text-align: center;
-    border: 1px solid #FFD700; /* Border around header cells */
+    border: 1px solid white; /* Border around header cells */
     white-space: nowrap;
 }
 
@@ -99,7 +99,7 @@ section#sample-properties-section th {
 section#sample-properties-section td {
     text-align: center;
     padding: 4px;
-    border: 1px solid #FFD700; /* Border around input cells */
+    border: 1px solid white; /* Border around input cells */
     white-space: nowrap;
 }
 
@@ -248,9 +248,9 @@ button:hover {
 .analyte-list-btn {
     background-color: #ffd700;
     color: #333;
-    border: 1px solid #333;
-    border-radius: 5px;
-    font-size: 0.8rem;
+    border: 1px solid white !important;
+    border-radius: 4px !important;
+    font-size: 0.9rem !important;
 }
 
 #login-button {
@@ -298,12 +298,47 @@ button:hover {
 #analyte-list-table th {
     width: 25%;
     text-align: center !important;
+    border: 1px solid white !important;
 }
 
 #analyte-list-body td {
     width: 25% !important;
     text-align: center !important;
+    border: 1px solid white !important;
     color: white !important;
+}
+
+#clear-all {
+    background-color: #FFd700;
+    color: black;
+    padding: 6px 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#save-analytes {
+    background-color: #007BFF;
+    color: white;
+    padding: 6px 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#close-analyte-modal {
+    background-color: #FF0000;
+    color: white;
+    padding: 6px 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 /* Responsive adjustments */
@@ -360,6 +395,13 @@ button:hover {
     .input-group select:focus {
         outline: none;
         border-color: #FFB800; /* Lighter yellow on focus */
+    }
+
+    #clear-all,
+    #save-analytes,
+    #close-analyte-modal {
+        padding: 5px 8px;
+        font-size: 0.8rem;
     }
 
 }

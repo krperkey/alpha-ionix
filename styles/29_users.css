@@ -21,8 +21,8 @@ h2 {
     background-color: rgb(62, 88, 206);
     color: white;
     padding: 10px 20px; /* Adjust padding for button appearance */
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     text-align: center;
@@ -40,14 +40,14 @@ h2 {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 .user-table th,
 .user-table td {
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     padding: 10px;
     text-align: center;
 }
@@ -114,7 +114,7 @@ h2 {
 .modal-content input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     border-radius: 5px;
     background-color: #333;
     color: white;
@@ -154,7 +154,7 @@ h2 {
 .modal-content select {
     width: 100%;
     padding: 8px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     border-radius: 5px;
     background-color: #333;
     color: white;
@@ -209,6 +209,8 @@ h2 {
 #close-modal-button {
     background-color: #FF0000;
     color: white;
+    border: 1px solid white;
+    border-radius: 4px;
 }
 
 /* Hover Effect */
@@ -220,6 +222,8 @@ h2 {
 #add-user-button {
     background-color: green;  /* Bootstrap Green */
     color: white;
+    border: 1px solid white;
+    border-radius: 4px;
 }
 
 /* Hover Effect */
@@ -244,6 +248,15 @@ h2 {
         overflow-x: auto;
         white-space: nowrap;
     }
+
+    #create-user-button,
+    #add-user-button,
+    #close-modal-button,
+    .user-actions {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+
 }
 
 

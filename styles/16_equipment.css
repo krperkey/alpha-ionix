@@ -46,7 +46,7 @@ button {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -57,7 +57,7 @@ button {
     background-color: #777;
     color: white;
     padding: 10px;
-    border: 1px solid #FFd700;
+    border: 1px solid white;
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
@@ -78,7 +78,7 @@ button {
 #equipment-table td,
 #inactive-equipment-table td {
     padding: 10px;
-    border: 1px solid #FFd700;
+    border: 1px solid white;
     text-align: center;
 }
 
@@ -247,7 +247,7 @@ button {
     width: 98%;
     height: 30px;
     padding: 8px;
-    border: 1px solid #FFD700;
+    border: 1px solid white !important;
     background-color: #333;
     color: white;
     border-radius: 5px;
@@ -256,6 +256,7 @@ button {
 
 /* Textarea */
 .modal-content textarea {
+    width: 96%;
     resize: vertical;
     margin-top: 5px;
     min-height: 80px;
@@ -370,6 +371,10 @@ button {
     .modal-content textarea {
         width: 100%; /* Full width input fields */
         font-size: 0.8rem;
+    }
+
+    .modal-content textarea {
+        width: 92%;
     }
 
     .modal-content button {

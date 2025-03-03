@@ -21,7 +21,7 @@ h2 {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -29,7 +29,7 @@ h2 {
 #qualifier-table th,
 #qualifier-table td {
     padding: 15px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     text-align: center;
 }
 
@@ -112,7 +112,7 @@ button:hover {
 .modal-content input {
     width: 98%;
     padding: 8px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     background-color: #333;
     color: white;
     border-radius: 5px;
@@ -241,5 +241,20 @@ button:hover {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
+    }
+
+    .modal-content input {
+        width: 95.5%;
+    }
+
+    .edit-btn,
+    .remove-btn,
+    #new-qualifier,
+    #save-new-qualifier,
+    #save-edit,
+    #cancel-edit,
+    #cancel-new-qualifier {
+        padding: 5px 8px;
+        font-size: 0.8rem;
     }
 }

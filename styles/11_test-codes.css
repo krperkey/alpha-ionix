@@ -26,15 +26,15 @@ h2 {
     padding: 10px 15px;
     margin-top: 0;
     margin-bottom: 20px;
-    border: 2px solid #FFD700;
+    border: 2px solid #999;
     background-color: #333; /* Dark background */
-    color: #FFD700; /* Yellow text */
+    color: #999; /* Yellow text */
     border-radius: 4px;
 }
 
 /* Section title styling */
 #overview-container h3, #analyte-container h3, #quality-control-container h3 {
-    color: #ffd700;
+    color: white;
     font-size: 1.3rem;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -96,7 +96,7 @@ h2 {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -108,7 +108,7 @@ h2 {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -119,20 +119,20 @@ table {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 #analyte-table th, #analyte-table td {
     padding: 10px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     text-align: center;
 }
 
 #qc-table th, #qc-table td {
     padding: 10px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     text-align: center;
 }
 
@@ -151,7 +151,7 @@ table {
     color: black;
     margin-top: 0;
     padding: 5px 10px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -161,7 +161,7 @@ table {
     color: black;
     margin-top: 0;
     padding: 5px 10px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -178,7 +178,7 @@ table {
     background-color: #FFD700;
     color: black;
     padding: 10px 20px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     border-radius: 8px;
     cursor: pointer;
     margin-top: 10px;
@@ -197,7 +197,7 @@ button {
     cursor: pointer;
     font-size: 1rem;
     padding: 10px 20px;
-    border: 1px solid yellow;
+    border: 1px solid white;
     border-radius: 8px;
 }
 
@@ -208,7 +208,7 @@ button:hover {
 
 .tab-button {
     padding: 10px 20px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     background-color: #333;
     color: #FFD700;
     cursor: pointer;
@@ -242,7 +242,7 @@ button:hover {
 select[name="associated-analyte[]"] {
     width: 100%;
     padding: 8px;
-    border: 1px solid #FFD700; /* Matches the existing theme */
+    border: 1px solid #999; /* Matches the existing theme */
     background-color: #333; /* Dark background */
     color: #FFD700; /* Yellow text */
     border-radius: 5px;
@@ -254,7 +254,7 @@ select[name="associated-analyte[]"] {
 /* Focus style for the dropdown */
 select[name="associated-analyte[]"]:focus {
     outline: none;
-    border-color: #FFB800; /* Slightly brighter yellow */
+    border-color: #999; /* Slightly brighter yellow */
     background-color: #444; /* Slightly brighter background */
 }
 
@@ -275,14 +275,14 @@ select[name="associated-analyte[]"] {
 }
 
 #qc-sample-type-dropdown {
-    outline: none;
+    outline: white;
     border-color: white; /* Slightly brighter yellow */
     background-color: #333; /* Slightly brighter background */
 }
 
 /* Focus style for the QC dropdown */
 #qc-sample-type-dropdown:focus {
-    outline: none;
+    outline: white;
     border-color: white; /* Slightly brighter yellow */
     background-color: #333; /* Slightly brighter background */
 }
@@ -290,7 +290,7 @@ select[name="associated-analyte[]"] {
 /* Dynamic QC Tabs */
 #tabs .tab-button {
     padding: 8px 12px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     background-color: rgb(62, 88, 206); /* Dark background */
     color: white; /* Yellow text */
     cursor: pointer;
@@ -309,10 +309,10 @@ select[name="associated-analyte[]"] {
 .tab {
     display: none;
     padding: 15px;
-    border: 2px solid #FFD700; /* Matches overall border styling */
+    border: 2px solid #999; /* Matches overall border styling */
     background-color: #333; /* Dark background */
     color: #FFD700; /* Yellow text */
-    border-radius: 10px;
+    border-radius: 4px;
     margin-top: 0;
 }
 
@@ -333,7 +333,7 @@ select[name="associated-analyte[]"] {
 .tab table th,
 .tab table td {
     padding: 10px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     text-align: center;
 }
 
@@ -374,6 +374,7 @@ select[name="associated-analyte[]"] {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0;
+    color: white;
 }
 
 /* Tabs Container */
@@ -401,6 +402,7 @@ select[name="associated-analyte[]"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: white;
 }
 
 /* QC Dropdown and Button Controls */
@@ -414,7 +416,7 @@ select[name="associated-analyte[]"] {
 #qc-sample-type-dropdown {
     width: 250px;
     padding: 8px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     background-color: #333;
     color: white;
     border-radius: 5px;
@@ -501,7 +503,7 @@ table {
 
 table th, table td {
     padding: 10px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     text-align: center;
 }
 

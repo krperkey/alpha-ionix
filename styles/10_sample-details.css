@@ -24,7 +24,7 @@ h2 {
     color: #FFD700; /* Yellow text */
     padding: 10px;
     border-radius: 10px;
-    border: 2px solid #FFD700; /* Yellow border */
+    border: 2px solid #999; /* Yellow border */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -48,7 +48,7 @@ h2 {
     margin: 20px 0;
     padding: 10px;
     background-color: #333;
-    border: 2px solid #ffd700;
+    border: 2px solid #999;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -70,7 +70,7 @@ h2 {
 #analysis-details-table th, #analysis-details-table td {
     padding: 10px;
     text-align: center;
-    border: 1px solid #ffd700;
+    border: 1px solid white;
 }
 
 #analysis-details-table th {
@@ -124,7 +124,7 @@ h2 {
 
 /* Table headers and cells */
 .details-table th, .details-table td {
-    border: 1px solid #ffb900;
+    border: 1px solid white;
     padding: 8px;
     text-align: left;
     vertical-align: top;
@@ -208,12 +208,58 @@ h2 {
 #analyte-list-table th {
     width: 25%;
     text-align: center !important;
+    border: 1px solid white !important;
 }
 
 #analyte-list-body td {
     width: 25% !important;
     text-align: center !important;
+    border: 1px solid white !important;
     color: white !important;
+}
+
+#clear-all {
+    background-color: #FFd700;
+    color: black;
+    padding: 6px 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#save-analytes {
+    background-color: #007BFF;
+    color: white;
+    padding: 6px 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#edit-analytes {
+    background-color: #ffd700;
+    color: black;
+    padding: 6px 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+#close-analyte-modal {
+    background-color: #FF0000;
+    color: white;
+    padding: 6px 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 /* Responsive adjustments */

@@ -27,7 +27,7 @@ h2 {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFD700;
+    border: 2px solid white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -37,7 +37,7 @@ h2 {
     background-color: #777; /* Lighter gray background for the header */
     color: white; /* White text */
     padding: 10px;
-    border: 1px solid #FFD700; /* Yellow border for header cells */
+    border: 1px solid white; /* Yellow border for header cells */
     text-align: center; /* Center align the text */
     text-transform: uppercase;
     font-weight: bold;
@@ -55,7 +55,7 @@ h2 {
 /* Table cell styling */
 #procedures-table td {
     padding: 10px;
-    border: 1px solid #FFD700; /* Yellow border for cells */
+    border: 1px solid white; /* Yellow border for cells */
     text-align: center; /* Align text to the left */
     white-space: nowrap; /* Prevent text from breaking into new lines */
 }
@@ -143,6 +143,49 @@ button:hover {
     display: block;
 }
 
+#revise-procedure-form input {
+    width: 96%;
+    padding: 8px;
+    border: 1px solid #ffb900;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+#revise-procedure-form label {
+    font-weight: bold;
+    color: #FFD700;
+    margin-bottom: 0;
+    display: block;
+}
+
+#current-procedure-link {
+    width: 96%;
+    padding: 8px;
+    border: 1px solid #ffb900;
+    border-radius: 5px;
+}
+
+#current-procedure-link a {
+    color: rgb(131, 166, 231);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#revise-procedure-link {
+    width: 96%;
+    padding: 8px;
+    border: 1px solid #ffb900;
+    border-radius: 5px;
+}
+
+#revise-procedure-link a {
+    color: rgb(131, 166, 231);
+    text-decoration: none;
+    font-weight: bold;
+}
+
 .modal-content button {
     background-color: #FFD700;
     color: black;
@@ -157,35 +200,64 @@ button:hover {
     background-color: #FFB800;
 }
 
-/* Cancel button styling */
-#submit {
+#edit-procedure-btn {
+    width: 20%;
+    background-color: #ffd700;
+    color: black;
+    padding: 5px 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 0;
+    font-weight: bold;
+}
+
+.check-in-btn {
     background-color: green;
     color: white;
     padding: 5px 12px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 0;
+    white-space: nowrap;
+}
+
+/* Cancel button styling */
+#submit,
+#save-revision {
+    background-color: green;
+    color: white;
+    padding: 5px 12px;
+    border: 1px solid white;
+    border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
     margin-left: 0;
 }
 
-#submit:hover {
+#submit:hover,
+#save-revision:hover {
     background-color: #28a745;
 }
 
 /* Cancel button styling */
-#close-modal-btn {
+#close-modal-btn,
+#cancel-revision {
     background-color: #ff0000;
     color: white;
     padding: 5px 12px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid white;
+    border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
     margin-left: 0;
 }
 
-#close-modal-btn:hover {
+#close-modal-btn:hover,
+#cancel-revision {
     background-color: #cc0000;
 }
 
@@ -282,6 +354,26 @@ button:hover {
         padding: 5px 8px;
         font-size: 0.9rem;
         margin-bottom: 6px;
+    }
+
+    #submit,
+    #close-modal-btn,
+    #save-revision,
+    #cancel-revision,
+    .revise-procedure-btn,
+    .retire-procedure-btn,
+    #edit-procedure-btn,
+    .check-in-btn {
+        padding: 5px 8px;
+        font-size: 0.7rem;
+    }
+
+    #revise-procedure-form input,
+    #add-procedure-form input,
+    #current-procedure-link,
+    #revise-procedure-link {
+        width: 92%;
+        font-size: 0.7rem;
     }
 }
 

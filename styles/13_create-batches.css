@@ -21,7 +21,7 @@ h2 {
     color: #FFD700;
     padding: 15px;
     margin-bottom: 20px;
-    border: 2px solid #FFD700;
+    border: 2px solid #999;
     border-radius: 10px;
 }
 
@@ -46,7 +46,7 @@ h2 {
 .input-group select {
     width: auto;
     padding: 8px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     background-color: #333;
     color: white;
     border-radius: 5px;
@@ -58,7 +58,7 @@ h2 {
     color: white;
     padding: 15px;
     margin-bottom: 20px;
-    border: 2px solid #FFD700;
+    border: 2px solid #999;
     border-radius: 10px;
     font-weight: bold;
 }
@@ -75,14 +75,14 @@ h2 {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
 
 #sample-selection-table th,
 #sample-selection-table td {
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     padding: 10px;
     text-align: center;
 }
@@ -149,7 +149,7 @@ h2 {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFd700;
+    border: 2px solid #999 !important;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -158,11 +158,11 @@ h2 {
 #modal-sample-table td {
     padding: 10px;
     text-align: center;
-    border: 1px solid #FFD700;
+    border: 1px solid white !important;
 }
 
 #modal-sample-table th {
-    background-color: #444;
+    background-color: #777;
     color: white;
 }
 
@@ -172,7 +172,7 @@ h2 {
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
     margin-bottom: 20px;
-    border: 2px solid #FFd700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: auto; /* Automatically adjust column widths based on content */
 }
@@ -181,11 +181,11 @@ h2 {
 #modal-qc-add-table td {
     padding: 10px;
     text-align: center;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
 }
 
 #modal-qc-add-table th {
-    background-color: #444;
+    background-color: #777;
     color: white;
 }
 
@@ -205,7 +205,7 @@ button:hover {
 /* Table styles */
 .batch-info-table {
     width: 25%; /* Full width table */
-    border: 1px solid #ffb900; /* Border around the table */
+    border: 1px solid #999; /* Border around the table */
     border-collapse: collapse; /* Remove gaps between cells */
     margin-bottom: 20px; /* Add space below the table */
     text-align: center; /* Align content to the left */
@@ -214,7 +214,7 @@ button:hover {
 /* Cell styles */
 .batch-info-table td {
     padding: 10px; /* Add padding inside cells */
-    border: 1px solid #ffb900; /* Border around each cell */
+    border: 1px solid white; /* Border around each cell */
     vertical-align: middle; /* Vertically align content to the middle */
 }
 
@@ -241,7 +241,7 @@ button:hover {
 #batch-analysis {
     width: 100%;
     padding: 4px;
-    border: 1px solid #FFD700;
+    border: 1px solid white;
     background-color: #333;
     color: white;
     border-radius: 5px;

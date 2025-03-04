@@ -106,6 +106,25 @@ export function syncFirebaseToLocal(key) {
     });
 }
 
+// Function to log visitor information to Firestore
+async function logVisitor() {
+    try {
+        await setDoc(doc(db, "visitors", `${Date.now()}_${Math.random()}`), {
+            timestamp: serverTimestamp(),
+            userAgent: navigator.userAgent,
+            referrer: document.referrer,
+            page: window.location.pathname
+        });
+        console.log("👀 Visitor logged successfully");
+    } catch (error) {
+        console.error("❌ Error logging visitor:", error);
+    }
+}
+
+// Call the logVisitor function when the page loads
+logVisitor();
+
+
 
 
 

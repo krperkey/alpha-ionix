@@ -106,23 +106,38 @@ export function syncFirebaseToLocal(key) {
     });
 }
 
-// Function to log visitor information to Firestore
+function getUniqueVisitorId() {
+    let visitorId = localStorage.getItem("visitorId");
+    if (!visitorId) {
+        visitorId = crypto.randomUUID(); // Generates a unique ID
+        localStorage.setItem("visitorId", visitorId);
+    }
+    return visitorId;
+}
+
+// Log visitor data to Firestore (without Cloud Functions)
 async function logVisitor() {
     try {
-        await setDoc(doc(db, "visitors", `${Date.now()}_${Math.random()}`), {
+        const visitorId = getUniqueVisitorId(); // Get or create unique ID
+        const visitorRef = doc(db, "uniqueVisitors", visitorId);
+
+        await setDoc(visitorRef, {
+            visitorId: visitorId,
             timestamp: serverTimestamp(),
             userAgent: navigator.userAgent,
-            referrer: document.referrer,
-            page: window.location.pathname
-        });
-        console.log("👀 Visitor logged successfully");
+            referrer: document.referrer || "Direct Visit",
+            pagesVisited: arrayUnion(window.location.pathname) // Store all visited pages
+        }, { merge: true });
+
+        console.log(`✅ Visitor logged with ID: ${visitorId}`);
     } catch (error) {
         console.error("❌ Error logging visitor:", error);
     }
 }
 
-// Call the logVisitor function when the page loads
+// Call function when page loads
 logVisitor();
+
 
 
 

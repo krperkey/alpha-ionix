@@ -112,24 +112,25 @@ function getUniqueVisitorId() {
         visitorId = crypto.randomUUID(); // Generates a unique ID
         localStorage.setItem("visitorId", visitorId);
     }
+    console.log(`👀 Visitor ID Used: ${visitorId}`); // Debugging
     return visitorId;
 }
 
-// Log visitor data to Firestore (without Cloud Functions)
+// Log visitor data to Firestore (using unique visitor ID)
 async function logVisitor() {
     try {
         const visitorId = getUniqueVisitorId(); // Get or create unique ID
-        const visitorRef = doc(db, "uniqueVisitors", visitorId);
+        const visitorRef = doc(db, "uniqueVisitors", visitorId); // Uses visitorId as document ID
 
         await setDoc(visitorRef, {
             visitorId: visitorId,
-            timestamp: serverTimestamp(),
+            lastVisit: serverTimestamp(),
             userAgent: navigator.userAgent,
             referrer: document.referrer || "Direct Visit",
-            pagesVisited: arrayUnion(window.location.pathname) // Store all visited pages
-        }, { merge: true });
+            pagesVisited: arrayUnion(window.location.pathname) // Stores all visited pages
+        }, { merge: true }); // Merge to avoid overwriting
 
-        console.log(`✅ Visitor logged with ID: ${visitorId}`);
+        console.log(`✅ Unique visitor logged with ID: ${visitorId}`);
     } catch (error) {
         console.error("❌ Error logging visitor:", error);
     }
@@ -137,6 +138,7 @@ async function logVisitor() {
 
 // Call function when page loads
 logVisitor();
+
 
 
 

@@ -85,7 +85,7 @@ h2 {
     border-collapse: collapse;
     background-color: #333; /* Dark background */
     color: white; /* Yellow text */
-    border: 2px solid #FFD700;
+    border: 2px solid #999;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     table-layout: fixed; /* Ensures columns stay within container */
     word-wrap: break-word; /* Prevents long text from expanding table */
@@ -93,7 +93,7 @@ h2 {
 
 /* Ensure table cells do not expand beyond container */
 #department-backlog-table th, #department-backlog-table td {
-    border: 1px solid #ffd700;
+    border: 1px solid #999;
     padding: 10px;
     color: white;
     text-align: center;

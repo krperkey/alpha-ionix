@@ -33,7 +33,7 @@ main {
 }
 
 #toolbar {
-    width: auto; /* Make the toolbar span the full width of the screen */
+    width: 100%; /* Make the toolbar span the full width of the screen */
     background-color: #ffd700; /* Dark background for the toolbar */
     color: #ffd700;
     box-sizing: border-box; /* Include padding in width */
@@ -148,7 +148,7 @@ nav ul li a:hover {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     display: none;
-    width: auto;
+    width: 100%;
     z-index: 10;
 }
 
@@ -255,9 +255,8 @@ nav ul li:hover #dropdown-menu {
     }
 
     #toolbar {
-        font-size: 0.7rem;
-        text-align: left;
-        padding: 5px 0 !important;
+        font-size: 0.9rem;
+        text-align: center;
     }
 
     #toolbar ul {
@@ -305,6 +304,7 @@ nav ul li:hover #dropdown-menu {
         top: 102px; /* Position it below the nav */
         background-color: #ffd700;
         z-index: 1000; /* Lower z-index than nav */
+        border: 1px solid #333;
     }
 
     /* Show the navigation and toolbar when active */
@@ -359,16 +359,22 @@ nav ul li:hover #dropdown-menu {
     /* Make toolbar items stack */
     #toolbar ul {
         flex-direction: row;
-        width: 80%;
+        width: 100%;
         text-align: center;
     }
 
     #toolbar ul li {
         width: 100%;
+        border: 1px solid #333;
+        border-radius: 2px;
     }
 
     #toolbar ul li a {
         padding: 5px 10px !important;
+    }
+
+    #search-container {
+        display: none;
     }
 }
 

@@ -237,6 +237,10 @@ h2 {
         font-size: 1.6rem;
     }
 
+    #hamburger-btn {
+        margin-right: -4px;
+    }
+
     .user-table th,
     .user-table td {
         font-size: 0.9rem;

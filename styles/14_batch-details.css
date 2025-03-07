@@ -450,8 +450,9 @@ select.parent-dropdown option, select.paired-dropdown option {
         font-size: 1.2rem;
     }
 
-    .hamburger {
+    #hamburger-btn {
         margin-top: -4px;
+        margin-right: -4px;
     }
 
     #samples-table th,

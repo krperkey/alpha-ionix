@@ -316,8 +316,9 @@ button {
         font-size: 1.6rem;
     }
 
-    .hamburger {
+    #hamburger-btn {
         margin-top: -4px;
+        margin-right: 1px;
     }
 
     #equipment-table th,

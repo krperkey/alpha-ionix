@@ -215,8 +215,9 @@ button.remove-analyte-btn:hover {
         font-size: 1.6rem;
     }
 
-    .hamburger {
-        margin-top: -8px;
+    #hamburger-btn {
+        margin-top: -9px;
+        margin-right: -14px;
     }
 
     #specification-table th,

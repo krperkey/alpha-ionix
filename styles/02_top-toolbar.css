@@ -128,7 +128,7 @@ nav ul li a {
     color: white;
     text-decoration: none;
     padding: 10px;
-    display: block;
+    display: flex;
 }
 
 nav ul li a:hover {
@@ -193,6 +193,35 @@ nav ul li:hover #dropdown-menu {
     display: none;
 }
 
+#main-nav {
+    margin-right: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#main-nav ul {
+    width: 100%;
+    gap: 15px;
+}
+
+#main-nav ul li {
+    width: auto;
+    text-align: center;
+}
+
+#main-nav ul li a {
+    display: block;
+    font-size: 14px;
+    color: white;
+    background-color: #333;
+    margin-top: 0 0;
+}
+
+#main-nav ul li a:hover {
+    background-color: #ffd700;
+    color: #333;
+}
+
 /* Ensure full viewport fit on mobile devices */
 /* Ensure full viewport fit on mobile devices */
 @media screen and (max-width: 768px) {
@@ -215,7 +244,7 @@ nav ul li:hover #dropdown-menu {
     }
 
     nav {
-        max-width: 65%;
+        max-width: 100%;
         font-size: 0.6rem;
     }
 
@@ -263,6 +292,7 @@ nav ul li:hover #dropdown-menu {
 
     /* Ensure navigation appears above toolbar */
     #main-nav {
+        position: absolute;
         top: 51.5px; /* Set it below the header */
         background-color: #333;
         text-align: center;
@@ -295,27 +325,29 @@ nav ul li:hover #dropdown-menu {
         border: none;
         cursor: pointer;
         position: absolute;
-        top: 10px;
-        right: 5px;
+        top: 8px;
+        right: 10px;
         z-index: 101;
     }
 
     /* Make the nav links take full width */
     #main-nav ul {
         width: 100%;
+        gap: 5px;
     }
 
     #main-nav ul li {
-        width: 100%;
+        display: flex;
+        max-width: 100%;
         text-align: center;
     }
 
     #main-nav ul li a {
+        width: 100%;
         display: block;
-        padding: 13px 16.85px;
         font-size: 12px;
         color: white;
-        background-color: #444;
+        background-color: #333;
         border-bottom: 1px solid #555;
     }
 

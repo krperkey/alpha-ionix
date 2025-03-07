@@ -366,8 +366,9 @@ button:hover {
         white-space: wrap;
     }
 
-    .hamburger {
-        margin-top: -8px;
+    #hamburger-btn {
+        margin-top: -9px;
+        margin-right: -4px;
     }
 
     .input-group {

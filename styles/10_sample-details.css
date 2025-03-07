@@ -269,8 +269,9 @@ h2 {
         font-size: 1.6rem;
     }
 
-    .hamburger {
-        margin-top: -8px;
+    #hamburger-btn {
+        margin-top: -9px;
+        margin-right: -4px;
     }
 
     #sample-details p {

@@ -190,15 +190,6 @@ h2 {
 
 /* ======== FIXES TO PREVENT HEADER ISSUE WITHOUT CHANGING TABLES ======== */
 
-/* Ensure header height is consistent across all pages */
-header {
-    height: 30px !important; /* Force a consistent height */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 0;
-}
-
 /* Prevent dashboard styles from interfering with the header */
 #dashboard {
     flex-grow: 1; /* Allow dashboard to take up remaining space */

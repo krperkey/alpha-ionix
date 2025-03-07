@@ -69,6 +69,11 @@ table th {
         font-size: 1.6rem;
     }
 
+    #hamburger-btn {
+        margin-top: -5px;
+        margin-right: -4px;
+    }
+
     table th,
     table td {
         font-size: 0.9rem;
